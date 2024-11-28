@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <p>Hello</p>
+      <p className="font-integralCFBold">Hello2</p>
     </>
   );
 }
