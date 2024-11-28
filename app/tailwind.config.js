@@ -7,6 +7,10 @@ export default {
         integralCFBold: ["Integral CF Bold", "sans-serif"],
         satoshi: ["Satoshi", "sans-serif"],
       },
+      colors: {
+        primary: "#00000",
+        grayBG: "#F0F0F0",
+      },
     },
   },
   plugins: [],
