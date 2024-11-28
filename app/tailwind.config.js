@@ -11,6 +11,9 @@ export default {
         primary: "#00000",
         grayBG: "#F0F0F0",
       },
+      backgroundImage: {
+        "lupe-icon": "url('/app/src/assets/Lupe.png')",
+      },
     },
   },
   plugins: [],
