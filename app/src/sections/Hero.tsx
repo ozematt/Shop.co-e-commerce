@@ -13,7 +13,7 @@ const Hero = () => {
           designed to bring out your individuality and cater to your sense of
           style.
         </p>
-        <button className="px-[67px] py-[15px] bg-black rounded-full text-white mt-[32px]">
+        <button className="px-[67px] py-[15px] bg-black rounded-full text-white mt-[32px] hover:scale-105">
           Shop Now
         </button>
       </div>
