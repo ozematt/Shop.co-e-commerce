@@ -1,0 +1,11 @@
+services:
+  e-commerce-app:
+    image: node:18
+    container_name: e-commerce-app
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    user: "${USER_ID}:${GROUP_ID}"
+    tty: true
+    ports:
+      - "3000:3000"
