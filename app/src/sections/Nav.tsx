@@ -9,9 +9,9 @@ const Nav = () => {
         {" "}
         <a href="/">shop.co</a>{" "}
       </div>
-      <ul className="flex justify-center items-center gap-[24px] pl-[40px] pt-2 font-satoshi font-normal">
+      <ul className="flex justify-center items-center gap-[24px] min-w-[390px] pl-[40px] pt-2 font-satoshi font-normal">
         {navLinks.map((link, index) => (
-          <li key={index}>
+          <li key={index} className="py-3">
             <a href={link.href} className="hover:opacity-60">
               {link.label}{" "}
             </a>
