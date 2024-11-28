@@ -12,4 +12,10 @@ export const navLinks = [
   { href: "#onSale", label: "On Sale" },
   { href: "#newArrivals", label: "New Arrivals" },
   { href: "#brands", label: "Brands" },
-];
+] as const;
+
+export const stats = [
+  { number: "200+", caption: "International Brands" },
+  { number: "2,000+", caption: "Hight-Quality Products" },
+  { number: "30,000+", caption: "Happy Customers" },
+] as const;
