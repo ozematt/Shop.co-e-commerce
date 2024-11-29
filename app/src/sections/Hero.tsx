@@ -4,22 +4,22 @@ import heroIMG from "../assets/hero_cart.png";
 const Hero = () => {
   return (
     <section className="px-4 sm:px-[100px] bg-grayBG relative">
-      <div className="w-full max-w-[360px] max-sm:mx-auto sm:max-w-[560px] pt-10 sm:pt-[103px]">
+      <div className="w-full max-w-[360px] max-sm:mx-auto sm:max-w-[520px] pt-10 sm:pt-[103px]">
         {" "}
         <h1 className="font-integralCFBold text-4xl sm:text-[64px] sm:leading-[64px]">
-          Find clothes thet matches your style
+          Discover what makes your style truly yours
         </h1>
         <p className="font-satoshi  text-[14px] sm:text-base mt-[32px] opacity-60">
-          Browse through our diverse range of meticulously crafted garments,
-          designed to bring out your individuality and cater to your sense of
-          style.
+          Browse through our diverse range of meticulously crafted products,
+          designed to highlight your individuality and meet your unique
+          preferences.
         </p>
         <button className="max-sm:w-full px-[67px] py-[15px] bg-black rounded-full text-white mt-6 sm:mt-[32px] hover:scale-105">
           Shop Now
         </button>
       </div>
 
-      <div className="flex flex-wrap max-[833px]:justify-center mt-[22px] sm:mt-[48px] gap-[27px] sm:gap-10 sm:pb-[116px]">
+      <div className="flex flex-wrap max-[833px]:justify-center py-[22px] sm:pt-[48px] gap-[27px] sm:gap-10 sm:pb-[116px]">
         {stats.map((stat) => (
           <div
             key={stat.number}
@@ -36,9 +36,9 @@ const Hero = () => {
         <img
           src={heroIMG}
           alt="hero img"
-          width={700}
-          height={700}
-          className="hidden min-[1270px]:block absolute z-10 grayscale contrast-150 top-0 right-0"
+          width={670}
+          height={670}
+          className="hidden min-[1250px]:block absolute z-10 grayscale contrast-150 top-8 right-0"
         />
       </div>
     </section>
