@@ -11,7 +11,18 @@ const Category = () => {
           browse by category
         </h2>
         <div className="px-[64px] space-y-4">
-        
+          <div className="flex max-xl:flex-wrap gap-4">
+            <div className=" bg-white flex-auto w-[407px] h-[190px] sm:h-[289px] rounded-[20px] overflow-hidden relative">
+              <p className="font-satoshi font-bold text-[36px] pt-[25px] pl-[36px]">
+                Beauty
+              </p>
+              <img
+                src={beauty}
+                alt="cosmetics"
+                width={400}
+                className="absolute top-0 right-[-70px]"
+              />
+            </div>
 
             <div className=" bg-white flex-auto w-[684px] h-[190px] sm:h-[289px] rounded-[20px] overflow-hidden relative">
               <p className="font-satoshi font-bold text-[36px] pt-[25px] pl-[36px] z-[1]">
