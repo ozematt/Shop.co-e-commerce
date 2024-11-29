@@ -6,7 +6,7 @@ import kitchen from "../assets/Kitchen.png";
 const Category = () => {
   return (
     <section className="px-4 sm:px-[100px] mt-[80px]">
-      <div className=" rounded-[40px] bg-grayBG">
+      <div className=" rounded-[40px] bg-grayBG z-[1]">
         <h2 className="font-integralCFBold text-[32px] sm:text-5xl text-center pt-[70px] pb-[64px]">
           browse by category
         </h2>
@@ -48,15 +48,15 @@ const Category = () => {
                 className="absolute min-w-[450px] top-0 right-[-10px]"
               />
             </div>
-            <div className="bg-white flex-auto w-[407px] h-[190px] sm:h-[289px] rounded-[20px] overflow-hidden relative">
+            <div className="bg-white flex-shrink-0 flex-auto w-[407px] h-[190px] sm:h-[289px] rounded-[20px] overflow-hidden relative ">
               <p className="font-satoshi font-bold text-[36px] pt-[25px] pl-[36px] ">
                 Electronics
               </p>
               <img
                 src={electronics}
                 alt="electronics devices"
-                width={200}
-                className="absolute top-0 right-[-10px] transform scale-x-[-1]"
+                width={270}
+                className="absolute top-[-60px] right-[-40px] transform scale-x-[-1] "
               />
             </div>
           </div>
