@@ -14,10 +14,9 @@ const TopSelling = () => {
         <p className="font-satoshi text-sm">ocena</p>
         <p className="font-satoshi font-bold text-2xl">cena</p>
       </div>
-      <button className="px-[80px] py-[15px] border rounded-full  mt-[36px] mb-[64px]">
+      <button className="px-[80px] py-[15px] border rounded-full  mt-[36px]">
         View All
       </button>
-      <div className="border-b w-full" />
     </section>
   );
 };
