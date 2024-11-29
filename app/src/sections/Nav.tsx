@@ -14,7 +14,7 @@ const Nav = () => {
           alt="hamburger menu"
           width={24}
           height={24}
-          className="mr-4 min-w-[24px] sm:min-w-[30px] min-[1192px]:hidden"
+          className="mr-4 min-w-[24px] sm:min-w-[30px] min-[1192px]:hidden cursor-pointer hover:opacity-60"
         />
         <a
           href="/"
@@ -45,7 +45,7 @@ const Nav = () => {
           alt="lupe icon"
           width={24}
           height={24}
-          className="hidden max-[837px]:block"
+          className="hidden max-[837px]:block cursor-pointer hover:opacity-60"
         />
         <img
           src={cartIcon}
