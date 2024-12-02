@@ -22,7 +22,6 @@ function App() {
       <Testimonials />
       <Newsletter />
       <Footer />
-      <h1>Hello</h1>
     </main>
   );
 }

@@ -6,6 +6,11 @@ import alpine from "../assets/Alpine.png";
 import redBull from "../assets/Red-Bull.png";
 import samsung from "../assets/Samsung.png";
 
+import twitter from "../assets/Twitter.png";
+import facebook from "../assets/Facebook.png";
+import instagram from "../assets/Instagram.png";
+import github from "../assets/Github.png";
+
 export const navLinks = [
   {
     href: "/",
@@ -86,4 +91,40 @@ export const comments = [
     name: "James L.",
     text: "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
   },
+];
+
+export const footerData = [
+  {
+    title: "Company",
+    items: ["About", "Features", "Works", "Career"],
+  },
+  {
+    title: "Help",
+    items: [
+      "Customer Support",
+      "Delivery Details",
+      "Terms & Conditions",
+      "Privacy Policy",
+    ],
+  },
+  {
+    title: "FAQ",
+    items: ["Account", "Manage Deliveries", "Orders", "Payments"],
+  },
+  {
+    title: "Resource",
+    items: [
+      "Free eBooks",
+      "Development Tutorial",
+      "How to - Blog",
+      "Youtube Playlist",
+    ],
+  },
+];
+
+export const socials = [
+  { name: "twitter", iconIMG: twitter },
+  { name: "facebook", iconIMG: facebook },
+  { name: "instagram", iconIMG: instagram },
+  { name: "github", iconIMG: github },
 ];
