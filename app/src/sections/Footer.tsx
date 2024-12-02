@@ -17,7 +17,12 @@ const Footer = () => {
           <div className="flex gap-3 mt-[35px]">
             {" "}
             {socials.map((social) => (
-              <img src={social.iconIMG} alt={social.name} key={social.name} />
+              <img
+                src={social.iconIMG}
+                alt={social.name}
+                key={social.name}
+                className="hover:opacity-75 cursor-pointer"
+              />
             ))}
           </div>
         </div>
@@ -27,7 +32,10 @@ const Footer = () => {
               {item.title}
             </p>
             {item.items.map((element) => (
-              <p key={element} className="pt-4 font-satoshi opacity-60">
+              <p
+                key={element}
+                className="pt-4 font-satoshi opacity-60 hover:opacity-30 cursor-pointer"
+              >
                 {element}
               </p>
             ))}
@@ -42,7 +50,7 @@ const Footer = () => {
         </p>
         <img src={pay} alt="payment method" />
       </div>
-      <div className="bg-grayBG w-full max-w-[1440] h-[500px] absolute bottom-0 left-[-20px] z-[-1]" />
+      <div className="bg-grayBG w-full max-w-[1440] h-[500px] absolute bottom-0 left-0 z-[-1]" />
     </section>
   );
 };
