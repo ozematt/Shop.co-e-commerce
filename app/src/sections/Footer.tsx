@@ -3,7 +3,7 @@ import pay from "../assets/Pay.png";
 
 const Footer = () => {
   return (
-    <section className="px-4 sm:px-[80px] mt-[50px]">
+    <section className="px-4 sm:px-[80px] mt-[50px] relative">
       <div className="flex">
         {" "}
         <div>
@@ -42,6 +42,7 @@ const Footer = () => {
         </p>
         <img src={pay} alt="payment method" />
       </div>
+      <div className="bg-grayBG w-full max-w-[1440] h-[500px] absolute bottom-0 left-[-20px] z-[-1]" />
     </section>
   );
 };
