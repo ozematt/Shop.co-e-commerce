@@ -12,51 +12,50 @@ const Category = () => {
         </h2>
         <div className="px-[24px] sm:px-[64px] space-y-4">
           <div className="flex max-xl:flex-wrap gap-4">
-            <div className=" bg-white flex-auto w-[407px] h-[190px] sm:h-[289px] rounded-[20px] overflow-hidden relative">
-              <p className="font-satoshi font-bold text-2xl sm:text-[36px] pt-[25px] pl-[36px]">
+            <div className=" bg-white flex-auto  w-[407px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative">
+              <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px]">
                 Beauty
               </p>
               <img
                 src={beauty}
                 alt="cosmetics"
-                width={400}
-                className="absolute top-0 right-[-80px] md:right-[-70px] scale-90 md:scale-100"
+                width={300}
+                className="absolute w-full h-full object-contain top-0 right-[-50px]"
               />
             </div>
 
-            <div className=" bg-white flex-auto w-[684px] h-[190px] sm:h-[289px] rounded-[20px] overflow-hidden relative">
-              <p className="font-satoshi font-bold text-2xl sm:text-[36px] pt-[25px] pl-[36px] z-[1]">
+            <div className=" bg-white flex-auto w-[684px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative">
+              <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px] z-[1]">
                 Clothes
               </p>
               <img
                 src={clothes}
                 alt="clothes"
                 width={450}
-                className="absolute min-w-[450px] top-[-35px] right-[-100px] md:right-[-20px] z-[0] max-md:scale-75"
+                className="absolute w-full h-full object-contain top-0 right-[-50px]"
               />
             </div>
           </div>
           <div className="flex max-xl:flex-wrap gap-4 pb-[74px]">
-            <div className="bg-white flex-auto w-[684px] h-[190px] sm:h-[289px] rounded-[20px] overflow-hidden relative">
-              <p className="font-satoshi font-bold text-2xl sm:text-[36px] pt-[25px] pl-[36px]">
+            <div className="bg-white flex-auto w-[684px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative">
+              <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px]">
                 Kitchen
               </p>
               <img
                 src={kitchen}
                 alt="kitchen accessories"
                 width={450}
-                className="absolute min-w-[450px] top-0 right-[-10px]"
+                className="absolute w-full h-full object-contain top-0 right-[-50px]"
               />
             </div>
-            <div className="bg-white flex-auto w-[407px] h-[190px] sm:h-[289px] rounded-[20px] overflow-hidden relative ">
-              <p className="font-satoshi font-bold text-2xl sm:text-[36px] pt-[25px] pl-[36px] ">
+            <div className="bg-white flex-auto w-[407px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative ">
+              <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px] ">
                 Electronics
               </p>
               <img
                 src={electronics}
                 alt="electronics devices"
-                width={270}
-                className="absolute top-[-60px] right-[-40px] transform scale-x-[-1] "
+                className="absolute w-full h-full object-contain top-0 left-[100px] transform scale-x-[-1]"
               />
             </div>
           </div>
