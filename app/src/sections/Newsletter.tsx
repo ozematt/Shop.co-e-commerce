@@ -1,7 +1,7 @@
 const Newsletter = () => {
   return (
     <section className="px-4 sm:px-[80px] mt-[80px]">
-      <div className="flex justify-center min-[1345px]:justify-between items-center flex-wrap w-full max-w-[1240px] bg-black rounded-[20px]">
+      <div className="flex justify-center min-[1345px]:justify-between items-center flex-wrap w-full max-w-[1280px] bg-black rounded-[20px]">
         <h2 className="font-integralCFBold  text-white text-[32px] sm:text-[40px] py-[32px] sm:py-[43px] px-[36px] sm:px-[64px] w-full max-w-[690px] leading-[45px]">
           Stay upto date about our latest offers
         </h2>
