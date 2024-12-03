@@ -12,8 +12,6 @@ import TopSelling from "../sections/TopSelling";
 const HomePage = () => {
   return (
     <main className="max-container">
-      <TopBar />
-      <Nav />
       <Hero />
       <BrandBar />
       <NewArrivals />

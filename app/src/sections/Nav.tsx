@@ -6,7 +6,7 @@ import lupeIcon from "../assets/Lupe_icon.png";
 
 const Nav = () => {
   return (
-    <nav className="px-4 sm:px-[100px] flex items-center max-[838px]:justify-between h-[96px]">
+    <nav className="px-4 sm:px-[100px] flex items-center max-[838px]:justify-between h-[96px] max-container">
       <div className="flex items-center">
         {" "}
         <img

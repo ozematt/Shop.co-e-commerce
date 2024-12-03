@@ -7,7 +7,7 @@ const TopBar = () => {
   return (
     <>
       {!hideBar && (
-        <section className="relative">
+        <section className="relative max-container">
           <div className="sm:px-[100px] h-[34px] sm:h-[38px] w-full text-center flex justify-center items-center bg-black text-white">
             {" "}
             <p className="font-satoshi font-normal text-[12px] sm:text-[14px] ">
