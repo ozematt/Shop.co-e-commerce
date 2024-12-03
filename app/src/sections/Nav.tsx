@@ -51,7 +51,7 @@ const Nav = () => {
       <input
         type="text"
         placeholder=" Search for products..."
-        className="hidden min-[838px]:block w-full max-w-[577px] h-[48px] ml-[40px] mt-1 pl-[57px] rounded-full bg-grayBG bg-lupe-icon bg-no-repeat bg-[center_left_1.5rem]"
+        className="hidden min-[838px]:block w-full max-w-[577px] h-[48px] ml-[40px] mt-1 pl-[57px] rounded-full bg-grayBG bg-lupe-icon bg-no-repeat bg-[center_left_1.5rem] focus:ring-1 focus:ring-black focus:outline-none"
       />
       <div className="flex items-center gap-[14px] ml-[40px] min-w-[62px]">
         <img
