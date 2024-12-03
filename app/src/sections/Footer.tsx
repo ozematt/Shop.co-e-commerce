@@ -60,7 +60,7 @@ const Footer = () => {
           className="max-sm:p-2 sm:mb-[60px]"
         />
       </div>
-      {/* <div className="bg-grayBG w-full max-w-[1440] h-full min-h-[500px] absolute bottom-0 left-0 z-[-1]" /> */}
+      <div className="bg-grayBG w-full max-w-[1440] h-[120%] absolute bottom-0 left-0 z-[-1]" />
     </section>
   );
 };
