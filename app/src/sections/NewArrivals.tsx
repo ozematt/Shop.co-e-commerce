@@ -1,7 +1,9 @@
 const NewArrivals = () => {
   return (
     <section className="px-4 sm:px-[100px] mt-[72px] flex flex-col items-center">
-      <h2 className="font-integralCFBold text-5xl text-center">New arrivals</h2>
+      <h2 className="font-integralCFBold text-[32px] sm:text-5xl text-center">
+        New arrivals
+      </h2>
       <div>
         <img
           src=""
