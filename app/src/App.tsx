@@ -1,28 +1,13 @@
-import BrandBar from "./sections/BrandBar";
-import Category from "./sections/Category";
-import Footer from "./sections/Footer";
-import Hero from "./sections/Hero";
-import Nav from "./sections/Nav";
-import NewArrivals from "./sections/NewArrivals";
-import Newsletter from "./sections/Newsletter";
-import Testimonials from "./sections/Testimonials";
-import TopBar from "./sections/TopBar";
-import TopSelling from "./sections/TopSelling";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./components/HomePage";
 
 function App() {
   return (
-    <main className="max-container">
-      <TopBar />
-      <Nav />
-      <Hero />
-      <BrandBar />
-      <NewArrivals />
-      <TopSelling />
-      <Category />
-      <Testimonials />
-      <Newsletter />
-      <Footer />
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
