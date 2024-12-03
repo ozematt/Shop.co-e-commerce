@@ -1,5 +1,6 @@
 import { stats } from "../constants";
 import heroIMG from "../assets/hero_cart.png";
+import Button from "../components/Button";
 
 const Hero = () => {
   return (
@@ -14,9 +15,7 @@ const Hero = () => {
           designed to highlight your individuality and meet your unique
           preferences.
         </p>
-        <button className="max-sm:w-full px-[67px] py-[15px] bg-black rounded-full text-white mt-6 sm:mt-[32px] hover:scale-105">
-          Shop Now
-        </button>
+        <Button>Shop now</Button>
       </div>
 
       <div className="flex flex-wrap max-[833px]:justify-center py-[22px] sm:pt-[48px] gap-[27px] sm:gap-10 sm:pb-[116px]">

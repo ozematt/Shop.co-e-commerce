@@ -2,6 +2,7 @@ import email from "../assets/Envelope.png";
 import lock from "../assets/Lock.png";
 import Footer from "../sections/Footer";
 import Newsletter from "../sections/Newsletter";
+import Button from "./Button";
 
 const SignUp = () => {
   return (
@@ -41,9 +42,7 @@ const SignUp = () => {
                 className=" w-full h-[48px] pl-[60px] max-sm:placeholder:text-[14px] bg-white rounded-full"
               />
             </div>
-            <button className="max-sm:w-full px-[67px] py-[15px] bg-black rounded-full text-white mt-6 sm:mt-[32px] hover:scale-105">
-              SignUp
-            </button>
+            <Button>Sign up</Button>
           </div>
         </div>
       </section>
