@@ -1,27 +1,32 @@
-import { CATEGORIES } from "../constants";
 import { z } from "zod";
+import { CATEGORIES_LIST } from "../constants";
 
-const categorySchema = z.object({
-  slug: z.string(),
-  name: z.string(),
-  url: z.string(),
-});
-const categoryArray = z.array(categorySchema);
+const categoryArray = z.array(z.string());
 
-type Category = z.infer<typeof categorySchema>;
+type Category = z.infer<typeof categoryArray>;
 
-const fetchCategories = async () => {
+const fetchCategoriesList = async () => {
   try {
-    const categories: unknown = await fetch(CATEGORIES);
-    const validateCategories = categoryArray.safeParse(categories);
-    if (!validateCategories.success) {
-      throw new Error("Network response was not ok" + validateCategories.error);
+    const response = await fetch(CATEGORIES_LIST);
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
-    const validData: Category[] = validateCategories.data;
+
+    const categories = await response.json();
+    const validateCategories = categoryArray.safeParse(categories);
+
+    if (!validateCategories.success) {
+      throw new Error("Validation failed: " + validateCategories.error);
+    }
+
+    const validData: Category = validateCategories.data;
     console.log(validData);
+    return validData;
   } catch (error) {
-    console.error("There has been problem with fetch", error);
+    console.error("There has been a problem with fetch", error);
+    throw error;
   }
 };
 
-export default fetchCategories;
+export default fetchCategoriesList;

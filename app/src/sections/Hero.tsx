@@ -1,8 +1,16 @@
 import { stats } from "../constants";
 import heroIMG from "../assets/hero_cart.png";
 import Button from "../components/Button";
+import { useQuery } from "@tanstack/react-query";
+import fetchCategoriesList from "../api/queries/categories";
 
 const Hero = () => {
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategoriesList,
+  });
+  console.log(categories);
+
   return (
     <section className="px-4 sm:px-[100px] bg-grayBG relative">
       <div className="w-full max-w-[360px] max-sm:mx-auto sm:max-w-[520px] pt-10 sm:pt-[103px]">
