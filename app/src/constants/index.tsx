@@ -1,4 +1,3 @@
-import arrowDown from "../assets/Arrow down.png";
 import CK from "../assets/CalvinKlein.png";
 import nike from "../assets/Nike.png";
 import delonghi from "../assets/Delonghi.png";
@@ -12,14 +11,6 @@ import instagram from "../assets/Instagram.png";
 import github from "../assets/Github.png";
 
 export const navLinks = [
-  {
-    href: "/",
-    label: (
-      <span>
-        Shop <img src={arrowDown} alt="Arrow Down" className="inline w-4 h-4" />
-      </span>
-    ),
-  },
   { href: "#onSale", label: "On Sale" },
   { href: "#newArrivals", label: "New Arrivals" },
   { href: "#brands", label: "Brands" },

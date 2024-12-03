@@ -3,8 +3,12 @@ import cartIcon from "../assets/Cart.png";
 import userIcon from "../assets/Avatar.png";
 import hamburger from "../assets/Hamburger.png";
 import lupeIcon from "../assets/Lupe_icon.png";
+import arrow from "../assets/Arrow down.png";
+import { useLocation } from "react-router";
 
 const Nav = () => {
+  const location = useLocation();
+
   return (
     <nav className="px-4 sm:px-[100px] flex items-center max-[838px]:justify-between h-[96px] max-container">
       <div className="flex items-center">
@@ -25,6 +29,16 @@ const Nav = () => {
       </div>
 
       <ul className="max-[1192px]:hidden flex justify-center items-center gap-[24px] min-w-[390px] pl-[40px]  font-satoshi font-normal">
+        <li className="py-3 flex items-center">
+          <a href="/shop" className="hover:opacity-60 pr-1">
+            Shop
+          </a>
+          {location.pathname.includes("shop") ? (
+            <img src={arrow} alt="arrow" />
+          ) : (
+            <img src={arrow} alt="arrow" className="rotate-180" />
+          )}
+        </li>
         {navLinks.map((link, index) => (
           <li key={index} className="py-3">
             <a href={link.href} className="hover:opacity-60">
