@@ -40,7 +40,7 @@ const Shop = () => {
             width={24}
             height={24}
             alt="settings"
-            className="-rotate-90 opacity-60"
+            className="-rotate-90 opacity-60 hover:opacity-100 cursor-pointer"
             onClick={handleFiltersOpen}
           />
         </div>
