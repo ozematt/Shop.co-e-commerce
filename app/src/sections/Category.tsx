@@ -7,7 +7,7 @@ const Category = () => {
   return (
     <section className="px-4 sm:px-[100px] mt-[80px]">
       <div className=" rounded-[40px] bg-grayBG z-[1]">
-        <h2 className="font-integralCFBold text-[32px] sm:text-5xl text-center pt-[70px] pb-[64px]">
+        <h2 className="font-integralCFBold text-[32px] leading-9 sm:text-5xl text-center pt-[40px] sm:pt-[70px] pb-[24px] sm:pb-[64px]">
           browse by category
         </h2>
         <div className="px-[24px] sm:px-[64px] space-y-4">
