@@ -13,8 +13,6 @@ export default {
       },
       backgroundImage: {
         "lupe-icon": "url('/app/src/assets/Lupe.png')",
-        "email-icon": "url('/app/src/assets/Email-icon.png')",
-        "lock-icon": "url('/app/src/assets/Lock.png')",
       },
     },
   },
