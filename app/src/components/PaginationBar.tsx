@@ -5,8 +5,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const PaginationBar = () => {
   return (
-    <div className="flex justify-between">
-      <div className="border-b-2" />
+    <div className="flex justify-between mt-[20px]">
       <button className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg">
         <img src={arrowLeft} alt="arrow left" className="pr-3" />
         Previous

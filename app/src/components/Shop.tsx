@@ -23,7 +23,7 @@ const Shop = () => {
             <div className="mt-4 grid-cols-3 gap-5">
               <Product />
             </div>
-
+            <div className="border-b-2 mt-[32px]" />
             <PaginationBar />
           </div>
         </div>
