@@ -6,7 +6,7 @@ const fetchProductsPage = async (page: number) => {
   try {
     const response = await fetch(
       `${PRODUCTS}?limit=9&skip=${
-        page * 9
+        page * 9 - 9
       }&select=title,price,rating,images,thumbnail,`
     );
     if (!response.ok) {

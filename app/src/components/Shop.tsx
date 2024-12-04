@@ -16,7 +16,7 @@ const Shop = () => {
   //
   ////DATA
   const { data: products, isPending } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", page],
     queryFn: () => fetchProductsPage(page),
   });
 
