@@ -1,9 +1,15 @@
+import { Link } from "react-router-dom";
 import arrowLeft from "../assets/Arrow-left.png";
 import arrowRight from "../assets/Arrow-right.png";
+// import PaginationBar from './PaginationBar';
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const PaginationBar = () => {
+type PaginationBarProps = {
+  onClick: (number: number) => void;
+};
+
+const PaginationBar = ({ onClick }: PaginationBarProps) => {
   return (
     <div className="flex justify-between mt-[20px]">
       <button className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg">
@@ -13,12 +19,14 @@ const PaginationBar = () => {
 
       <div className="space-x-2 mx-auto">
         {numbers.map((number) => (
-          <button
+          <Link
+            to={`?page=${number}`}
             key={number}
+            onClick={() => onClick(number)}
             className="w-[40px] h-[40px] font-satoshi font-medium text-sm rounded-[8px] opacity-50 hover:opacity-100 focus:opacity-100 hover:bg-grayBG focus:bg-grayBG"
           >
             {number}
-          </button>
+          </Link>
         ))}
       </div>
       <button className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg">

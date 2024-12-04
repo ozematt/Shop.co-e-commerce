@@ -6,16 +6,23 @@ import Filters from "./Filters";
 import PaginationBar from "./PaginationBar";
 import Product from "./Product";
 import ShopInfoBar from "./ShopInfoBar";
-import fetchProducts from "../api/queries/products";
+import fetchProductsPage from "../api/queries/productsPagination";
+import { useState } from "react";
 
 const Shop = () => {
+  const [page, setPage] = useState(0);
+  // console.log(page);
+
   //
   ////DATA
-  const { data: products } = useQuery({
+  const { data: products, isPending } = useQuery({
     queryKey: ["products"],
-    queryFn: fetchProducts,
+    queryFn: () => fetchProductsPage(page),
   });
 
+  const handleSetPage = (number: number) => {
+    setPage(number);
+  };
   console.log(products);
 
   ////UI
@@ -28,11 +35,11 @@ const Shop = () => {
           <Filters />
           <div className=" ml-[20px] w-full">
             <ShopInfoBar />
-            <div className="mt-4 grid-cols-3 gap-5">
+            <div className="mt-4 grid-cols-3 gap-5 h-full max-h-[1030px]">
               <Product />
             </div>
             <div className="border-b-2 mt-[32px]" />
-            <PaginationBar />
+            <PaginationBar onClick={handleSetPage} />
           </div>
         </div>
       </section>
