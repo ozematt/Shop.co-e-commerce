@@ -1,20 +1,27 @@
 import { useState } from "react";
 import arrow from "../assets/Arrow down.png";
 
-const sortingOptions = [
+const sortingOptions: string[] = [
   "Hightest Price",
   "Lowest Price",
   "Most Popular",
   "Least Popular",
   "Top Rated",
   "Least Rated",
-];
+] as const;
 
 const ShopInfoBar = () => {
   //
   ////DATA
   const [open, setOpen] = useState(false);
-  const [sortBy, setSortBy] = useState();
+  const [sortBy, setSortBy] = useState("Most Popular");
+
+  ////LOGIC
+
+  const handleSortChange = (option: string) => {
+    setSortBy(option);
+    setOpen(false);
+  };
 
   ////UI
   return (
@@ -29,7 +36,7 @@ const ShopInfoBar = () => {
           onClick={() => setOpen(!open)}
           className="pt-2 pl-2 cursor-pointer flex items-center font-satoshi font-bold"
         >
-          Most Popular{" "}
+          {sortBy}
           <img
             src={arrow}
             width={16}
@@ -47,6 +54,7 @@ const ShopInfoBar = () => {
               <li
                 key={option}
                 className="font-satoshi hover:font-bold py-1 px-3 cursor-pointer"
+                onClick={() => handleSortChange(option)}
               >
                 {option}
               </li>
