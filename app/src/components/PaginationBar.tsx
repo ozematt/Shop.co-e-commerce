@@ -13,7 +13,10 @@ const PaginationBar = () => {
 
       <div className="space-x-2 mx-auto">
         {numbers.map((number) => (
-          <button className="w-[40px] h-[40px] font-satoshi font-medium text-sm rounded-[8px] opacity-50 hover:opacity-100 focus:opacity-100 hover:bg-grayBG focus:bg-grayBG">
+          <button
+            key={number}
+            className="w-[40px] h-[40px] font-satoshi font-medium text-sm rounded-[8px] opacity-50 hover:opacity-100 focus:opacity-100 hover:bg-grayBG focus:bg-grayBG"
+          >
             {number}
           </button>
         ))}

@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import Footer from "../sections/Footer";
 import Newsletter from "../sections/Newsletter";
 import Breadcrumbs from "./Breadcrumbs";
@@ -5,10 +6,17 @@ import Filters from "./Filters";
 import PaginationBar from "./PaginationBar";
 import Product from "./Product";
 import ShopInfoBar from "./ShopInfoBar";
+import fetchProducts from "../api/queries/products";
 
 const Shop = () => {
   //
   ////DATA
+  const { data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
+  console.log(products);
 
   ////UI
   return (
