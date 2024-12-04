@@ -4,12 +4,15 @@ import arrow from "../assets/Arrow down.png";
 import { useQuery } from "@tanstack/react-query";
 import fetchCategoriesList from "../api/queries/categories";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
   //
   ////DATA
   const [priceOpen, setPriceOpen] = useState(true);
   const [categoryOpen, setCategoryOpen] = useState(true);
+
+  const navigate = useNavigate();
 
   const { data: categories } = useQuery({
     queryKey: ["categories"],
@@ -45,7 +48,7 @@ const Shop = () => {
           />
         </div>
         <div className="border-t-2 pb-6" />
-
+        {/* CATEGORY */}
         <div className="flex justify-between items-center">
           <p className="font-satoshi font-bold text-[20px]">Category</p>
           <img
@@ -67,6 +70,7 @@ const Shop = () => {
               <div
                 key={category}
                 className="flex items-center justify-between first:pt-6"
+                onClick={() => navigate(`/shop/${category}`)}
               >
                 {" "}
                 <p className="font-satoshi pb-2 opacity-60 hover:opacity-100 cursor-pointer">
