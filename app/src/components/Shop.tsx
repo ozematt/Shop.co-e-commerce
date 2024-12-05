@@ -14,31 +14,33 @@ import { useSearchParams } from "react-router-dom";
 const Shop = () => {
   //
   ////DATA
-
   //url data
   const [searchParams] = useSearchParams();
   const actualPage = searchParams.get("page");
 
+  //selected page
   const [page, setPage] = useState(Number(actualPage) || 1);
 
+  //total quantity of products
+  const [total, setTotal] = useState(0);
+
+  //when url param change update page state
   useEffect(() => {
     setPage(Number(actualPage));
   }, [actualPage]);
 
-  //query
+  //fetch list of products when page is updated
   const { data, isPending } = useQuery({
     queryKey: ["products", page],
     queryFn: () => fetchProductsPage(page),
   });
 
-  const [total, setTotal] = useState(0);
+  //when is not loading data fetch total amount of products
   useEffect(() => {
-    setTotal(data.total);
-  }, []);
-
-  const handleSetPage = (number: number) => {
-    setPage(number);
-  };
+    if (!isPending) {
+      setTotal(data.total);
+    }
+  }, [data]);
 
   ////UI
   return (
@@ -50,7 +52,7 @@ const Shop = () => {
           <Filters />
           <div className=" ml-[20px] w-full">
             <ShopInfoBar />
-            <div className="mt-4 flex flex-wrap gap-5 min-h-[1300px]">
+            <div className="mt-4 flex flex-wrap  gap-5 min-h-[1300px]">
               {isPending ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (
@@ -61,7 +63,7 @@ const Shop = () => {
             </div>
             <div className="border-b-2 mt-[32px]" />
 
-            <PaginationBar total={total} page={page} onClick={handleSetPage} />
+            <PaginationBar total={total} page={page} />
           </div>
         </div>
       </section>

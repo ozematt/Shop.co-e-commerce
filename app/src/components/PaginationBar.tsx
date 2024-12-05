@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import arrowLeft from "../assets/Arrow-left.png";
 import arrowRight from "../assets/Arrow-right.png";
 import { useState } from "react";
@@ -7,16 +7,12 @@ import { generatePagination } from "../lib/helpers/generatePagination";
 type PaginationBarProps = {
   total: number;
   page: number;
-  onClick: (number: number) => void;
 };
 
-const PaginationBar = ({ total, page, onClick }: PaginationBarProps) => {
+const PaginationBar = ({ total, page }: PaginationBarProps) => {
   //
   ////DATA
-  //   const [searchParams] = useSearchParams();
-  //   const actualPage = searchParams.get("page");
-
-  const [pageNumber, setPageNumber] = useState(page || 1);
+  const [pageNumber, setPageNumber] = useState(page);
 
   //numbers of page
   const items = Math.ceil(total / 9);
@@ -25,18 +21,25 @@ const PaginationBar = ({ total, page, onClick }: PaginationBarProps) => {
   const navigate = useNavigate();
 
   ////LOGIC
-  //   const handlePageNumber = (number: number | string) => {
-  //     navigate(`?page=${number}`);
-  //   };
+  const handlePageNumber = (number: number) => {
+    navigate(`?page=${number}`);
+    setPageNumber(number);
+  };
 
   const handlePrevious = () => {
-    setPageNumber(pageNumber === 1 ? pageNumber : pageNumber - 1);
-    navigate(`?page=${pageNumber}`);
+    setPageNumber((prevNumber) => {
+      const newPage = prevNumber > 1 ? prevNumber - 1 : prevNumber;
+      navigate(`?page=${newPage}`);
+      return newPage;
+    });
   };
 
   const handleNext = () => {
-    setPageNumber(!(items <= pageNumber) ? pageNumber + 1 : pageNumber);
-    navigate(`?page=${pageNumber}`);
+    setPageNumber((prevNumber) => {
+      const newPage = prevNumber < items ? prevNumber + 1 : prevNumber;
+      navigate(`?page=${newPage}`);
+      return newPage;
+    });
   };
 
   ////UI
@@ -54,10 +57,10 @@ const PaginationBar = ({ total, page, onClick }: PaginationBarProps) => {
         {pageNumbers.map((number, index) => (
           <button
             key={index}
-            // onClick={() => number !== "..." && handlePageNumber(number)}
-            className="w-[40px] h-[40px] font-satoshi font-medium text-sm rounded-[8px] opacity-50 hover:opacity-100 focus:opacity-100 hover:bg-grayBG focus:bg-grayBG"
+            onClick={() => number !== "..." && handlePageNumber(Number(number))}
+            className="w-[40px] h-[40px] font-satoshi font-medium text-sm rounded-[8px] opacity-50 hover:opacity-100 hover:bg-grayBG "
             style={{
-              ...(number === page
+              ...(number === pageNumber
                 ? { background: "#f0f0f0", opacity: "100%" }
                 : {}),
               ...(number === "..."

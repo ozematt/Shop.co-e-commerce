@@ -44,7 +44,7 @@ const Product = ({
         <img
           src={images[0]}
           alt={title}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain "
         />
       </div>
       <p className="font-satoshi font-bold text-xl pt-4 w-full w-max-[295px]">
