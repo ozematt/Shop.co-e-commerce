@@ -7,7 +7,6 @@ export type ProductProps = {
   price: number;
   rating: number;
   images: string[];
-  thumbnail: string;
   discountPercentage: number;
 };
 
@@ -16,7 +15,6 @@ const Product = ({
   price,
   rating,
   images,
-  thumbnail,
   discountPercentage,
 }: ProductProps) => {
   const [newPrice, setNewPrice] = useState(0);

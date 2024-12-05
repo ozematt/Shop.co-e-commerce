@@ -4,12 +4,13 @@ import Newsletter from "../sections/Newsletter";
 import Breadcrumbs from "./Breadcrumbs";
 import Filters from "./Filters";
 import PaginationBar from "./PaginationBar";
-import Product, { ProductProps } from "./Product";
+import Product from "./Product";
 import ShopInfoBar from "./ShopInfoBar";
-import fetchProductsPage from "../api/queries/productsPagination";
+
 import { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
+import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
 
 const Shop = () => {
   //
@@ -28,15 +29,15 @@ const Shop = () => {
   }, [actualPage]);
 
   //fetch products and actualized them when local page state is updated
-  const { data, isPending } = useQuery({
+  const { data, isPending } = useQuery<ProductsFetchedData>({
     queryKey: ["products", page],
-    queryFn: () => fetchProductsPage(page),
+    queryFn: () => fetchProducts(page),
   });
   console.log(data);
 
   //when is not loading data fetch total amount of products and add it to state
   useEffect(() => {
-    if (!isPending) {
+    if (data && !isPending) {
       setTotal(data.total);
       setSkip(data.skip);
     }
@@ -56,7 +57,7 @@ const Shop = () => {
               {isPending ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (
-                data.products.map((product: ProductProps) => (
+                data?.products.map((product) => (
                   <Product key={product.id} {...product} />
                 ))
               )}
