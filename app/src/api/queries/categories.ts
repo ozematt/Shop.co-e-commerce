@@ -21,7 +21,7 @@ const fetchCategoriesList = async () => {
     }
 
     const validData: Category = validateCategories.data;
-    console.log(validData);
+    // console.log(validData);
     return validData;
   } catch (error) {
     console.error("There has been a problem with fetch", error);

@@ -1,15 +1,71 @@
 import { Rating } from "@mui/material";
+import { useEffect, useState } from "react";
 
-const Product = () => {
+export type ProductProps = {
+  id: number;
+  title: string;
+  price: number;
+  rating: number;
+  images: string[];
+  thumbnail: string;
+  discountPercentage: number;
+};
+
+const Product = ({
+  title,
+  price,
+  rating,
+  images,
+  thumbnail,
+  discountPercentage,
+}: ProductProps) => {
+  const [newPrice, setNewPrice] = useState(0);
+  const [discount, setDiscount] = useState(0);
+
+  useEffect(() => {
+    if (discountPercentage >= 15 && discountPercentage <= 20) {
+      const lowPrice = (price * 0.8).toFixed(2);
+      setDiscount(20);
+      setNewPrice(Number(lowPrice));
+    }
+    if (discountPercentage <= 10 && discountPercentage < 15) {
+      const lowPrice = (price * 0.9).toFixed(2);
+      setDiscount(10);
+      setNewPrice(Number(lowPrice));
+    }
+    setNewPrice(price);
+  }, [discountPercentage, price]);
+
   return (
     <div>
       <div className="bg-grayBG w-[295px] h-[298px] rounded-[20px]">img</div>
-      <p className="font-satoshi font-bold text-xl pt-4">Name</p>
+      <p className="font-satoshi font-bold text-xl pt-4 w-full w-max-[295px]">
+        {title.length > 25 ? title.slice(0, 25) + "..." : title}
+      </p>
       <div className="flex pt-2">
-        <Rating /> <p className="font-satoshi text-sm pl-2 pt-1">5/5</p>
+        <Rating
+          defaultValue={Math.round(rating * 2) / 2}
+          precision={0.5}
+          readOnly
+        />{" "}
+        <p className="font-satoshi text-sm pl-2 pt-1">
+          {Math.round(rating * 2) / 2}
+          <span className="opacity-50">/5</span>
+        </p>
       </div>
 
-      <p className="font-satoshi font-bold text-2xl pt-2">Price</p>
+      <div className="flex items-center font-satoshi font-bold text-2xl pt-2">
+        {" "}
+        ${newPrice}
+        {discount && (
+          <>
+            <span className="opacity-30 line-through px-3">${price}</span>
+            <div className="text-center py-[6.5px] w-[58px] h-[28px] rounded-[62px] bg-red-500 bg-opacity-10 font-satoshi font-medium text-xs text-red-500">
+              -{discount}%
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

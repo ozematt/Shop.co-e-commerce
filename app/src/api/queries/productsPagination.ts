@@ -1,13 +1,11 @@
 import { PRODUCTS } from "../constants";
 
 const fetchProductsPage = async (page: number) => {
-  console.log(page);
-
   try {
     const response = await fetch(
       `${PRODUCTS}?limit=9&skip=${
         page * 9 - 9
-      }&select=title,price,rating,images,thumbnail,`
+      }&select=title,price,rating,images,thumbnail,discountPercentage,`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");

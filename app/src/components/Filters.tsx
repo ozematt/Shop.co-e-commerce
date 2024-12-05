@@ -27,7 +27,7 @@ const Filters = () => {
   };
 
   return (
-    <div className="w-full max-w-[295px] rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
+    <div className="w-full max-w-[295px] h-full max-h-[1200px] rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
       <div className="flex justify-between items-center pb-6">
         <p className="font-satoshi font-bold text-[20px] ">Filters</p>
         <img
