@@ -3,6 +3,8 @@ import arrow from "../assets/Arrow down.png";
 import { useParams } from "react-router-dom";
 
 const Breadcrumbs = () => {
+  //
+  ////DATA
   const navigate = useNavigate();
 
   const location = useLocation();
