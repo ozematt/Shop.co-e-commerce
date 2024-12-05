@@ -10,6 +10,7 @@ const Breadcrumbs = () => {
   const location = useLocation();
   const { category } = useParams();
 
+  ////UI
   return (
     <div className="flex items-center opacity-60 pt-6">
       <p

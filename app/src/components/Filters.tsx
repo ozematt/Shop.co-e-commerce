@@ -7,16 +7,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Filters = () => {
-  const [priceOpen, setPriceOpen] = useState(true);
-  const [categoryOpen, setCategoryOpen] = useState(true);
+  //
+  ////DATA
+  const [priceOpen, setPriceOpen] = useState(true); //price filter open/close
+  const [categoryOpen, setCategoryOpen] = useState(true); //category filter open/close
+
   const navigate = useNavigate();
 
+  // fetch category list
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategoriesList,
   });
 
   ////LOGIC
+  //open/close all filters
   const handleFiltersOpen = () => {
     setCategoryOpen(true);
     setPriceOpen(true);
@@ -26,6 +31,7 @@ const Filters = () => {
     }
   };
 
+  //UI
   return (
     <div className="w-full max-w-[295px] h-full max-h-[1200px] rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
       <div className="flex justify-between items-center pb-6">
