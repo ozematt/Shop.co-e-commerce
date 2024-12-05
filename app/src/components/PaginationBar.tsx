@@ -12,34 +12,29 @@ type PaginationBarProps = {
 const PaginationBar = ({ total, page }: PaginationBarProps) => {
   //
   ////DATA
-  const [pageNumber, setPageNumber] = useState(page);
-
-  //numbers of page
-  const items = Math.ceil(total / 9);
-  const pageNumbers = generatePagination(page, items);
-
   const navigate = useNavigate();
 
+  const [pageNumber, setPageNumber] = useState(page); //local selected page number
+
+  const items = Math.ceil(total / 9); //numbers of pages
+  const pageNumbers = generatePagination(page, items); // dynamically created table of page numbers
+
   ////LOGIC
-  const handlePageNumber = (number: number) => {
+  const handleSelectedPageNumber = (number: number) => {
     navigate(`?page=${number}`);
     setPageNumber(number);
   };
 
   const handlePrevious = () => {
-    setPageNumber((prevNumber) => {
-      const newPage = prevNumber > 1 ? prevNumber - 1 : prevNumber;
-      navigate(`?page=${newPage}`);
-      return newPage;
-    });
+    const newPage = Math.max(pageNumber - 1, 1); //prevent exceeding the minimum number of pages
+    setPageNumber(newPage); //set new page number in local state
+    navigate(`?page=${newPage}`); // upload new page to url, so Shop component can use it
   };
 
   const handleNext = () => {
-    setPageNumber((prevNumber) => {
-      const newPage = prevNumber < items ? prevNumber + 1 : prevNumber;
-      navigate(`?page=${newPage}`);
-      return newPage;
-    });
+    const newPage = Math.min(pageNumber + 1, items); //prevent exceeding the maximum number of pages
+    setPageNumber(newPage); //set new page number in local state
+    navigate(`?page=${newPage}`); // upload new page to url, so Shop component can use it
   };
 
   ////UI
@@ -47,7 +42,7 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
     <div className="flex justify-between mt-[20px]">
       <button
         onClick={handlePrevious}
-        className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg"
+        className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg hover:scale-95 active:scale-105 transition ease-in-out duration-200"
       >
         <img src={arrowLeft} alt="arrow left" className="pr-3" />
         Previous
@@ -57,7 +52,9 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
         {pageNumbers.map((number, index) => (
           <button
             key={index}
-            onClick={() => number !== "..." && handlePageNumber(Number(number))}
+            onClick={() =>
+              number !== "..." && handleSelectedPageNumber(Number(number))
+            }
             className="w-[40px] h-[40px] font-satoshi font-medium text-sm rounded-[8px] opacity-50 hover:opacity-100 hover:bg-grayBG "
             style={{
               ...(number === pageNumber
@@ -74,7 +71,7 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
       </div>
       <button
         onClick={handleNext}
-        className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg"
+        className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg hover:scale-95  active:scale-105 transition ease-in-out duration-200"
       >
         {" "}
         Next

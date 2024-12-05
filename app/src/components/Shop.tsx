@@ -14,28 +14,25 @@ import { useSearchParams } from "react-router-dom";
 const Shop = () => {
   //
   ////DATA
-  //url data
+  //fetch page number from url (uploaded from Pagination component)
   const [searchParams] = useSearchParams();
   const actualPage = searchParams.get("page");
 
-  //selected page
-  const [page, setPage] = useState(Number(actualPage) || 1);
+  const [page, setPage] = useState(Number(actualPage) || 1); //selected page local state
+  const [total, setTotal] = useState(0); //total quantity of products
 
-  //total quantity of products
-  const [total, setTotal] = useState(0);
-
-  //when url param change update page state
+  //when url param change (updated in Pagination component), update local page state
   useEffect(() => {
     setPage(Number(actualPage));
   }, [actualPage]);
 
-  //fetch list of products when page is updated
+  //fetch products and actualized them when local page state is updated
   const { data, isPending } = useQuery({
     queryKey: ["products", page],
     queryFn: () => fetchProductsPage(page),
   });
 
-  //when is not loading data fetch total amount of products
+  //when is not loading data fetch total amount of products and add it to state
   useEffect(() => {
     if (!isPending) {
       setTotal(data.total);
