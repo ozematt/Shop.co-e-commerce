@@ -20,6 +20,7 @@ const Shop = () => {
 
   const [page, setPage] = useState(Number(actualPage) || 1); //selected page local state
   const [total, setTotal] = useState(0); //total quantity of products
+  const [skip, setSkip] = useState(0); //
 
   //when url param change (updated in Pagination component), update local page state
   useEffect(() => {
@@ -31,11 +32,13 @@ const Shop = () => {
     queryKey: ["products", page],
     queryFn: () => fetchProductsPage(page),
   });
+  console.log(data);
 
   //when is not loading data fetch total amount of products and add it to state
   useEffect(() => {
     if (!isPending) {
       setTotal(data.total);
+      setSkip(data.skip);
     }
   }, [data]);
 
@@ -48,7 +51,7 @@ const Shop = () => {
         <div className="flex mt-[20px]">
           <Filters />
           <div className=" ml-[20px] w-full">
-            <ShopInfoBar />
+            <ShopInfoBar total={total} skip={skip} />
             <div className="mt-4 flex flex-wrap  gap-5 min-h-[1300px]">
               {isPending ? (
                 <CircularProgress color="inherit" className="m-auto" />

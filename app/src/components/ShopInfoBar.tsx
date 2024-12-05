@@ -10,14 +10,18 @@ const sortingOptions: string[] = [
   "Least Rated",
 ] as const;
 
-const ShopInfoBar = () => {
+type ShopInfoBarProps = {
+  total: number;
+  skip: number;
+};
+
+const ShopInfoBar = ({ total, skip }: ShopInfoBarProps) => {
   //
   ////DATA
   const [open, setOpen] = useState(false);
   const [sortBy, setSortBy] = useState("Most Popular");
 
   ////LOGIC
-
   const handleSortChange = (option: string) => {
     setSortBy(option);
     setOpen(false);
@@ -30,7 +34,8 @@ const ShopInfoBar = () => {
       <div className="flex items-center pt-2">
         {" "}
         <p className=" pt-2  font-satoshi opacity-60">
-          Showing 1-10 of 100 Products <span className="pl-1">Sort by:</span>
+          Showing {skip + 1}-{skip + 9} of {total} Products{" "}
+          <span className="pl-1">Sort by:</span>
         </p>
         <span
           onClick={() => setOpen(!open)}
@@ -49,7 +54,7 @@ const ShopInfoBar = () => {
           />
         </span>
         {open && (
-          <ul className="absolute right-[-5px] ring-1 ring-black ring-opacity-20 top-[50px] w-[130px] rounded-[5px] bg-white">
+          <ul className="absolute right-[-5px] ring-1 ring-black ring-opacity-20 top-[50px] w-[130px] rounded-[5px] bg-white bg-opacity-85">
             {sortingOptions.map((option) => (
               <li
                 key={option}
