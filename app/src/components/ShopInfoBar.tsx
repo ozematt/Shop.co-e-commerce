@@ -34,8 +34,8 @@ const ShopInfoBar = ({ total, skip }: ShopInfoBarProps) => {
       <div className="flex items-center pt-2">
         {" "}
         <p className=" pt-2  font-satoshi opacity-60">
-          Showing {skip + 1}-{skip + 9} of {total} Products{" "}
-          <span className="pl-1">Sort by:</span>
+          Showing {skip === -9 ? 1 : skip + 1}-{skip === -9 ? 9 : skip + 9} of{" "}
+          {total} Products <span className="pl-1">Sort by:</span>
         </p>
         <span
           onClick={() => setOpen(!open)}
