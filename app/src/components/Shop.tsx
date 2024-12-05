@@ -7,18 +7,34 @@ import PaginationBar from "./PaginationBar";
 import Product, { ProductProps } from "./Product";
 import ShopInfoBar from "./ShopInfoBar";
 import fetchProductsPage from "../api/queries/productsPagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
+import { useSearchParams } from "react-router-dom";
 
 const Shop = () => {
-  const [page, setPage] = useState(0);
-
   //
   ////DATA
+
+  //url data
+  const [searchParams] = useSearchParams();
+  const actualPage = searchParams.get("page");
+
+  const [page, setPage] = useState(Number(actualPage) || 1);
+
+  useEffect(() => {
+    setPage(Number(actualPage));
+  }, [actualPage]);
+
+  //query
   const { data, isPending } = useQuery({
     queryKey: ["products", page],
     queryFn: () => fetchProductsPage(page),
   });
+
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    setTotal(data.total);
+  }, []);
 
   const handleSetPage = (number: number) => {
     setPage(number);
@@ -44,7 +60,8 @@ const Shop = () => {
               )}
             </div>
             <div className="border-b-2 mt-[32px]" />
-            <PaginationBar onClick={handleSetPage} />
+
+            <PaginationBar total={total} page={page} onClick={handleSetPage} />
           </div>
         </div>
       </section>

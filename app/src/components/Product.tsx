@@ -27,18 +27,26 @@ const Product = ({
       const lowPrice = (price * 0.8).toFixed(2);
       setDiscount(20);
       setNewPrice(Number(lowPrice));
+      return;
     }
     if (discountPercentage <= 10 && discountPercentage < 15) {
       const lowPrice = (price * 0.9).toFixed(2);
       setDiscount(10);
       setNewPrice(Number(lowPrice));
+      return;
     }
     setNewPrice(price);
   }, [discountPercentage, price]);
 
   return (
     <div>
-      <div className="bg-grayBG w-[295px] h-[298px] rounded-[20px]">img</div>
+      <div className="bg-grayBG w-[295px] h-[298px] rounded-[20px] ">
+        <img
+          src={images[0]}
+          alt={title}
+          className="w-full h-full object-contain"
+        />
+      </div>
       <p className="font-satoshi font-bold text-xl pt-4 w-full w-max-[295px]">
         {title.length > 25 ? title.slice(0, 25) + "..." : title}
       </p>
@@ -59,7 +67,9 @@ const Product = ({
         ${newPrice}
         {discount && (
           <>
-            <span className="opacity-30 line-through px-3">${price}</span>
+            <span className="opacity-30 line-through mx-[-9px] scale-[0.65]">
+              ${price}
+            </span>
             <div className="text-center py-[6.5px] w-[58px] h-[28px] rounded-[62px] bg-red-500 bg-opacity-10 font-satoshi font-medium text-xs text-red-500">
               -{discount}%
             </div>

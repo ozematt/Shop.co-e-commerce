@@ -1,40 +1,42 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import arrowLeft from "../assets/Arrow-left.png";
 import arrowRight from "../assets/Arrow-right.png";
 import { useState } from "react";
-// import PaginationBar from './PaginationBar';
-
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import { generatePagination } from "../lib/helpers/generatePagination";
 
 type PaginationBarProps = {
+  total: number;
+  page: number;
   onClick: (number: number) => void;
 };
 
-const PaginationBar = ({ onClick }: PaginationBarProps) => {
-  const [page, setPage] = useState(0);
-  console.log(page);
-
+const PaginationBar = ({ total, page, onClick }: PaginationBarProps) => {
   //
   ////DATA
+  //   const [searchParams] = useSearchParams();
+  //   const actualPage = searchParams.get("page");
+
+  const [pageNumber, setPageNumber] = useState(page || 1);
+
+  //numbers of page
+  const items = Math.ceil(total / 9);
+  const pageNumbers = generatePagination(page, items);
+
   const navigate = useNavigate();
 
   ////LOGIC
-  const handlePageNumber = (number: number) => {
-    setPage(number);
-    onClick(number);
-    navigate(`?page=${number}`);
-  };
+  //   const handlePageNumber = (number: number | string) => {
+  //     navigate(`?page=${number}`);
+  //   };
 
   const handlePrevious = () => {
-    setPage(page === 0 ? page : page - 1);
-    onClick(page);
-    navigate(`?page=${page}`);
+    setPageNumber(pageNumber === 1 ? pageNumber : pageNumber - 1);
+    navigate(`?page=${pageNumber}`);
   };
 
   const handleNext = () => {
-    setPage(page + 1);
-    onClick(page);
-    navigate(`?page=${page}`);
+    setPageNumber(!(items <= pageNumber) ? pageNumber + 1 : pageNumber);
+    navigate(`?page=${pageNumber}`);
   };
 
   ////UI
@@ -49,14 +51,19 @@ const PaginationBar = ({ onClick }: PaginationBarProps) => {
       </button>
 
       <div className="space-x-2 mx-auto">
-        {numbers.map((number) => (
+        {pageNumbers.map((number, index) => (
           <button
-            key={number}
-            onClick={() => handlePageNumber(number)}
+            key={index}
+            // onClick={() => number !== "..." && handlePageNumber(number)}
             className="w-[40px] h-[40px] font-satoshi font-medium text-sm rounded-[8px] opacity-50 hover:opacity-100 focus:opacity-100 hover:bg-grayBG focus:bg-grayBG"
-            style={
-              number === page ? { background: "#f0f0f0", opacity: "100%" } : {}
-            }
+            style={{
+              ...(number === page
+                ? { background: "#f0f0f0", opacity: "100%" }
+                : {}),
+              ...(number === "..."
+                ? { background: "none", cursor: "auto" }
+                : {}),
+            }}
           >
             {number}
           </button>
