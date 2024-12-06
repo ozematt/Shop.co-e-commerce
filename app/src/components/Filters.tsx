@@ -17,7 +17,12 @@ const Filters = () => {
   ////DATA
   const [priceOpen, setPriceOpen] = useState(true); //price filter open/close
   const [categoryOpen, setCategoryOpen] = useState(true); //category filter open/close
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(""); //selected category name
+  const [priceRange, setPriceRange] = useState({
+    from: "",
+    to: "",
+  });
+  console.log(priceRange);
 
   const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
@@ -138,11 +143,27 @@ const Filters = () => {
       {priceOpen && (
         <div className="flex gap-2 pb-6">
           <input
+            value={priceRange.from}
+            name="from"
+            onChange={(e) =>
+              setPriceRange((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
             type="text"
             className="ring-1 ring-black ring-opacity-20 focus:ring-black  focus:outline-none  w-full max-w-[120px] h-7 placeholder:text-sm  pl-2 rounded-sm "
             placeholder="from:"
           />
           <input
+            value={priceRange.to}
+            name="to"
+            onChange={(e) =>
+              setPriceRange((prev) => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+              }))
+            }
             type="text"
             className="ring-1 ring-black ring-opacity-20 focus:ring-black  focus:outline-none w-full max-w-[120px] h-7 placeholder:text-sm pl-2 rounded-sm"
             placeholder="to:"
