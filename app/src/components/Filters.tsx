@@ -20,6 +20,12 @@ const Filters = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useAppDispatch();
+
+  //products list form global state
+  const products = useSelector(
+    (state: RootState) => state.products.fetchedProducts
+  );
 
   // fetch category list
   const { data: categories } = useQuery({
@@ -38,20 +44,12 @@ const Filters = () => {
     }
   };
 
-  const dispatch: AppDispatch = useAppDispatch();
-
-  const products = useSelector(
-    (state: RootState) => state.products.fetchedProducts
-  );
-  const category = useSelector(
-    (state: RootState) => state.products.categoryName
-  );
-  console.log(category);
-
+  //filter products by category
   const categorizedProducts = products.products.filter(
     (product) => product.category === selectedCategory
   );
 
+  //when selected category will change, updated filtered product list in global state and add actual category name
   useEffect(() => {
     if (selectedCategory) {
       const dataToAdd = {
