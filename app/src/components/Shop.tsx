@@ -79,10 +79,12 @@ const Shop = () => {
 
   //add products data if data from api is ready and total = 0
   useEffect(() => {
-    if (data && total === 0) {
+    if (data?.products.length) {
       dispatch(addProducts(data));
+    } else if (!data) {
+      console.error("No data fetched from API");
     }
-  }, [data, total]);
+  }, [data, dispatch]);
 
   //when url param change (updated in Pagination component), update local page state
   useEffect(() => {

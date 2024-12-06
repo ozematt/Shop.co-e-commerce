@@ -11,6 +11,7 @@ import {
   addCategorizedProducts,
   addCategoryName,
 } from "../redux/productsSlice";
+import { Product } from "../api/queries/products";
 
 const Filters = () => {
   //
@@ -28,11 +29,12 @@ const Filters = () => {
   const dispatch: AppDispatch = useAppDispatch();
 
   //products list form global state
-  const products = useSelector(
+  const allProducts = useSelector(
     (state: RootState) => state.products.fetchedProducts
   );
 
-  const productsF = useSelector(
+  //filtered products list form global state
+  const filteredProductsByCategory = useSelector(
     (state: RootState) => state.products.filteredProductsByCategory
   );
 
@@ -54,7 +56,7 @@ const Filters = () => {
   };
 
   //filtered products by category
-  const categorizedProducts = products.products.filter(
+  const categorizedProducts = allProducts.products.filter(
     (product) => product.category === selectedCategory
   );
 
@@ -74,14 +76,27 @@ const Filters = () => {
     }
   }, [selectedCategory]);
 
-  const handleFilterApply = () => {
-    const productsa = !productsF ? products : productsF;
+  //helper function
+  const filterByPriceRange = (products: Product[], from: number, to: number) =>
+    products.filter((product) => product.price >= from && product.price <= to);
 
-    const priceRangedProducts = productsa.products.filter((product) => {
-      const from = Number(priceRange.from) || 0; // Domyślnie 0, jeśli brak wartości
-      const to = Number(priceRange.to) || Infinity; // Domyślnie nieskończoność
-      return product.price >= from && product.price <= to;
-    });
+  const handleFilterApply = () => {
+    const actualProducts = filteredProductsByCategory || allProducts;
+
+    const from = Number(priceRange.from) || 0;
+    const to = Number(priceRange.to) || Infinity;
+
+    if (from > to) {
+      console.error("Invalid price range: 'from' cannot be greater than 'to'.");
+      return;
+    }
+
+    const priceRangedProducts = filterByPriceRange(
+      actualProducts.products,
+      from,
+      to
+    );
+
     const dataToAdd = {
       products: priceRangedProducts,
       total: priceRangedProducts.length,

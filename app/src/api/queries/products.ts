@@ -12,6 +12,8 @@ const productSchema = z.object({
   discountPercentage: z.number(),
 });
 
+export type Product = z.infer<typeof productSchema>;
+
 const productsFetchedDataSchema = z.object({
   products: z.array(productSchema),
   total: z.number(),
