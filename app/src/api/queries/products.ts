@@ -18,26 +18,31 @@ const productsFetchedDataSchema = z.object({
   limit: z.number(),
 });
 
+// ?sortBy=title&order=asc
 export type ProductsFetchedData = z.infer<typeof productsFetchedDataSchema>;
 
-const fetchProducts = async (page: number): Promise<ProductsFetchedData> => {
+const fetchProducts = async () => {
   try {
     const response = await fetch(
-      `${PRODUCTS}?limit=9&skip=${
-        (page - 1) * 9
-      }&select=id,title,price,rating,images,thumbnail,discountPercentage,`
+      `${PRODUCTS}?limit=0&&select=id,title,price,rating,images,thumbnail,discountPercentage,`
     );
+    // const response = await fetch(
+    //   `${PRODUCTS}?limit=9&skip=${
+    //     (page - 1) * 9
+    //   }&select=id,title,price,rating,images,thumbnail,discountPercentage,`
+    // );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    const products = await response.json();
+    const products: unknown = await response.json();
     const validateProducts = productsFetchedDataSchema.safeParse(products);
 
     if (!validateProducts.success) {
       console.error("Validation error:", validateProducts.error);
       throw new Error("Validation failed: " + validateProducts.error);
     }
-    return validateProducts.data;
+    const validProducts: ProductsFetchedData = validateProducts.data;
+    return validProducts;
   } catch (error) {
     console.error("There has been a problem with fetch", error);
     throw error;

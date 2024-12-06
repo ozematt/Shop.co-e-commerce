@@ -2,10 +2,9 @@ import { useState } from "react";
 import arrow from "../assets/Arrow down.png";
 
 const sortingOptions: string[] = [
+  "Alphabetical",
   "Hightest Price",
   "Lowest Price",
-  "Most Popular",
-  "Least Popular",
   "Top Rated",
   "Least Rated",
 ] as const;
@@ -13,18 +12,20 @@ const sortingOptions: string[] = [
 type ShopInfoBarProps = {
   total: number;
   skip: number;
+  onSelect: (method: string) => void;
 };
 
-const ShopInfoBar = ({ total, skip }: ShopInfoBarProps) => {
+const ShopInfoBar = ({ total, skip, onSelect }: ShopInfoBarProps) => {
   //
   ////DATA
   const [open, setOpen] = useState(false);
-  const [sortBy, setSortBy] = useState("Most Popular");
+  const [sortBy, setSortBy] = useState("Alphabetical");
 
   ////LOGIC
   const handleSortChange = (option: string) => {
     setSortBy(option);
     setOpen(false);
+    onSelect(option);
   };
 
   ////UI
