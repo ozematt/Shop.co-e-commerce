@@ -12,6 +12,7 @@ import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { useQuery } from "@tanstack/react-query";
 import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
 import { addProducts } from "../redux/productsSlice";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export type SortMethod =
   | "Alphabetical"
@@ -19,6 +20,14 @@ export type SortMethod =
   | "Lowest Price"
   | "Top Rated"
   | "Least Rated";
+
+const sortOptionsMap = {
+  Alphabetical: { field: "title" },
+  "Hightest Price": { field: "price", direction: "desc" },
+  "Lowest Price": { field: "price", direction: "asc" },
+  "Top Rated": { field: "rating", direction: "desc" },
+  "Least Rated": { field: "rating", direction: "asc" },
+} as const;
 
 const Shop = () => {
   //
@@ -79,14 +88,14 @@ const Shop = () => {
   };
 
   // fetched products
-  const { data } = useQuery<ProductsFetchedData>({
+  const { data, isPending } = useQuery<ProductsFetchedData>({
     queryKey: ["products"],
     queryFn: fetchProducts,
   });
 
   //add products data if data from api is ready and total = 0
   useEffect(() => {
-    if (data?.products.length && fetchedProducts.products.length === 0) {
+    if (data?.products.length) {
       dispatch(addProducts(data));
     } else if (!data) {
       console.error("No data fetched from API");
@@ -98,18 +107,9 @@ const Shop = () => {
     setPage(Number(actualPage));
   }, [actualPage]);
 
-  const sortOptionsMap = {
-    Alphabetical: { field: "title" },
-    "Hightest Price": { field: "price", direction: "desc" },
-    "Lowest Price": { field: "price", direction: "asc" },
-    "Top Rated": { field: "rating", direction: "desc" },
-    "Least Rated": { field: "rating", direction: "asc" },
-  } as const;
-
-  console.log(sortOptionsMap["Alphabetical"]);
-
   //when sorting method is selected (in ShopInfoBar component) add specify state
   const handleSelectedSortMethod = (sortMethod: SortMethod) => {
+    //assign act
     const selectedOption = sortOptionsMap[sortMethod];
     if (selectedOption) {
       setSortOptions((prev) => ({ ...prev, ...selectedOption }));
@@ -132,11 +132,13 @@ const Shop = () => {
               onSelect={handleSelectedSortMethod}
             />
             <div className="mt-4 flex flex-wrap  gap-5 min-h-[1300px]">
-              {sortedProducts()
-                ?.slice(firstIndex, secondIndex)
-                .map((product) => (
-                  <Product key={product.id} {...product} />
-                ))}
+              {isPending ? (
+                <CircularProgress color="inherit" className="m-auto" />
+              ) : (
+                sortedProducts()
+                  ?.slice(firstIndex, secondIndex)
+                  .map((product) => <Product key={product.id} {...product} />)
+              )}
             </div>
             <div className="border-b-2 mt-[32px]" />
 
