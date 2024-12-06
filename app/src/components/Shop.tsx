@@ -13,6 +13,13 @@ import { useQuery } from "@tanstack/react-query";
 import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
 import { addProducts } from "../redux/productsSlice";
 
+export type SortMethod =
+  | "Alphabetical"
+  | "Hightest Price"
+  | "Lowest Price"
+  | "Top Rated"
+  | "Least Rated";
+
 const Shop = () => {
   //
   ////DATA
@@ -79,7 +86,7 @@ const Shop = () => {
 
   //add products data if data from api is ready and total = 0
   useEffect(() => {
-    if (data?.products.length) {
+    if (data?.products.length && fetchedProducts.products.length === 0) {
       dispatch(addProducts(data));
     } else if (!data) {
       console.error("No data fetched from API");
@@ -91,34 +98,21 @@ const Shop = () => {
     setPage(Number(actualPage));
   }, [actualPage]);
 
+  const sortOptionsMap = {
+    Alphabetical: { field: "title" },
+    "Hightest Price": { field: "price", direction: "desc" },
+    "Lowest Price": { field: "price", direction: "asc" },
+    "Top Rated": { field: "rating", direction: "desc" },
+    "Least Rated": { field: "rating", direction: "asc" },
+  } as const;
+
+  console.log(sortOptionsMap["Alphabetical"]);
+
   //when sorting method is selected (in ShopInfoBar component) add specify state
-  const handleSelectedSortMethod = (sortMethod: string) => {
-    if (sortMethod === "Alphabetical") {
-      setSortOptions((prev) => ({ ...prev, field: "title" }));
-    }
-    if (sortMethod === "Hightest Price") {
-      setSortOptions((prev) => ({
-        ...prev,
-        field: "price",
-        direction: "desc",
-      }));
-    }
-    if (sortMethod === "Lowest Price") {
-      setSortOptions((prev) => ({ ...prev, field: "price", direction: "asc" }));
-    }
-    if (sortMethod === "Top Rated") {
-      setSortOptions((prev) => ({
-        ...prev,
-        field: "rating",
-        direction: "desc",
-      }));
-    }
-    if (sortMethod === "Least Rated") {
-      setSortOptions((prev) => ({
-        ...prev,
-        field: "rating",
-        direction: "asc",
-      }));
+  const handleSelectedSortMethod = (sortMethod: SortMethod) => {
+    const selectedOption = sortOptionsMap[sortMethod];
+    if (selectedOption) {
+      setSortOptions((prev) => ({ ...prev, ...selectedOption }));
     }
   };
 

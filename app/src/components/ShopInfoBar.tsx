@@ -2,8 +2,9 @@ import { useState } from "react";
 import arrow from "../assets/Arrow down.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { SortMethod } from "./Shop";
 
-const sortingOptions: string[] = [
+const sortingOptions: SortMethod[] = [
   "Alphabetical",
   "Hightest Price",
   "Lowest Price",
@@ -15,7 +16,7 @@ type ShopInfoBarProps = {
   first: number;
   second: number;
   total: number;
-  onSelect: (method: string) => void;
+  onSelect: (method: SortMethod) => void;
 };
 
 const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
@@ -29,7 +30,7 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
   );
 
   ////LOGIC
-  const handleSortChange = (option: string) => {
+  const handleSortChange = (option: SortMethod) => {
     setSortBy(option);
     setOpen(false);
     onSelect(option);
