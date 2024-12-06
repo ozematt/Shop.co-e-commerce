@@ -18,11 +18,15 @@ const Shop = () => {
   ////DATA
   //fetch page number from url (uploaded from Pagination component)
   const [searchParams] = useSearchParams();
-  const actualPage = searchParams.get("page");
+  const actualPage = Number(searchParams.get("page")) || 1; // when is NaN assigns 1 (NaN invalid string)
 
-  const [page, setPage] = useState(Number(actualPage) || 1); //selected page local state
+  const [page, setPage] = useState(Number(actualPage)); //selected page, local state
+
+  const first = (page - 1) * 9;
+  const second = first + 9;
 
   const dispatch: AppDispatch = useAppDispatch();
+
   //object from api, products, total, limit, skip
   const productsData = useSelector(
     (state: RootState) => state.products.fetchedProducts
@@ -97,7 +101,7 @@ const Shop = () => {
           <div className=" ml-[20px] w-full">
             {/* <ShopInfoBar onSelect={handleSelectedSortMethod} /> */}
             <div className="mt-4 flex flex-wrap  gap-5 min-h-[1300px]">
-              {productsData.products.map((product) => (
+              {productsData.products.slice(first, second).map((product) => (
                 <Product key={product.id} {...product} />
               ))}
             </div>
