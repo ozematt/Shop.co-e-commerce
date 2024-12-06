@@ -3,11 +3,13 @@ import { ProductsFetchedData } from "../api/queries/products";
 
 type InitialState = {
   sortBy: string;
+  filteredProductsByCategory: null;
   fetchedProducts: ProductsFetchedData;
 };
 
 const initialState: InitialState = {
   sortBy: "Alphabetical",
+  filteredProductsByCategory: null,
   fetchedProducts: {
     products: [
       {
