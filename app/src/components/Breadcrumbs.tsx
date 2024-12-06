@@ -24,7 +24,11 @@ const Breadcrumbs = () => {
         className="font-satoshi px-2 leading-none cursor-pointer hover:opacity-70"
         onClick={() => navigate("/shop")}
       >
-        {location.pathname === "/shop" ? <strong>Shop</strong> : "Shop"}
+        {location.pathname === "/shop" ? (
+          <strong onClick={() => navigate("/shop")}>Shop</strong>
+        ) : (
+          "Shop"
+        )}
       </p>
       {category && (
         <img src={arrow} width={16} alt="arrow" className="-rotate-90" />

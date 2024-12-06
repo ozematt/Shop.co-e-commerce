@@ -32,6 +32,10 @@ const Filters = () => {
     (state: RootState) => state.products.fetchedProducts
   );
 
+  const productsF = useSelector(
+    (state: RootState) => state.products.filteredProductsByCategory
+  );
+
   // fetch category list
   const { data: categories } = useQuery({
     queryKey: ["categories"],
@@ -49,7 +53,7 @@ const Filters = () => {
     }
   };
 
-  //filter products by category
+  //filtered products by category
   const categorizedProducts = products.products.filter(
     (product) => product.category === selectedCategory
   );
@@ -69,6 +73,25 @@ const Filters = () => {
       dispatch(addCategoryName(categoryUppercase));
     }
   }, [selectedCategory]);
+
+  const handleFilterApply = () => {
+    const productsa = !productsF ? products : productsF;
+
+    const priceRangedProducts = productsa.products.filter((product) => {
+      const from = Number(priceRange.from) || 0; // Domyślnie 0, jeśli brak wartości
+      const to = Number(priceRange.to) || Infinity; // Domyślnie nieskończoność
+      return product.price >= from && product.price <= to;
+    });
+    const dataToAdd = {
+      products: priceRangedProducts,
+      total: priceRangedProducts.length,
+      skip: 0,
+      limit: 0,
+    };
+    console.log(dataToAdd);
+
+    dispatch(addCategorizedProducts(dataToAdd));
+  };
 
   //UI
   return (
@@ -172,7 +195,10 @@ const Filters = () => {
       )}
 
       <div className="border-t-2 pb-6" />
-      <button className="w-full text-[14px] px-[86px] py-[15px] bg-black rounded-full text-white transition ease-in-out duration-100 hover:scale-95">
+      <button
+        onClick={handleFilterApply}
+        className="w-full text-[14px] px-[86px] py-[15px] bg-black rounded-full text-white transition ease-in-out duration-100 hover:scale-95"
+      >
         Apply Filter
       </button>
     </div>
