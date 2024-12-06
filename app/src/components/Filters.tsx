@@ -2,15 +2,19 @@ import settings from "../assets/Settings.png";
 import arrow from "../assets/Arrow down.png";
 import { useQuery } from "@tanstack/react-query";
 import fetchCategoriesList from "../api/queries/categories";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
+import { addCategorizedProducts } from "../redux/productsSlice";
 
 const Filters = () => {
   //
   ////DATA
   const [priceOpen, setPriceOpen] = useState(true); //price filter open/close
   const [categoryOpen, setCategoryOpen] = useState(true); //category filter open/close
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const navigate = useNavigate();
 
@@ -31,6 +35,31 @@ const Filters = () => {
     }
   };
 
+  const dispatch: AppDispatch = useAppDispatch();
+
+  const products = useSelector(
+    (state: RootState) => state.products.fetchedProducts
+  );
+
+  console.log(products);
+
+  const categorizedProducts = products.products.filter(
+    (product) => product.category === selectedCategory
+  );
+  console.log(categorizedProducts);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      const dataToAdd = {
+        products: categorizedProducts,
+        total: categorizedProducts.length,
+        skip: 0,
+        limit: 0,
+      };
+      dispatch(addCategorizedProducts(dataToAdd));
+    }
+  }, [selectedCategory]);
+
   //UI
   return (
     <div className="w-full max-w-[295px] h-full max-h-[1200px] rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
@@ -48,7 +77,9 @@ const Filters = () => {
       <div className="border-t-2 pb-6" />
       {/* CATEGORY */}
       <div
-        onClick={() => setCategoryOpen(!categoryOpen)}
+        onClick={() => {
+          setCategoryOpen(!categoryOpen), setSelectedCategory("");
+        }}
         className="flex justify-between items-center cursor-pointer"
       >
         <p className="font-satoshi font-bold text-[20px]">Category</p>
@@ -70,13 +101,14 @@ const Filters = () => {
             <div
               key={category}
               className="flex items-center justify-between first:pt-6"
-              onClick={() => navigate(`/shop/${category}`)}
+              onClick={() => {
+                navigate(`/shop/${category}`), setSelectedCategory(category);
+              }}
             >
               {" "}
               <p className="font-satoshi pb-2 opacity-60 hover:opacity-100 cursor-pointer">
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </p>
-              <img src={arrow} alt="arow" className="-rotate-90" />
             </div>
           ))}
       </div>

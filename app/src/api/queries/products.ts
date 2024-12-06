@@ -7,6 +7,7 @@ const productSchema = z.object({
   price: z.number(),
   images: z.array(z.string()),
   rating: z.number(),
+  category: z.string(),
   thumbnail: z.string(),
   discountPercentage: z.number(),
 });
@@ -18,13 +19,12 @@ const productsFetchedDataSchema = z.object({
   limit: z.number(),
 });
 
-// ?sortBy=title&order=asc
 export type ProductsFetchedData = z.infer<typeof productsFetchedDataSchema>;
 
 const fetchProducts = async () => {
   try {
     const response = await fetch(
-      `${PRODUCTS}?limit=0&&select=id,title,price,rating,images,thumbnail,discountPercentage,`
+      `${PRODUCTS}?limit=0&&select=id,title,price,rating,category,images,thumbnail,discountPercentage,`
     );
     // const response = await fetch(
     //   `${PRODUCTS}?limit=9&skip=${

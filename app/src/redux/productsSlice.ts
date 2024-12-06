@@ -3,7 +3,7 @@ import { ProductsFetchedData } from "../api/queries/products";
 
 type InitialState = {
   sortBy: string;
-  filteredProductsByCategory: null;
+  filteredProductsByCategory: null | ProductsFetchedData;
   fetchedProducts: ProductsFetchedData;
 };
 
@@ -18,6 +18,7 @@ const initialState: InitialState = {
         price: 0,
         images: [],
         rating: 0,
+        category: "",
         thumbnail: "",
         discountPercentage: 0,
       },
@@ -35,12 +36,19 @@ const productsSlice = createSlice({
     addProducts: (state, action: PayloadAction<ProductsFetchedData>) => {
       state.fetchedProducts = action.payload;
     },
+    addCategorizedProducts: (
+      state,
+      action: PayloadAction<ProductsFetchedData>
+    ) => {
+      state.filteredProductsByCategory = action.payload;
+    },
     addSortMethod: (state, action: PayloadAction<string>) => {
       state.sortBy = action.payload;
     },
   },
 });
 
-export const { addProducts, addSortMethod } = productsSlice.actions;
+export const { addProducts, addCategorizedProducts, addSortMethod } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;
