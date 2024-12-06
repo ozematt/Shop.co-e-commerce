@@ -7,7 +7,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
-import { addCategorizedProducts } from "../redux/productsSlice";
+import {
+  addCategorizedProducts,
+  addCategoryName,
+} from "../redux/productsSlice";
 
 const Filters = () => {
   //
@@ -40,13 +43,14 @@ const Filters = () => {
   const products = useSelector(
     (state: RootState) => state.products.fetchedProducts
   );
-
-  console.log(products);
+  const category = useSelector(
+    (state: RootState) => state.products.categoryName
+  );
+  console.log(category);
 
   const categorizedProducts = products.products.filter(
     (product) => product.category === selectedCategory
   );
-  console.log(categorizedProducts);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -57,6 +61,9 @@ const Filters = () => {
         limit: 0,
       };
       dispatch(addCategorizedProducts(dataToAdd));
+      const categoryUppercase =
+        selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1);
+      dispatch(addCategoryName(categoryUppercase));
     }
   }, [selectedCategory]);
 

@@ -26,11 +26,6 @@ const fetchProducts = async () => {
     const response = await fetch(
       `${PRODUCTS}?limit=0&&select=id,title,price,rating,category,images,thumbnail,discountPercentage,`
     );
-    // const response = await fetch(
-    //   `${PRODUCTS}?limit=9&skip=${
-    //     (page - 1) * 9
-    //   }&select=id,title,price,rating,images,thumbnail,discountPercentage,`
-    // );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import arrow from "../assets/Arrow down.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const sortingOptions: string[] = [
   "Alphabetical",
@@ -22,6 +24,10 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
   const [open, setOpen] = useState(false);
   const [sortBy, setSortBy] = useState("Alphabetical");
 
+  const categoryName = useSelector(
+    (state: RootState) => state.products.categoryName
+  );
+
   ////LOGIC
   const handleSortChange = (option: string) => {
     setSortBy(option);
@@ -32,7 +38,9 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
   ////UI
   return (
     <div className="flex justify-between items-center relative">
-      <h3 className="font-satoshi font-bold text-[32px]">Category</h3>
+      <h3 className="font-satoshi font-bold text-[32px]">
+        {categoryName ? categoryName : "Products"}
+      </h3>
       <div className="flex items-center pt-2">
         {" "}
         <p className=" pt-2  font-satoshi opacity-60">
