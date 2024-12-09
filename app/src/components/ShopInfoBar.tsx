@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import arrow from "../assets/Arrow down.png";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { SortMethod } from "./Shop";
+import { useLocation } from "react-router-dom";
+import { addCategoryName } from "../redux/productsSlice";
 
 const sortingOptions: SortMethod[] = [
   "Alphabetical",
@@ -22,14 +24,25 @@ type ShopInfoBarProps = {
 const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
   //
   ////DATA
+  const { pathname } = useLocation();
+  const dispatch: AppDispatch = useAppDispatch();
+
   const [open, setOpen] = useState(false);
   const [sortBy, setSortBy] = useState("Alphabetical");
 
+  //global state of added category name
   const categoryName = useSelector(
     (state: RootState) => state.products.categoryName
   );
 
   ////LOGIC
+  //when pathname is changing to "/shop" set category name in global state to ""
+  useEffect(() => {
+    if (pathname === "/shop") {
+      dispatch(addCategoryName(""));
+    }
+  }, [pathname]);
+
   const handleSortChange = (option: SortMethod) => {
     setSortBy(option);
     setOpen(false);

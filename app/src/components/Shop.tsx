@@ -40,6 +40,9 @@ const Shop = () => {
   const { filteredProductsByCategory, fetchedProducts } = useSelector(
     (state: RootState) => state.products
   );
+  // console.log(filteredProductsByCategory);
+
+  // console.log(fetchedProducts);
 
   // fetched products
   const { data, isPending } = useQuery<ProductsFetchedData>({
@@ -65,6 +68,7 @@ const Shop = () => {
   //state of total items
   const total = productsData.total;
 
+  ////LOGIC
   //if location change, assign different products to the state
   useEffect(() => {
     if (pathname !== "/shop" && filteredProductsByCategory) {
@@ -73,6 +77,29 @@ const Shop = () => {
     }
     setProductsData(fetchedProducts);
   }, [pathname, filteredProductsByCategory]);
+
+  //set data after render
+  useEffect(() => {
+    if (filteredProductsByCategory) {
+      setProductsData(filteredProductsByCategory);
+    } else if (fetchedProducts) {
+      setProductsData(fetchedProducts);
+    }
+  }, [filteredProductsByCategory, fetchedProducts]);
+
+  //add products data if data from api is ready and total = 0
+  useEffect(() => {
+    if (fetchedProducts.total === 0 && data?.products.length) {
+      dispatch(addProducts(data as ProductsFetchedData));
+    } else if (!data) {
+      console.error("No data fetched from API");
+    }
+  }, [data, dispatch]);
+
+  //when url param change (updated in Pagination component), update local page state
+  useEffect(() => {
+    setPage(Number(actualPage));
+  }, [actualPage]);
 
   //products indexes for displayed items
   const firstIndex = (page - 1) * 9;
@@ -101,20 +128,6 @@ const Shop = () => {
       return sortedByRating;
     }
   };
-
-  //add products data if data from api is ready and total = 0
-  useEffect(() => {
-    if (data?.products.length) {
-      dispatch(addProducts(data));
-    } else if (!data) {
-      console.error("No data fetched from API");
-    }
-  }, [data, dispatch]);
-
-  //when url param change (updated in Pagination component), update local page state
-  useEffect(() => {
-    setPage(Number(actualPage));
-  }, [actualPage]);
 
   //when sorting method is selected (in ShopInfoBar component) add specify state
   const handleSelectedSortMethod = (sortMethod: SortMethod) => {

@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import beauty from "../assets/Beauty.png";
 import clothes from "../assets/Clothes.png";
 import electronics from "../assets/Electronics.png";
 import kitchen from "../assets/Kitchen.png";
 
 const Category = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="px-4 sm:px-[100px] mt-[80px]">
       <div className=" rounded-[40px] bg-grayBG z-[1]">
