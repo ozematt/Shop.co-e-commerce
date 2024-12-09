@@ -33,15 +33,17 @@ const TopRating = () => {
 
   ////UI
   return (
-    <section className="px-4 sm:px-[100px] mt-[72px] flex flex-col items-center w-full max-w-[1400px]">
-      <h2 className="font-integralCFBold text-5xl text-center">Top Rating</h2>
+    <section className="px-4 sm:px-[100px] mt-[50px] sm:mt-[72px] flex flex-col items-center w-full max-w-[1400px]">
+      <h2 className="font-integralCFBold text-[32px] sm:text-5xl text-center">
+        Top Rating
+      </h2>
 
-      <div className="max-xl:overflow-x-auto gap-5 flex mt-[55px] w-full snap-x snap-mandatory scroll-smooth scrollbar-hide">
+      <div className="max-xl:overflow-x-auto gap-4 sm:gap-5 flex max-sm:mt-[-32px] sm:mt-[55px] w-full scrollbar-hide">
         {" "}
         {productsToShow?.map((product) => (
           <div
             key={product.id}
-            className="flex-shrink-0 snap-start scrollbar-hide overflow-hidden"
+            className="flex-shrink-0 max-sm:mx-[-40px] scale-75 sm:scale-100 snap-start scrollbar-hide overflow-hidden"
           >
             <Product {...product} />
           </div>
@@ -50,7 +52,7 @@ const TopRating = () => {
 
       <button
         onClick={() => navigate("/shop")}
-        className="cursor-pointer hover:scale-95 action:scale-100 px-[80px] py-[15px] border rounded-full  mt-[36px]"
+        className="cursor-pointer hover:scale-95 action:scale-100 px-[80px] py-[15px] border max-sm:w-full rounded-full  mt-[36px]"
       >
         View All
       </button>

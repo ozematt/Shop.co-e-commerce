@@ -38,14 +38,14 @@ const Product = ({
 
   return (
     <div className="h-[408px]">
-      <div className="bg-grayBG w-[295px] h-[298px] rounded-[20px] ">
+      <div className="bg-grayBG max-w-[295px] h-[298px] rounded-[20px] ">
         <img
           src={images[0]}
           alt={title}
           className="w-full h-full object-contain "
         />
       </div>
-      <p className="font-satoshi font-bold text-xl pt-4 w-full w-max-[295px]">
+      <p className="font-satoshi font-bold text-xl pt-4 w-full max-w-[295px]">
         {title.length > 25 ? title.slice(0, 25) + "..." : title}
       </p>
       <div className="flex pt-2">
