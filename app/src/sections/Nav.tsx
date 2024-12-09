@@ -7,8 +7,11 @@ import arrow from "../assets/Arrow down.png";
 import { useLocation } from "react-router";
 
 const Nav = () => {
+  //
+  ////DATA
   const location = useLocation();
 
+  ////UI
   return (
     <nav className="px-4 sm:px-[100px] flex items-center max-[838px]:justify-between h-[96px] max-container">
       <div className="flex items-center">
