@@ -33,14 +33,15 @@ const TopRating = () => {
 
   ////UI
   return (
-    <section className="px-4 sm:px-[100px] mt-[72px] flex flex-col items-center">
+    <section className="px-4 sm:px-[100px] mt-[72px] flex flex-col items-center w-full max-w-[1400px]">
       <h2 className="font-integralCFBold text-5xl text-center">Top Rating</h2>
-      <div className="flex flex-wrap justify-center gap-5 mt-[55px]">
+
+      <div className="max-xl:overflow-x-auto gap-5 flex mt-[55px] w-full snap-x snap-mandatory scroll-smooth scrollbar-hide">
         {" "}
         {productsToShow?.map((product) => (
           <div
             key={product.id}
-            className="scale-75 sm:scale-100 max-sm:hover:scale-[0.8] max-sm:my-[-30px]"
+            className="flex-shrink-0 snap-start scrollbar-hide overflow-hidden"
           >
             <Product {...product} />
           </div>

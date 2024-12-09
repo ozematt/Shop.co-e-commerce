@@ -16,6 +16,14 @@
   scroll-behavior: smooth;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @layer components {
   .max-container {
     max-width: 1440px;
