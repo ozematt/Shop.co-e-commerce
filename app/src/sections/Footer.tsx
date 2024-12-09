@@ -2,6 +2,8 @@ import { footerData, socials } from "../constants";
 import pay from "../assets/Pay.png";
 
 const Footer = () => {
+  //
+  ////UI
   return (
     <section className="px-4 sm:px-[80px] mt-[50px] relative">
       <div className="flex max-[820px]:flex-wrap">
