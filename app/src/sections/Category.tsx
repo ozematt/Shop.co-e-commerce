@@ -15,7 +15,10 @@ const Category = () => {
         </h2>
         <div className="px-[24px] sm:px-[64px] space-y-4">
           <div className="flex max-xl:flex-wrap gap-4">
-            <div className=" bg-white flex-auto  w-[407px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200">
+            <div
+              onClick={() => navigate("/shop")}
+              className="cursor-pointer bg-white flex-auto  w-[407px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200"
+            >
               <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px]">
                 Beauty
               </p>
@@ -27,7 +30,10 @@ const Category = () => {
               />
             </div>
 
-            <div className=" bg-white flex-auto w-[684px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200">
+            <div
+              onClick={() => navigate("/shop")}
+              className="cursor-pointer bg-white flex-auto w-[684px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200"
+            >
               <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px] z-[1]">
                 Clothes
               </p>
@@ -39,8 +45,11 @@ const Category = () => {
               />
             </div>
           </div>
-          <div className="flex max-xl:flex-wrap gap-4 pb-[74px]">
-            <div className="bg-white flex-auto w-[684px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200">
+          <div
+            onClick={() => navigate("/shop")}
+            className="flex max-xl:flex-wrap gap-4 pb-[74px]"
+          >
+            <div className="cursor-pointer bg-white flex-auto w-[684px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200">
               <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px]">
                 Kitchen
               </p>
@@ -51,7 +60,10 @@ const Category = () => {
                 className="absolute w-full h-full object-contain top-0 right-[-50px]"
               />
             </div>
-            <div className="bg-white flex-auto w-[407px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200">
+            <div
+              onClick={() => navigate("/shop")}
+              className="cursor-pointer bg-white flex-auto w-[407px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200"
+            >
               <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px] ">
                 Electronics
               </p>

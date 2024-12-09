@@ -40,9 +40,6 @@ const Shop = () => {
   const { filteredProductsByCategory, fetchedProducts } = useSelector(
     (state: RootState) => state.products
   );
-  // console.log(filteredProductsByCategory);
-
-  // console.log(fetchedProducts);
 
   // fetched products
   const { data, isPending } = useQuery<ProductsFetchedData>({
@@ -91,8 +88,6 @@ const Shop = () => {
   useEffect(() => {
     if (fetchedProducts.total === 0 && data?.products.length) {
       dispatch(addProducts(data as ProductsFetchedData));
-    } else if (!data) {
-      console.error("No data fetched from API");
     }
   }, [data, dispatch]);
 
@@ -105,7 +100,7 @@ const Shop = () => {
   const firstIndex = (page - 1) * 9;
   const secondIndex = total < 9 ? total : firstIndex + 9;
 
-  //sorting actual products
+  //sorting actual products from local state
   const sortedProducts = () => {
     if (sortOptions.field === "title") {
       const sortedProducts = [...productsData.products].sort((a, b) =>

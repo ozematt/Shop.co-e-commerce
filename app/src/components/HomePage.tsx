@@ -2,18 +2,17 @@ import BrandBar from "../sections/BrandBar";
 import Category from "../sections/Category";
 import Footer from "../sections/Footer";
 import Hero from "../sections/Hero";
-import NewArrivals from "../sections/NewArrivals";
+
 import Newsletter from "../sections/Newsletter";
 import Testimonials from "../sections/Testimonials";
-import TopSelling from "../sections/TopSelling";
+import TopRating from "../sections/TopRating";
 
 const HomePage = () => {
   return (
     <main className="max-container">
       <Hero />
       <BrandBar />
-      <NewArrivals />
-      <TopSelling />
+      <TopRating />
       <Category />
       <Testimonials />
       <Newsletter />
