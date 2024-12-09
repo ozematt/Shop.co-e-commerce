@@ -19,7 +19,8 @@ const Product = ({
 }: ProductProps) => {
   const [newPrice, setNewPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
-
+  //
+  ////LOGIC
   useEffect(() => {
     if (discountPercentage >= 15 && discountPercentage <= 20) {
       const lowPrice = (price * 0.8).toFixed(2);
@@ -36,6 +37,7 @@ const Product = ({
     setNewPrice(price);
   }, [discountPercentage, price]);
 
+  ////UI
   return (
     <div className="h-[408px]">
       <div className="bg-grayBG max-w-[295px] h-[298px] rounded-[20px] ">
