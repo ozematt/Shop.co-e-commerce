@@ -6,7 +6,7 @@ import PaginationBar from "./PaginationBar";
 import Product from "./Product";
 import ShopInfoBar from "./ShopInfoBar";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { useQuery } from "@tanstack/react-query";
@@ -33,11 +33,22 @@ const Shop = () => {
   //
   ////DATA
   const dispatch: AppDispatch = useAppDispatch();
+  const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
+
+  //global state
+  const { filteredProductsByCategory, fetchedProducts } = useSelector(
+    (state: RootState) => state.products
+  );
+
+  // fetched products
+  const { data, isPending } = useQuery<ProductsFetchedData>({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
 
   //fetch page number from url (uploaded from Pagination component)
-  const [searchParams] = useSearchParams();
   const actualPage = Number(searchParams.get("page")) || 1; // when is NaN assigns 1 (NaN invalid string)
-
   const [page, setPage] = useState(Number(actualPage)); //selected page, local state
 
   //sorting state
@@ -46,18 +57,22 @@ const Shop = () => {
     direction: "asc",
   });
 
-  //global state
-  const { filteredProductsByCategory, fetchedProducts } = useSelector(
-    (state: RootState) => state.products
-  );
-
   //check if category is selected, if not display all products form state
-  const productsData = filteredProductsByCategory
-    ? filteredProductsByCategory
-    : fetchedProducts;
+  const [productsData, setProductsData] = useState(
+    filteredProductsByCategory || fetchedProducts
+  );
 
   //state of total items
   const total = productsData.total;
+
+  //if location change, assign different products to the state
+  useEffect(() => {
+    if (pathname !== "/shop" && filteredProductsByCategory) {
+      setProductsData(filteredProductsByCategory);
+      return;
+    }
+    setProductsData(fetchedProducts);
+  }, [pathname, filteredProductsByCategory]);
 
   //products indexes for displayed items
   const firstIndex = (page - 1) * 9;
@@ -87,12 +102,6 @@ const Shop = () => {
     }
   };
 
-  // fetched products
-  const { data, isPending } = useQuery<ProductsFetchedData>({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
-
   //add products data if data from api is ready and total = 0
   useEffect(() => {
     if (data?.products.length) {
@@ -109,7 +118,7 @@ const Shop = () => {
 
   //when sorting method is selected (in ShopInfoBar component) add specify state
   const handleSelectedSortMethod = (sortMethod: SortMethod) => {
-    //assign to state, selected method
+    //assign to state, selected
     const selectedOption = sortOptionsMap[sortMethod];
     if (selectedOption) {
       setSortOptions((prev) => ({ ...prev, ...selectedOption }));
@@ -119,7 +128,7 @@ const Shop = () => {
   ////UI
   return (
     <>
-      <section className="px-4 sm:px-[100px] max-container">
+      <section className="px-4 sm:px-[100px] max-container min-h-[1300px] ">
         <div className="border-b-2" />
         <Breadcrumbs />
         <div className="flex mt-[20px]">
@@ -131,7 +140,7 @@ const Shop = () => {
               second={secondIndex}
               onSelect={handleSelectedSortMethod}
             />
-            <div className="mt-4 flex flex-wrap  gap-5 min-h-[1300px]">
+            <div className="mt-4 flex flex-wrap gap-5 ">
               {isPending ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (

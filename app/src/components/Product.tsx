@@ -37,7 +37,7 @@ const Product = ({
   }, [discountPercentage, price]);
 
   return (
-    <div>
+    <div className="h-[408px]">
       <div className="bg-grayBG w-[295px] h-[298px] rounded-[20px] ">
         <img
           src={images[0]}
@@ -60,7 +60,7 @@ const Product = ({
         </p>
       </div>
 
-      <div className="flex items-center font-satoshi font-bold text-2xl pt-2">
+      <div className="flex items-center font-satoshi font-bold text-2xl pt-2 gap-[2px]">
         {" "}
         ${newPrice}
         {discount && (

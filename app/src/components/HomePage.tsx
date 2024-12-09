@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import BrandBar from "../sections/BrandBar";
 import Category from "../sections/Category";
 import Footer from "../sections/Footer";
