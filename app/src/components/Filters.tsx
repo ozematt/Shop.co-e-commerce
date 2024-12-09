@@ -23,7 +23,6 @@ const Filters = () => {
     from: "",
     to: "",
   });
-  console.log(priceRange);
 
   const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
@@ -56,7 +55,7 @@ const Filters = () => {
   };
 
   //filtered products by category
-  const categorizedProducts = allProducts.products.filter(
+  const categorizedProducts: Product[] = allProducts.products.filter(
     (product) => product.category === selectedCategory
   );
 
@@ -80,8 +79,9 @@ const Filters = () => {
   const filterByPriceRange = (products: Product[], from: number, to: number) =>
     products.filter((product) => product.price >= from && product.price <= to);
 
+  //filter products with price range
   const handleFilterApply = () => {
-    const actualProducts = filteredProductsByCategory || allProducts;
+    const actualProducts = filteredProductsByCategory || allProducts; //assign actual products
 
     const from = Number(priceRange.from) || 0;
     const to = Number(priceRange.to) || Infinity;
@@ -91,20 +91,20 @@ const Filters = () => {
       return;
     }
 
+    //used helper function
     const priceRangedProducts = filterByPriceRange(
       actualProducts.products,
       from,
       to
     );
-
+    //creating relevant data to add
     const dataToAdd = {
       products: priceRangedProducts,
       total: priceRangedProducts.length,
       skip: 0,
       limit: 0,
     };
-    console.log(dataToAdd);
-
+    //add relevant data
     dispatch(addCategorizedProducts(dataToAdd));
   };
 

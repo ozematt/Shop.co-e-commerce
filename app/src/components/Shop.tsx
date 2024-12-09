@@ -109,7 +109,7 @@ const Shop = () => {
 
   //when sorting method is selected (in ShopInfoBar component) add specify state
   const handleSelectedSortMethod = (sortMethod: SortMethod) => {
-    //assign act
+    //assign to state, selected method
     const selectedOption = sortOptionsMap[sortMethod];
     if (selectedOption) {
       setSortOptions((prev) => ({ ...prev, ...selectedOption }));
