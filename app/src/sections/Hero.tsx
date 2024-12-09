@@ -1,8 +1,10 @@
 import { stats } from "../constants";
 import heroIMG from "../assets/hero_cart.png";
 import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="px-4 sm:px-[100px] bg-grayBG relative">
       <div className="w-full max-w-[360px] max-sm:mx-auto sm:max-w-[520px] pt-10 sm:pt-[103px]">
@@ -15,7 +17,7 @@ const Hero = () => {
           designed to highlight your individuality and meet your unique
           preferences.
         </p>
-        <Button>Shop now</Button>
+        <Button onClick={() => navigate("/shop")}>Shop now</Button>
       </div>
 
       <div className="flex flex-wrap max-[833px]:justify-center py-[22px] sm:pt-[48px] gap-[27px] sm:gap-10 sm:pb-[116px]">
