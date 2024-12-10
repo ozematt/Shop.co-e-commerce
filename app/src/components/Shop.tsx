@@ -141,7 +141,7 @@ const Shop = () => {
         <Breadcrumbs />
         <div className="flex mt-[20px]">
           <Filters />
-          <div className=" ml-[20px] w-full">
+          <div className=" xl:ml-[20px] w-full">
             <ShopInfoBar
               total={total}
               first={firstIndex}

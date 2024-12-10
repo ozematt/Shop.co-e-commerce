@@ -5,6 +5,7 @@ import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { SortMethod } from "./Shop";
 import { useLocation } from "react-router-dom";
 import { addCategoryName } from "../redux/productsSlice";
+import settings from "../assets/Settings.png";
 
 const sortingOptions: SortMethod[] = [
   "Alphabetical",
@@ -52,15 +53,23 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
   ////UI
   return (
     <div className="flex justify-between items-center relative">
-      <h3 className="font-satoshi font-bold text-[32px]">
+      <h3 className="font-satoshi font-bold text-2xl sm:text-[32px]">
         {categoryName ? categoryName : "Products"}
       </h3>
-      <div className="flex items-center pt-2">
+      <div className="flex max-sm:text-[14px] items-center pt-2">
         {" "}
         <p className=" pt-2  font-satoshi opacity-60">
           Showing {first}-{second} of {total} Products{" "}
           <span className="hidden xl:inline pl-1">Sort by:</span>
         </p>
+        {/* SETTINGS ICON */}
+        <img
+          src={settings}
+          alt="settings"
+          width={34}
+          height={34}
+          className="ml-5 hidden max-xl:block  -rotate-90 opacity-80 hover:opacity-100 cursor-pointer bg-grayBG p-[7px] rounded-full"
+        />
         <span
           onClick={() => setOpen(!open)}
           className=" max-xl:hidden flex pt-2 pl-2  cursor-pointer items-center font-satoshi font-bold"
