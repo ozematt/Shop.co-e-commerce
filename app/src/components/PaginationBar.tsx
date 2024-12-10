@@ -48,14 +48,14 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
         Previous
       </button>
 
-      <div className="space-x-2 mx-auto">
+      <div className="space-x-2 mx-auto hidden md:block">
         {pageNumbers.map((number, index) => (
           <button
             key={index}
             onClick={() =>
               number !== "..." && handleSelectedPageNumber(Number(number))
             }
-            className="w-[40px] h-[40px] font-satoshi font-medium text-sm rounded-[8px] opacity-50 hover:opacity-100 hover:bg-grayBG "
+            className="w-[40px] h-[40px] font-satoshi font-medium text-xs md:text-sm rounded-[8px] opacity-50 hover:opacity-100 hover:bg-grayBG "
             style={{
               ...(number === pageNumber
                 ? { background: "#f0f0f0", opacity: "100%" }
@@ -71,7 +71,7 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
       </div>
       <button
         onClick={handleNext}
-        className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg hover:scale-95  active:scale-105 transition ease-in-out duration-200"
+        className="font-satoshi font-medium text-sm flex items-center py-5 md:py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg hover:scale-95  active:scale-105 transition ease-in-out duration-200"
       >
         {" "}
         Next

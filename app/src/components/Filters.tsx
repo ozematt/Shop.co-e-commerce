@@ -3,7 +3,6 @@ import arrow from "../assets/Arrow down.png";
 import { useQuery } from "@tanstack/react-query";
 import fetchCategoriesList from "../api/queries/categories";
 import { useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
