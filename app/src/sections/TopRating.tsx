@@ -38,7 +38,7 @@ const TopRating = () => {
         Top Rating
       </h2>
 
-      <div className="max-xl:overflow-x-auto gap-4 sm:gap-5 flex max-sm:mt-[-32px] sm:mt-[55px] w-full snap-x snap-mandatory scroll-smooth scrollbar-hide">
+      <div className="max-xl:overflow-x-auto gap-4 sm:gap-5 flex max-sm:mt-[-32px] h-[420px] sm:mt-[55px]  w-full snap-x snap-mandatory scroll-smooth scrollbar-hide">
         {" "}
         {productsToShow?.map((product) => (
           <div
@@ -52,7 +52,7 @@ const TopRating = () => {
 
       <button
         onClick={() => navigate("/shop")}
-        className="cursor-pointer hover:scale-95 action:scale-100 px-[80px] py-[15px] border max-sm:w-full rounded-full  mt-[36px]"
+        className="cursor-pointer hover:scale-95 action:scale-100 px-[80px] py-[15px] border max-sm:w-full rounded-full  mt-[-30px] sm:mt-[36px]"
       >
         View All
       </button>

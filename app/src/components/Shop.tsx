@@ -139,7 +139,7 @@ const Shop = () => {
       <section className="px-4 sm:px-[100px] max-container min-h-[1300px] ">
         <div className="border-b-2" />
         <Breadcrumbs />
-        <div className="flex mt-[20px]">
+        <div className="flex mt-[12px] sm:mt-[20px]">
           <Filters />
           <div className=" xl:ml-[20px] w-full">
             <ShopInfoBar
@@ -148,14 +148,17 @@ const Shop = () => {
               second={secondIndex}
               onSelect={handleSelectedSortMethod}
             />
-            <div className="mt-4 flex flex-wrap justify-center gap-5 ">
+            <div className="mt-4 grid grid-cols-1 sm:flex flex-wrap justify-center gap-5 ">
               {isPending ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (
                 sortedProducts()
                   ?.slice(firstIndex, secondIndex)
                   .map((product) => (
-                    <div key={product.id} className="">
+                    <div
+                      key={product.id}
+                      className="max-lg:scale-90 max-md:scale-[0.7] max-lg:m-[-20px] scale-100 m-0 max-md:m-[-50px]"
+                    >
                       <Product {...product} />
                     </div>
                   ))

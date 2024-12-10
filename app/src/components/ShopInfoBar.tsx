@@ -58,7 +58,7 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
       </h3>
       <div className="flex max-sm:text-[14px] items-center pt-2">
         {" "}
-        <p className=" pt-2  font-satoshi opacity-60">
+        <p className=" sm:pt-2  font-satoshi opacity-60">
           Showing {first}-{second} of {total} Products{" "}
           <span className="hidden xl:inline pl-1">Sort by:</span>
         </p>
@@ -68,7 +68,7 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
           alt="settings"
           width={34}
           height={34}
-          className="ml-5 hidden max-xl:block  -rotate-90 opacity-80 hover:opacity-100 cursor-pointer bg-grayBG p-[7px] rounded-full"
+          className="ml-5 hidden max-xl:block mb-[-3px] -rotate-90 opacity-80 hover:opacity-100 cursor-pointer bg-grayBG p-[7px] rounded-full"
         />
         <span
           onClick={() => setOpen(!open)}

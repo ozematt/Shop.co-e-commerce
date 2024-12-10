@@ -12,7 +12,7 @@ const Breadcrumbs = () => {
 
   ////UI
   return (
-    <div className="flex items-center opacity-60 pt-6">
+    <div className="flex items-center opacity-60 pt-6 max-sm:text-[14px]">
       <p
         className="font-satoshi pr-2 leading-none cursor-pointer hover:opacity-70"
         onClick={() => navigate("/")}

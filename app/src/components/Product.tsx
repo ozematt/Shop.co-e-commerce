@@ -39,8 +39,8 @@ const Product = ({
 
   ////UI
   return (
-    <div className="h-[408px]">
-      <div className="bg-grayBG w-[295px] h-[298px] rounded-[20px] ">
+    <div className="h-[400px] sm:h-[408px]">
+      <div className="bg-grayBG w-full h-[304px] sm:w-[295px] sm:h-[298px] rounded-[20px] ">
         <img
           src={images[0]}
           alt={title}
