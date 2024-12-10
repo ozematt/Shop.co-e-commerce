@@ -57,7 +57,6 @@ const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
     dispatch(addSortMethod(option));
   };
 
-  //
   const handleFilterClose = () => {
     setFilterOpen(false);
   };
