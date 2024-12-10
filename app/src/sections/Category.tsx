@@ -7,6 +7,11 @@ import kitchen from "../assets/Kitchen.png";
 const Category = () => {
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate("/shop");
+    window.scrollTo(0, 0);
+  };
+
   return (
     <section className="px-4 sm:px-[100px] mt-[80px]">
       <div className=" rounded-[40px] bg-grayBG z-[1]">
@@ -16,7 +21,7 @@ const Category = () => {
         <div className="px-[24px] sm:px-[64px] space-y-4">
           <div className="flex max-xl:flex-wrap gap-4">
             <div
-              onClick={() => navigate("/shop")}
+              onClick={handleClick}
               className="cursor-pointer bg-white flex-auto  w-[407px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200"
             >
               <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px]">
@@ -31,7 +36,7 @@ const Category = () => {
             </div>
 
             <div
-              onClick={() => navigate("/shop")}
+              onClick={handleClick}
               className="cursor-pointer bg-white flex-auto w-[684px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200"
             >
               <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px] z-[1]">
@@ -46,7 +51,7 @@ const Category = () => {
             </div>
           </div>
           <div
-            onClick={() => navigate("/shop")}
+            onClick={handleClick}
             className="flex max-xl:flex-wrap gap-4 pb-[74px]"
           >
             <div className="cursor-pointer bg-white flex-auto w-[684px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200">
@@ -61,7 +66,7 @@ const Category = () => {
               />
             </div>
             <div
-              onClick={() => navigate("/shop")}
+              onClick={handleClick}
               className="cursor-pointer bg-white flex-auto w-[407px] h-[190px] md:h-[289px] rounded-[20px] overflow-hidden relative hover:scale-95 transition ease-in-out duration-200"
             >
               <p className="font-satoshi font-bold text-2xl md:text-[36px] pt-[25px] pl-[36px] ">
