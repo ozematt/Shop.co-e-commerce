@@ -59,11 +59,11 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
         {" "}
         <p className=" pt-2  font-satoshi opacity-60">
           Showing {first}-{second} of {total} Products{" "}
-          <span className="pl-1">Sort by:</span>
+          <span className="hidden xl:inline pl-1">Sort by:</span>
         </p>
         <span
           onClick={() => setOpen(!open)}
-          className="pt-2 pl-2 cursor-pointer flex items-center font-satoshi font-bold"
+          className=" max-xl:hidden flex pt-2 pl-2  cursor-pointer items-center font-satoshi font-bold"
         >
           {sortBy}
           <img
@@ -78,11 +78,11 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
           />
         </span>
         {open && (
-          <ul className="absolute right-[-5px] ring-1 ring-black ring-opacity-20 top-[50px] w-[130px] rounded-[5px] bg-white bg-opacity-85">
+          <ul className="absolute right-[-5px] ring-1 ring-black ring-opacity-20 top-[50px] w-[130px] rounded-[5px] bg-white bg-opacity-85 z-10 pl-3 pt-1">
             {sortingOptions.map((option) => (
               <li
                 key={option}
-                className="font-satoshi hover:font-bold py-1 px-3 cursor-pointer"
+                className="font-satoshi pb-2 opacity-60 hover:opacity-100 cursor-pointer"
                 onClick={() => handleSortChange(option)}
               >
                 {option}

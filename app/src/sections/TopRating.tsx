@@ -38,12 +38,12 @@ const TopRating = () => {
         Top Rating
       </h2>
 
-      <div className="max-xl:overflow-x-auto gap-4 sm:gap-5 flex max-sm:mt-[-32px] sm:mt-[55px] w-full scrollbar-hide">
+      <div className="max-xl:overflow-x-auto gap-4 sm:gap-5 flex max-sm:mt-[-32px] sm:mt-[55px] w-full snap-x snap-mandatory scroll-smooth scrollbar-hide">
         {" "}
         {productsToShow?.map((product) => (
           <div
             key={product.id}
-            className="flex-shrink-0 max-sm:mx-[-40px] scale-75 sm:scale-100 snap-start scrollbar-hide overflow-hidden"
+            className="flex-shrink-0 max-sm:mx-[-35px] scale-75 sm:scale-100 snap-start scrollbar-hide overflow-hidden"
           >
             <Product {...product} />
           </div>

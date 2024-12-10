@@ -148,13 +148,17 @@ const Shop = () => {
               second={secondIndex}
               onSelect={handleSelectedSortMethod}
             />
-            <div className="mt-4 flex flex-wrap gap-5 ">
+            <div className="mt-4 flex flex-wrap justify-center gap-5 ">
               {isPending ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (
                 sortedProducts()
                   ?.slice(firstIndex, secondIndex)
-                  .map((product) => <Product key={product.id} {...product} />)
+                  .map((product) => (
+                    <div key={product.id} className="">
+                      <Product {...product} />
+                    </div>
+                  ))
               )}
             </div>
             <div className="border-b-2 mt-[32px]" />

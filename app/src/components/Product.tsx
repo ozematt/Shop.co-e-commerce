@@ -40,7 +40,7 @@ const Product = ({
   ////UI
   return (
     <div className="h-[408px]">
-      <div className="bg-grayBG max-w-[295px] h-[298px] rounded-[20px] ">
+      <div className="bg-grayBG w-[295px] h-[298px] rounded-[20px] ">
         <img
           src={images[0]}
           alt={title}
