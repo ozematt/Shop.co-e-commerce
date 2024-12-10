@@ -22,9 +22,8 @@ const Shop = () => {
   const [searchParams] = useSearchParams();
 
   //global state
-  const { filteredProductsByCategory, fetchedProducts } = useSelector(
-    (state: RootState) => state.products
-  );
+  const { filteredProductsByCategory, fetchedProducts, sortOptions } =
+    useSelector((state: RootState) => state.products);
 
   // fetched products
   const { data, isPending } = useQuery<ProductsFetchedData>({
@@ -35,10 +34,6 @@ const Shop = () => {
   //fetch page number from url (uploaded from Pagination component)
   const actualPage = Number(searchParams.get("page")) || 1; // when is NaN assigns 1 (NaN invalid string)
   const [page, setPage] = useState(Number(actualPage)); //selected page, local state
-
-  const sortOptions = useSelector(
-    (state: RootState) => state.products.sortOptions
-  );
 
   //check if category is selected, if not display all products form state
   const [productsData, setProductsData] = useState(
@@ -83,7 +78,7 @@ const Shop = () => {
   const firstIndex = (page - 1) * 9;
   const secondIndex = total < 9 ? total : firstIndex + 9;
 
-  //sorting actual products from local state
+  //sorting products based on sortOption from global state
   const sortedProducts = () => {
     if (sortOptions.field === "title") {
       const sortedProducts = [...productsData.products].sort((a, b) =>
