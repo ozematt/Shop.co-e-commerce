@@ -1,6 +1,8 @@
 import { useState } from "react";
 import arrow from "../assets/Arrow down.png";
-import { SortMethod } from "./Shop";
+import { SortMethod, addSortMethod } from "../redux/productsSlice";
+import { AppDispatch, useAppDispatch } from "../redux/store";
+// import { SortMethod } from "./Shop";
 
 const sortingOptions: SortMethod[] = [
   "Alphabetical",
@@ -10,51 +12,49 @@ const sortingOptions: SortMethod[] = [
   "Least Rated",
 ] as const;
 
-type SortingProps = {
-  onSelect: (option: string) => void;
-};
-
-const Sorting = ({ onSelect }: SortingProps) => {
+const Sorting = () => {
+  //
+  ////DATA
+  const dispatch: AppDispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
-  const [sortBy, setSortBy] = useState("Alphabetical");
 
-  const handleSortChange = (option: SortMethod) => {
-    setSortBy(option);
-    setOpen(false);
-    onSelect(option);
-  };
-
+  ////UI
   return (
     <>
-      <span
-        onClick={() => setOpen(!open)}
-        className=" max-xl:hidden flex pt-2 pl-2  cursor-pointer items-center font-satoshi font-bold"
+      <div
+        onClick={() => {
+          setOpen(!open);
+        }}
+        className="flex justify-between items-center cursor-pointer"
       >
-        {sortBy}
+        <p className="font-satoshi font-bold text-[20px]">Sorting</p>
         <img
           src={arrow}
-          width={16}
-          height={16}
+          width={20}
+          height={20}
           alt="arrow"
-          className="px-[2px]"
+          className="opacity-60 hover:opacity-100 cursor-pointer"
           style={{
             transform: `rotate(${!open ? "180deg" : "0deg"})`,
           }}
         />
-      </span>
-      {open && (
-        <ul className="absolute right-[-5px] ring-1 ring-black ring-opacity-20 top-[50px] w-[130px] rounded-[5px] bg-white bg-opacity-85 z-10 pl-3 pt-1">
-          {sortingOptions.map((option) => (
-            <li
+      </div>
+      <div className="pb-6">
+        {open &&
+          sortingOptions.map((option) => (
+            <div
               key={option}
-              className="font-satoshi pb-2 opacity-60 hover:opacity-100 cursor-pointer"
-              onClick={() => handleSortChange(option)}
+              onClick={() => dispatch(addSortMethod(option))}
+              className="flex items-center justify-between first:pt-6"
             >
-              {option}
-            </li>
+              {" "}
+              <p className="font-satoshi pb-2 opacity-60 hover:opacity-100 cursor-pointer">
+                {option}
+              </p>
+            </div>
           ))}
-        </ul>
-      )}
+      </div>
+      <div className="border-t-2 pb-6" />
     </>
   );
 };

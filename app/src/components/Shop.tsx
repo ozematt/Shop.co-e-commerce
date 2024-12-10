@@ -14,21 +14,6 @@ import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
 import { addProducts } from "../redux/productsSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export type SortMethod =
-  | "Alphabetical"
-  | "Hightest Price"
-  | "Lowest Price"
-  | "Top Rated"
-  | "Least Rated";
-
-const sortOptionsMap = {
-  Alphabetical: { field: "title" },
-  "Hightest Price": { field: "price", direction: "desc" },
-  "Lowest Price": { field: "price", direction: "asc" },
-  "Top Rated": { field: "rating", direction: "desc" },
-  "Least Rated": { field: "rating", direction: "asc" },
-} as const;
-
 const Shop = () => {
   //
   ////DATA
@@ -51,11 +36,9 @@ const Shop = () => {
   const actualPage = Number(searchParams.get("page")) || 1; // when is NaN assigns 1 (NaN invalid string)
   const [page, setPage] = useState(Number(actualPage)); //selected page, local state
 
-  //sorting state
-  const [sortOptions, setSortOptions] = useState({
-    field: "title",
-    direction: "asc",
-  });
+  const sortOptions = useSelector(
+    (state: RootState) => state.products.sortOptions
+  );
 
   //check if category is selected, if not display all products form state
   const [productsData, setProductsData] = useState(
@@ -124,14 +107,6 @@ const Shop = () => {
     }
   };
 
-  //when sorting method is selected (in ShopInfoBar component) add specify state
-  const handleSelectedSortMethod = (sortMethod: SortMethod) => {
-    const selectedOption = sortOptionsMap[sortMethod]; // using object to refactor code
-    if (selectedOption) {
-      setSortOptions((prev) => ({ ...prev, ...selectedOption }));
-    }
-  };
-
   ////UI
   return (
     <>
@@ -147,7 +122,6 @@ const Shop = () => {
               total={total}
               first={firstIndex}
               second={secondIndex}
-              onSelect={handleSelectedSortMethod}
             />
             <div className="mt-4 grid grid-cols-1 sm:flex flex-wrap justify-center gap-5 ">
               {isPending ? (

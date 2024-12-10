@@ -12,12 +12,15 @@ import {
   addCategoryName,
 } from "../redux/productsSlice";
 import { Product } from "../api/queries/products";
+import Sorting from "./Sorting";
 
 type FiltersProps = {
   iconHide?: boolean;
+  sortOptions?: boolean;
+  close?: () => void;
 };
 
-const Filters = ({ iconHide }: FiltersProps) => {
+const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
   //
   ////DATA
   const [priceOpen, setPriceOpen] = useState(true); //price filter open/close
@@ -108,16 +111,22 @@ const Filters = ({ iconHide }: FiltersProps) => {
       skip: 0,
       limit: 0,
     };
+
+    //for closing filter window on mo
+    if (close) {
+      close();
+    }
+
     //add relevant data
     dispatch(addCategorizedProducts(dataToAdd));
   };
 
   //UI
   return (
-    <div className=" h-full max-h-[1200px] rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
+    <div className=" rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
       <div className="flex justify-between items-center pb-6">
         <p className="font-satoshi font-bold text-[20px] ">Filters</p>
-        {iconHide && (
+        {iconHide ?? (
           <img
             src={settings}
             width={24}
@@ -129,6 +138,8 @@ const Filters = ({ iconHide }: FiltersProps) => {
         )}
       </div>
       <div className="border-t-2 pb-6" />
+      {sortOptions ? <Sorting /> : null}
+
       {/* CATEGORY */}
       <div
         onClick={() => {

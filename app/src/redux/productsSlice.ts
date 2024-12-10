@@ -1,15 +1,38 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductsFetchedData } from "../api/queries/products";
 
+export type SortMethod =
+  | "Alphabetical"
+  | "Hightest Price"
+  | "Lowest Price"
+  | "Top Rated"
+  | "Least Rated";
+
+const sortOptionsMap = {
+  Alphabetical: { field: "title" },
+  "Hightest Price": { field: "price", direction: "desc" },
+  "Lowest Price": { field: "price", direction: "asc" },
+  "Top Rated": { field: "rating", direction: "desc" },
+  "Least Rated": { field: "rating", direction: "asc" },
+} as const;
+
+type SortingOptions = {
+  field: string;
+  direction?: string;
+};
+
 type InitialState = {
-  sortBy: string;
+  sortOptions: SortingOptions;
   categoryName: string;
   filteredProductsByCategory: null | ProductsFetchedData;
   fetchedProducts: ProductsFetchedData;
 };
 
 const initialState: InitialState = {
-  sortBy: "Alphabetical",
+  sortOptions: {
+    field: "title",
+    direction: "asc",
+  },
   categoryName: "",
   filteredProductsByCategory: null,
   fetchedProducts: {
@@ -47,8 +70,11 @@ const productsSlice = createSlice({
     addCategoryName: (state, action: PayloadAction<string>) => {
       state.categoryName = action.payload;
     },
-    addSortMethod: (state, action: PayloadAction<string>) => {
-      state.sortBy = action.payload;
+    addSortMethod: (state, action: PayloadAction<SortMethod>) => {
+      const selectedOption = sortOptionsMap[action.payload];
+      if (selectedOption) {
+        state.sortOptions = { ...selectedOption };
+      }
     },
   },
 });

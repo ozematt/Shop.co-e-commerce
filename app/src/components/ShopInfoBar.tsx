@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import arrow from "../assets/Arrow down.png";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
-import { SortMethod } from "./Shop";
+
 import { useLocation } from "react-router-dom";
-import { addCategoryName } from "../redux/productsSlice";
+import {
+  SortMethod,
+  addCategoryName,
+  addSortMethod,
+} from "../redux/productsSlice";
 import settings from "../assets/Settings.png";
 import Filters from "./Filters";
+import closeBlack from "../assets/Close_black.png";
 
 const sortingOptions: SortMethod[] = [
   "Alphabetical",
@@ -20,10 +25,9 @@ type ShopInfoBarProps = {
   first: number;
   second: number;
   total: number;
-  onSelect: (method: SortMethod) => void;
 };
 
-const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
+const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
   //
   ////DATA
   const { pathname } = useLocation();
@@ -50,7 +54,12 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
   const handleSortChange = (option: SortMethod) => {
     setSortBy(option);
     setOpen(false);
-    onSelect(option);
+    dispatch(addSortMethod(option));
+  };
+
+  //
+  const handleFilterClose = () => {
+    setFilterOpen(false);
   };
 
   ////UI
@@ -108,7 +117,15 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
         <>
           {" "}
           <div className="absolute z-20 bg-white w-full top-[-70px] rounded-2xl">
-            <Filters iconHide={true} />
+            <img
+              src={closeBlack}
+              alt=""
+              width={15}
+              height={15}
+              className="absolute right-5 top-7 cursor-pointer hover:scale-95"
+              onClick={() => setFilterOpen(false)}
+            />
+            <Filters iconHide sortOptions close={handleFilterClose} />
           </div>
           <div className="fixed inset-0 bg-black opacity-50 -z-50"></div>{" "}
         </>
