@@ -13,7 +13,11 @@ import {
 } from "../redux/productsSlice";
 import { Product } from "../api/queries/products";
 
-const Filters = () => {
+type FiltersProps = {
+  iconHide?: boolean;
+};
+
+const Filters = ({ iconHide }: FiltersProps) => {
   //
   ////DATA
   const [priceOpen, setPriceOpen] = useState(true); //price filter open/close
@@ -110,17 +114,19 @@ const Filters = () => {
 
   //UI
   return (
-    <div className="hidden xl:block w-full max-w-[295px] h-full max-h-[1200px] rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
+    <div className=" h-full max-h-[1200px] rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
       <div className="flex justify-between items-center pb-6">
         <p className="font-satoshi font-bold text-[20px] ">Filters</p>
-        <img
-          src={settings}
-          width={24}
-          height={24}
-          alt="settings"
-          className="-rotate-90 opacity-60 hover:opacity-100 cursor-pointer"
-          onClick={handleFiltersOpen}
-        />
+        {iconHide && (
+          <img
+            src={settings}
+            width={24}
+            height={24}
+            alt="settings"
+            className="-rotate-90 opacity-60 hover:opacity-100 cursor-pointer"
+            onClick={handleFiltersOpen}
+          />
+        )}
       </div>
       <div className="border-t-2 pb-6" />
       {/* CATEGORY */}

@@ -6,6 +6,7 @@ import { SortMethod } from "./Shop";
 import { useLocation } from "react-router-dom";
 import { addCategoryName } from "../redux/productsSlice";
 import settings from "../assets/Settings.png";
+import Filters from "./Filters";
 
 const sortingOptions: SortMethod[] = [
   "Alphabetical",
@@ -30,6 +31,8 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
 
   const [open, setOpen] = useState(false);
   const [sortBy, setSortBy] = useState("Alphabetical");
+
+  const [filterOpen, setFilterOpen] = useState(false);
 
   //global state of added category name
   const categoryName = useSelector(
@@ -68,6 +71,7 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
           alt="settings"
           width={34}
           height={34}
+          onClick={() => setFilterOpen(!filterOpen)}
           className="ml-5 hidden max-xl:block mb-[-3px] -rotate-90 opacity-80 hover:opacity-100 cursor-pointer bg-grayBG p-[7px] rounded-full"
         />
         <span
@@ -100,6 +104,15 @@ const ShopInfoBar = ({ total, first, second, onSelect }: ShopInfoBarProps) => {
           </ul>
         )}
       </div>
+      {filterOpen && (
+        <>
+          {" "}
+          <div className="absolute z-20 bg-white w-full top-[-70px] rounded-2xl">
+            <Filters iconHide={true} />
+          </div>
+          <div className="fixed inset-0 bg-black opacity-50 -z-50"></div>{" "}
+        </>
+      )}
     </div>
   );
 };

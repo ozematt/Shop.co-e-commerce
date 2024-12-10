@@ -126,8 +126,7 @@ const Shop = () => {
 
   //when sorting method is selected (in ShopInfoBar component) add specify state
   const handleSelectedSortMethod = (sortMethod: SortMethod) => {
-    //assign to state, selected
-    const selectedOption = sortOptionsMap[sortMethod];
+    const selectedOption = sortOptionsMap[sortMethod]; // using object to refactor code
     if (selectedOption) {
       setSortOptions((prev) => ({ ...prev, ...selectedOption }));
     }
@@ -140,7 +139,9 @@ const Shop = () => {
         <div className="border-b-2" />
         <Breadcrumbs />
         <div className="flex mt-[12px] sm:mt-[20px]">
-          <Filters />
+          <div className="hidden xl:block w-full max-w-[295px]">
+            <Filters />
+          </div>
           <div className=" xl:ml-[20px] w-full">
             <ShopInfoBar
               total={total}
