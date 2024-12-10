@@ -10,7 +10,7 @@ const TopBar = () => {
 
   ////LOGIC
   const handleSignUpClick = () => {
-    navigate("/signup");
+    navigate("/login");
     setHideBar(true);
   };
 
