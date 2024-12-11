@@ -30,14 +30,14 @@ Witam w moim projekcie **Shop.co**!  Projekt powstał na podstawie darmowego lay
 ## Zrzuty ekranu
 
 ### Widok główny
-![HopePage](./app/screenshots/HomePage.png)
+![HomePage](./app/screenshots/HomePage.png)
 
 ### Widok główny - produkty
-![HopePage](./app/screenshots/ProductsView.png)
+![ProductsView](./app/screenshots/ProductsView.png)
 
 
 ### Widok główny + produkty -Mobilny 
-![HopePage](./app/screenshots/Mobile.png)
+![Mobile](./app/screenshots/Mobile.png)
 
 
 
