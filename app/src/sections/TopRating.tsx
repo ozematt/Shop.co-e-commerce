@@ -51,7 +51,9 @@ const TopRating = () => {
       </div>
 
       <button
-        onClick={() => navigate("/shop")}
+        onClick={() => {
+          navigate("/shop"), window.scrollTo(0, 0);
+        }}
         className="cursor-pointer hover:scale-95 action:scale-100 px-[80px] py-[15px] border max-sm:w-full rounded-full  mt-[-30px] sm:mt-[36px]"
       >
         View All
