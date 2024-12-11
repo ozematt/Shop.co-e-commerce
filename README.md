@@ -1,6 +1,6 @@
 # Shop.co
 
-Witam w moim projekcie **Shop.co**!  Projekt powstał na podstawie darmowego layoutu z Figma: [E-commerce Website Template (Freebie)](https://www.figma.com/community/file/1273571982885059508/e-commerce-website-template-freebie). Celem projektu jest przeciwiczenie pracy z m.in. **TailwindCSS** i **TypeScript** jak również innymi narzędziami frontendowymi.
+Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layoutu z Figma: [E-commerce Website Template (Freebie)](https://www.figma.com/community/file/1273571982885059508/e-commerce-website-template-freebie). Celem projektu jest przećwiczenie pracy z m.in. **TailwindCSS** i **TypeScript** jak również innymi narzędziami frontendowymi.
 
 ## Funkcjonalności
 
@@ -9,7 +9,6 @@ Witam w moim projekcie **Shop.co**!  Projekt powstał na podstawie darmowego lay
 - **Katalog Produktów**:
   - Aplikacja wyświetla produkty wraz z ich zdjęciami, opisami, cenami i kategoriami.
   - Funkcje **filtrowania** oraz **sortowania** produktów (np. według ceny, kategorii).
-
 
 ## Technologia
 
@@ -22,31 +21,29 @@ Witam w moim projekcie **Shop.co**!  Projekt powstał na podstawie darmowego lay
 - **React-Router** – Biblioteka do zarządzania trasami w aplikacji React.
 - **TanStack Query** – Narzędzie do zarządzania stanem danych z API.
 - **Redux Toolkit** – Biblioteka do globalnego zarządzania stanem aplikacji.
-- **Docker** – Aplikacja jest developowana w kontenarze.
+- **Docker** – Aplikacja jest budowana w kontenerze.
 - **DummyJSON** – Zewnętrzne API, które dostarcza dane produktów, takie jak opisy, ceny, zdjęcia i kategorie (dokumentacja: [https://dummyjson.com/docs](https://dummyjson.com/docs)).
 - **API REST** – Obsługa danych przez endpointy API.
-
 
 ## Zrzuty ekranu
 
 ### Widok główny
+
 ![HomePage](./app/screenshots/HomePage.png)
 
 ### Widok główny - produkty
+
 ![ProductsView](./app/screenshots/ProductsView.png)
 
+### Widok główny + produkty - Mobilny
 
-### Widok główny + produkty -Mobilny 
 ![Mobile](./app/screenshots/Mobile.png)
-
-
 
 ## Funkcjonalności w trakcie przygotowania
 
-- **Obsługa motywów**: Użytkownik będziemiał możliwość przełączania między **jasnym** a **ciemnym** motywem..
-- **Koszyk zakupowy** – Uzytkownicy będą mogli kożystać ze wszystkich funkcjonalności koszyka zakupowego.
+- **Obsługa motywów**: Użytkownik będzie miał możliwość przełączania między **jasnym** a **ciemnym** motywem..
+- **Koszyk zakupowy** – Uzytkownicy będą mogli korzystać ze wszystkich funkcjonalności koszyka zakupowego.
 - **Uwierzytelnianie użytkowników**: Po zalogowaniu, użytkownicy będą mogą dodawać produkty do koszyka i składać zamówienia..
-- **Proces realizacji zakupu** – Użytkownicy bedą przechodzić przez cały proces zakupu.
+- **Proces realizacji zakupu** – Użytkownicy będą przechodzić przez cały proces zakupu.
 
 Dziękuję za odwiedzenie repozytorium! 😊
-
