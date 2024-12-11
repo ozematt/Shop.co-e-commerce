@@ -20,15 +20,10 @@ const Shop = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
 
   //global state
-  const {
-    filteredProductsByCategory,
-    fetchedProducts,
-    sortOptions,
-    categoryName,
-  } = useSelector((state: RootState) => state.products);
+  const { filteredProductsByCategory, fetchedProducts, sortOptions } =
+    useSelector((state: RootState) => state.products);
 
   // fetched products
   const { data, isPending } = useQuery<ProductsFetchedData>({

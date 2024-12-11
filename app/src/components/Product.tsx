@@ -1,9 +1,10 @@
 import { Rating } from "@mui/material";
-// import { RootState } from "@reduxjs/toolkit/query";
+
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
-import { RootState } from "../redux/store";
+import { AppDispatch, useAppDispatch } from "../redux/store";
+import { addCategoryName } from "../redux/productsSlice";
 
 export type ProductProps = {
   id: number;
@@ -27,6 +28,7 @@ const Product = ({
   //
   ////DATA
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useAppDispatch();
 
   const [newPrice, setNewPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
@@ -48,12 +50,13 @@ const Product = ({
     setNewPrice(price);
   }, [discountPercentage, price]);
 
+  const handleProductClick = () => {
+    navigate(`/shop/${category}/${title}`);
+    dispatch(addCategoryName(category));
+  };
   ////UI
   return (
-    <div
-      onClick={() => navigate(`/shop/${category}/${title}`)}
-      className="h-[400px] sm:h-[408px]"
-    >
+    <div onClick={handleProductClick} className="h-[400px] sm:h-[408px]">
       <div className="bg-grayBG w-full h-[304px] sm:w-[295px] sm:h-[298px] rounded-[20px] ">
         <img
           src={images[0]}

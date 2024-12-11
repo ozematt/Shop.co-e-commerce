@@ -68,7 +68,10 @@ const productsSlice = createSlice({
       state.filteredProductsByCategory = action.payload;
     },
     addCategoryName: (state, action: PayloadAction<string>) => {
-      state.categoryName = action.payload;
+      const category = action.payload;
+      const categoryUpperCase =
+        category.charAt(0).toUpperCase() + category.slice(1);
+      state.categoryName = categoryUpperCase;
     },
     addSortMethod: (state, action: PayloadAction<SortMethod>) => {
       const selectedOption = sortOptionsMap[action.payload];

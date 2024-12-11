@@ -33,15 +33,9 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
 
-  //products list form global state
-  const allProducts = useSelector(
-    (state: RootState) => state.products.fetchedProducts
-  );
-
-  //filtered products list form global state
-  const filteredProductsByCategory = useSelector(
-    (state: RootState) => state.products.filteredProductsByCategory
-  );
+  //global state
+  const { fetchedProducts: allProducts, filteredProductsByCategory } =
+    useSelector((state: RootState) => state.products);
 
   // fetch category list
   const { data: categories } = useQuery({
@@ -75,9 +69,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
         limit: 0,
       };
       dispatch(addCategorizedProducts(dataToAdd));
-      const categoryUppercase =
-        selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1);
-      dispatch(addCategoryName(categoryUppercase));
+      dispatch(addCategoryName(selectedCategory ?? selectedCategory));
     }
   }, [selectedCategory]);
 

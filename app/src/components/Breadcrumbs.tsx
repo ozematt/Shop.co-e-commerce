@@ -1,14 +1,22 @@
 import { useLocation, useNavigate } from "react-router";
 import arrow from "../assets/Arrow down.png";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const Breadcrumbs = () => {
   //
   ////DATA
   const navigate = useNavigate();
+  const categoryName = useSelector(
+    (state: RootState) => state.products.categoryName
+  );
 
   const location = useLocation();
-  const { category } = useParams();
+
+  const { category, product } = useParams();
+
+  console.log(product);
 
   ////UI
   return (
@@ -38,12 +46,17 @@ const Breadcrumbs = () => {
         className="font-satoshi px-2 leading-none cursor-pointer hover:opacity-70"
         onClick={() => navigate(`/shop/${category}`)}
       >
-        {location.pathname === `/shop/${category}` && (
-          <strong>
-            {category?.charAt(0).toUpperCase()}
-            {category?.slice(1)}
-          </strong>
+        {categoryName && product ? (
+          <span>{categoryName}</span>
+        ) : (
+          <strong>{categoryName}</strong>
         )}
+      </p>
+      {product && (
+        <img src={arrow} width={16} alt="arrow" className="-rotate-90" />
+      )}
+      <p className="font-satoshi px-2 leading-none ">
+        {product && <strong>{product}</strong>}
       </p>
     </div>
   );
