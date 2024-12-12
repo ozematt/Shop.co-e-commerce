@@ -35,13 +35,13 @@ const ProductDetails = () => {
       (item) => item.id === Number(productId)
     )
   );
-  console.log(productFind);
+  // console.log(productFind);
 
   useEffect(() => {
-    if (localStorageProduct) {
-      setProduct(localStorageProduct);
-      return;
-    }
+    // if (localStorageProduct) {
+    //   setProduct(localStorageProduct);
+    //   return;
+    // }
     if (productFind) {
       setProduct(productFind);
       localStorage.setItem("product", JSON.stringify(productFind));
