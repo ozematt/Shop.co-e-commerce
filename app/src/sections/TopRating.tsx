@@ -6,11 +6,14 @@ import fetchProducts, {
 import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import { useNavigate } from "react-router-dom";
+import { AppDispatch, useAppDispatch } from "../redux/store";
+import { addProducts } from "../redux/productsSlice";
 
 const TopRating = () => {
   //
   ////DATA
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useAppDispatch();
 
   const [productsToShow, setProductsToShow] = useState<ProductT[]>([]);
 
@@ -28,6 +31,7 @@ const TopRating = () => {
         .filter((product) => product.rating >= 4.9)
         .slice(0, 4);
       setProductsToShow(products);
+      dispatch(addProducts(data));
     }
   }, [data]);
 

@@ -19,7 +19,6 @@ const Shop = () => {
   ////DATA
   const dispatch: AppDispatch = useAppDispatch();
   const { pathname } = useLocation();
-  const [searchParams] = useSearchParams();
 
   //global state
   const { filteredProductsByCategory, fetchedProducts, sortOptions } =
@@ -31,6 +30,7 @@ const Shop = () => {
     queryFn: fetchProducts,
   });
 
+  const [searchParams] = useSearchParams();
   //fetch page number from url (uploaded from Pagination component)
   const actualPage = Number(searchParams.get("page")) || 1; // when is NaN assigns 1 (NaN invalid string)
   const [page, setPage] = useState(Number(actualPage)); //selected page, local state

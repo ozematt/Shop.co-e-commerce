@@ -18,6 +18,7 @@ export type ProductProps = {
 };
 
 const Product = ({
+  id,
   title,
   price,
   rating,
@@ -51,7 +52,7 @@ const Product = ({
   }, [discountPercentage, price]);
 
   const handleProductClick = () => {
-    navigate(`/shop/${category}/${title}`);
+    navigate(`/shop/${category}/${title}?id=${id}`);
     dispatch(addCategoryName(category));
   };
   ////UI
