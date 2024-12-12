@@ -8,15 +8,15 @@ const Breadcrumbs = () => {
   //
   ////DATA
   const navigate = useNavigate();
+  const location = useLocation();
+
+  //params extract from url
+  const { category, product } = useParams();
+
+  //global state
   const categoryName = useSelector(
     (state: RootState) => state.products.categoryName
   );
-
-  const location = useLocation();
-
-  const { category, product } = useParams();
-
-  console.log(product);
 
   ////UI
   return (

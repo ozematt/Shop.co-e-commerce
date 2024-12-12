@@ -1,7 +1,5 @@
-import { Rating, useMediaQuery } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
+import { useMediaQuery } from "@mui/material";
 import { comments } from "../constants";
-import tick from "../assets/Green tick.png";
 import { useState } from "react";
 import arrowRight from "../assets/Arrow-right.png";
 import arrowLeft from "../assets/Arrow-left.png";
