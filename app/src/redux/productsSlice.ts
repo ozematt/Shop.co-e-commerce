@@ -44,6 +44,7 @@ const initialState: InitialState = {
         images: [],
         rating: 0,
         category: "",
+        description: "",
         thumbnail: "",
         discountPercentage: 0,
         brand: "",

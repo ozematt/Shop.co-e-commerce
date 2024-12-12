@@ -26,7 +26,7 @@ const ProductDetails = () => {
     if (productFind) {
       setProduct(productFind);
     }
-  });
+  }, []);
 
   return (
     <>

@@ -8,6 +8,7 @@ const productSchema = z.object({
   images: z.array(z.string()),
   rating: z.number(),
   category: z.string(),
+  description: z.string(),
   thumbnail: z.string(),
   discountPercentage: z.number(),
   brand: z.string().optional(),
@@ -45,7 +46,7 @@ export type ProductsFetchedData = z.infer<typeof productsFetchedDataSchema>;
 const fetchProducts = async () => {
   try {
     const response = await fetch(
-      `${PRODUCTS}?limit=0&&select=id,title,price,rating,category,images,thumbnail,discountPercentage,weight,stock,dimensions,warrantyInformation,shippingInformation,reviews,brand,`
+      `${PRODUCTS}?limit=0&&select=id,title,price,rating,category,images,thumbnail,discountPercentage,weight,stock,dimensions,warrantyInformation,shippingInformation,reviews,brand,description,`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
