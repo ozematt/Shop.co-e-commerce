@@ -5,6 +5,7 @@ import tick from "../assets/Green tick.png";
 import { useState } from "react";
 import arrowRight from "../assets/Arrow-right.png";
 import arrowLeft from "../assets/Arrow-left.png";
+import Comment from "../components/Comment";
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,30 +51,8 @@ const Testimonials = () => {
             }px)`,
           }}
         >
-          {comments.map((comment, index) => (
-            <div
-              key={index}
-              className="w-[358px] z-10 h-[187px] sm:w-[400px] sm:h-[240px] rounded-[20px] ring-1 ring-black ring-opacity-10 p-6 sm:py-[28px] sm:px-[32px] flex-shrink-0"
-            >
-              <Rating
-                value={comment.rating}
-                precision={0.5}
-                emptyIcon={<StarIcon style={{ opacity: 0 }} />}
-                sx={{
-                  fontSize: { xs: "1.2rem", sm: "1.5rem" },
-                }}
-              />{" "}
-              <div className="flex items-center gap-1 sm:pt-1 pb-1 sm:pb-[12px]">
-                {" "}
-                <p className="font-satoshi font-bold text-base sm:text-xl">
-                  {comment.name}
-                </p>
-                <img src={tick} alt="green tick" width={24} height={24} />
-              </div>
-              <p className="font-satoshi max-sm:text-[14px] opacity-60">
-                {comment.text}
-              </p>
-            </div>
+          {comments.map((comment) => (
+            <Comment key={comment.name} {...comment} />
           ))}
         </div>
         <div className="absolute top-0 left-0 sm:w-[100px] h-full  backdrop-blur-[2px]"></div>
