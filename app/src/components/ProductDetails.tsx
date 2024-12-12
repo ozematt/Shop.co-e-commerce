@@ -19,14 +19,14 @@ const ProductDetails = () => {
     localStorage.getItem("product") || "{}"
   );
 
-  // const validatedProduct = productSchema.safeParse(localStorageProduct);
-  // if (!validatedProduct.success) {
-  //   localStorage.removeItem("product");
-  //   return;
-  // } else {
-  //   // setProduct(localStorageProduct);
-  //   console.log(validatedProduct.data);
-  // }
+  const validatedProduct = productSchema.safeParse(localStorageProduct);
+  if (!validatedProduct.success) {
+    localStorage.removeItem("product");
+    return;
+  } else {
+    // setProduct(localStorageProduct);
+    console.log(validatedProduct.data);
+  }
 
   const productId = Number(searchParams.get("id")) || 1;
 
