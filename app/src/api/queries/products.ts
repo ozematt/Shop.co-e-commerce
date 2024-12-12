@@ -1,7 +1,7 @@
 import { PRODUCTS } from "../constants";
 import { z } from "zod";
 
-const productSchema = z.object({
+export const productSchema = z.object({
   id: z.number(),
   title: z.string(),
   price: z.number(),

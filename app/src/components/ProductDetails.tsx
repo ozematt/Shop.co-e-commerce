@@ -7,12 +7,26 @@ import Footer from "../sections/Footer";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { Product } from "../api/queries/products";
+import { Product, productSchema } from "../api/queries/products";
 
 const ProductDetails = () => {
   const [details, setDetails] = useState("Product");
   const [searchParams] = useSearchParams();
+
   const [product, setProduct] = useState<Product | null>(null);
+
+  const localStorageProduct = JSON.parse(
+    localStorage.getItem("product") || "{}"
+  );
+
+  // const validatedProduct = productSchema.safeParse(localStorageProduct);
+  // if (!validatedProduct.success) {
+  //   localStorage.removeItem("product");
+  //   return;
+  // } else {
+  //   // setProduct(localStorageProduct);
+  //   console.log(validatedProduct.data);
+  // }
 
   const productId = Number(searchParams.get("id")) || 1;
 
@@ -21,12 +35,24 @@ const ProductDetails = () => {
       (item) => item.id === Number(productId)
     )
   );
+  console.log(productFind);
 
   useEffect(() => {
+    if (localStorageProduct) {
+      setProduct(localStorageProduct);
+      return;
+    }
     if (productFind) {
       setProduct(productFind);
+      localStorage.setItem("product", JSON.stringify(productFind));
     }
-  }, []);
+  }, [productFind]);
+
+  // useEffect(() => {
+  //   if (localStorageProduct) {
+  //     setProduct(localStorageProduct);
+  //   }
+  // }, [productFind]);
 
   return (
     <>
