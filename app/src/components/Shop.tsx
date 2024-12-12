@@ -6,7 +6,7 @@ import PaginationBar from "./PaginationBar";
 import Product from "./Product";
 import ShopInfoBar from "./ShopInfoBar";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { useQuery } from "@tanstack/react-query";
