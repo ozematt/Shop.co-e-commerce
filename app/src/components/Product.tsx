@@ -1,7 +1,4 @@
 import { Rating } from "@mui/material";
-
-import { useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { addCategoryName } from "../redux/productsSlice";

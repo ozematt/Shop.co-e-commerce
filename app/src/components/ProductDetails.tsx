@@ -25,9 +25,8 @@ const ProductDetails = () => {
   const [displayedProduct, setDisplayedProduct] =
     useState<Product>(localProduct);
 
-  const [bigImg, setBigImg] = useState(displayedProduct.images[0]);
+  const [bigImg, setBigImg] = useState<string>("");
   const [quantity, setQuantity] = useState(1);
-  console.log(quantity);
 
   //extracted price nad discount from state
   const { discountPercentage, price } = displayedProduct;
@@ -49,10 +48,17 @@ const ProductDetails = () => {
   ////LOGIC
   useEffect(() => {
     if (productFind) {
-      setDisplayedProduct(productFind);
-      localStorage.setItem("product", JSON.stringify(productFind));
+      setDisplayedProduct(productFind); // added to local state
+      localStorage.setItem("product", JSON.stringify(productFind)); //added to local storage
     }
   }, [productFind]);
+
+  useEffect(() => {
+    if (displayedProduct) {
+      setBigImg(displayedProduct.images[0]);
+      return;
+    }
+  }, [displayedProduct]);
 
   const handleQuantityIncrement = () => {
     if (quantity >= 1 && quantity < displayedProduct.stock) {
@@ -86,7 +92,7 @@ const ProductDetails = () => {
                   width={152}
                   height={167}
                   onClick={() => setBigImg(img)}
-                  className="h-[167px] rounded-[20px] bg-grayBG ring-black hover:ring-1"
+                  className="h-[167px] rounded-[20px] bg-grayBG object-contain ring-black hover:ring-1"
                 />
               ))}
             </div>
@@ -96,7 +102,7 @@ const ProductDetails = () => {
               alt="main image"
               width={444}
               height={530}
-              className="h-[530px] rounded-[20px] bg-grayBG"
+              className="h-[530px] rounded-[20px] bg-grayBG object-contain"
             />
           </div>
           {/* Details */}
@@ -172,7 +178,7 @@ const ProductDetails = () => {
                     onClick={handleQuantityIncrement}
                   />
                 </button>
-                <button className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1">
+                <button className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95">
                   Add to Cart
                 </button>
               </div>
