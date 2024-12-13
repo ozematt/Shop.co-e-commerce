@@ -222,35 +222,30 @@ const ProductDetails = () => {
             <div className="mb-8 font-satoshi">
               {details === "Product" ? (
                 <div className="space-y-2 text-xl opacity-60">
-                  <p className=""> Brand: ...</p>
-                  <p className=""> Weight: ...</p>
+                  <p className=""> Brand: {displayedProduct.brand}</p>
+                  <p className=""> Weight: {displayedProduct.weight}</p>
                   <ul className="">
                     {" "}
                     Dimensions
-                    <li>Width: ...</li>
-                    <li>Height: ...</li>
-                    <li>Depth: ...</li>
+                    <li>Width: {displayedProduct.dimensions.width}</li>
+                    <li>Height: {displayedProduct.dimensions.height}</li>
+                    <li>Depth: {displayedProduct.dimensions.depth}</li>
                   </ul>
-                  <p>Warranty: ...</p>
-                  <p>Shipping information: ...</p>
+                  <p>Warranty: {displayedProduct.warrantyInformation}</p>
+                  <p>
+                    Shipping information: {displayedProduct.shippingInformation}
+                  </p>
                 </div>
               ) : (
                 <div className="flex justify-between">
-                  <Comment
-                    rating={2}
-                    name={"John D."}
-                    text={"Lorem ipsum ........"}
-                  />
-                  <Comment
-                    rating={2}
-                    name={"John D."}
-                    text={"Lorem ipsum ........"}
-                  />
-                  <Comment
-                    rating={2}
-                    name={"John D."}
-                    text={"Lorem ipsum ........"}
-                  />
+                  {displayedProduct.reviews.map((comment) => (
+                    <Comment
+                      rating={comment.rating}
+                      name={comment.reviewerName}
+                      text={comment.comment}
+                      date={comment.date}
+                    />
+                  ))}
                 </div>
               )}
             </div>
