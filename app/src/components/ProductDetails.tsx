@@ -12,6 +12,7 @@ import useDiscount from "../lib/hooks/useDiscount";
 import minus from "../assets/Minus.png";
 import plus from "../assets/Plus.png";
 import Details from "./Details";
+import DetailsButton from "./DetailsButton";
 
 const ProductDetails = () => {
   //
@@ -189,38 +190,26 @@ const ProductDetails = () => {
         {/* details + reviews */}
         <div className="mt-[65px] w-full">
           {/* buttons */}
+
           <div>
-            <button
-              onClick={() => setDetails("Product")}
-              className="duration-600 w-[50%] border-b-2 py-6 font-satoshi text-xl opacity-60 transition ease-in-out hover:border-b-black hover:font-bold hover:opacity-100"
-              style={
-                details === "Product"
-                  ? {
-                      opacity: "1",
-                      fontWeight: "bold",
-                      borderBottom: "2px solid black",
-                    }
-                  : undefined
-              }
-            >
-              Product Details
-            </button>
-            <button
-              onClick={() => setDetails("Reviews")}
-              className="duration-600 mb-9 w-[50%] border-b-2 py-6 font-satoshi text-xl opacity-60 transition ease-in-out hover:border-b-black hover:font-bold hover:opacity-100"
-              style={
-                details === "Reviews"
-                  ? {
-                      opacity: "1",
-                      fontWeight: "bold",
-                      borderBottom: "2px solid black",
-                    }
-                  : undefined
-              }
-            >
-              Rating & Reviews
-            </button>
-            <div className="mb-8 font-satoshi">
+            <div className="">
+              <DetailsButton
+                onClick={() => setDetails("Product")}
+                details={details}
+                title={"Product"}
+              >
+                Product Details
+              </DetailsButton>
+              <DetailsButton
+                onClick={() => setDetails("Reviews")}
+                details={details}
+                title={"Reviews"}
+              >
+                Rating & Reviews
+              </DetailsButton>
+            </div>
+
+            <div className="my-8 font-satoshi">
               {details === "Product" ? (
                 <Details
                   brand={displayedProduct.brand}
@@ -230,15 +219,21 @@ const ProductDetails = () => {
                   shippingInformation={displayedProduct.shippingInformation}
                 />
               ) : (
-                <div className="flex justify-between">
-                  {displayedProduct.reviews.map((comment) => (
-                    <Comment
-                      rating={comment.rating}
-                      name={comment.reviewerName}
-                      text={comment.comment}
-                      date={comment.date}
-                    />
-                  ))}
+                <div className="">
+                  <h4 className="font-satoshi text-2xl font-bold">
+                    All Reviews
+                  </h4>
+                  <div className="mt-[32px] flex gap-6">
+                    {displayedProduct.reviews.map((comment) => (
+                      <Comment
+                        key={comment.date}
+                        rating={comment.rating}
+                        name={comment.reviewerName}
+                        text={comment.comment}
+                        date={comment.date}
+                      />
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

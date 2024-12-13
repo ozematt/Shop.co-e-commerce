@@ -32,7 +32,6 @@ const Product = ({
   const { newPrice, discount } = useDiscount({ discountPercentage, price });
 
   ////LOGIC
-
   const handleProductClick = () => {
     navigate(`/shop/${category}/${title}?id=${id}`);
     dispatch(addCategoryName(category));
