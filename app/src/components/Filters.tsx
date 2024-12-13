@@ -3,7 +3,7 @@ import arrow from "../assets/Arrow down.png";
 import { useQuery } from "@tanstack/react-query";
 import fetchCategoriesList from "../api/queries/categories";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import {
@@ -22,9 +22,11 @@ type FiltersProps = {
 const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
   //
   ////DATA
+  const { category } = useParams();
+
   const [priceOpen, setPriceOpen] = useState(true); //price filter open/close
   const [categoryOpen, setCategoryOpen] = useState(true); //category filter open/close
-  const [selectedCategory, setSelectedCategory] = useState(""); //selected category name
+  const [selectedCategory, setSelectedCategory] = useState(category); //selected category name
   const [priceRange, setPriceRange] = useState({
     from: "",
     to: "",
@@ -56,7 +58,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
 
   //filtered products by category
   const categorizedProducts: Product[] = allProducts.products.filter(
-    (product) => product.category === selectedCategory
+    (product) => product.category === selectedCategory,
   );
 
   //when selected category will change, updated filtered product list in global state and add actual category name
@@ -93,7 +95,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
     const priceRangedProducts = filterByPriceRange(
       actualProducts.products,
       from,
-      to
+      to,
     );
     //creating relevant data to add
     const dataToAdd = {
@@ -114,16 +116,16 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
 
   //UI
   return (
-    <div className=" rounded-[20px] ring-1 ring-black ring-opacity-20  pt-[20px] pb-6 px-6">
-      <div className="flex justify-between items-center pb-6">
-        <p className="font-satoshi font-bold text-[20px] ">Filters</p>
+    <div className="rounded-[20px] px-6 pb-6 pt-[20px] ring-1 ring-black ring-opacity-20">
+      <div className="flex items-center justify-between pb-6">
+        <p className="font-satoshi text-[20px] font-bold">Filters</p>
         {iconHide ?? (
           <img
             src={settings}
             width={24}
             height={24}
             alt="settings"
-            className="-rotate-90 opacity-60 hover:opacity-100 cursor-pointer"
+            className="-rotate-90 cursor-pointer opacity-60 hover:opacity-100"
             onClick={handleFiltersOpen}
           />
         )}
@@ -136,15 +138,15 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
         onClick={() => {
           setCategoryOpen(!categoryOpen), setSelectedCategory("");
         }}
-        className="flex justify-between items-center cursor-pointer"
+        className="flex cursor-pointer items-center justify-between"
       >
-        <p className="font-satoshi font-bold text-[20px]">Category</p>
+        <p className="font-satoshi text-[20px] font-bold">Category</p>
         <img
           src={arrow}
           width={20}
           height={20}
           alt="arrow"
-          className="opacity-60 hover:opacity-100 cursor-pointer"
+          className="cursor-pointer opacity-60 hover:opacity-100"
           style={{
             transform: `rotate(${!categoryOpen ? "180deg" : "0deg"})`,
           }}
@@ -162,7 +164,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
               }}
             >
               {" "}
-              <p className="font-satoshi pb-2 opacity-60 hover:opacity-100 cursor-pointer">
+              <p className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100">
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </p>
             </div>
@@ -172,15 +174,15 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
       {/* PRICE */}
       <div
         onClick={() => setPriceOpen(!priceOpen)}
-        className="flex justify-between items-center pb-6 cursor-pointer"
+        className="flex cursor-pointer items-center justify-between pb-6"
       >
-        <p className="font-satoshi font-bold text-[20px] ">Price</p>
+        <p className="font-satoshi text-[20px] font-bold">Price</p>
         <img
           src={arrow}
           width={20}
           height={20}
           alt="arrow"
-          className="opacity-60 hover:opacity-100 cursor-pointer"
+          className="cursor-pointer opacity-60 hover:opacity-100"
           style={{
             transform: `rotate(${!priceOpen ? "180deg" : "0deg"})`,
           }}
@@ -198,7 +200,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
               }))
             }
             type="text"
-            className="ring-1 ring-black ring-opacity-20 focus:ring-black  focus:outline-none  w-full max-w-[120px] h-7 placeholder:text-sm  pl-2 rounded-sm "
+            className="h-7 w-full max-w-[120px] rounded-sm pl-2 ring-1 ring-black ring-opacity-20 placeholder:text-sm focus:outline-none focus:ring-black"
             placeholder="from:"
           />
           <input
@@ -211,7 +213,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
               }))
             }
             type="text"
-            className="ring-1 ring-black ring-opacity-20 focus:ring-black  focus:outline-none w-full max-w-[120px] h-7 placeholder:text-sm pl-2 rounded-sm"
+            className="h-7 w-full max-w-[120px] rounded-sm pl-2 ring-1 ring-black ring-opacity-20 placeholder:text-sm focus:outline-none focus:ring-black"
             placeholder="to:"
           />
         </div>
@@ -220,7 +222,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
       <div className="border-t-2 pb-6" />
       <button
         onClick={handleFilterApply}
-        className="w-full text-[14px] px-[86px] py-[15px] bg-black rounded-full text-white transition ease-in-out duration-100 hover:scale-95"
+        className="w-full rounded-full bg-black px-[86px] py-[15px] text-[14px] text-white transition duration-100 ease-in-out hover:scale-95"
       >
         Apply Filter
       </button>
