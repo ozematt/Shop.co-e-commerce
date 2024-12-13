@@ -39,23 +39,23 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
 
   ////UI
   return (
-    <div className="flex justify-between mt-[20px]">
+    <div className="mt-[20px] flex justify-between">
       <button
         onClick={handlePrevious}
-        className="font-satoshi font-medium text-sm flex items-center py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg hover:scale-95 active:scale-105 transition ease-in-out duration-200"
+        className="flex items-center rounded-lg px-[14px] py-2 font-satoshi text-sm font-medium ring-1 ring-black ring-opacity-20 transition duration-200 ease-in-out hover:scale-95 active:scale-105"
       >
         <img src={arrowLeft} alt="arrow left" className="pr-3" />
         Previous
       </button>
 
-      <div className="space-x-2 mx-auto hidden md:block">
+      <div className="mx-auto hidden space-x-2 md:block">
         {pageNumbers.map((number, index) => (
           <button
             key={index}
             onClick={() =>
               number !== "..." && handleSelectedPageNumber(Number(number))
             }
-            className="w-[40px] h-[40px] font-satoshi font-medium text-xs md:text-sm rounded-[8px] opacity-50 hover:opacity-100 hover:bg-grayBG "
+            className="h-[40px] w-[40px] rounded-[8px] font-satoshi text-xs font-medium opacity-50 hover:bg-grayBG hover:opacity-100 md:text-sm"
             style={{
               ...(number === pageNumber
                 ? { background: "#f0f0f0", opacity: "100%" }
@@ -71,7 +71,7 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
       </div>
       <button
         onClick={handleNext}
-        className="font-satoshi font-medium text-sm flex items-center py-5 md:py-2 px-[14px] ring-1 ring-black ring-opacity-20 rounded-lg hover:scale-95  active:scale-105 transition ease-in-out duration-200"
+        className="flex items-center rounded-lg px-[14px] py-5 font-satoshi text-sm font-medium ring-1 ring-black ring-opacity-20 transition duration-200 ease-in-out hover:scale-95 active:scale-105 md:py-2"
       >
         {" "}
         Next

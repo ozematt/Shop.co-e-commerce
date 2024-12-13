@@ -16,12 +16,12 @@ const ProductDetails = () => {
   const [product, setProduct] = useState<Product | null>(null);
 
   const localStorageProduct = JSON.parse(
-    localStorage.getItem("product") || "{}"
+    localStorage.getItem("product") || "{}",
   );
 
   // const validatedProduct = productSchema.safeParse(localStorageProduct);
   // if (!validatedProduct.success) {
-  //   localStorage.removeItem("product");
+  //   localStorage.removeItem("product");Ż
   //   return;
   // } else {
   //   // setProduct(localStorageProduct);
@@ -32,8 +32,8 @@ const ProductDetails = () => {
 
   const productFind = useSelector((state: RootState) =>
     state.products.fetchedProducts.products.find(
-      (item) => item.id === Number(productId)
-    )
+      (item) => item.id === Number(productId),
+    ),
   );
   // console.log(productFind);
 
@@ -56,8 +56,8 @@ const ProductDetails = () => {
 
   return (
     <>
-      <section className="px-4 sm:px-[100px] max-container">
-        <div className="border-b-2 " />
+      <section className="max-container px-4 sm:px-[100px]">
+        <div className="border-b-2" />
         <Breadcrumbs />
         {/* ALL */}
         <div className="mt-9 flex">
@@ -68,24 +68,24 @@ const ProductDetails = () => {
               <img
                 src=""
                 alt=""
-                className="w-[152px] h-[167px] rounded-[20px] ring-1"
+                className="h-[167px] w-[152px] rounded-[20px] ring-1"
               />
               <img
                 src=""
                 alt=""
-                className="w-[152px] h-[167px] rounded-[20px] ring-1"
+                className="h-[167px] w-[152px] rounded-[20px] ring-1"
               />
               <img
                 src=""
                 alt=""
-                className="w-[152px] h-[167px] rounded-[20px] ring-1"
+                className="h-[167px] w-[152px] rounded-[20px] ring-1"
               />
             </div>
             {/* main IMG */}
             <img
               src=""
               alt=""
-              className="w-[444px] h-[530px] rounded-[20px] ring-1"
+              className="h-[530px] w-[444px] rounded-[20px] ring-1"
             />
           </div>
           {/* Details */}
@@ -103,13 +103,13 @@ const ProductDetails = () => {
                 size="large"
                 readOnly
               />{" "}
-              <p className="font-satoshi text-sm pl-2 pt-1">
+              <p className="pl-2 pt-1 font-satoshi text-sm">
                 {/* {Math.round(rating * 2) / 2} */}
                 <span className="opacity-50">/5</span>
               </p>
             </div>
             {/* price */}
-            <p className="font-satoshi font-bold text-[32px]">Price $</p>
+            <p className="font-satoshi text-[32px] font-bold">Price $</p>
             {/* captions */}
             <p className="font-satoshi opacity-60">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
@@ -117,18 +117,18 @@ const ProductDetails = () => {
               odio voluptatem{" "}
             </p>
 
-            <div className="border-b-2 my-6" />
+            <div className="my-6 border-b-2" />
             {/* availability */}
             <p className="font-satoshi opacity-60">Availability</p>
-            <button className="py-3 px-6 mt-[16px] rounded-full ring-1 font-satoshi font-medium">
+            <button className="mt-[16px] rounded-full px-6 py-3 font-satoshi font-medium ring-1">
               Low, normal, hight
             </button>
-            <div className="border-b-2 my-6" />
+            <div className="my-6 border-b-2" />
             {/* quantity */}
-            <button className="py-3 px-6 mt-[16px] w-full max-w-[170px] rounded-full ring-1 font-satoshi font-medium ">
+            <button className="mt-[16px] w-full max-w-[170px] rounded-full px-6 py-3 font-satoshi font-medium ring-1">
               <span className="pr-5">-</span> 1 <span className="pl-5">+</span>
             </button>
-            <button className="font-satoshi font-medium py-3 px-6 ml-[20px] ring-1 rounded-full w-full max-w-[400px]">
+            <button className="ml-[20px] w-full max-w-[400px] rounded-full px-6 py-3 font-satoshi font-medium ring-1">
               Add to Cart
             </button>
           </div>
@@ -139,7 +139,7 @@ const ProductDetails = () => {
           <div>
             <button
               onClick={() => setDetails("Product")}
-              className="py-6 w-[50%] border-b-2 font-satoshi text-xl opacity-60 hover:border-b-black hover:opacity-100 hover:font-bold transition ease-in-out duration-600"
+              className="duration-600 w-[50%] border-b-2 py-6 font-satoshi text-xl opacity-60 transition ease-in-out hover:border-b-black hover:font-bold hover:opacity-100"
               style={
                 details === "Product"
                   ? {
@@ -154,7 +154,7 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={() => setDetails("Reviews")}
-              className="mb-9 py-6 w-[50%] border-b-2 font-satoshi text-xl opacity-60 hover:border-b-black hover:opacity-100 hover:font-bold transition ease-in-out duration-600"
+              className="duration-600 mb-9 w-[50%] border-b-2 py-6 font-satoshi text-xl opacity-60 transition ease-in-out hover:border-b-black hover:font-bold hover:opacity-100"
               style={
                 details === "Reviews"
                   ? {
@@ -167,9 +167,9 @@ const ProductDetails = () => {
             >
               Rating & Reviews
             </button>
-            <div className="mb-8 font-satoshi ">
+            <div className="mb-8 font-satoshi">
               {details === "Product" ? (
-                <div className="text-xl space-y-2 opacity-60">
+                <div className="space-y-2 text-xl opacity-60">
                   <p className=""> Brand: ...</p>
                   <p className=""> Weight: ...</p>
                   <ul className="">

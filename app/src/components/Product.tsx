@@ -58,14 +58,14 @@ const Product = ({
   ////UI
   return (
     <div onClick={handleProductClick} className="h-[400px] sm:h-[408px]">
-      <div className="bg-grayBG w-full h-[304px] sm:w-[295px] sm:h-[298px] rounded-[20px] ">
+      <div className="h-[304px] w-full rounded-[20px] bg-grayBG sm:h-[298px] sm:w-[295px]">
         <img
           src={images[0]}
           alt={title}
-          className="w-full h-full object-contain "
+          className="h-full w-full object-contain"
         />
       </div>
-      <p className="font-satoshi font-bold text-xl pt-4 w-full max-w-[295px]">
+      <p className="w-full max-w-[295px] pt-4 font-satoshi text-xl font-bold">
         {title.length > 25 ? title.slice(0, 25) + "..." : title}
       </p>
       <div className="flex pt-2">
@@ -74,21 +74,21 @@ const Product = ({
           precision={0.5}
           readOnly
         />{" "}
-        <p className="font-satoshi text-sm pl-2 pt-1">
+        <p className="pl-2 pt-1 font-satoshi text-sm">
           {Math.round(rating * 2) / 2}
           <span className="opacity-50">/5</span>
         </p>
       </div>
 
-      <div className="flex items-center font-satoshi font-bold text-2xl pt-2 gap-[2px]">
+      <div className="flex items-center gap-[2px] pt-2 font-satoshi text-2xl font-bold">
         {" "}
         ${newPrice}
         {discount && (
           <>
-            <span className="opacity-30 line-through mx-[-9px] scale-[0.65]">
+            <span className="mx-[-9px] scale-[0.65] line-through opacity-30">
               ${price}
             </span>
-            <div className="text-center py-[6.5px] w-[58px] h-[28px] rounded-[62px] bg-red-500 bg-opacity-10 font-satoshi font-medium text-xs text-red-500">
+            <div className="h-[28px] w-[58px] rounded-[62px] bg-red-500 bg-opacity-10 py-[6.5px] text-center font-satoshi text-xs font-medium text-red-500">
               -{discount}%
             </div>
           </>
