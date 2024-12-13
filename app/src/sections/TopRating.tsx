@@ -6,8 +6,9 @@ import fetchProducts, {
 import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch, useAppDispatch } from "../redux/store";
+import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { addProducts } from "../redux/productsSlice";
+import { useSelector } from "react-redux";
 
 const TopRating = () => {
   //
@@ -15,39 +16,51 @@ const TopRating = () => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
 
+  //products to show in this component, array with 4 elements
   const [productsToShow, setProductsToShow] = useState<ProductT[]>([]);
 
+  //products in global state
+  const allItems = useSelector(
+    (state: RootState) => state.products.fetchedProducts.products,
+  );
+
   // fetched products
-  const { data, isPending } = useQuery<ProductsFetchedData>({
+  const { data: products, isPending } = useQuery<ProductsFetchedData>({
     queryKey: ["products"],
     queryFn: fetchProducts,
   });
 
   ////LOGIC
-  //make four elements array
   useEffect(() => {
-    if (productsToShow && data?.products && !isPending) {
-      const products = data.products
-        .filter((product) => product.rating >= 4.9)
-        .slice(0, 4);
-      setProductsToShow(products);
-      dispatch(addProducts(data));
+    //if products are already in global state - return
+    if (allItems.length > 1) {
+      //make four elements array
+      const productSlice =
+        products?.products
+          .filter((product) => product.rating >= 4.9)
+          .slice(0, 4) || [];
+      setProductsToShow(productSlice);
+      return;
     }
-  }, [data]);
+    //if products are ready fetched, add them to global state
+    if (products && !isPending) {
+      dispatch(addProducts(products));
+    }
+  }, [dispatch, products, allItems, isPending]);
 
   ////UI
   return (
-    <section className="px-4 sm:px-[100px] mt-[50px] sm:mt-[72px] flex flex-col items-center w-full max-w-[1400px]">
-      <h2 className="font-integralCFBold text-[32px] sm:text-5xl text-center">
+    <section className="mt-[50px] flex w-full max-w-[1400px] flex-col items-center px-4 sm:mt-[72px] sm:px-[100px]">
+      <h2 className="text-center font-integralCFBold text-[32px] sm:text-5xl">
         Top Rating
       </h2>
 
-      <div className="max-xl:overflow-x-auto gap-4 sm:gap-5 flex max-sm:mt-[-32px] h-[420px] sm:mt-[55px]  w-full snap-x snap-mandatory scroll-smooth scrollbar-hide">
+      <div className="scrollbar-hide flex h-[420px] w-full snap-x snap-mandatory gap-4 scroll-smooth max-xl:overflow-x-auto max-sm:mt-[-32px] sm:mt-[55px] sm:gap-5">
         {" "}
         {productsToShow?.map((product) => (
           <div
             key={product.id}
-            className="flex-shrink-0 max-sm:mx-[-35px] scale-75 sm:scale-100 snap-start scrollbar-hide overflow-hidden"
+            className="scrollbar-hide flex-shrink-0 scale-75 snap-start overflow-hidden max-sm:mx-[-35px] sm:scale-100"
           >
             <Product {...product} />
           </div>
@@ -58,7 +71,7 @@ const TopRating = () => {
         onClick={() => {
           navigate("/shop"), window.scrollTo(0, 0);
         }}
-        className="cursor-pointer hover:scale-95 action:scale-100 px-[80px] py-[15px] border max-sm:w-full rounded-full  mt-[-30px] sm:mt-[36px]"
+        className="action:scale-100 mt-[-30px] cursor-pointer rounded-full border px-[80px] py-[15px] hover:scale-95 max-sm:w-full sm:mt-[36px]"
       >
         View All
       </button>
