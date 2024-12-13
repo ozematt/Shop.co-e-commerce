@@ -11,6 +11,7 @@ import { Product } from "../api/queries/products";
 import useDiscount from "../lib/hooks/useDiscount";
 import minus from "../assets/Minus.png";
 import plus from "../assets/Plus.png";
+import Details from "./Details";
 
 const ProductDetails = () => {
   //
@@ -221,21 +222,13 @@ const ProductDetails = () => {
             </button>
             <div className="mb-8 font-satoshi">
               {details === "Product" ? (
-                <div className="space-y-2 text-xl opacity-60">
-                  <p className=""> Brand: {displayedProduct.brand}</p>
-                  <p className=""> Weight: {displayedProduct.weight}</p>
-                  <ul className="">
-                    {" "}
-                    Dimensions
-                    <li>Width: {displayedProduct.dimensions.width}</li>
-                    <li>Height: {displayedProduct.dimensions.height}</li>
-                    <li>Depth: {displayedProduct.dimensions.depth}</li>
-                  </ul>
-                  <p>Warranty: {displayedProduct.warrantyInformation}</p>
-                  <p>
-                    Shipping information: {displayedProduct.shippingInformation}
-                  </p>
-                </div>
+                <Details
+                  brand={displayedProduct.brand}
+                  weight={displayedProduct.weight}
+                  dimensions={displayedProduct.dimensions}
+                  warrantyInformation={displayedProduct.warrantyInformation}
+                  shippingInformation={displayedProduct.shippingInformation}
+                />
               ) : (
                 <div className="flex justify-between">
                   {displayedProduct.reviews.map((comment) => (
