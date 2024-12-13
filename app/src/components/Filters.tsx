@@ -26,7 +26,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
 
   const [priceOpen, setPriceOpen] = useState(true); //price filter open/close
   const [categoryOpen, setCategoryOpen] = useState(true); //category filter open/close
-  const [selectedCategory, setSelectedCategory] = useState(category); //selected category name
+  const [selectedCategory, setSelectedCategory] = useState(category); //selected category name, initial from url
   const [priceRange, setPriceRange] = useState({
     from: "",
     to: "",

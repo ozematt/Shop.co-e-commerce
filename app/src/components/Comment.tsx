@@ -10,6 +10,8 @@ type CommentProps = {
 };
 
 const Comment = ({ rating, name, text, date }: CommentProps) => {
+  //
+  ////UI
   return (
     <div className="z-10 h-[187px] w-[358px] flex-shrink-0 rounded-[20px] p-6 ring-1 ring-black ring-opacity-10 sm:h-[240px] sm:w-[400px] sm:px-[32px] sm:py-[28px]">
       <Rating
