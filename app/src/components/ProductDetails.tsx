@@ -7,53 +7,41 @@ import Footer from "../sections/Footer";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { Product, productSchema } from "../api/queries/products";
+import { Product } from "../api/queries/products";
 
 const ProductDetails = () => {
+  //
+  //DATA
+  //state to handle which details were about to show
   const [details, setDetails] = useState("Product");
+
+  //data form local storage
+  const localProduct = JSON.parse(localStorage.getItem("product") || "{}");
+
+  //displayed product state, initial state is product from local storage
+  const [displayedProduct, setDisplayedProduct] =
+    useState<Product>(localProduct);
+
+  //extracted id from ulr
   const [searchParams] = useSearchParams();
-
-  const [product, setProduct] = useState<Product | null>(null);
-
-  const localStorageProduct = JSON.parse(
-    localStorage.getItem("product") || "{}",
-  );
-
-  // const validatedProduct = productSchema.safeParse(localStorageProduct);
-  // if (!validatedProduct.success) {
-  //   localStorage.removeItem("product");Ż
-  //   return;
-  // } else {
-  //   // setProduct(localStorageProduct);
-  //   console.log(validatedProduct.data);
-  // }
-
   const productId = Number(searchParams.get("id")) || 1;
 
+  //found product from all products
   const productFind = useSelector((state: RootState) =>
     state.products.fetchedProducts.products.find(
       (item) => item.id === Number(productId),
     ),
   );
-  // console.log(productFind);
 
+  ////LOGIC
   useEffect(() => {
-    // if (localStorageProduct) {
-    //   setProduct(localStorageProduct);
-    //   return;
-    // }
     if (productFind) {
-      setProduct(productFind);
+      setDisplayedProduct(productFind);
       localStorage.setItem("product", JSON.stringify(productFind));
     }
   }, [productFind]);
 
-  // useEffect(() => {
-  //   if (localStorageProduct) {
-  //     setProduct(localStorageProduct);
-  //   }
-  // }, [productFind]);
-
+  ////UI
   return (
     <>
       <section className="max-container px-4 sm:px-[100px]">
@@ -92,17 +80,17 @@ const ProductDetails = () => {
           <div className="ml-[40px]">
             {/* title */}
             <h2 className="font-integralCFBold text-[40px] leading-[43px]">
-              {product?.title}
+              {displayedProduct?.title}
             </h2>
             <div className="flex pt-2">
-              <Rating
+              {/* <Rating
                 defaultValue={
                   product?.rating ? Math.round(product?.rating * 2) / 2 : 5
                 }
                 precision={0.5}
                 size="large"
                 readOnly
-              />{" "}
+              />{" "} */}
               <p className="pl-2 pt-1 font-satoshi text-sm">
                 {/* {Math.round(rating * 2) / 2} */}
                 <span className="opacity-50">/5</span>

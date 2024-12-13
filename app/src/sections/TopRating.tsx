@@ -23,10 +23,9 @@ const TopRating = () => {
   const allItems = useSelector(
     (state: RootState) => state.products.fetchedProducts.products,
   );
-  console.log(allItems);
 
-  // fetched products
-  const { data: products, isPending } = useQuery<ProductsFetchedData>({
+  // fetched products first time
+  const { data: products } = useQuery<ProductsFetchedData>({
     queryKey: ["products"],
     queryFn: fetchProducts,
   });

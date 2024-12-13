@@ -8,14 +8,18 @@ import ShopInfoBar from "./ShopInfoBar";
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 
 import CircularProgress from "@mui/material/CircularProgress";
+import { useQuery } from "@tanstack/react-query";
+import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
+import { addProducts } from "../redux/productsSlice";
 
 const Shop = () => {
   //
   ////DATA
   const { pathname } = useLocation();
+  const dispatch: AppDispatch = useAppDispatch();
 
   //global state
   const { filteredProductsByCategory, fetchedProducts, sortOptions } =
@@ -30,6 +34,17 @@ const Shop = () => {
   const [productsData, setProductsData] = useState(
     filteredProductsByCategory || fetchedProducts,
   );
+  //fetch date if needed - seconde time
+  const { data: products, isPending } = useQuery<ProductsFetchedData>({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
+  useEffect(() => {
+    if (fetchedProducts.products.length <= 1 && products) {
+      dispatch(addProducts(products));
+    }
+  }, [dispatch, fetchedProducts, products]);
 
   //state of total items
   const total = productsData.total;
@@ -103,7 +118,7 @@ const Shop = () => {
               second={secondIndex}
             />
             <div className="mt-4 grid grid-cols-1 flex-wrap justify-center gap-5 sm:flex">
-              {fetchedProducts.products.length < 1 ? (
+              {isPending ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (
                 sortedProducts()
