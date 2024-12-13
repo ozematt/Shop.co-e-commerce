@@ -23,6 +23,7 @@ const TopRating = () => {
   const allItems = useSelector(
     (state: RootState) => state.products.fetchedProducts.products,
   );
+  console.log(allItems);
 
   // fetched products
   const { data: products, isPending } = useQuery<ProductsFetchedData>({
@@ -43,10 +44,10 @@ const TopRating = () => {
       return;
     }
     //if products are ready fetched, add them to global state
-    if (products && !isPending) {
+    if (products) {
       dispatch(addProducts(products));
     }
-  }, [dispatch, products, allItems, isPending]);
+  }, [dispatch, products, allItems]);
 
   ////UI
   return (

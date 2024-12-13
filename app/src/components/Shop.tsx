@@ -8,27 +8,18 @@ import ShopInfoBar from "./ShopInfoBar";
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
-import { useQuery } from "@tanstack/react-query";
-import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
-import { addProducts } from "../redux/productsSlice";
+import { RootState } from "../redux/store";
+
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Shop = () => {
   //
   ////DATA
-  const dispatch: AppDispatch = useAppDispatch();
   const { pathname } = useLocation();
 
   //global state
   const { filteredProductsByCategory, fetchedProducts, sortOptions } =
     useSelector((state: RootState) => state.products);
-
-  // fetched products
-  const { data, isPending } = useQuery<ProductsFetchedData>({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
 
   const [searchParams] = useSearchParams();
   //fetch page number from url (uploaded from Pagination component)
@@ -37,7 +28,7 @@ const Shop = () => {
 
   //check if category is selected, if not display all products form state
   const [productsData, setProductsData] = useState(
-    filteredProductsByCategory || fetchedProducts
+    filteredProductsByCategory || fetchedProducts,
   );
 
   //state of total items
@@ -62,13 +53,6 @@ const Shop = () => {
     }
   }, [filteredProductsByCategory, fetchedProducts]);
 
-  //add products data if data from api is ready and total = 0
-  useEffect(() => {
-    if (fetchedProducts.total === 0 && data?.products.length) {
-      dispatch(addProducts(data as ProductsFetchedData));
-    }
-  }, [data, dispatch]);
-
   //when url param change (updated in Pagination component), update local page state
   useEffect(() => {
     setPage(Number(actualPage));
@@ -82,7 +66,7 @@ const Shop = () => {
   const sortedProducts = () => {
     if (sortOptions.field === "title") {
       const sortedProducts = [...productsData.products].sort((a, b) =>
-        a.title.localeCompare(b.title)
+        a.title.localeCompare(b.title),
       );
       return sortedProducts;
     }
@@ -105,21 +89,21 @@ const Shop = () => {
   ////UI
   return (
     <>
-      <section className="px-4 sm:px-[100px] max-container min-h-[1300px] ">
+      <section className="max-container min-h-[1300px] px-4 sm:px-[100px]">
         <div className="border-b-2" />
         <Breadcrumbs />
-        <div className="flex mt-[12px] sm:mt-[20px]">
-          <div className="hidden xl:block w-full max-w-[295px]">
+        <div className="mt-[12px] flex sm:mt-[20px]">
+          <div className="hidden w-full max-w-[295px] xl:block">
             <Filters />
           </div>
-          <div className=" xl:ml-[20px] w-full">
+          <div className="w-full xl:ml-[20px]">
             <ShopInfoBar
               total={total}
               first={firstIndex}
               second={secondIndex}
             />
-            <div className="mt-4 grid grid-cols-1 sm:flex flex-wrap justify-center gap-5 ">
-              {isPending ? (
+            <div className="mt-4 grid grid-cols-1 flex-wrap justify-center gap-5 sm:flex">
+              {fetchedProducts.products.length < 1 ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (
                 sortedProducts()
@@ -127,14 +111,14 @@ const Shop = () => {
                   .map((product) => (
                     <div
                       key={product.id}
-                      className="max-lg:scale-90 max-md:scale-[0.7] max-lg:m-[-20px] scale-100 m-0 max-md:m-[-50px]"
+                      className="m-0 scale-100 max-lg:m-[-20px] max-lg:scale-90 max-md:m-[-50px] max-md:scale-[0.7]"
                     >
                       <Product {...product} />
                     </div>
                   ))
               )}
             </div>
-            <div className="border-b-2 mt-[32px]" />
+            <div className="mt-[32px] border-b-2" />
 
             <PaginationBar total={total} page={page} />
           </div>
