@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { addCategoryName } from "../redux/productsSlice";
+import useDiscount from "../lib/hooks/useDiscount";
 
 export type ProductProps = {
   id: number;
@@ -31,25 +32,9 @@ const Product = ({
   const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
 
-  const [newPrice, setNewPrice] = useState(0);
-  const [discount, setDiscount] = useState(0);
+  const { newPrice, discount } = useDiscount({ discountPercentage, price });
 
   ////LOGIC
-  useEffect(() => {
-    if (discountPercentage >= 15 && discountPercentage <= 20) {
-      const lowPrice = (price * 0.8).toFixed(2);
-      setDiscount(20);
-      setNewPrice(Number(lowPrice));
-      return;
-    }
-    if (discountPercentage <= 10 && discountPercentage < 15) {
-      const lowPrice = (price * 0.9).toFixed(2);
-      setDiscount(10);
-      setNewPrice(Number(lowPrice));
-      return;
-    }
-    setNewPrice(price);
-  }, [discountPercentage, price]);
 
   const handleProductClick = () => {
     navigate(`/shop/${category}/${title}?id=${id}`);
