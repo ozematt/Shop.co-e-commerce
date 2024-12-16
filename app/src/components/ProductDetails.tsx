@@ -1,17 +1,14 @@
-import { Rating } from "@mui/material";
 import Breadcrumbs from "./Breadcrumbs";
 import { useEffect, useState } from "react";
-
 import Newsletter from "../sections/Newsletter";
 import Footer from "../sections/Footer";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { Product } from "../api/queries/products";
-import useDiscount from "../lib/hooks/useDiscount";
-
 import ProductInfo from "./ProductInfo";
 import QuantityButton from "./QuantityButton";
+import ProductMainDetails from "./ProductMainDetails";
 
 const ProductDetails = () => {
   //
@@ -24,12 +21,6 @@ const ProductDetails = () => {
     useState<Product>(localProduct);
 
   const [bigImg, setBigImg] = useState<string>("");
-
-  //extracted price nad discount from state
-  const { discountPercentage, price } = displayedProduct;
-
-  //use custom hook to calculate the new price
-  const { newPrice, discount } = useDiscount({ discountPercentage, price });
 
   //extracted id from ulr
   const [searchParams] = useSearchParams();
@@ -93,47 +84,7 @@ const ProductDetails = () => {
           {/* Details */}
           <div className="ml-[40px] flex flex-col justify-between">
             {/* title */}
-            <div>
-              <h2 className="font-integralCFBold text-[40px] leading-[43px]">
-                {displayedProduct.title}
-              </h2>
-              <div className="flex pt-[14px]">
-                <Rating
-                  name="rating"
-                  value={
-                    displayedProduct.rating
-                      ? Math.round(displayedProduct?.rating * 2) / 2
-                      : 5
-                  }
-                  precision={0.5}
-                  size="large"
-                  readOnly
-                />{" "}
-                <p className="pl-2 pt-1 font-satoshi">
-                  {Math.round(displayedProduct.rating * 2) / 2}
-                  <span className="opacity-50">/5</span>
-                </p>
-              </div>
-              {/* price */}
-              <div className="flex items-center gap-[2px] pt-[14px] font-satoshi text-[32px] font-bold">
-                {" "}
-                ${newPrice}
-                {discount && (
-                  <>
-                    <span className="mx-[-9px] scale-[0.65] line-through opacity-30">
-                      ${price}
-                    </span>
-                    <div className="h-[28px] w-[58px] rounded-[62px] bg-red-500 bg-opacity-10 py-[6.5px] text-center font-satoshi text-xs font-medium text-red-500">
-                      -{discount}%
-                    </div>
-                  </>
-                )}
-              </div>
-              {/* captions */}
-              <p className="pt-[20px] font-satoshi opacity-60">
-                {displayedProduct.description}
-              </p>
-            </div>
+            <ProductMainDetails {...displayedProduct} />
 
             {/* availability */}
             <div>
