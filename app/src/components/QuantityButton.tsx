@@ -7,8 +7,11 @@ type QuantityButtonProps = {
 };
 
 const QuantityButton = ({ stock }: QuantityButtonProps) => {
+  //
+  ////DATA
   const [quantity, setQuantity] = useState(1);
 
+  ////LOGIC
   const handleQuantityIncrement = () => {
     if (quantity >= 1 && quantity < stock) {
       setQuantity(quantity + 1);
@@ -21,6 +24,7 @@ const QuantityButton = ({ stock }: QuantityButtonProps) => {
     }
   };
 
+  ////UI
   return (
     <button className="flex w-full max-w-[170px] justify-between rounded-full bg-grayBG px-6 py-3 font-satoshi font-medium">
       <img

@@ -12,9 +12,12 @@ const ProductInfo = ({
   shippingInformation,
   reviews,
 }: Product) => {
+  //
+  ////DATA
   //state to handle which details were about to show
   const [details, setDetails] = useState("Product");
 
+  ////UI
   return (
     <section className="mt-[65px] w-full">
       {/* buttons */}

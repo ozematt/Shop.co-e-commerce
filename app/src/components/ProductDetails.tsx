@@ -7,8 +7,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { Product } from "../api/queries/products";
 import ProductInfo from "./ProductInfo";
-import QuantityButton from "./QuantityButton";
+
 import ProductMainDetails from "./ProductMainDetails";
+import ProductImages from "./ProductImages";
+import ProductMainButtons from "./ProductMainButtons";
 
 const ProductDetails = () => {
   //
@@ -19,8 +21,6 @@ const ProductDetails = () => {
   //displayed product state, initial state is product from local storage
   const [displayedProduct, setDisplayedProduct] =
     useState<Product>(localProduct);
-
-  const [bigImg, setBigImg] = useState<string>("");
 
   //extracted id from ulr
   const [searchParams] = useSearchParams();
@@ -41,13 +41,6 @@ const ProductDetails = () => {
     }
   }, [productFind]);
 
-  useEffect(() => {
-    if (displayedProduct) {
-      setBigImg(displayedProduct.images[0]);
-      return;
-    }
-  }, [displayedProduct]);
-
   ////UI
   return (
     <>
@@ -57,52 +50,10 @@ const ProductDetails = () => {
         {/* ALL */}
         <div className="mt-9 flex">
           {/* IMG S */}
-          <div className="flex w-full max-w-[610px] gap-[14px]">
-            {" "}
-            <div className="w-[152px] space-y-[14px]">
-              {displayedProduct.images.slice(0, 3).map((img) => (
-                <img
-                  key={img}
-                  src={img}
-                  alt="image"
-                  width={152}
-                  height={167}
-                  onClick={() => setBigImg(img)}
-                  className="h-[167px] rounded-[20px] bg-grayBG object-contain ring-black hover:ring-1"
-                />
-              ))}
-            </div>
-            {/* main IMG */}
-            <img
-              src={bigImg}
-              alt="main image"
-              width={444}
-              height={530}
-              className="h-[530px] rounded-[20px] bg-grayBG object-contain"
-            />
-          </div>
-          {/* Details */}
+          <ProductImages images={displayedProduct.images} />
           <div className="ml-[40px] flex flex-col justify-between">
-            {/* title */}
             <ProductMainDetails {...displayedProduct} />
-
-            {/* availability */}
-            <div>
-              <div className="my-6 border-b-2" />
-              <p className="font-satoshi opacity-60">Shipping time:</p>
-              <button className="mt-[16px] rounded-full bg-grayBG px-6 py-3 font-satoshi font-medium opacity-60">
-                {displayedProduct.shippingInformation}
-              </button>
-              <div className="my-6 border-b-2" />
-              {/* quantity */}
-              <div className="flex h-[52px]">
-                {" "}
-                <QuantityButton stock={displayedProduct.stock} />
-                <button className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
+            <ProductMainButtons {...displayedProduct} />
           </div>
         </div>
         {/* Product details + reviews */}

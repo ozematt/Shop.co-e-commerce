@@ -11,6 +11,8 @@ const DetailsButton = ({
   children,
   title,
 }: DetailsButtonProps) => {
+  //
+  ////UI
   return (
     <button
       onClick={onClick}

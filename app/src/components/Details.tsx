@@ -19,6 +19,8 @@ const Details = ({
   warrantyInformation,
   shippingInformation,
 }: DetailsProps) => {
+  //
+  ////UI
   return (
     <div className="space-y-3 text-xl opacity-60">
       <p className="">

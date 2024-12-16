@@ -52,21 +52,21 @@ const Shop = () => {
   ////LOGIC
   //if location change, assign different products to the state
   useEffect(() => {
-    if (pathname !== "/shop" && filteredProductsByCategory) {
+    if (pathname === "/shop") {
+      setProductsData(fetchedProducts);
+    } else if (filteredProductsByCategory) {
       setProductsData(filteredProductsByCategory);
-      return;
     }
-    setProductsData(fetchedProducts);
   }, [pathname, filteredProductsByCategory]);
 
   //set data after render
-  useEffect(() => {
-    if (filteredProductsByCategory) {
-      setProductsData(filteredProductsByCategory);
-    } else if (fetchedProducts) {
-      setProductsData(fetchedProducts);
-    }
-  }, [filteredProductsByCategory, fetchedProducts]);
+  // useEffect(() => {
+  //   if (filteredProductsByCategory) {
+  //     setProductsData(filteredProductsByCategory);
+  //   } else if (fetchedProducts) {
+  //     setProductsData(fetchedProducts);
+  //   }
+  // }, [filteredProductsByCategory, fetchedProducts]);
 
   //when url param change (updated in Pagination component), update local page state
   useEffect(() => {

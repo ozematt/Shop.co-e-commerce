@@ -8,6 +8,8 @@ import Testimonials from "../sections/Testimonials";
 import TopRating from "../sections/TopRating";
 
 const HomePage = () => {
+  //
+  ////UI
   return (
     <main className="max-container">
       <Hero />

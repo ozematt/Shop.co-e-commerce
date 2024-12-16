@@ -15,6 +15,12 @@ const Breadcrumbs = () => {
   const upCategory =
     category && category?.charAt(0).toUpperCase() + category?.slice(1);
 
+  // ////LOGIC
+  // const handleShopClick = ()=> {
+  //   navigate("/shop")
+
+  // }
+
   ////UI
   return (
     <div className="flex items-center pt-6 opacity-60 max-sm:text-[14px]">
