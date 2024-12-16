@@ -1,4 +1,4 @@
-import { Rating } from "@mui/material";
+import { Rating, useMediaQuery } from "@mui/material";
 import useDiscount from "../lib/hooks/useDiscount";
 import { Product } from "../api/queries/products";
 
@@ -11,13 +11,14 @@ const ProductMainDetails = ({
 }: Product) => {
   //
   ////DATA
+  const md = useMediaQuery("(min-width:768px)");
   //use custom hook to calculate the new price
   const { newPrice, discount } = useDiscount({ discountPercentage, price });
 
   ////UI
   return (
     <div>
-      <h2 className="font-integralCFBold text-[40px] leading-[43px]">
+      <h2 className="font-integralCFBold text-2xl leading-[28px] md:text-[40px] md:leading-[43px]">
         {title}
       </h2>
       <div className="flex pt-[14px]">
@@ -25,16 +26,16 @@ const ProductMainDetails = ({
           name="rating"
           value={rating ? Math.round(rating * 2) / 2 : 5}
           precision={0.5}
-          size="large"
+          size={md ? "large" : "medium"}
           readOnly
         />{" "}
-        <p className="pl-2 pt-1 font-satoshi">
+        <p className="pl-2 pt-[2px] font-satoshi max-md:text-sm md:pt-1">
           {Math.round(rating * 2) / 2}
           <span className="opacity-50">/5</span>
         </p>
       </div>
       {/* price */}
-      <div className="flex items-center gap-[2px] pt-[14px] font-satoshi text-[32px] font-bold">
+      <div className="flex items-center gap-[2px] pt-[14px] font-satoshi text-2xl font-bold md:text-[32px]">
         {" "}
         ${newPrice}
         {discount && (
@@ -49,7 +50,9 @@ const ProductMainDetails = ({
         )}
       </div>
       {/* captions */}
-      <p className="pt-[20px] font-satoshi opacity-60">{description}</p>
+      <p className="pt-[20px] font-satoshi opacity-60 max-md:text-sm">
+        {description}
+      </p>
     </div>
   );
 };

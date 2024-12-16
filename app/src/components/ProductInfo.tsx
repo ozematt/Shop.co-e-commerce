@@ -50,8 +50,10 @@ const ProductInfo = ({
           />
         ) : (
           <div className="">
-            <h4 className="font-satoshi text-2xl font-bold">All Reviews</h4>
-            <div className="mt-[32px] flex gap-6">
+            <h4 className="font-satoshi text-xl font-bold md:text-2xl">
+              All Reviews
+            </h4>
+            <div className="mt-[20px] flex gap-3 max-md:flex-wrap max-md:justify-center md:mt-[32px] md:gap-6">
               {reviews.map((comment) => (
                 <Comment
                   key={comment.date}

@@ -26,13 +26,14 @@ const QuantityButton = ({ stock }: QuantityButtonProps) => {
 
   ////UI
   return (
-    <button className="flex w-full max-w-[170px] justify-between rounded-full bg-grayBG px-6 py-3 font-satoshi font-medium">
+    <button className="flex w-full max-w-[110px] justify-between rounded-full bg-grayBG px-4 py-3 font-satoshi font-medium max-md:text-sm md:max-w-[170px] md:px-6">
       <img
         src={minus}
         alt="minus"
         width={24}
         height={24}
         onClick={handleQuantityDecrement}
+        className="max-md:scale-75"
       />
       {quantity}
       <img
@@ -41,6 +42,7 @@ const QuantityButton = ({ stock }: QuantityButtonProps) => {
         width={24}
         height={24}
         onClick={handleQuantityIncrement}
+        className="max-md:scale-75"
       />
     </button>
   );

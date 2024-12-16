@@ -48,11 +48,9 @@ const ProductDetails = () => {
       <section className="max-container px-4 sm:px-[100px]">
         <div className="border-b-2" />
         <Breadcrumbs />
-        {/* ALL */}
-        <div className="mt-9 flex">
-          {/* IMG S */}
+        <div className="mt-9 lg:flex">
           <ProductImages images={displayedProduct.images} />
-          <div className="ml-[40px] flex flex-col justify-between">
+          <div className="mx-auto flex w-full max-w-[627px] flex-col justify-between max-lg:mt-7 lg:ml-[40px]">
             <ProductMainDetails {...displayedProduct} />
             <ProductMainButtons {...displayedProduct} />
           </div>
