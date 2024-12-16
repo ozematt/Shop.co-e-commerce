@@ -1,7 +1,7 @@
 import { Rating } from "@mui/material";
 import Breadcrumbs from "./Breadcrumbs";
 import { useEffect, useState } from "react";
-import Comment from "./Comment";
+
 import Newsletter from "../sections/Newsletter";
 import Footer from "../sections/Footer";
 import { useSearchParams } from "react-router-dom";
@@ -11,17 +11,13 @@ import { Product } from "../api/queries/products";
 import useDiscount from "../lib/hooks/useDiscount";
 import minus from "../assets/Minus.png";
 import plus from "../assets/Plus.png";
-import Details from "./Details";
-import DetailsButton from "./DetailsButton";
+import ProductInfo from "./ProductInfo";
 
 const ProductDetails = () => {
   //
   //DATA
   //data form local storage
   const localProduct = JSON.parse(localStorage.getItem("product") || "{}");
-
-  //state to handle which details were about to show
-  const [details, setDetails] = useState("Product");
 
   //displayed product state, initial state is product from local storage
   const [displayedProduct, setDisplayedProduct] =
@@ -187,58 +183,8 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
-        {/* details + reviews */}
-        <div className="mt-[65px] w-full">
-          {/* buttons */}
-
-          <div>
-            <div className="">
-              <DetailsButton
-                onClick={() => setDetails("Product")}
-                details={details}
-                title={"Product"}
-              >
-                Product Details
-              </DetailsButton>
-              <DetailsButton
-                onClick={() => setDetails("Reviews")}
-                details={details}
-                title={"Reviews"}
-              >
-                Rating & Reviews
-              </DetailsButton>
-            </div>
-
-            <div className="my-8 font-satoshi">
-              {details === "Product" ? (
-                <Details
-                  brand={displayedProduct.brand}
-                  weight={displayedProduct.weight}
-                  dimensions={displayedProduct.dimensions}
-                  warrantyInformation={displayedProduct.warrantyInformation}
-                  shippingInformation={displayedProduct.shippingInformation}
-                />
-              ) : (
-                <div className="">
-                  <h4 className="font-satoshi text-2xl font-bold">
-                    All Reviews
-                  </h4>
-                  <div className="mt-[32px] flex gap-6">
-                    {displayedProduct.reviews.map((comment) => (
-                      <Comment
-                        key={comment.date}
-                        rating={comment.rating}
-                        name={comment.reviewerName}
-                        text={comment.comment}
-                        date={comment.date}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        {/* Product details + reviews */}
+        <ProductInfo {...displayedProduct} />
       </section>
       <div className="max-container">
         <Newsletter />
