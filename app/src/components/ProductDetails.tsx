@@ -9,9 +9,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { Product } from "../api/queries/products";
 import useDiscount from "../lib/hooks/useDiscount";
-import minus from "../assets/Minus.png";
-import plus from "../assets/Plus.png";
+
 import ProductInfo from "./ProductInfo";
+import QuantityButton from "./QuantityButton";
 
 const ProductDetails = () => {
   //
@@ -24,7 +24,6 @@ const ProductDetails = () => {
     useState<Product>(localProduct);
 
   const [bigImg, setBigImg] = useState<string>("");
-  const [quantity, setQuantity] = useState(1);
 
   //extracted price nad discount from state
   const { discountPercentage, price } = displayedProduct;
@@ -57,18 +56,6 @@ const ProductDetails = () => {
       return;
     }
   }, [displayedProduct]);
-
-  const handleQuantityIncrement = () => {
-    if (quantity >= 1 && quantity < displayedProduct.stock) {
-      setQuantity(quantity + 1);
-    }
-    return;
-  };
-  const handleQuantityDecrement = () => {
-    if (quantity >= 2) {
-      setQuantity(quantity - 1);
-    }
-  };
 
   ////UI
   return (
@@ -159,23 +146,7 @@ const ProductDetails = () => {
               {/* quantity */}
               <div className="flex h-[52px]">
                 {" "}
-                <button className="flex w-full max-w-[170px] justify-between rounded-full bg-grayBG px-6 py-3 font-satoshi font-medium">
-                  <img
-                    src={minus}
-                    alt="minus"
-                    width={24}
-                    height={24}
-                    onClick={handleQuantityDecrement}
-                  />
-                  {quantity}
-                  <img
-                    src={plus}
-                    alt="plus"
-                    width={24}
-                    height={24}
-                    onClick={handleQuantityIncrement}
-                  />
-                </button>
+                <QuantityButton stock={displayedProduct.stock} />
                 <button className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95">
                   Add to Cart
                 </button>
