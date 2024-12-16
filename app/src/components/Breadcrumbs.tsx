@@ -15,12 +15,6 @@ const Breadcrumbs = () => {
   const upCategory =
     category && category?.charAt(0).toUpperCase() + category?.slice(1);
 
-  // ////LOGIC
-  // const handleShopClick = ()=> {
-  //   navigate("/shop")
-
-  // }
-
   ////UI
   return (
     <div className="flex items-center pt-6 opacity-60 max-sm:text-[14px]">
@@ -31,16 +25,23 @@ const Breadcrumbs = () => {
         Home
       </p>
       <img src={arrow} width={16} alt="arrow" className="-rotate-90" />
-      <p
-        className="cursor-pointer px-2 font-satoshi leading-none hover:opacity-70"
-        onClick={() => navigate("/shop")}
-      >
-        {location.pathname === "/shop" ? (
-          <strong onClick={() => navigate("/shop")}>Shop</strong>
-        ) : (
-          "Shop"
-        )}
-      </p>
+      {location.pathname === "/cart" ? (
+        <p className="cursor-pointer px-2 font-satoshi leading-none hover:opacity-70">
+          <strong>Cart</strong>
+        </p>
+      ) : (
+        <p
+          className="cursor-pointer px-2 font-satoshi leading-none hover:opacity-70"
+          onClick={() => navigate("/shop")}
+        >
+          {location.pathname === "/shop" ? (
+            <strong onClick={() => navigate("/shop")}>Shop</strong>
+          ) : (
+            "Shop"
+          )}
+        </p>
+      )}
+
       {category && (
         <img src={arrow} width={16} alt="arrow" className="-rotate-90" />
       )}
