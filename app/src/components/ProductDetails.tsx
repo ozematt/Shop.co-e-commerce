@@ -11,6 +11,7 @@ import ProductInfo from "./ProductInfo";
 import ProductMainDetails from "./ProductMainDetails";
 import ProductImages from "./ProductImages";
 import ProductMainButtons from "./ProductMainButtons";
+import AlsoLike from "./AlsoLike";
 
 const ProductDetails = () => {
   //
@@ -58,7 +59,9 @@ const ProductDetails = () => {
         </div>
         {/* Product details + reviews */}
         <ProductInfo {...displayedProduct} />
+        <AlsoLike />
       </section>
+
       <div className="max-container">
         <Newsletter />
         <Footer />

@@ -6,7 +6,7 @@ import PaginationBar from "./PaginationBar";
 import Product from "./Product";
 import ShopInfoBar from "./ShopInfoBar";
 import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams, matchPath } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 
@@ -54,19 +54,22 @@ const Shop = () => {
   useEffect(() => {
     if (pathname === "/shop") {
       setProductsData(fetchedProducts);
-    } else if (filteredProductsByCategory) {
+    } else if (
+      filteredProductsByCategory &&
+      matchPath("/shop/:category", pathname)
+    ) {
       setProductsData(filteredProductsByCategory);
     }
   }, [pathname, filteredProductsByCategory]);
 
   //set data after render
-  // useEffect(() => {
-  //   if (filteredProductsByCategory) {
-  //     setProductsData(filteredProductsByCategory);
-  //   } else if (fetchedProducts) {
-  //     setProductsData(fetchedProducts);
-  //   }
-  // }, [filteredProductsByCategory, fetchedProducts]);
+  useEffect(() => {
+    if (filteredProductsByCategory) {
+      setProductsData(filteredProductsByCategory);
+    } else if (fetchedProducts) {
+      setProductsData(fetchedProducts);
+    }
+  }, [filteredProductsByCategory, fetchedProducts]);
 
   //when url param change (updated in Pagination component), update local page state
   useEffect(() => {
