@@ -1,17 +1,25 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { useEffect } from "react";
 import minus from "../assets/Minus.svg";
 import plus from "../assets/Plus.svg";
 import useQuantity from "../lib/hooks/useQuantity";
 
 type QuantityButtonProps = {
   stock: number;
+  onQuantityChange: (quantity: number) => void;
 };
 
-const QuantityButton = ({ stock }: QuantityButtonProps) => {
+const QuantityButton = ({ stock, onQuantityChange }: QuantityButtonProps) => {
   //
   ////DATA
   const { quantity, handleQuantityIncrement, handleQuantityDecrement } =
     useQuantity({ stock });
+
+  useEffect(() => {
+    onQuantityChange(quantity);
+  }, [quantity, onQuantityChange]);
+
+  console.log("Button:", quantity);
 
   ////UI
   return (

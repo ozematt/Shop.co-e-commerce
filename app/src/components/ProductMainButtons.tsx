@@ -4,6 +4,7 @@ import useQuantity from "../lib/hooks/useQuantity";
 import { addToCart, selectAllCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import QuantityButton from "./QuantityButton";
+import { useState } from "react";
 
 const ProductMainButtons = ({
   shippingInformation,
@@ -14,7 +15,8 @@ const ProductMainButtons = ({
   stock,
 }: Product) => {
   const dispatch: AppDispatch = useAppDispatch();
-  const { quantity } = useQuantity({ stock });
+
+  const [quantity, setQuantity] = useState(1);
 
   const cart = useSelector(selectAllCart);
   console.log(cart);
@@ -42,8 +44,9 @@ const ProductMainButtons = ({
       </button>
       <div className="my-6 border-b-2" />
       <div className="flex h-[52px]">
-        <QuantityButton stock={stock} />
+        <QuantityButton stock={stock} onQuantityChange={setQuantity} />
         <button
+          type="button"
           onClick={handleAddToCart}
           className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95 max-md:text-sm"
         >

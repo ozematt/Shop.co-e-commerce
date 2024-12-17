@@ -43,7 +43,7 @@ const cartSlice = createSlice({
       const existingItem = state.entities[item.id]; //assign if item already exist
 
       if (existingItem) {
-        const updatedPieces = existingItem.quantity + 1;
+        const updatedPieces = existingItem.quantity + item.quantity;
         state.total = Number((state.total + item.price).toFixed(2)); //update total price
 
         // if item exist update pieces
