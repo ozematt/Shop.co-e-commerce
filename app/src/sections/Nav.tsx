@@ -16,12 +16,21 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
   const auth = localStorage.getItem("user") || undefined;
 
+  ////LOGIC
   const handleUserPanel = () => {
     if (!auth) {
       navigate("/login");
       return;
     }
     setOpen(!open);
+  };
+
+  const handleCart = () => {
+    if (!auth) {
+      navigate("/login");
+      return;
+    }
+    navigate("/cart");
   };
 
   const handleLogOut = () => {
@@ -91,6 +100,7 @@ const Nav = () => {
           alt="cart icon"
           width={24}
           height={24}
+          onClick={handleCart}
           className="cursor-pointer hover:opacity-60"
         />
         <img
@@ -105,13 +115,13 @@ const Nav = () => {
           <ul className="absolute right-[-5px] top-[50px] z-50 w-[130px] rounded-[5px] bg-white bg-opacity-90 pl-3 pt-1 ring-1 ring-black ring-opacity-20">
             <li
               className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
-              // onClick={() => handleSortChange(option)}
+              // onClick={}
             >
               User Info
             </li>
             <li
               className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
-              // onClick={() => handleSortChange(option)}
+              // onClick={}
             >
               Purchase History
             </li>
