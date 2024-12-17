@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
 import { Product } from "../api/queries/products";
-import useQuantity from "../lib/hooks/useQuantity";
-import { addToCart, selectAllCart } from "../redux/cartSlice";
+import { addToCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import QuantityButton from "./QuantityButton";
 import { useState } from "react";
@@ -14,13 +12,14 @@ const ProductMainButtons = ({
   price,
   stock,
 }: Product) => {
+  //
+  ////DATA
   const dispatch: AppDispatch = useAppDispatch();
 
+  //product quantity
   const [quantity, setQuantity] = useState(1);
 
-  const cart = useSelector(selectAllCart);
-  console.log(cart);
-
+  //handle data send to cart
   const handleAddToCart = () => {
     const modifiedProductData = {
       id: id,
@@ -30,7 +29,6 @@ const ProductMainButtons = ({
       quantity: quantity,
       shippingTime: shippingInformation,
     };
-
     dispatch(addToCart(modifiedProductData));
   };
 

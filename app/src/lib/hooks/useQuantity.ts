@@ -9,8 +9,6 @@ const useQuantity = ({ stock }: UseQuantityProps) => {
   ////DATA
   const [quantity, setQuantity] = useState(1);
 
-  console.log("Hook", quantity);
-
   ////LOGIC
   const handleQuantityIncrement = () => {
     setQuantity((prev) => (prev < stock ? prev + 1 : prev));

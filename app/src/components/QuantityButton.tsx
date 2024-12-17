@@ -6,7 +6,7 @@ import useQuantity from "../lib/hooks/useQuantity";
 
 type QuantityButtonProps = {
   stock: number;
-  onQuantityChange: (quantity: number) => void;
+  onQuantityChange?: (quantity: number) => void;
 };
 
 const QuantityButton = ({ stock, onQuantityChange }: QuantityButtonProps) => {
@@ -15,11 +15,10 @@ const QuantityButton = ({ stock, onQuantityChange }: QuantityButtonProps) => {
   const { quantity, handleQuantityIncrement, handleQuantityDecrement } =
     useQuantity({ stock });
 
+  ////LOGIC
   useEffect(() => {
-    onQuantityChange(quantity);
+    if (onQuantityChange) onQuantityChange(quantity);
   }, [quantity, onQuantityChange]);
-
-  console.log("Button:", quantity);
 
   ////UI
   return (
@@ -33,7 +32,6 @@ const QuantityButton = ({ stock, onQuantityChange }: QuantityButtonProps) => {
         className="max-md:scale-75"
       />
       <span className="">{quantity}</span>
-
       <img
         src={plus}
         alt="plus"
