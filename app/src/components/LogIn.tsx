@@ -8,6 +8,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import userLogin from "../api/queries/authorization";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 export const loginSchema = z.object({
   username: z
@@ -25,6 +26,7 @@ type LoginSchema = z.infer<typeof loginSchema>;
 const LogIn = () => {
   //
   ////DATA
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -45,10 +47,13 @@ const LogIn = () => {
         message: "User does not exist",
       });
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       () => clearErrors(["username"]);
-      reset();
-      console.log("success");
+      reset(); //form fields reset
+      const user = { username: data.username, id: data.id };
+      localStorage.setItem("user", JSON.stringify(user)); // add user to local storage
+      navigate("/shop");
+      console.log(user);
     },
   });
 

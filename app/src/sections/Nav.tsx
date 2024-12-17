@@ -5,12 +5,29 @@ import hamburger from "../assets/Hamburger.png";
 import lupeIcon from "../assets/Lupe_icon.png";
 import arrow from "../assets/Arrow down.png";
 import { useLocation, useNavigate } from "react-router";
+import { useState } from "react";
 
 const Nav = () => {
   //
   ////DATA
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [open, setOpen] = useState(false);
+  const auth = localStorage.getItem("user") || undefined;
+
+  const handleUserPanel = () => {
+    if (!auth) {
+      navigate("/login");
+      return;
+    }
+    setOpen(!open);
+  };
+
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    setOpen(false);
+  };
 
   ////UI
   return (
@@ -60,7 +77,8 @@ const Nav = () => {
         placeholder=" Search for products..."
         className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
       />
-      <div className="ml-[40px] flex min-w-[62px] items-center gap-[14px]">
+
+      <div className="relative ml-[40px] flex min-w-[62px] items-center gap-[14px]">
         <img
           src={lupeIcon}
           alt="lupe icon"
@@ -80,8 +98,32 @@ const Nav = () => {
           alt="user icon"
           width={24}
           height={24}
+          onClick={handleUserPanel}
           className="cursor-pointer hover:opacity-60"
         />
+        {open && (
+          <ul className="absolute right-[-5px] top-[50px] z-50 w-[130px] rounded-[5px] bg-white bg-opacity-90 pl-3 pt-1 ring-1 ring-black ring-opacity-20">
+            <li
+              className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
+              // onClick={() => handleSortChange(option)}
+            >
+              User Info
+            </li>
+            <li
+              className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
+              // onClick={() => handleSortChange(option)}
+            >
+              Purchase History
+            </li>
+            <li
+              className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
+              onClick={handleLogOut}
+            >
+              {" "}
+              Log Out
+            </li>
+          </ul>
+        )}
       </div>
     </nav>
   );
