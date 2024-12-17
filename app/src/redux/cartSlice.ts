@@ -19,7 +19,7 @@ import { RootState } from "./store";
 //   total: 0,
 // };
 
-type CartProduct = {
+export type CartProduct = {
   id: number;
   title: string;
   image: string;
