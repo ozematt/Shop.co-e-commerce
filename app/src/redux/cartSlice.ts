@@ -56,6 +56,24 @@ const cartSlice = createSlice({
         state.total = Number((state.total + item.price).toFixed(2)); //update total price
       }
     },
+    updateCart: (
+      state,
+      action: PayloadAction<{ id: number; changes: Partial<CartProduct> }>,
+    ) => {
+      const { id, changes } = action.payload;
+      const existingItem = state.entities[id]; //check if item already exist
+
+      if (existingItem) {
+        //calculate the difference in quantity (in case the product quantity changes)
+        const amountDifference = changes.quantity
+          ? changes.quantity - existingItem.quantity
+          : 0;
+        state.total = Number(
+          (state.total + existingItem.price * amountDifference).toFixed(2), //update total price
+        );
+        existingItem.quantity = changes.quantity ?? existingItem.quantity; //update product amount
+      }
+    },
   },
 });
 
