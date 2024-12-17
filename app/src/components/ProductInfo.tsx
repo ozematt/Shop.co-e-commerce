@@ -20,8 +20,6 @@ const ProductInfo = ({
   ////UI
   return (
     <section className="mt-[65px] w-full">
-      {/* buttons */}
-
       <div className="">
         <DetailsButton
           onClick={() => setDetails("Product")}
