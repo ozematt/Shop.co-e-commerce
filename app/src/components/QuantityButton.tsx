@@ -1,6 +1,6 @@
 import { useState } from "react";
-import minus from "../assets/Minus.png";
-import plus from "../assets/Plus.png";
+import minus from "../assets/Minus.svg";
+import plus from "../assets/Plus.svg";
 
 type QuantityButtonProps = {
   stock: number;
