@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Product } from "../api/queries/products";
 import { addToCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
@@ -15,21 +16,29 @@ const ProductMainButtons = ({
   //
   ////DATA
   const dispatch: AppDispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   //product quantity
   const [quantity, setQuantity] = useState(1);
 
+  const auth = localStorage.getItem("user");
+  console.log(auth);
+
   //handle data send to cart
   const handleAddToCart = () => {
-    const modifiedProductData = {
-      id: id,
-      title: title,
-      image: images[0],
-      price: price,
-      quantity: quantity,
-      shippingTime: shippingInformation,
-    };
-    dispatch(addToCart(modifiedProductData));
+    if (auth) {
+      const modifiedProductData = {
+        id: id,
+        title: title,
+        image: images[0],
+        price: price,
+        quantity: quantity,
+        shippingTime: shippingInformation,
+      };
+      dispatch(addToCart(modifiedProductData));
+    } else {
+      navigate("/login");
+    }
   };
 
   ////UI

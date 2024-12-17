@@ -13,15 +13,41 @@ import ProductImages from "./ProductImages";
 import ProductMainButtons from "./ProductMainButtons";
 import AlsoLike from "./AlsoLike";
 
+const defaultProduct = {
+  id: 0,
+  title: "",
+  price: "",
+  images: [],
+  rating: 0,
+  category: "",
+  description: "",
+  thumbnail: "",
+  discountPercentage: 0,
+  weight: 0,
+  stock: 0,
+  dimensions: {
+    width: 0,
+    height: 0,
+    depth: 0,
+  },
+  warrantyInformation: "",
+  shippingInformation: "",
+  reviews: [],
+  brand: "",
+};
+
 const ProductDetails = () => {
   //
   //DATA
   //data form local storage
-  const localProduct = JSON.parse(localStorage.getItem("product") || "{}");
+  const localProduct = localStorage.getItem("product");
+  const initialProduct = localProduct
+    ? JSON.parse(localProduct)
+    : defaultProduct;
 
   //displayed product state, initial state is product from local storage
   const [displayedProduct, setDisplayedProduct] =
-    useState<Product>(localProduct);
+    useState<Product>(initialProduct);
 
   //extracted id from ulr
   const [searchParams] = useSearchParams();
