@@ -1,6 +1,7 @@
 import { useState } from "react";
 import minus from "../assets/Minus.svg";
 import plus from "../assets/Plus.svg";
+import useQuantity from "../lib/hooks/useQuantity";
 
 type QuantityButtonProps = {
   stock: number;
@@ -9,38 +10,27 @@ type QuantityButtonProps = {
 const QuantityButton = ({ stock }: QuantityButtonProps) => {
   //
   ////DATA
-  const [quantity, setQuantity] = useState(1);
-
-  ////LOGIC
-  const handleQuantityIncrement = () => {
-    if (quantity >= 1 && quantity < stock) {
-      setQuantity(quantity + 1);
-    }
-    return;
-  };
-  const handleQuantityDecrement = () => {
-    if (quantity >= 2) {
-      setQuantity(quantity - 1);
-    }
-  };
+  const { quantity, handleQuantityIncrement, handleQuantityDecrement } =
+    useQuantity({ stock });
 
   ////UI
   return (
-    <button className="flex w-full max-w-[110px] justify-between rounded-full bg-grayBG px-4 py-3 font-satoshi font-medium max-md:text-sm md:max-w-[170px] md:px-6">
+    <button className="flex w-full max-w-[110px] justify-between rounded-full bg-grayBG px-4 py-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px] md:px-6">
       <img
         src={minus}
         alt="minus"
-        width={24}
-        height={24}
+        width={20}
+        height={20}
         onClick={handleQuantityDecrement}
         className="max-md:scale-75"
       />
-      {quantity}
+      <span className="">{quantity}</span>
+
       <img
         src={plus}
         alt="plus"
-        width={24}
-        height={24}
+        width={20}
+        height={20}
         onClick={handleQuantityIncrement}
         className="max-md:scale-75"
       />

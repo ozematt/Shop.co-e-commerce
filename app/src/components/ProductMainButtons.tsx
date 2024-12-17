@@ -1,8 +1,37 @@
+import { useSelector } from "react-redux";
 import { Product } from "../api/queries/products";
+import useQuantity from "../lib/hooks/useQuantity";
+import { addToCart, selectAllCart } from "../redux/cartSlice";
+import { AppDispatch, useAppDispatch } from "../redux/store";
 import QuantityButton from "./QuantityButton";
 
-const ProductMainButtons = ({ shippingInformation, stock }: Product) => {
-  //
+const ProductMainButtons = ({
+  shippingInformation,
+  id,
+  title,
+  images,
+  price,
+  stock,
+}: Product) => {
+  const dispatch: AppDispatch = useAppDispatch();
+  const { quantity } = useQuantity({ stock });
+
+  const cart = useSelector(selectAllCart);
+  console.log(cart);
+
+  const handleAddToCart = () => {
+    const modifiedProductData = {
+      id: id,
+      title: title,
+      image: images[0],
+      price: price,
+      quantity: quantity,
+      shippingTime: shippingInformation,
+    };
+
+    dispatch(addToCart(modifiedProductData));
+  };
+
   ////UI
   return (
     <div>
@@ -14,7 +43,10 @@ const ProductMainButtons = ({ shippingInformation, stock }: Product) => {
       <div className="my-6 border-b-2" />
       <div className="flex h-[52px]">
         <QuantityButton stock={stock} />
-        <button className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95 max-md:text-sm">
+        <button
+          onClick={handleAddToCart}
+          className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95 max-md:text-sm"
+        >
           Add to Cart
         </button>
       </div>
