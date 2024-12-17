@@ -54,9 +54,9 @@ const ProductInfo = ({
               All Reviews
             </h4>
             <div className="mt-[20px] flex gap-3 max-md:flex-wrap max-md:justify-center md:mt-[32px] md:gap-6">
-              {reviews.map((comment) => (
+              {reviews.map((comment, index) => (
                 <Comment
-                  key={comment.date}
+                  key={index}
                   rating={comment.rating}
                   name={comment.reviewerName}
                   text={comment.comment}

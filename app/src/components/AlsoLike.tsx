@@ -37,7 +37,7 @@ const AlsoLike = () => {
       setProductsToShow(productsWithCategory);
     }
     return;
-  }, [products]);
+  }, [products, productId]);
 
   ////UI
   return (

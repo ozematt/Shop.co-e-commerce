@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { Product } from "../api/queries/products";
 import ProductInfo from "./ProductInfo";
-
 import ProductMainDetails from "./ProductMainDetails";
 import ProductImages from "./ProductImages";
 import ProductMainButtons from "./ProductMainButtons";

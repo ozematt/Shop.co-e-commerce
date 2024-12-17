@@ -38,7 +38,10 @@ const Product = ({
   };
   ////UI
   return (
-    <div onClick={handleProductClick} className="h-[400px] sm:h-[408px]">
+    <div
+      onClick={handleProductClick}
+      className="h-[400px] cursor-pointer sm:h-[408px]"
+    >
       <div className="h-[304px] w-full rounded-[20px] bg-grayBG sm:h-[298px] sm:w-[295px]">
         <img
           src={images[0]}
