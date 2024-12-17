@@ -1,29 +1,39 @@
 import { useForm } from "react-hook-form";
-import email from "../assets/Envelope.png";
+import user from "../assets/User.png";
 import lock from "../assets/Lock.png";
 import Footer from "../sections/Footer";
 import Newsletter from "../sections/Newsletter";
 import Button from "./Button";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import userLogin from "../api/queries/authorization";
 
-export const loginSchema = z
-  .object({
-    email: z.string().email({ message: "Incorrect email" }),
-    password: z.string().min(8),
-  })
-  .required();
+export const loginSchema = z.object({
+  username: z
+    .string({
+      required_error: "Name is required",
+      invalid_type_error: "Name must be a string",
+    })
+    .min(3, { message: "Must be 3 or more characters long" })
+    .regex(/^[a-zA-Z]+$/, { message: "Name must contain only letters" }),
+  password: z.string().min(5, { message: "Password is required" }),
+});
 
 type LoginSchema = z.infer<typeof loginSchema>;
 
 const LogIn = () => {
   //
   ////DATA
-  const { register, handleSubmit } = useForm<LoginSchema>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = (data: LoginSchema) => {
+    userLogin(data);
     console.log(data);
   };
 
@@ -42,19 +52,24 @@ const LogIn = () => {
           >
             <div className="relative w-full">
               <img
-                src={email}
+                src={user}
                 alt="envelope"
                 width={20}
                 height={20}
                 className="absolute left-6 top-[30%] opacity-60"
               />
               <input
-                {...register("email")}
+                {...register("username")}
                 type="text"
-                placeholder="Enter your email address"
+                placeholder="Enter your user name"
                 className="h-[48px] w-full rounded-full bg-white pl-[60px] focus:outline-none focus:ring-1 focus:ring-black max-sm:placeholder:text-[14px]"
               />
             </div>
+            {errors.username && (
+              <p className="pb-2 pl-5 leading-[1px] text-red-500">
+                {errors.username.message}
+              </p>
+            )}
 
             <div className="relative w-full">
               <img
@@ -71,6 +86,11 @@ const LogIn = () => {
                 className="h-[48px] w-full rounded-full bg-white pl-[60px] focus:outline-none focus:ring-1 focus:ring-black max-sm:placeholder:text-[14px]"
               />
             </div>
+            {errors.password && (
+              <p className="pb-2 pl-5 leading-[1px] text-red-500">
+                {errors.password.message}
+              </p>
+            )}
             <Button type="submit">Sign up</Button>
           </form>
         </div>
