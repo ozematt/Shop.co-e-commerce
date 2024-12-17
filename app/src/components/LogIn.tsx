@@ -7,8 +7,7 @@ import Button from "./Button";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import userLogin from "../api/queries/authorization";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 
 export const loginSchema = z.object({
   username: z
@@ -37,6 +36,7 @@ const LogIn = () => {
     resolver: zodResolver(loginSchema),
   });
 
+  //handling responses from the server
   const mutation = useMutation({
     mutationFn: userLogin,
     onError: () => {
@@ -52,6 +52,7 @@ const LogIn = () => {
     },
   });
 
+  //handle submit form data
   const onSubmit = (data: LoginSchema) => {
     mutation.mutate(data);
   };
