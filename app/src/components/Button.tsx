@@ -1,15 +1,17 @@
 type ButtonProps = {
   children: string;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset" | undefined;
 };
 
-const Button = ({ children, onClick }: ButtonProps) => {
+const Button = ({ children, onClick, type }: ButtonProps) => {
   //
   ////UI
   return (
     <button
       onClick={onClick}
-      className="max-sm:w-full px-[67px] py-[15px] bg-black rounded-full text-white mt-6 sm:mt-[32px] transition ease-in-out duration-100 hover:scale-95"
+      type={type ? type : "button"}
+      className="mt-6 rounded-full bg-black px-[67px] py-[15px] text-white transition duration-100 ease-in-out hover:scale-95 max-sm:w-full sm:mt-[32px]"
     >
       {children}
     </button>
