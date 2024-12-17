@@ -109,3 +109,26 @@ export const socials = [
   { name: "instagram", iconIMG: instagram },
   { name: "github", iconIMG: github },
 ];
+
+export const defaultProduct = {
+  id: 0,
+  title: "",
+  price: "",
+  images: [],
+  rating: 0,
+  category: "",
+  description: "",
+  thumbnail: "",
+  discountPercentage: 0,
+  weight: 0,
+  stock: 0,
+  dimensions: {
+    width: 0,
+    height: 0,
+    depth: 0,
+  },
+  warrantyInformation: "",
+  shippingInformation: "",
+  reviews: [],
+  brand: "",
+};

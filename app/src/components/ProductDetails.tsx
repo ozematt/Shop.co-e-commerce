@@ -11,29 +11,7 @@ import ProductMainDetails from "./ProductMainDetails";
 import ProductImages from "./ProductImages";
 import ProductMainButtons from "./ProductMainButtons";
 import AlsoLike from "./AlsoLike";
-
-const defaultProduct = {
-  id: 0,
-  title: "",
-  price: "",
-  images: [],
-  rating: 0,
-  category: "",
-  description: "",
-  thumbnail: "",
-  discountPercentage: 0,
-  weight: 0,
-  stock: 0,
-  dimensions: {
-    width: 0,
-    height: 0,
-    depth: 0,
-  },
-  warrantyInformation: "",
-  shippingInformation: "",
-  reviews: [],
-  brand: "",
-};
+import { defaultProduct } from "../constants";
 
 const ProductDetails = () => {
   //
