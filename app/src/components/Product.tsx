@@ -29,6 +29,7 @@ const Product = ({
   const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
 
+  //custom hook
   const { newPrice, discount } = useDiscount({ discountPercentage, price });
 
   ////LOGIC
