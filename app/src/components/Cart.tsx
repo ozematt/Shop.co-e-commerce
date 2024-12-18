@@ -20,6 +20,7 @@ const Cart = () => {
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [savings, setSavings] = useState(0);
 
+  ////LOGIC
   useEffect(() => {
     if (cart.length) {
       const { effectiveDiscount } = calculateTotalDiscount(cart);

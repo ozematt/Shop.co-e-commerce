@@ -3,11 +3,13 @@ import { CartProduct, removeFromCart, updateCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import minus from "../assets/Minus.svg";
 import plus from "../assets/Plus.svg";
+import { useNavigate } from "react-router-dom";
 
 const CartItem = ({
   id,
   title,
   image,
+  category,
   price,
   purchaseTotal,
   quantity,
@@ -15,6 +17,7 @@ const CartItem = ({
 }: CartProduct) => {
   //
   ////DATA
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
 
   ////LOGIC
@@ -55,6 +58,7 @@ const CartItem = ({
           <img
             src={image}
             className="h-[124px] w-[124px] rounded-lg bg-grayBG object-contain"
+            onClick={() => navigate(`/shop/${category}/${title}?id=${id}`)}
           />
           {/* product details */}
 

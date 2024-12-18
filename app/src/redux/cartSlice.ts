@@ -5,25 +5,12 @@ import {
 } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
-// const initialState = {
-//   products: [
-//     {
-//       id: "",
-//       title: "",
-//       image: "",
-//       price: 0,
-//       quantity: "",
-//       shippingTime: "",
-//     },
-//   ],
-//   total: 0,
-// };
-
 export type CartProduct = {
   id: number;
   title: string;
   image: string;
   price: number;
+  category: string;
   purchaseTotal: number;
   quantity: number;
   discountPercentage: number;
@@ -32,7 +19,7 @@ export type CartProduct = {
 };
 
 const cartAdapter = createEntityAdapter({
-  selectId: (product: CartProduct) => product.id, //
+  selectId: (product: CartProduct) => product.id,
 });
 
 const cartSlice = createSlice({
