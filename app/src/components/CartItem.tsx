@@ -10,6 +10,7 @@ const CartItem = ({
   title,
   image,
   price,
+  purchaseTotal,
   quantity,
   discountPercentage,
   shippingTime,
@@ -17,9 +18,6 @@ const CartItem = ({
   //
   ////DATA
   const dispatch: AppDispatch = useAppDispatch();
-
-  const total = (state: RootState) => state.cart.total;
-  console.log(total);
 
   ////LOGIC
   // increment item quantity
@@ -47,12 +45,9 @@ const CartItem = ({
   };
 
   // remove item
-  // const handleRemoveFromCart = useCallback(
-  //   (itemId: number) => {
-  //     dispatch(removeFromCart(itemId));
-  //   },
-  //   [dispatch]
-  // );
+  const handleRemoveFromCart = (id: number) => {
+    dispatch(removeFromCart(id));
+  };
 
   return (
     <>
@@ -77,16 +72,21 @@ const CartItem = ({
               </p>
             </div>
             <p className="font-satoshi text-2xl font-bold">
-              $ {price}{" "}
-              {/* <span className="pl-3 text-sm font-medium opacity-30">
-                For one: ${price / quantity}
-              </span> */}
+              $ {purchaseTotal}{" "}
+              <span className="pl-3 text-sm font-medium opacity-30">
+                For one: ${price}
+              </span>
             </p>
           </div>
         </div>
 
         <div className="flex w-full max-w-[126px] flex-col items-end justify-between">
-          <img src={deleteIcon} alt="" />
+          <img
+            src={deleteIcon}
+            alt=""
+            onClick={() => handleRemoveFromCart(id)}
+            className="cursor-pointer"
+          />
           <div className="h-full max-h-[44px] w-full max-w-[126px]">
             <button className="flex h-full w-full max-w-[110px] items-center justify-between rounded-full bg-grayBG px-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px] md:px-6">
               <img

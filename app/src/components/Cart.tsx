@@ -2,20 +2,40 @@ import Footer from "../sections/Footer";
 import Newsletter from "../sections/Newsletter";
 import Breadcrumbs from "./Breadcrumbs";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+
 import { selectAllCart } from "../redux/cartSlice";
 import CartItem from "./CartItem";
 import discount from "../assets/Discount.svg";
 import arrowWhite from "../assets/Arrow_white.svg";
+import { RootState } from "../redux/store";
+import calculateTotalDiscount from "../lib/helpers/calculateTotalDiscount";
+import { useEffect, useState } from "react";
 
 const Cart = () => {
-  const total = useSelector((state: RootState) => state.cart.total);
-  // const itemsInCart = useSelector((state: RootState) => state.cart.itemsInCart);
+  //
+  ////DATA
   const cart = useSelector(selectAllCart);
+  const total = useSelector((state: RootState) => state.cart.total);
 
-  console.log(total);
-  // console.log(itemsInCart);
+  const [totalDiscount, setTotalDiscount] = useState(0);
+  const [savings, setSavings] = useState(0);
 
+  useEffect(() => {
+    if (cart.length) {
+      const { effectiveDiscount } = calculateTotalDiscount(cart);
+      const discount = Math.round(Number(effectiveDiscount));
+      setTotalDiscount(discount);
+    }
+  }, [cart, total]);
+
+  useEffect(() => {
+    if (totalDiscount !== 0) {
+      const savings = Math.round((total * totalDiscount) / 100);
+      setSavings(savings);
+    }
+  }, [totalDiscount]);
+
+  ////UI
   return (
     <>
       {" "}
@@ -27,11 +47,15 @@ const Cart = () => {
             your cart
           </h2>
           <div className="mt-[24px] flex gap-[20px]">
-            <div className="w-full max-w-[715px] rounded-[20px] ring-1 ring-black ring-opacity-10">
+            <div className="relative w-full max-w-[715px] rounded-[20px] ring-1 ring-black ring-opacity-10">
+              {cart.length ? (
+                cart.map((item) => <CartItem key={item.id} {...item} />)
+              ) : (
+                <h2 className="absolute left-[180px] top-[180px] font-integralCFBold text-8xl opacity-10">
+                  Empty
+                </h2>
+              )}
               {/* purchased products */}
-              {cart.map((item) => (
-                <CartItem key={item.id} {...item} />
-              ))}
             </div>
             {/* SUMMARY */}
             <div className="w-[505px] rounded-[20px] ring-1 ring-black ring-opacity-10">
@@ -42,15 +66,15 @@ const Cart = () => {
                 <div>
                   <div className="flex justify-between pt-5">
                     <p className="font-satoshi text-xl opacity-60">Subtotal </p>{" "}
-                    <p className="font-satoshi text-xl font-bold">$555</p>
+                    <p className="font-satoshi text-xl font-bold">${total}</p>
                   </div>
 
                   <div className="flex justify-between pt-5">
                     <p className="font-satoshi text-xl opacity-60">
-                      Discount <span>(-20%)</span>{" "}
+                      Discount <span>(-{totalDiscount}%)</span>{" "}
                     </p>{" "}
                     <p className="font-satoshi text-xl font-bold text-red-500">
-                      -$100
+                      -${savings}
                     </p>
                   </div>
 
@@ -65,7 +89,9 @@ const Cart = () => {
 
                   <div className="flex justify-between pt-5">
                     <p className="font-satoshi text-xl">Total </p>{" "}
-                    <p className="font-satoshi text-2xl font-bold">$215</p>
+                    <p className="font-satoshi text-2xl font-bold">
+                      ${total - savings + 15}
+                    </p>
                   </div>
 
                   <div className="relative flex justify-between pt-6">

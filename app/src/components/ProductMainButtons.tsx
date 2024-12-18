@@ -36,8 +36,8 @@ const ProductMainButtons = ({
         id: id,
         title: title,
         image: images[0],
-        //price for single product ???
-        price: newPrice,
+        price: price,
+        purchaseTotal: newPrice,
         discountPercentage: discountPercentage,
         quantity: quantity,
         stock: stock,
