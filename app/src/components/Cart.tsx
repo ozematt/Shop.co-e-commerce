@@ -33,7 +33,7 @@ const Cart = () => {
               ))}
             </div>
 
-            <div className="w-[505px] rounded-[20px] ring-1">
+            <div className="w-[505px] rounded-[20px] ring-1 ring-black ring-opacity-10">
               <div className="px-6 pb-[33px] pt-[20px]">
                 <h6 className="pb-1 font-satoshi text-2xl font-bold">
                   Order Summary
@@ -60,7 +60,7 @@ const Cart = () => {
                     <p className="font-satoshi text-xl font-bold">$15</p>
                   </div>
 
-                  <div className="border-b-2 pt-5" />
+                  <div className="border-b-[1px] pt-5" />
 
                   <div className="flex justify-between pt-5">
                     <p className="font-satoshi text-xl">Total </p>{" "}

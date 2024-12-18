@@ -37,12 +37,12 @@ const CartItem = ({
 
         <div className="flex w-full max-w-[126px] flex-col items-end justify-between">
           <img src={deleteIcon} alt="" />
-          <div className="h-[44px] w-[126px]">
+          <div className="h-full max-h-[44px] w-full max-w-[126px]">
             <QuantityButton stock={quantity} />
           </div>
         </div>
       </div>
-      <div className="mx-[24px] mt-[24px] border-b-2" />
+      <div className="mx-[24px] mt-[24px] border-b-[1px]" />
     </>
   );
 };

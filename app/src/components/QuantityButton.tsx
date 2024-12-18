@@ -22,7 +22,7 @@ const QuantityButton = ({ stock, onQuantityChange }: QuantityButtonProps) => {
 
   ////UI
   return (
-    <button className="flex w-full max-w-[110px] justify-between rounded-full bg-grayBG px-4 py-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px] md:px-6">
+    <button className="flex h-full w-full max-w-[110px] items-center justify-between rounded-full bg-grayBG px-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px] md:px-6">
       <img
         src={minus}
         alt="minus"
