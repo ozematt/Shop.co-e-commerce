@@ -1,3 +1,4 @@
+// import { useState } from "react";
 import deleteIcon from "../assets/Delete.svg";
 import { CartProduct } from "../redux/cartSlice";
 import QuantityButton from "./QuantityButton";
@@ -7,8 +8,12 @@ const CartItem = ({
   image,
   price,
   quantity,
+  stock,
   shippingTime,
 }: CartProduct) => {
+  //product quantity
+  //  const [quantity, setQuantity] = useState(1);
+
   return (
     <>
       <div className="flex justify-between px-[24px] pt-[24px]">
@@ -38,7 +43,7 @@ const CartItem = ({
         <div className="flex w-full max-w-[126px] flex-col items-end justify-between">
           <img src={deleteIcon} alt="" />
           <div className="h-full max-h-[44px] w-full max-w-[126px]">
-            <QuantityButton stock={quantity} />
+            {/* <QuantityButton stock={stock} /> */}
           </div>
         </div>
       </div>

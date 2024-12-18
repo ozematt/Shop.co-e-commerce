@@ -10,10 +10,11 @@ import arrowWhite from "../assets/Arrow_white.svg";
 
 const Cart = () => {
   const total = useSelector((state: RootState) => state.cart.total);
+  const itemsInCart = useSelector((state: RootState) => state.cart.itemsInCart);
   const cart = useSelector(selectAllCart);
   console.log(cart);
-
-  console.log(total);
+  // console.log(total);
+  // console.log(itemsInCart);
 
   return (
     <>
@@ -26,13 +27,13 @@ const Cart = () => {
             your cart
           </h2>
           <div className="mt-[24px] flex gap-[20px]">
-            <div className="w-[715px] rounded-[20px] ring-1 ring-black ring-opacity-10">
+            <div className="w-full max-w-[715px] rounded-[20px] ring-1 ring-black ring-opacity-10">
               {/* purchased products */}
               {cart.map((item) => (
                 <CartItem key={item.id} {...item} />
               ))}
             </div>
-
+            {/* SUMMARY */}
             <div className="w-[505px] rounded-[20px] ring-1 ring-black ring-opacity-10">
               <div className="px-6 pb-[33px] pt-[20px]">
                 <h6 className="pb-1 font-satoshi text-2xl font-bold">

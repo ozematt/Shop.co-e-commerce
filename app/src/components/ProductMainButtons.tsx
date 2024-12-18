@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { Product } from "../api/queries/products";
-import { addToCart } from "../redux/cartSlice";
+import { addToCart, selectAllCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import QuantityButton from "./QuantityButton";
 import { useState } from "react";
+import useQuantity from "../lib/hooks/useQuantity";
+import { useSelector } from "react-redux";
 
 const ProductMainButtons = ({
   shippingInformation,
@@ -19,10 +21,22 @@ const ProductMainButtons = ({
   const navigate = useNavigate();
 
   //product quantity
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(1);
+
+  const {
+    quantity,
+    setQuantity,
+    handleQuantityIncrement,
+    handleQuantityDecrement,
+  } = useQuantity({ stock });
+
+  console.log(quantity);
 
   const auth = localStorage.getItem("user");
-  console.log(auth);
+
+  // console.log(quantity);
+  const cart = useSelector(selectAllCart);
+  console.log(cart);
 
   //handle data send to cart
   const handleAddToCart = () => {
@@ -33,9 +47,11 @@ const ProductMainButtons = ({
         image: images[0],
         price: price,
         quantity: quantity,
+        stock: stock,
         shippingTime: shippingInformation,
       };
-      dispatch(addToCart(modifiedProductData));
+      dispatch(addToCart(modifiedProductData)); //add to global state
+      setQuantity(1); //reset quantity display
     } else {
       navigate("/login");
     }
@@ -51,11 +67,15 @@ const ProductMainButtons = ({
       </button>
       <div className="my-6 border-b-2" />
       <div className="flex h-[52px]">
-        <QuantityButton stock={stock} onQuantityChange={setQuantity} />
+        <QuantityButton
+          onDecrement={handleQuantityDecrement}
+          onIncrement={handleQuantityIncrement}
+          quantity={quantity}
+        />
         <button
           type="button"
           onClick={handleAddToCart}
-          className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95 max-md:text-sm"
+          className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95 active:scale-100 max-md:text-sm"
         >
           Add to Cart
         </button>

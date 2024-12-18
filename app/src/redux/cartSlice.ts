@@ -25,6 +25,7 @@ export type CartProduct = {
   image: string;
   price: number;
   quantity: number;
+  stock: number;
   shippingTime: string;
 };
 
@@ -36,6 +37,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: cartAdapter.getInitialState({
     total: 0,
+    itemsInCart: 0,
   }),
   reducers: {
     addToCart: (state, action: PayloadAction<CartProduct>) => {
@@ -45,7 +47,7 @@ const cartSlice = createSlice({
       if (existingItem) {
         const updatedPieces = existingItem.quantity + item.quantity;
         state.total = Number((state.total + item.price).toFixed(2)); //update total price
-
+        state.itemsInCart += 1;
         // if item exist update pieces
         cartAdapter.updateOne(state, {
           id: item.id,
@@ -54,6 +56,7 @@ const cartSlice = createSlice({
       } else {
         cartAdapter.addOne(state, item); //add new item with modified data
         state.total = Number((state.total + item.price).toFixed(2)); //update total price
+        state.itemsInCart += 1;
       }
     },
     updateCart: (
@@ -72,12 +75,25 @@ const cartSlice = createSlice({
           (state.total + existingItem.price * amountDifference).toFixed(2), //update total price
         );
         existingItem.quantity = changes.quantity ?? existingItem.quantity; //update product amount
+        state.itemsInCart += amountDifference;
       }
+    },
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      const itemId = action.payload;
+      const itemToRemove = state.entities[itemId]; //check if item already exist
+
+      if (itemToRemove) {
+        state.total = Number(
+          (state.total - itemToRemove.price * itemToRemove.quantity).toFixed(2), // update total price
+        );
+        state.itemsInCart -= itemToRemove.quantity; //update quantity
+      }
+      cartAdapter.removeOne(state, itemId);
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
 

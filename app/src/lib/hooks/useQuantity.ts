@@ -17,7 +17,12 @@ const useQuantity = ({ stock }: UseQuantityProps) => {
     setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
   };
 
-  return { quantity, handleQuantityIncrement, handleQuantityDecrement };
+  return {
+    quantity,
+    setQuantity,
+    handleQuantityIncrement,
+    handleQuantityDecrement,
+  };
 };
 
 export default useQuantity;
