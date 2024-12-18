@@ -26,6 +26,9 @@ const Cart = () => {
       const discount = Math.round(Number(effectiveDiscount));
       setTotalDiscount(discount);
     }
+    if (total === 0) {
+      setTotalDiscount(0);
+    }
   }, [cart, total]);
 
   useEffect(() => {
@@ -33,7 +36,7 @@ const Cart = () => {
       const savings = Math.round((total * totalDiscount) / 100);
       setSavings(savings);
     }
-  }, [totalDiscount]);
+  }, [cart, totalDiscount]);
 
   ////UI
   return (
@@ -47,6 +50,7 @@ const Cart = () => {
             your cart
           </h2>
           <div className="mt-[24px] flex gap-[20px]">
+            {/* cart items */}
             <div className="relative w-full max-w-[715px] rounded-[20px] ring-1 ring-black ring-opacity-10">
               {cart.length ? (
                 cart.map((item) => <CartItem key={item.id} {...item} />)
@@ -55,7 +59,6 @@ const Cart = () => {
                   Empty
                 </h2>
               )}
-              {/* purchased products */}
             </div>
             {/* SUMMARY */}
             <div className="w-[505px] rounded-[20px] ring-1 ring-black ring-opacity-10">
@@ -90,7 +93,7 @@ const Cart = () => {
                   <div className="flex justify-between pt-5">
                     <p className="font-satoshi text-xl">Total </p>{" "}
                     <p className="font-satoshi text-2xl font-bold">
-                      ${total - savings + 15}
+                      ${(total - savings + 15).toFixed(2)}
                     </p>
                   </div>
 

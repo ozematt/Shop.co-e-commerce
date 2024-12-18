@@ -1,7 +1,6 @@
-// import { useCallback } from "react";
 import deleteIcon from "../assets/Delete.svg";
 import { CartProduct, removeFromCart, updateCart } from "../redux/cartSlice";
-import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
+import { AppDispatch, useAppDispatch } from "../redux/store";
 import minus from "../assets/Minus.svg";
 import plus from "../assets/Plus.svg";
 
@@ -12,7 +11,6 @@ const CartItem = ({
   price,
   purchaseTotal,
   quantity,
-  discountPercentage,
   shippingTime,
 }: CartProduct) => {
   //
@@ -80,6 +78,7 @@ const CartItem = ({
           </div>
         </div>
 
+        {/* handle quantity */}
         <div className="flex w-full max-w-[126px] flex-col items-end justify-between">
           <img
             src={deleteIcon}

@@ -1,7 +1,6 @@
 import { CartProduct } from "../../redux/cartSlice";
 
 function calculateTotalDiscount(products: CartProduct[]) {
-  // Obliczenia początkowe
   let totalOriginalPrice = 0;
   let totalDiscountedPrice = 0;
 
@@ -24,7 +23,6 @@ function calculateTotalDiscount(products: CartProduct[]) {
   ).toFixed(2);
 
   return {
-    totalDiscountedPrice: totalDiscountedPrice.toFixed(2),
     effectiveDiscount: effectiveDiscount,
   };
 }
