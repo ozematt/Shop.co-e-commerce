@@ -1,18 +1,58 @@
-// import { useState } from "react";
+// import { useCallback } from "react";
 import deleteIcon from "../assets/Delete.svg";
-import { CartProduct } from "../redux/cartSlice";
-import QuantityButton from "./QuantityButton";
+import { CartProduct, removeFromCart, updateCart } from "../redux/cartSlice";
+import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
+import minus from "../assets/Minus.svg";
+import plus from "../assets/Plus.svg";
 
 const CartItem = ({
+  id,
   title,
   image,
   price,
   quantity,
-  stock,
+  discountPercentage,
   shippingTime,
 }: CartProduct) => {
-  //product quantity
-  //  const [quantity, setQuantity] = useState(1);
+  //
+  ////DATA
+  const dispatch: AppDispatch = useAppDispatch();
+
+  const total = (state: RootState) => state.cart.total;
+  console.log(total);
+
+  ////LOGIC
+  // increment item quantity
+  const handleIncrementItemQuantity = (id: number, quantity: number) => {
+    dispatch(
+      updateCart({
+        id: id,
+        changes: { quantity: quantity + 1 },
+      }),
+    );
+  };
+
+  // decrement item quantity
+  const handleDecrementItemQuantity = (id: number, quantity: number) => {
+    if (quantity > 1) {
+      dispatch(
+        updateCart({
+          id: id,
+          changes: { quantity: quantity - 1 },
+        }),
+      );
+    } else {
+      dispatch(removeFromCart(id));
+    }
+  };
+
+  // remove item
+  // const handleRemoveFromCart = useCallback(
+  //   (itemId: number) => {
+  //     dispatch(removeFromCart(itemId));
+  //   },
+  //   [dispatch]
+  // );
 
   return (
     <>
@@ -36,14 +76,37 @@ const CartItem = ({
                 </span>{" "}
               </p>
             </div>
-            <p className="font-satoshi text-2xl font-bold">$ {price}</p>
+            <p className="font-satoshi text-2xl font-bold">
+              $ {price}{" "}
+              {/* <span className="pl-3 text-sm font-medium opacity-30">
+                For one: ${price / quantity}
+              </span> */}
+            </p>
           </div>
         </div>
 
         <div className="flex w-full max-w-[126px] flex-col items-end justify-between">
           <img src={deleteIcon} alt="" />
           <div className="h-full max-h-[44px] w-full max-w-[126px]">
-            {/* <QuantityButton stock={stock} /> */}
+            <button className="flex h-full w-full max-w-[110px] items-center justify-between rounded-full bg-grayBG px-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px] md:px-6">
+              <img
+                src={minus}
+                alt="minus"
+                width={20}
+                height={20}
+                onClick={() => handleDecrementItemQuantity(id, quantity)}
+                className="max-md:scale-75"
+              />
+              <span className="">{quantity}</span>
+              <img
+                src={plus}
+                alt="plus"
+                width={20}
+                height={20}
+                onClick={() => handleIncrementItemQuantity(id, quantity)}
+                className="max-md:scale-75"
+              />
+            </button>
           </div>
         </div>
       </div>

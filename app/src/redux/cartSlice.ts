@@ -25,6 +25,7 @@ export type CartProduct = {
   image: string;
   price: number;
   quantity: number;
+  discountPercentage?: number;
   stock: number;
   shippingTime: string;
 };
@@ -48,7 +49,7 @@ const cartSlice = createSlice({
         const updatedQuantity = existingItem.quantity + item.quantity;
 
         state.total = Number((state.total + item.price).toFixed(2)); //update total price
-        state.itemsInCart += 1;
+        state.itemsInCart = item.quantity + state.itemsInCart;
 
         // if item exist update pieces
         cartAdapter.updateOne(state, {
@@ -58,7 +59,7 @@ const cartSlice = createSlice({
       } else {
         cartAdapter.addOne(state, item); //add new item with modified data
         state.total = Number((state.total + item.price).toFixed(2)); //update total price
-        state.itemsInCart += 1;
+        state.itemsInCart = item.quantity + state.itemsInCart;
       }
     },
     updateCart: (
@@ -69,14 +70,21 @@ const cartSlice = createSlice({
       const existingItem = state.entities[id]; //check if item already exist
 
       if (existingItem) {
+        const singleItemPrice = existingItem.price / existingItem.quantity;
         //calculate the difference in quantity (in case the product quantity changes)
         const amountDifference = changes.quantity
           ? changes.quantity - existingItem.quantity
           : 0;
-        state.total = Number(
-          (state.total + existingItem.price * amountDifference).toFixed(2), //update total price
-        );
+
+        const updatedItemPrice =
+          existingItem.price + singleItemPrice * amountDifference;
+        existingItem.price = parseFloat(updatedItemPrice.toFixed(2));
+
+        const updatedTotal = state.total + singleItemPrice * amountDifference;
+        state.total = parseFloat(updatedTotal.toFixed(2));
+
         existingItem.quantity = changes.quantity ?? existingItem.quantity; //update product amount
+
         state.itemsInCart += amountDifference;
       }
     },

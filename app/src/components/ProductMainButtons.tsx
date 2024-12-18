@@ -1,14 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { Product } from "../api/queries/products";
-import { addToCart, selectAllCart } from "../redux/cartSlice";
+import { addToCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import QuantityButton from "./QuantityButton";
-import { useState } from "react";
 import useQuantity from "../lib/hooks/useQuantity";
-import { useSelector } from "react-redux";
 
 const ProductMainButtons = ({
   shippingInformation,
+  discountPercentage,
   id,
   title,
   images,
@@ -20,9 +19,6 @@ const ProductMainButtons = ({
   const dispatch: AppDispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  //product quantity
-  // const [quantity, setQuantity] = useState(1);
-
   const {
     quantity,
     // setQuantity,
@@ -30,13 +26,7 @@ const ProductMainButtons = ({
     handleQuantityDecrement,
   } = useQuantity({ stock });
 
-  console.log(quantity);
-
   const auth = localStorage.getItem("user");
-
-  // console.log(quantity);
-  const cart = useSelector(selectAllCart);
-  console.log(cart);
 
   //handle data send to cart
   const handleAddToCart = () => {
@@ -46,13 +36,13 @@ const ProductMainButtons = ({
         id: id,
         title: title,
         image: images[0],
+        //price for single product ???
         price: newPrice,
+        discountPercentage: discountPercentage,
         quantity: quantity,
         stock: stock,
         shippingTime: shippingInformation,
       };
-      console.log(modifiedProductData);
-
       dispatch(addToCart(modifiedProductData)); //add to global state
       // setQuantity(1); //reset quantity display
     } else {
