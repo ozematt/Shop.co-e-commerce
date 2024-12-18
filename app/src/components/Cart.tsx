@@ -50,9 +50,9 @@ const Cart = () => {
           <h2 className="mt-[24px] font-integralCFBold text-[40px] max-md:leading-[36px] sm:text-5xl">
             your cart
           </h2>
-          <div className="mt-[24px] flex gap-[20px]">
+          <div className="mt-[24px] flex flex-wrap justify-center gap-[20px]">
             {/* cart items */}
-            <div className="relative w-full max-w-[715px] rounded-[20px] ring-1 ring-black ring-opacity-10">
+            <div className="relative w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1450px]:max-w-[715px]">
               {cart.length ? (
                 cart.map((item) => <CartItem key={item.id} {...item} />)
               ) : (
@@ -62,7 +62,7 @@ const Cart = () => {
               )}
             </div>
             {/* SUMMARY */}
-            <div className="w-[505px] rounded-[20px] ring-1 ring-black ring-opacity-10">
+            <div className="w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1450px]:max-w-[505px]">
               <div className="px-6 pb-[33px] pt-[20px]">
                 <h6 className="pb-1 font-satoshi text-2xl font-bold">
                   Order Summary

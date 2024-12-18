@@ -53,7 +53,6 @@ const LogIn = () => {
       const user = { username: data.username, id: data.id };
       localStorage.setItem("user", JSON.stringify(user)); // add user to local storage
       navigate("/shop");
-      console.log(user);
     },
   });
 
