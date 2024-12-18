@@ -10,10 +10,10 @@ import arrowWhite from "../assets/Arrow_white.svg";
 
 const Cart = () => {
   const total = useSelector((state: RootState) => state.cart.total);
-  const itemsInCart = useSelector((state: RootState) => state.cart.itemsInCart);
+  // const itemsInCart = useSelector((state: RootState) => state.cart.itemsInCart);
   const cart = useSelector(selectAllCart);
-  console.log(cart);
-  // console.log(total);
+
+  console.log(total);
   // console.log(itemsInCart);
 
   return (

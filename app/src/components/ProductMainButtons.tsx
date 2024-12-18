@@ -25,7 +25,7 @@ const ProductMainButtons = ({
 
   const {
     quantity,
-    setQuantity,
+    // setQuantity,
     handleQuantityIncrement,
     handleQuantityDecrement,
   } = useQuantity({ stock });
@@ -41,17 +41,20 @@ const ProductMainButtons = ({
   //handle data send to cart
   const handleAddToCart = () => {
     if (auth) {
+      const newPrice = Number((price * quantity).toFixed(2));
       const modifiedProductData = {
         id: id,
         title: title,
         image: images[0],
-        price: price,
+        price: newPrice,
         quantity: quantity,
         stock: stock,
         shippingTime: shippingInformation,
       };
+      console.log(modifiedProductData);
+
       dispatch(addToCart(modifiedProductData)); //add to global state
-      setQuantity(1); //reset quantity display
+      // setQuantity(1); //reset quantity display
     } else {
       navigate("/login");
     }
