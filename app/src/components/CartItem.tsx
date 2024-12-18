@@ -57,7 +57,7 @@ const CartItem = ({
         <div className="flex">
           <img
             src={image}
-            className="h-[124px] w-[124px] rounded-lg bg-grayBG object-contain"
+            className="h-[99px] w-[99px] rounded-lg bg-grayBG object-contain lg:h-[124px] lg:w-[124px]"
             onClick={() => navigate(`/shop/${category}/${title}?id=${id}`)}
           />
           {/* product details */}
@@ -65,17 +65,19 @@ const CartItem = ({
           <div className="flex flex-col justify-between pl-[16px]">
             {" "}
             <div>
-              <h6 className="font-satoshi text-xl font-bold">{title}</h6>
-              <p className="font-satoshi text-sm">
+              <h6 className="font-satoshi text-base font-bold lg:text-xl">
+                {title}
+              </h6>
+              <p className="font-satoshi text-xs lg:text-sm">
                 Shipping time:{" "}
                 <span className="font-satoshi text-sm opacity-60">
                   {shippingTime}
                 </span>{" "}
               </p>
             </div>
-            <p className="font-satoshi text-2xl font-bold">
+            <p className="font-satoshi text-xl font-bold lg:text-2xl">
               $ {purchaseTotal}{" "}
-              <span className="pl-3 text-sm font-medium opacity-30">
+              <span className="hidden pl-3 text-sm font-medium opacity-30 lg:block">
                 For one: ${price}
               </span>
             </p>
@@ -83,31 +85,31 @@ const CartItem = ({
         </div>
 
         {/* handle quantity */}
-        <div className="flex w-full max-w-[126px] flex-col items-end justify-between">
+        <div className="relative flex w-full max-w-[126px] flex-col items-end justify-between">
           <img
             src={deleteIcon}
             alt=""
             onClick={() => handleRemoveFromCart(id)}
             className="cursor-pointer"
           />
-          <div className="h-full max-h-[44px] w-full max-w-[126px]">
-            <button className="flex h-full w-full max-w-[110px] items-center justify-between rounded-full bg-grayBG px-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px] md:px-6">
+          <div className="bottom-0 right-0 h-full max-h-[31px] w-full max-w-[105px] max-lg:absolute lg:max-h-[44px] lg:max-w-[126px]">
+            <button className="flex h-full w-full max-w-[110px] items-center justify-between rounded-full bg-grayBG px-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px]">
               <img
                 src={minus}
                 alt="minus"
                 width={20}
                 height={20}
                 onClick={() => handleDecrementItemQuantity(id, quantity)}
-                className="max-md:scale-75"
+                className="md:scale-75"
               />
-              <span className="">{quantity}</span>
+              <span className="text-sm lg:text-base">{quantity}</span>
               <img
                 src={plus}
                 alt="plus"
                 width={20}
                 height={20}
                 onClick={() => handleIncrementItemQuantity(id, quantity)}
-                className="max-md:scale-75"
+                className="md:scale-75"
               />
             </button>
           </div>

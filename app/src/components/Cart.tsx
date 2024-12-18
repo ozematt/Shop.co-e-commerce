@@ -47,10 +47,10 @@ const Cart = () => {
         <div className="border-b-2" />
         <Breadcrumbs />
         <div>
-          <h2 className="mt-[24px] font-integralCFBold text-[40px] max-md:leading-[36px] sm:text-5xl">
+          <h2 className="mt-[8px] font-integralCFBold text-[32px] max-md:leading-[36px] sm:mt-[24px] sm:text-5xl">
             your cart
           </h2>
-          <div className="mt-[24px] flex flex-wrap justify-center gap-[20px]">
+          <div className="mt-[20px] flex flex-wrap justify-center gap-[20px] sm:mt-[24px]">
             {/* cart items */}
             <div className="relative w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1450px]:max-w-[715px]">
               {cart.length ? (
