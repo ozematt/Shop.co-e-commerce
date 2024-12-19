@@ -52,7 +52,7 @@ const CartItem = ({
 
   return (
     <>
-      <div className="flex justify-between px-[24px] pt-[24px]">
+      <div className="relative flex justify-between px-[14px] pt-[14px] sm:px-[24px] sm:pt-[24px]">
         {/* IMG */}
         <div className="flex">
           <img
@@ -68,16 +68,13 @@ const CartItem = ({
               <h6 className="font-satoshi text-base font-bold lg:text-xl">
                 {title}
               </h6>
-              <p className="font-satoshi text-xs lg:text-sm">
-                Shipping time:{" "}
-                <span className="font-satoshi text-sm opacity-60">
-                  {shippingTime}
-                </span>{" "}
+              <p className="font-satoshi text-xs opacity-60 lg:text-sm">
+                {shippingTime}
               </p>
             </div>
             <p className="font-satoshi text-xl font-bold lg:text-2xl">
               $ {purchaseTotal}{" "}
-              <span className="hidden pl-3 text-sm font-medium opacity-30 lg:block">
+              <span className="hidden text-sm font-medium opacity-30 lg:block">
                 For one: ${price}
               </span>
             </p>
@@ -85,14 +82,14 @@ const CartItem = ({
         </div>
 
         {/* handle quantity */}
-        <div className="relative flex w-full max-w-[126px] flex-col items-end justify-between">
+        <div className="flex w-full max-w-[20px] flex-col items-end justify-between lg:max-w-[126px]">
           <img
             src={deleteIcon}
             alt=""
             onClick={() => handleRemoveFromCart(id)}
-            className="cursor-pointer"
+            className="cursor-pointer max-lg:absolute"
           />
-          <div className="bottom-0 right-0 h-full max-h-[31px] w-full max-w-[105px] max-lg:absolute lg:max-h-[44px] lg:max-w-[126px]">
+          <div className="bottom-0 right-[14px] h-full max-h-[31px] w-full max-w-[105px] max-lg:absolute sm:right-[20px] lg:max-h-[44px] lg:max-w-[126px]">
             <button className="flex h-full w-full max-w-[110px] items-center justify-between rounded-full bg-grayBG px-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px]">
               <img
                 src={minus}
@@ -115,7 +112,7 @@ const CartItem = ({
           </div>
         </div>
       </div>
-      <div className="mx-[24px] mt-[24px] border-b-[1px]" />
+      <div className="mx-[14px] mt-[16px] border-b-[1px] sm:mx-[24px] sm:mt-[24px]" />
     </>
   );
 };

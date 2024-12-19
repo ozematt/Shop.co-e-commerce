@@ -52,17 +52,17 @@ const Cart = () => {
           </h2>
           <div className="mt-[20px] flex flex-wrap justify-center gap-[20px] sm:mt-[24px]">
             {/* cart items */}
-            <div className="relative w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1450px]:max-w-[715px]">
+            <div className="h-full max-h-[505px] w-full rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[715px]">
               {cart.length ? (
                 cart.map((item) => <CartItem key={item.id} {...item} />)
               ) : (
-                <h2 className="absolute left-[180px] top-[180px] font-integralCFBold text-8xl opacity-10">
+                <h2 className="insert-0 py-[190px] text-center font-integralCFBold text-7xl opacity-10 sm:text-8xl">
                   Empty
                 </h2>
               )}
             </div>
             {/* SUMMARY */}
-            <div className="w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1450px]:max-w-[505px]">
+            <div className="w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[505px]">
               <div className="px-6 pb-[33px] pt-[20px]">
                 <h6 className="pb-1 font-satoshi text-2xl font-bold">
                   Order Summary
