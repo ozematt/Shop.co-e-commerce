@@ -64,36 +64,42 @@ const Cart = () => {
             {/* SUMMARY */}
             <div className="w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[505px]">
               <div className="px-6 pb-[33px] pt-[20px]">
-                <h6 className="pb-1 font-satoshi text-2xl font-bold">
+                <h6 className="pb-1 font-satoshi text-xl font-bold sm:text-2xl">
                   Order Summary
                 </h6>
                 <div>
                   <div className="flex justify-between pt-5">
-                    <p className="font-satoshi text-xl opacity-60">Subtotal </p>{" "}
-                    <p className="font-satoshi text-xl font-bold">${total}</p>
+                    <p className="font-satoshi text-base opacity-60 sm:text-xl">
+                      Subtotal{" "}
+                    </p>{" "}
+                    <p className="font-satoshi text-base font-bold sm:text-xl">
+                      ${total}
+                    </p>
                   </div>
 
                   <div className="flex justify-between pt-5">
-                    <p className="font-satoshi text-xl opacity-60">
+                    <p className="font-satoshi text-base opacity-60 sm:text-xl">
                       Discount <span>(-{totalDiscount}%)</span>{" "}
                     </p>{" "}
-                    <p className="font-satoshi text-xl font-bold text-red-500">
+                    <p className="font-satoshi text-base font-bold text-red-500 sm:text-xl">
                       -${savings}
                     </p>
                   </div>
 
                   <div className="flex justify-between pt-5">
-                    <p className="font-satoshi text-xl opacity-60">
+                    <p className="font-satoshi text-base opacity-60 sm:text-xl">
                       Delivery Fee{" "}
                     </p>{" "}
-                    <p className="font-satoshi text-xl font-bold">$15</p>
+                    <p className="font-satoshi text-base font-bold sm:text-xl">
+                      $15
+                    </p>
                   </div>
 
                   <div className="border-b-[1px] pt-5" />
 
                   <div className="flex justify-between pt-5">
-                    <p className="font-satoshi text-xl">Total </p>{" "}
-                    <p className="font-satoshi text-2xl font-bold">
+                    <p className="font-satoshi text-base sm:text-xl">Total </p>{" "}
+                    <p className="font-satoshi text-xl font-bold sm:text-2xl">
                       ${(total - savings + 15).toFixed(2)}
                     </p>
                   </div>
@@ -102,14 +108,14 @@ const Cart = () => {
                     <img
                       src={discount}
                       alt="discount icon"
-                      className="absolute left-4 top-[50%] z-10 opacity-40"
+                      className="absolute left-4 top-[50%] z-10 opacity-40 max-sm:scale-90"
                     />
                     <input
                       type="text"
                       placeholder="Add promo code"
-                      className="h-[48px] w-full max-w-[326px] rounded-full bg-grayBG pl-[50px] placeholder:opacity-40 focus:outline-none focus:ring-1 focus:ring-black"
+                      className="h-[48px] w-full max-w-[326px] rounded-full bg-grayBG pl-[50px] placeholder:opacity-40 focus:outline-none focus:ring-1 focus:ring-black placeholder:max-sm:text-sm"
                     />{" "}
-                    <button className="rounded-full bg-black px-[38px] py-[13px] font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95">
+                    <button className="ml-[12px] rounded-full bg-black px-[25px] py-[13px] font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm sm:px-[38px]">
                       Apply
                     </button>
                   </div>
