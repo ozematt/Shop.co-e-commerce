@@ -41,6 +41,18 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 
 ![Mobile](./app/screenshots/Mobile.png)
 
+### Koszyk zakupowy - pusty
+
+![CartEmpty](./app/screenshots/CartEmpty.png)
+
+### Koszyk zakupowy - pełny
+
+![Cart](./app/screenshots/Cart.png)
+
+### Koszyk zakupowy - Mobilny
+
+![CartMobile](./app/screenshots/CartMobile.png)
+
 ## Funkcjonalności w trakcie przygotowania
 
 - **Obsługa motywów**: Użytkownik będzie miał możliwość przełączania między **jasnym** a **ciemnym** motywem..
