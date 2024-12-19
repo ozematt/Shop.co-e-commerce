@@ -9,6 +9,8 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 - **Katalog Produktów**:
   - Aplikacja wyświetla produkty wraz z ich zdjęciami, opisami, cenami i kategoriami.
   - Funkcje **filtrowania** oraz **sortowania** produktów (np. według ceny, kategorii).
+- **Koszyk zakupowy** – Uzytkownicy mogą korzystać ze wszystkich funkcjonalności koszyka zakupowego.
+- **Uwierzytelnianie użytkowników**: Po zalogowaniu, użytkownicy mogą dodawać produkty do koszyka i składać zamówienie.
 
 ## Technologia
 
@@ -42,8 +44,6 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 ## Funkcjonalności w trakcie przygotowania
 
 - **Obsługa motywów**: Użytkownik będzie miał możliwość przełączania między **jasnym** a **ciemnym** motywem..
-- **Koszyk zakupowy** – Uzytkownicy będą mogli korzystać ze wszystkich funkcjonalności koszyka zakupowego.
-- **Uwierzytelnianie użytkowników**: Po zalogowaniu, użytkownicy będą mogą dodawać produkty do koszyka i składać zamówienia..
 - **Proces realizacji zakupu** – Użytkownicy będą przechodzić przez cały proces zakupu.
 
 Dziękuję za odwiedzenie repozytorium! 😊
