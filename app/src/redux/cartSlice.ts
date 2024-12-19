@@ -85,10 +85,7 @@ const cartSlice = createSlice({
 
       if (itemToRemove) {
         state.total = Number(
-          (
-            state.total -
-            itemToRemove.purchaseTotal * itemToRemove.quantity
-          ).toFixed(2), // update total price
+          (state.total - itemToRemove.purchaseTotal).toFixed(2), // update total price
         );
         state.itemsInCart -= itemToRemove.quantity; //update quantity
       }
