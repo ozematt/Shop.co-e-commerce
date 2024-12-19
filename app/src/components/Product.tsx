@@ -68,7 +68,7 @@ const Product = ({
       <div className="flex items-center gap-[2px] pt-2 font-satoshi text-2xl font-bold">
         {" "}
         ${newPrice}
-        {discount && (
+        {discount === 0 ? null : (
           <>
             <span className="mx-[-9px] scale-[0.65] line-through opacity-30">
               ${price}

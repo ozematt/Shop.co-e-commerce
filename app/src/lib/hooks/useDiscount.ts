@@ -25,7 +25,8 @@ const useDiscount = ({ discountPercentage, price }: UseDiscountProps) => {
       setNewPrice(Number(lowPrice));
       return;
     }
-    setNewPrice(price);
+    const roundedPrice = Number(price.toFixed(2));
+    setNewPrice(roundedPrice);
   }, [discountPercentage, price]);
 
   return { newPrice, discount };

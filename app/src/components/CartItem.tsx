@@ -72,7 +72,7 @@ const CartItem = ({
                 {shippingTime}
               </p>
             </div>
-            <p className="font-satoshi text-xl font-bold lg:text-2xl">
+            <p className="font-satoshi text-lg font-bold lg:text-2xl">
               $ {purchaseTotal}{" "}
               <span className="hidden text-sm font-medium opacity-30 lg:block">
                 For one: ${price}
