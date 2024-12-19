@@ -120,12 +120,12 @@ const Cart = () => {
                     </button>
                   </div>
 
-                  <button className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] pr-9 font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95">
+                  <button className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] pr-9 font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm">
                     Go to Checkout{" "}
                     <img
                       src={arrowWhite}
                       alt="white arrow icon"
-                      className="absolute left-[60%] top-[32%]"
+                      className="absolute left-[65%] top-[30%] max-sm:scale-90 sm:left-[60%] sm:top-[32%]"
                     />
                   </button>
                 </div>
