@@ -51,7 +51,7 @@ const Nav = () => {
           alt="hamburger menu"
           width={24}
           height={24}
-          className="mr-4 min-w-[24px] cursor-pointer pb-1 hover:opacity-60 sm:min-w-[30px] min-[1192px]:hidden"
+          className="mr-4 min-w-[24px] cursor-pointer pb-[6px] hover:opacity-60 sm:min-w-[30px] min-[1192px]:hidden"
         />
         <a
           href="/"

@@ -87,7 +87,7 @@ const CartItem = ({
             src={deleteIcon}
             alt=""
             onClick={() => handleRemoveFromCart(id)}
-            className="cursor-pointer max-lg:absolute"
+            className="cursor-pointer max-lg:absolute max-sm:scale-[0.8]"
           />
           <div className="bottom-0 right-[14px] h-full max-h-[31px] w-full max-w-[105px] max-lg:absolute sm:right-[20px] lg:max-h-[44px] lg:max-w-[126px]">
             <button className="flex h-full w-full max-w-[110px] items-center justify-between rounded-full bg-grayBG px-4 font-satoshi font-medium max-md:text-sm md:max-w-[170px]">
