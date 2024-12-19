@@ -1,7 +1,7 @@
 import { navLinks } from "../constants";
 import cartIcon from "../assets/Cart.svg";
 import userIcon from "../assets/Avatar.svg";
-import hamburger from "../assets/Hamburger.png";
+import hamburger from "../assets/Hamburger.svg";
 import lupeIcon from "../assets/Lupe_icon.png";
 import arrow from "../assets/Arrow down.png";
 import { useLocation, useNavigate } from "react-router";
@@ -51,7 +51,7 @@ const Nav = () => {
           alt="hamburger menu"
           width={24}
           height={24}
-          className="mr-4 min-w-[24px] cursor-pointer hover:opacity-60 sm:min-w-[30px] min-[1192px]:hidden"
+          className="mr-4 min-w-[24px] cursor-pointer pb-1 hover:opacity-60 sm:min-w-[30px] min-[1192px]:hidden"
         />
         <a
           href="/"
