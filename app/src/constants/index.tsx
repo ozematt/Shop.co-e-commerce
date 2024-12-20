@@ -11,9 +11,9 @@ import instagram from "../assets/Instagram.png";
 import github from "../assets/Github.png";
 
 export const navLinks = [
-  { href: "#topRating", label: "Top Rating" },
-  { href: "#category", label: "Category" },
-  { href: "#newsletter", label: "Newsletter" },
+  { href: "#topRating", label: "Top Rating", id: "topRating" },
+  { href: "#category", label: "Category", id: "category" },
+  { href: "#newsletter", label: "Newsletter", id: "newsletter" },
 ] as const;
 
 export const stats = [
