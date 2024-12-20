@@ -13,6 +13,19 @@ const HamburgerMenu = () => {
   //custom hook
   const { open, setOpen } = usePanelOpen({ refValue: menuRef });
 
+  const handleClick = (id: string) => {
+    // Nawigacja do strony głównej
+    navigate("/");
+
+    // Przewinięcie do elementu o id "targetElement" po załadowaniu strony
+    setTimeout(() => {
+      const targetElement = document.getElementById(id);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 500); // opóźnienie, aby upewnić się, że strona się załadowała
+  };
+
   return (
     <div ref={menuRef}>
       <img
@@ -34,7 +47,7 @@ const HamburgerMenu = () => {
           {navLinks.map((link, index) => (
             <li
               key={index}
-              onClick={() => navigate("/")}
+              onClick={() => handleClick(link.label.charAt(1) + link.label)}
               className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
             >
               {link.label}
