@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import useMenuOpen, { UseMenuOpenProps } from "../lib/hooks/useMenuOpen";
 
 const Nav = () => {
   //
@@ -17,30 +18,29 @@ const Nav = () => {
 
   const panelRef = useRef<HTMLDivElement>(null);
 
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const auth = localStorage.getItem("user") || undefined;
   const quantity = useSelector((state: RootState) => state.cart.itemsInCart);
 
-  console.log(open);
-
+  const { open, setOpen } = useMenuOpen({ refValue: panelRef });
   ////LOGIC
 
   // close panel when clicking outside of it
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        panelRef.current &&
-        !panelRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       panelRef.current &&
+  //       !panelRef.current.contains(event.target as Node)
+  //     ) {
+  //       setOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    // clearing event after component unmount
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  //   // clearing event after component unmount
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, []);
 
   const handleUserPanel = () => {
     if (!auth) {
