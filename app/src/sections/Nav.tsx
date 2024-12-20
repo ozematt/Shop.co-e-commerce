@@ -1,14 +1,15 @@
 import { navLinks } from "../constants";
 import cartIcon from "../assets/Cart.svg";
-import userIcon from "../assets/Avatar.svg";
+
 import hamburger from "../assets/Hamburger.svg";
 import lupeIcon from "../assets/Lupe_icon.png";
 import arrow from "../assets/Arrow down.png";
 import { useLocation, useNavigate } from "react-router";
-import { useEffect, useRef, useState } from "react";
+// import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import useMenuOpen, { UseMenuOpenProps } from "../lib/hooks/useMenuOpen";
+// import useMenuOpen, { UseMenuOpenProps } from "../lib/hooks/usePanelOpen";
+import UserIcon from "../components/UserIcon";
 
 const Nav = () => {
   //
@@ -16,51 +17,16 @@ const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const panelRef = useRef<HTMLDivElement>(null);
-
-  // const [open, setOpen] = useState(false);
   const auth = localStorage.getItem("user") || undefined;
   const quantity = useSelector((state: RootState) => state.cart.itemsInCart);
 
-  const { open, setOpen } = useMenuOpen({ refValue: panelRef });
   ////LOGIC
-
-  // close panel when clicking outside of it
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       panelRef.current &&
-  //       !panelRef.current.contains(event.target as Node)
-  //     ) {
-  //       setOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("mousedown", handleClickOutside);
-
-  //   // clearing event after component unmount
-  //   return () => document.removeEventListener("mousedown", handleClickOutside);
-  // }, []);
-
-  const handleUserPanel = () => {
-    if (!auth) {
-      navigate("/login");
-      return;
-    }
-    setOpen(!open);
-  };
-
   const handleCart = () => {
     if (!auth) {
       navigate("/login");
       return;
     }
     navigate("/cart");
-  };
-
-  const handleLogOut = () => {
-    localStorage.removeItem("user");
-    setOpen(false);
   };
 
   ////UI
@@ -138,39 +104,7 @@ const Nav = () => {
             </>
           )}
         </div>
-        <div ref={panelRef}>
-          <img
-            src={userIcon}
-            alt="user icon"
-            width={24}
-            height={24}
-            onClick={handleUserPanel}
-            className="cursor-pointer hover:opacity-60"
-          />
-          {open && (
-            <ul className="absolute right-[-5px] top-[50px] z-50 w-[130px] rounded-[5px] bg-white bg-opacity-90 pl-3 pt-1 ring-1 ring-black ring-opacity-20">
-              <li
-                className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
-                // onClick={() => navigate("/shop")}
-              >
-                User Info
-              </li>
-              <li
-                className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
-                // onClick={}
-              >
-                Purchase History
-              </li>
-              <li
-                className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
-                onClick={handleLogOut}
-              >
-                {" "}
-                Log Out
-              </li>
-            </ul>
-          )}
-        </div>
+        <UserIcon />
       </div>
     </nav>
   );

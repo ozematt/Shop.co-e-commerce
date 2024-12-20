@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 
-export type UseMenuOpenProps = {
+export type UsePanelOpenProps = {
   refValue: React.RefObject<HTMLDivElement>;
-  //   setOpen: (open: boolean) => void;
 };
 
-const useMenuOpen = ({ refValue }: UseMenuOpenProps) => {
+const usePanelOpen = ({ refValue }: UsePanelOpenProps) => {
+  //
+  ////DATA
   const [open, setOpen] = useState(false);
 
+  ////LOGIC
   // close panel when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -28,4 +30,4 @@ const useMenuOpen = ({ refValue }: UseMenuOpenProps) => {
   return { open, setOpen };
 };
 
-export default useMenuOpen;
+export default usePanelOpen;
