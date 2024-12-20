@@ -50,7 +50,10 @@ const TopRating = () => {
 
   ////UI
   return (
-    <section className="mt-[50px] flex w-full max-w-[1400px] flex-col items-center px-4 sm:mt-[72px] sm:px-[100px]">
+    <section
+      id="topRating"
+      className="mt-[50px] flex w-full max-w-[1400px] flex-col items-center px-4 sm:mt-[72px] sm:px-[100px]"
+    >
       <h2 className="text-center font-integralCFBold text-[32px] sm:text-5xl">
         Top Rating
       </h2>

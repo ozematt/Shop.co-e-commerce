@@ -3,24 +3,24 @@ import email from "../assets/Envelope.png";
 
 const Newsletter = () => {
   return (
-    <section className="px-4 sm:px-[80px] mt-[80px] relative">
-      <div className="flex justify-center min-[1345px]:justify-between items-center flex-wrap w-full max-w-[1280px] bg-black rounded-[20px]">
-        <h2 className="font-integralCFBold  text-white text-[32px] sm:text-[40px] py-[32px] sm:py-[43px] px-[36px] sm:px-[64px] w-full max-w-[690px] leading-[45px]">
+    <section id="newsletter" className="relative mt-[80px] px-4 sm:px-[80px]">
+      <div className="flex w-full max-w-[1280px] flex-wrap items-center justify-center rounded-[20px] bg-black min-[1345px]:justify-between">
+        <h2 className="w-full max-w-[690px] px-[36px] py-[32px] font-integralCFBold text-[32px] leading-[45px] text-white sm:px-[64px] sm:py-[43px] sm:text-[40px]">
           Stay upto date about our latest offers
         </h2>
-        <div className="flex flex-col pb-[28px] sm:py-[43px] px-3 sm:px-[64px]">
+        <div className="flex flex-col px-3 pb-[28px] sm:px-[64px] sm:py-[43px]">
           <Input
             icon={email}
             alt="envelope"
             type="text"
             placeholder="Enter your email address"
           />
-          <button className="mt-[14px] text-black max-sm:text-[14px] bg-white py-[12px] px-[80px] sm:px-[89px] rounded-full flex-shrink-0 hover:scale-95 transition ease-in-out duration-200">
+          <button className="mt-[14px] flex-shrink-0 rounded-full bg-white px-[80px] py-[12px] text-black transition duration-200 ease-in-out hover:scale-95 max-sm:text-[14px] sm:px-[89px]">
             Subscribe to Newsletter
           </button>
         </div>
       </div>
-      <div className="bg-grayBG absolute z-[-1] h-[50%] w-full bottom-0 left-0" />
+      <div className="absolute bottom-0 left-0 z-[-1] h-[50%] w-full bg-grayBG" />
     </section>
   );
 };

@@ -24,10 +24,10 @@ const Testimonials = () => {
 
   return (
     <>
-      <section className="px-4 sm:px-[100px] relative overflow-hidden">
-        <div className="flex items-end justify-between pt-[80px] pb-[40px]">
+      <section className="relative overflow-hidden px-4 sm:px-[100px]">
+        <div className="flex items-end justify-between pb-[40px] pt-[80px]">
           {" "}
-          <h2 className=" font-integralCFBold text-[32px] sm:text-5xl max-sm:leading-9">
+          <h2 className="font-integralCFBold text-[32px] max-sm:leading-9 sm:text-5xl">
             Our happy customers
           </h2>
           <div className="flex-shrink-0">
@@ -42,7 +42,7 @@ const Testimonials = () => {
         </div>
 
         <div
-          className="flex gap-1 sm:gap-5 transition-transform duration-300 ease-in-out"
+          className="flex gap-1 transition-transform duration-300 ease-in-out sm:gap-5"
           style={{
             transform: `translateX(-${
               currentIndex * (smallDevices ? 362 : 420)
@@ -53,8 +53,8 @@ const Testimonials = () => {
             <Comment key={comment.name} {...comment} />
           ))}
         </div>
-        <div className="absolute top-0 left-0 sm:w-[100px] h-full  backdrop-blur-[2px]"></div>
-        <div className="absolute top-0 right-0 sm:w-[100px] h-full  backdrop-blur-[2px] "></div>
+        <div className="absolute left-0 top-0 h-full backdrop-blur-[2px] sm:w-[100px]"></div>
+        <div className="absolute right-0 top-0 h-full backdrop-blur-[2px] sm:w-[100px]"></div>
       </section>
     </>
   );
