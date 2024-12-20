@@ -1,15 +1,11 @@
 import { navLinks } from "../constants";
-
 import hamburger from "../assets/Hamburger.svg";
 import lupeIcon from "../assets/Lupe_icon.png";
 import arrow from "../assets/Arrow down.png";
 import { useLocation, useNavigate } from "react-router";
-// import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-// import useMenuOpen, { UseMenuOpenProps } from "../lib/hooks/usePanelOpen";
 import UserIcon from "../components/UserIcon";
 import CartIcon from "../components/CartIcon";
+import HamburgerMenu from "../components/HamburgerMenu";
 
 const Nav = () => {
   //
@@ -24,13 +20,7 @@ const Nav = () => {
     <nav className="max-container flex h-[96px] items-center px-4 max-[838px]:justify-between sm:px-[100px]">
       <div className="flex items-center">
         {" "}
-        <img
-          src={hamburger}
-          alt="hamburger menu"
-          width={24}
-          height={24}
-          className="mr-4 min-w-[24px] cursor-pointer pb-[6px] hover:opacity-60 sm:min-w-[30px] min-[1192px]:hidden"
-        />
+        <HamburgerMenu />
         <a
           href="/"
           className="mb-[7px] font-integralCFBold text-[25px] sm:text-[32px]"
