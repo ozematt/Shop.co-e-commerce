@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 const CartIcon = () => {
   //
+  ////DATA
   const navigate = useNavigate();
   const auth = localStorage.getItem("user") || undefined;
   const quantity = useSelector((state: RootState) => state.cart.itemsInCart);
 
+  ////LOGIC
   const handleCart = () => {
     if (!auth) {
       navigate("/login");
@@ -16,6 +18,8 @@ const CartIcon = () => {
     }
     navigate("/cart");
   };
+
+  ////UI
   return (
     <div className="relative">
       <img
