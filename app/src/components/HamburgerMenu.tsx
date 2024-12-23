@@ -14,16 +14,15 @@ const HamburgerMenu = () => {
   const { open, setOpen } = usePanelOpen({ refValue: menuRef });
 
   const handleClick = (id: string) => {
-    // Nawigacja do strony głównej
     navigate("/");
 
-    // Przewinięcie do elementu o id "targetElement" po załadowaniu strony
+    // Scrolling to element id after page load
     setTimeout(() => {
       const targetElement = document.getElementById(id);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: "smooth" });
       }
-    }, 500); // opóźnienie, aby upewnić się, że strona się załadowała
+    }, 500); // delay to make sure the page has loaded
   };
 
   return (
