@@ -1,25 +1,68 @@
+import { useMutation } from "@tanstack/react-query";
 import Footer from "../sections/Footer";
 import Newsletter from "../sections/Newsletter";
+import fetchUserData, { User } from "../api/queries/user";
+import { useEffect, useState } from "react";
+import { UserLocalStorage } from "./UserIcon";
 
 const MyAccount = () => {
+  //
+  ////DATA
+  const [userData, setUserData] = useState<User | null>(null);
+
+  const { id: userId }: UserLocalStorage = JSON.parse(
+    localStorage.getItem("user") || "{}",
+  );
+
+  //handling responses from the server
+  const mutation = useMutation({
+    mutationFn: fetchUserData,
+    // onError: () => {
+    //   setError("username", {
+    //     type: "custom",
+    //     message: "User does not exist",
+    //   });
+    // },
+    onSuccess: (data) => {
+      setUserData(data);
+    },
+  });
+
+  useEffect(() => {
+    if (userId) {
+      mutation.mutate(userId);
+    }
+  }, [userId]);
+
+  ////UI
   return (
     <>
-      <section className="max-container flex gap-6 px-4 sm:px-[100px]">
+      <section className="max-container mt-3 flex gap-6 px-4 sm:px-[100px]">
         <div className="flex h-[400px] w-[400px] flex-col items-center rounded-3xl py-7 ring-1">
-          <div className="h-[200px] w-[200px] rounded-full ring-1" />
+          <img
+            src={userData?.image}
+            alt=""
+            className="h-[200px] w-[200px] rounded-full bg-grayBG object-contain"
+          />
 
-          <p className="mt-2 font-satoshi text-lg font-medium opacity-60">
-            Username
+          <p className="mt-2 font-satoshi text-2xl font-medium opacity-60">
+            {userData?.username}
           </p>
           <div className="ml-[-50px] mt-2 space-y-1">
             {" "}
-            <p className="font-satoshi font-medium opacity-60">Name:</p>
-            <p className="font-satoshi font-medium opacity-60">Surname:</p>
-            <p className="font-satoshi font-medium opacity-60">Age:</p>
+            <p className="font-satoshi font-medium opacity-60">
+              Name: {userData?.firstName}
+            </p>
+            <p className="font-satoshi font-medium opacity-60">
+              Surname: {userData?.lastName}
+            </p>
+            <p className="font-satoshi font-medium opacity-60">
+              Age: {userData?.age}
+            </p>
           </div>
         </div>
         <div className="h-[400px] w-full rounded-3xl px-6 py-7 ring-1">
-          <h6 className="font-integralCFBold text-3xl">Purchase History</h6>
+          <h6 className="font-integralCFBold text-4xl">Purchase History</h6>
           <div className="border-b-2 py-2" />
           <p className="py-2 font-satoshi opacity-60">Date: 20.20.2020</p>
           <p className="font-satoshi text-3xl font-bold">Total: 300$</p>

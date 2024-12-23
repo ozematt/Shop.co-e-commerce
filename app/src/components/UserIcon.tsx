@@ -3,7 +3,7 @@ import userIcon from "../assets/Avatar.svg";
 import usePanelOpen from "../lib/hooks/usePanelOpen";
 import { useNavigate } from "react-router-dom";
 
-type UserLocalStorage = {
+export type UserLocalStorage = {
   id: number;
   username: string;
 };

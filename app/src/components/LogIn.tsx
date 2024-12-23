@@ -50,6 +50,7 @@ const LogIn = () => {
     onSuccess: (data) => {
       () => clearErrors(["username"]);
       reset(); //form fields reset
+
       const user = { username: data.username, id: data.id };
       localStorage.setItem("user", JSON.stringify(user)); // add user to local storage
       navigate("/shop");
