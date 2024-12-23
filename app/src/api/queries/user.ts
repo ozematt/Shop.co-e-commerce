@@ -16,6 +16,8 @@ const addressSchema = z.object({
   country: z.string(),
 });
 
+export type UserAddress = z.infer<typeof addressSchema>;
+
 const hairSchema = z.object({
   color: z.string(),
   type: z.string(),

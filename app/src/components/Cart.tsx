@@ -10,10 +10,12 @@ import arrowWhite from "../assets/Arrow_white.svg";
 import { RootState } from "../redux/store";
 import calculateTotalDiscount from "../lib/helpers/calculateTotalDiscount";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   //
   ////DATA
+  const navigate = useNavigate();
   const cart = useSelector(selectAllCart);
   const total = useSelector((state: RootState) => state.cart.total);
 
@@ -120,7 +122,10 @@ const Cart = () => {
                     </button>
                   </div>
 
-                  <button className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] pr-9 font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm">
+                  <button
+                    onClick={() => navigate("/cart/checkout")}
+                    className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] pr-9 font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm"
+                  >
                     Go to Checkout{" "}
                     <img
                       src={arrowWhite}
