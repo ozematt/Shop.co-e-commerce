@@ -1,8 +1,6 @@
 import { USERS } from "../constants";
 import { z } from "zod";
 
-import { z } from "zod";
-
 const coordinatesSchema = z.object({
   lat: z.number(),
   lng: z.number(),
@@ -75,14 +73,24 @@ const userSchema = z.object({
   role: z.enum(["admin", "moderator", "user"]),
 });
 
+export type User = z.infer<typeof userSchema>;
+
 const fetchUserData = async (id: number) => {
   try {
     const response = await fetch(`${USERS}/${id}`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    const data = await response.json();
-    console.log(data);
+
+    const user: unknown = await response.json();
+    const validateUser = userSchema.safeParse(user);
+
+    if (!validateUser.success) {
+      console.error("Validation error:", validateUser.error);
+      throw new Error("Validation failed: " + validateUser.error);
+    }
+    const validProducts: User = validateUser.data;
+    return validProducts;
   } catch (error) {
     console.error("There has been a problem with fetch", error);
     throw error;
