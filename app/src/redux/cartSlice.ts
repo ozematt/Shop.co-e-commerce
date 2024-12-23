@@ -18,12 +18,14 @@ export type CartProduct = {
   shippingTime: string;
 };
 
+//added cart to local storage
 const saveCartToLocalStorage = (
   cartState: ReturnType<typeof cartAdapter.getInitialState>,
 ) => {
   localStorage.setItem("cart", JSON.stringify(cartState));
 };
 
+//load cart data from local storage if exist
 const loadCartFromLocalStorage = () => {
   const savedCart = localStorage.getItem("cart");
   if (savedCart) {
@@ -32,7 +34,7 @@ const loadCartFromLocalStorage = () => {
   return {
     total: 0,
     itemsInCart: 0,
-    entities: {}, // Musi pasować do struktury `cartAdapter`
+    entities: {},
     ids: [],
   };
 };
