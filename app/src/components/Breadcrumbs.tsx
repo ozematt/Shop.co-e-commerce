@@ -25,11 +25,24 @@ const Breadcrumbs = () => {
         Home
       </p>
       <img src={arrow} width={16} alt="arrow" className="-rotate-90" />
-      {location.pathname === "/cart" ? (
+
+      {location.pathname === "/cart" && (
         <p className="cursor-pointer px-2 font-satoshi leading-none hover:opacity-70">
           <strong>Cart</strong>
         </p>
-      ) : (
+      )}
+      {location.pathname === "/cart/checkout" && (
+        <div
+          onClick={() => navigate("/cart")}
+          className="flex cursor-pointer px-2 font-satoshi leading-none hover:opacity-70"
+        >
+          Cart
+          <img src={arrow} width={16} alt="arrow" className="mx-2 -rotate-90" />
+          <strong>Checkout</strong>
+        </div>
+      )}
+
+      {location.pathname.includes("/shop") && (
         <p
           className="cursor-pointer px-2 font-satoshi leading-none hover:opacity-70"
           onClick={() => navigate("/shop")}
