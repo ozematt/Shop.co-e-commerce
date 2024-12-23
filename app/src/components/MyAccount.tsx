@@ -10,6 +10,7 @@ const MyAccount = () => {
   ////DATA
   const [userData, setUserData] = useState<User | null>(null);
 
+  //user id from local storage
   const { id: userId }: UserLocalStorage = JSON.parse(
     localStorage.getItem("user") || "{}",
   );
