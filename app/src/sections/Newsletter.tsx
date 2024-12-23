@@ -2,6 +2,8 @@ import Input from "../components/Input";
 import email from "../assets/Envelope.png";
 
 const Newsletter = () => {
+  //
+  ////UI
   return (
     <section id="newsletter" className="relative mt-[80px] px-4 sm:px-[80px]">
       <div className="flex w-full max-w-[1280px] flex-wrap items-center justify-center rounded-[20px] bg-black min-[1345px]:justify-between">

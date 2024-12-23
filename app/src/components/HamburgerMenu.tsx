@@ -25,6 +25,7 @@ const HamburgerMenu = () => {
     }, 500); // delay to make sure the page has loaded
   };
 
+  ////UI
   return (
     <div ref={menuRef}>
       <img
