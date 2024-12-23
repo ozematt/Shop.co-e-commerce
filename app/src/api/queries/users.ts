@@ -48,12 +48,12 @@ const userSchema = z.object({
   lastName: z.string(),
   maidenName: z.string(),
   age: z.number(),
-  gender: z.enum(["male", "female", "other"]), // Można rozszerzyć o inne wartości
+  gender: z.enum(["male", "female", "other"]),
   email: z.string().email(),
   phone: z.string(),
   username: z.string(),
   password: z.string(),
-  birthDate: z.string(), // Można użyć `z.date()` i odpowiednio sparsować datę
+  birthDate: z.string(),
   image: z.string().optional(),
   bloodGroup: z.string(),
   height: z.number(),

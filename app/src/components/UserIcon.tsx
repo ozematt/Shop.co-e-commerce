@@ -3,12 +3,23 @@ import userIcon from "../assets/Avatar.svg";
 import usePanelOpen from "../lib/hooks/usePanelOpen";
 import { useNavigate } from "react-router-dom";
 
+type UserLocalStorage = {
+  id: number;
+  username: string;
+};
+
 const UserIcon = () => {
   //
   ////DATA
   const panelRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const auth = localStorage.getItem("user") || undefined;
+
+  let userName: UserLocalStorage;
+  if (auth) {
+    const user = JSON.parse(auth);
+    userName = user.username;
+  }
 
   //custom hook
   const { open, setOpen } = usePanelOpen({ refValue: panelRef });
@@ -42,16 +53,11 @@ const UserIcon = () => {
         <ul className="absolute right-[-5px] top-[50px] z-50 w-[130px] rounded-[5px] bg-white bg-opacity-90 pl-3 pt-1 ring-1 ring-black ring-opacity-20">
           <li
             className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
-            // onClick={() => navigate("/shop")}
+            onClick={() => navigate(`account/${userName}`)}
           >
-            User Info
+            My Account
           </li>
-          <li
-            className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
-            // onClick={}
-          >
-            Purchase History
-          </li>
+
           <li
             className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
             onClick={handleLogOut}
