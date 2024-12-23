@@ -1,5 +1,4 @@
 import { navLinks } from "../constants";
-import hamburger from "../assets/Hamburger.svg";
 import lupeIcon from "../assets/Lupe_icon.png";
 import arrow from "../assets/Arrow down.png";
 import { useLocation, useNavigate } from "react-router";
@@ -21,6 +20,7 @@ const Nav = () => {
       <div className="flex items-center">
         {" "}
         <HamburgerMenu />
+        {/* Logo */}
         <a
           href="/"
           className="mb-[7px] font-integralCFBold text-[25px] sm:text-[32px]"
@@ -29,6 +29,7 @@ const Nav = () => {
         </a>
       </div>
 
+      {/* Nav Links */}
       <ul className="flex min-w-[390px] items-center justify-center gap-[24px] pl-[40px] font-satoshi font-normal max-[1192px]:hidden">
         <li className="flex items-center py-3">
           <button
@@ -52,12 +53,14 @@ const Nav = () => {
         ))}
       </ul>
 
+      {/* Search */}
       <input
         type="text"
         placeholder=" Search for products..."
         className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
       />
 
+      {/* Icons */}
       <div className="relative ml-[40px] flex min-w-[62px] items-center gap-[14px]">
         <img
           src={lupeIcon}
