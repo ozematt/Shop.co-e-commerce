@@ -38,7 +38,7 @@ const MyAccount = () => {
   return (
     <>
       <section className="max-container mt-3 flex gap-6 px-4 sm:px-[100px]">
-        <div className="flex h-[400px] w-[400px] flex-col items-center rounded-3xl py-7 ring-1">
+        <div className="flex h-[400px] w-[400px] flex-col items-center rounded-[20px] py-7 ring-1 ring-black ring-opacity-10">
           <img
             src={userData?.image}
             alt=""
@@ -61,12 +61,12 @@ const MyAccount = () => {
             </p>
           </div>
         </div>
-        <div className="h-[400px] w-full rounded-3xl px-6 py-7 ring-1">
+        <div className="h-[400px] w-full rounded-[20px] px-6 py-7 ring-1 ring-black ring-opacity-10">
           <h6 className="font-integralCFBold text-4xl">Purchase History</h6>
-          <div className="border-b-2 py-2" />
+          <div className="border-b-[1px] py-2" />
           <p className="py-2 font-satoshi opacity-60">Date: 20.20.2020</p>
           <p className="font-satoshi text-3xl font-bold">Total: 300$</p>
-          <div className="border-b-2 py-2" />
+          <div className="border-b-[1px] py-2" />
         </div>
       </section>{" "}
       <div className="max-container">

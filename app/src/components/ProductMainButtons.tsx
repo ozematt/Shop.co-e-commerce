@@ -46,7 +46,6 @@ const ProductMainButtons = ({
         shippingTime: shippingInformation,
       };
       dispatch(addToCart(modifiedProductData)); //add to global state
-      // setQuantity(1); //reset quantity display
     } else {
       navigate("/login");
     }

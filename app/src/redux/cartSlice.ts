@@ -18,16 +18,32 @@ export type CartProduct = {
   shippingTime: string;
 };
 
+const saveCartToLocalStorage = (
+  cartState: ReturnType<typeof cartAdapter.getInitialState>,
+) => {
+  localStorage.setItem("cart", JSON.stringify(cartState));
+};
+
+const loadCartFromLocalStorage = () => {
+  const savedCart = localStorage.getItem("cart");
+  if (savedCart) {
+    return JSON.parse(savedCart);
+  }
+  return {
+    total: 0,
+    itemsInCart: 0,
+    entities: {}, // Musi pasować do struktury `cartAdapter`
+    ids: [],
+  };
+};
+
 const cartAdapter = createEntityAdapter({
   selectId: (product: CartProduct) => product.id,
 });
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: cartAdapter.getInitialState({
-    total: 0,
-    itemsInCart: 0,
-  }),
+  initialState: cartAdapter.getInitialState(loadCartFromLocalStorage()),
   reducers: {
     addToCart: (state, action: PayloadAction<CartProduct>) => {
       const item = action.payload;
@@ -52,6 +68,7 @@ const cartSlice = createSlice({
         state.total = Number((state.total + item.purchaseTotal).toFixed(2)); //update total price
         state.itemsInCart = item.quantity + state.itemsInCart;
       }
+      saveCartToLocalStorage(state);
     },
     updateCart: (
       state,
@@ -78,6 +95,7 @@ const cartSlice = createSlice({
 
         state.itemsInCart += amountDifference;
       }
+      saveCartToLocalStorage(state);
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const itemId = action.payload;
@@ -90,6 +108,7 @@ const cartSlice = createSlice({
         state.itemsInCart -= itemToRemove.quantity; //update quantity
       }
       cartAdapter.removeOne(state, itemId);
+      saveCartToLocalStorage(state);
     },
   },
 });
