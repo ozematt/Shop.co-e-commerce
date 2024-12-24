@@ -18,12 +18,7 @@ const MyAccount = () => {
   //handling responses from the server
   const mutation = useMutation({
     mutationFn: fetchUserData,
-    // onError: () => {
-    //   setError("username", {
-    //     type: "custom",
-    //     message: "User does not exist",
-    //   });
-    // },
+
     onSuccess: (data) => {
       setUserData(data);
     },
