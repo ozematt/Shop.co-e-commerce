@@ -4,6 +4,14 @@ import { SortMethod, addSortMethod } from "../redux/productsSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 // import { SortMethod } from "./Shop";
 
+const sortingOptions: SortMethod[] = [
+  "Alphabetical",
+  "Hightest Price",
+  "Lowest Price",
+  "Top Rated",
+  "Least Rated",
+] as const;
+
 const Sorting = () => {
   //
   ////DATA
