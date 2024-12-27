@@ -4,14 +4,6 @@ import { SortMethod, addSortMethod } from "../redux/productsSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 // import { SortMethod } from "./Shop";
 
-const sortingOptions: SortMethod[] = [
-  "Alphabetical",
-  "Hightest Price",
-  "Lowest Price",
-  "Top Rated",
-  "Least Rated",
-] as const;
-
 const Sorting = () => {
   //
   ////DATA
@@ -25,15 +17,15 @@ const Sorting = () => {
         onClick={() => {
           setOpen(!open);
         }}
-        className="flex justify-between items-center cursor-pointer"
+        className="flex cursor-pointer items-center justify-between"
       >
-        <p className="font-satoshi font-bold text-[20px]">Sorting</p>
+        <p className="font-satoshi text-[20px] font-bold">Sorting</p>
         <img
           src={arrow}
           width={20}
           height={20}
           alt="arrow"
-          className="opacity-60 hover:opacity-100 cursor-pointer"
+          className="cursor-pointer opacity-60 hover:opacity-100"
           style={{
             transform: `rotate(${!open ? "180deg" : "0deg"})`,
           }}
@@ -48,7 +40,7 @@ const Sorting = () => {
               className="flex items-center justify-between first:pt-6"
             >
               {" "}
-              <p className="font-satoshi pb-2 opacity-60 hover:opacity-100 cursor-pointer">
+              <p className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100">
                 {option}
               </p>
             </div>
