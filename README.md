@@ -57,5 +57,6 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 
 - **Obsługa motywów**: Użytkownik będzie miał możliwość przełączania między **jasnym** a **ciemnym** motywem..
 - **Proces realizacji zakupu** – Użytkownicy będą przechodzić przez cały proces zakupu.
+- **Panel uzytkownika** – Informacje o koncie uzytkownika z historią zakupów.
 
 Dziękuję za odwiedzenie repozytorium! 😊
