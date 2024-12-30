@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router";
-import arrow from "../assets/Arrow down.png";
+import { arrow } from "../assets";
 import { useParams } from "react-router-dom";
 
 const Breadcrumbs = () => {

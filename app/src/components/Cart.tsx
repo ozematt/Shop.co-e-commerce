@@ -1,16 +1,15 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectAllCart } from "../redux/cartSlice";
+import { RootState } from "../redux/store";
 import Footer from "../sections/Footer";
 import Newsletter from "../sections/Newsletter";
 import Breadcrumbs from "./Breadcrumbs";
-import { useSelector } from "react-redux";
-
-import { selectAllCart } from "../redux/cartSlice";
 import CartItem from "./CartItem";
-import discount from "../assets/Discount.svg";
-import arrowWhite from "../assets/Arrow_white.svg";
-import { RootState } from "../redux/store";
 import calculateTotalDiscount from "../lib/helpers/calculateTotalDiscount";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { discount } from "../assets";
+import { arrowWhite } from "../assets";
 
 const Cart = () => {
   //
