@@ -8,8 +8,7 @@ import Newsletter from "../sections/Newsletter";
 import Breadcrumbs from "./Breadcrumbs";
 import CartItem from "./CartItem";
 import calculateTotalDiscount from "../lib/helpers/calculateTotalDiscount";
-import { discount } from "../assets";
-import { arrowWhite } from "../assets";
+import { discount, arrowWhite } from "../assets";
 
 const Cart = () => {
   //

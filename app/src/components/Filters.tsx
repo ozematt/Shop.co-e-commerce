@@ -1,17 +1,16 @@
-import settings from "../assets/Settings.png";
-import arrow from "../assets/Arrow down.png";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import fetchCategoriesList from "../api/queries/categories";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Product } from "../api/queries/products";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import {
   addCategorizedProducts,
   addCategoryName,
 } from "../redux/productsSlice";
-import { Product } from "../api/queries/products";
 import Sorting from "./Sorting";
+import { settings, arrow } from "../assets";
 
 type FiltersProps = {
   iconHide?: boolean;

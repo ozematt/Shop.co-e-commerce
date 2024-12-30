@@ -1,9 +1,7 @@
-import deleteIcon from "../assets/Delete.svg";
+import { useNavigate } from "react-router-dom";
 import { CartProduct, removeFromCart, updateCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
-import minus from "../assets/Minus.svg";
-import plus from "../assets/Plus.svg";
-import { useNavigate } from "react-router-dom";
+import { minus, plus, deleteIcon } from "../assets";
 
 const CartItem = ({
   id,
