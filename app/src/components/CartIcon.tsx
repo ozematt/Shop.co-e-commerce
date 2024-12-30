@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import cartIcon from "../assets/Cart.svg";
 import { RootState } from "../redux/store";
 import { useNavigate } from "react-router-dom";
+import { cartIcon } from "../assets";
 
 const CartIcon = () => {
   //

@@ -1,6 +1,6 @@
 import { Rating } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import tick from "../assets/Green tick.png";
+import { tick } from "../assets";
 
 type CommentProps = {
   rating: number;
