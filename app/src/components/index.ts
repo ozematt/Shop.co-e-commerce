@@ -3,6 +3,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import Button from "./Button";
 import Cart from "../components/Cart";
 import CartIcon from "./CartIcon";
+import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 import Comment from "./Comment";
 import Dashboard from "../components/Dashboard";
@@ -33,6 +34,7 @@ export {
   Button,
   Cart,
   CartIcon,
+  CartItem,
   Checkout,
   Comment,
   Dashboard,

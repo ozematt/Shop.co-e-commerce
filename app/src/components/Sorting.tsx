@@ -1,7 +1,7 @@
 import { useState } from "react";
-import arrow from "../assets/Arrow down.png";
 import { SortMethod, addSortMethod } from "../redux/productsSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
+import { arrow } from "../assets";
 
 const sortingOptions: SortMethod[] = [
   "Alphabetical",

@@ -1,8 +1,6 @@
-import Details from "./Details";
-import DetailsButton from "./DetailsButton";
-import Comment from "./Comment";
 import { useState } from "react";
 import { Product } from "../api/queries/products";
+import { Comment, Details, DetailsButton } from "./";
 
 const ProductInfo = ({
   brand,

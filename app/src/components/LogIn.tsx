@@ -5,8 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Footer, Newsletter } from "../sections";
-
-import Button from "./Button";
+import { Button } from "./";
 import { user, lock } from "../assets";
 
 export const loginSchema = z.object({

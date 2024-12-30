@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import arrow from "../assets/Arrow down.png";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
-
 import { useLocation } from "react-router-dom";
 import {
   SortMethod,
   addCategoryName,
   addSortMethod,
 } from "../redux/productsSlice";
-import settings from "../assets/Settings.png";
-import Filters from "./Filters";
-import closeBlack from "../assets/Close_black.png";
+import { settings, arrow, closeBlack } from "../assets";
+import { Filters } from "./";
 
 const sortingOptions: SortMethod[] = [
   "Alphabetical",
@@ -40,7 +37,7 @@ const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
 
   //global state of added category name
   const categoryName = useSelector(
-    (state: RootState) => state.products.categoryName
+    (state: RootState) => state.products.categoryName,
   );
 
   ////LOGIC
@@ -63,15 +60,15 @@ const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
 
   ////UI
   return (
-    <div className="flex justify-between items-center relative">
-      <h3 className="font-satoshi font-bold text-2xl sm:text-[32px]">
+    <div className="relative flex items-center justify-between">
+      <h3 className="font-satoshi text-2xl font-bold sm:text-[32px]">
         {categoryName ? categoryName : "Products"}
       </h3>
-      <div className="flex max-sm:text-[14px] items-center pt-2">
+      <div className="flex items-center pt-2 max-sm:text-[14px]">
         {" "}
-        <p className=" sm:pt-2  font-satoshi opacity-60">
+        <p className="font-satoshi opacity-60 sm:pt-2">
           Showing {first}-{second} of {total} Products{" "}
-          <span className="hidden xl:inline pl-1">Sort by:</span>
+          <span className="hidden pl-1 xl:inline">Sort by:</span>
         </p>
         {/* SETTINGS ICON */}
         <img
@@ -80,11 +77,11 @@ const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
           width={34}
           height={34}
           onClick={() => setFilterOpen(!filterOpen)}
-          className="ml-5 hidden max-xl:block mb-[-3px] -rotate-90 opacity-80 hover:opacity-100 cursor-pointer bg-grayBG p-[7px] rounded-full"
+          className="mb-[-3px] ml-5 hidden -rotate-90 cursor-pointer rounded-full bg-grayBG p-[7px] opacity-80 hover:opacity-100 max-xl:block"
         />
         <span
           onClick={() => setOpen(!open)}
-          className=" max-xl:hidden flex pt-2 pl-2  cursor-pointer items-center font-satoshi font-bold"
+          className="flex cursor-pointer items-center pl-2 pt-2 font-satoshi font-bold max-xl:hidden"
         >
           {sortBy}
           <img
@@ -99,11 +96,11 @@ const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
           />
         </span>
         {open && (
-          <ul className="absolute right-[-5px] ring-1 ring-black ring-opacity-20 top-[50px] w-[130px] rounded-[5px] bg-white bg-opacity-85 z-10 pl-3 pt-1">
+          <ul className="absolute right-[-5px] top-[50px] z-10 w-[130px] rounded-[5px] bg-white bg-opacity-85 pl-3 pt-1 ring-1 ring-black ring-opacity-20">
             {sortingOptions.map((option) => (
               <li
                 key={option}
-                className="font-satoshi pb-2 opacity-60 hover:opacity-100 cursor-pointer"
+                className="cursor-pointer pb-2 font-satoshi opacity-60 hover:opacity-100"
                 onClick={() => handleSortChange(option)}
               >
                 {option}
@@ -115,7 +112,7 @@ const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
       {filterOpen && (
         <>
           {" "}
-          <div className="absolute z-20 bg-white w-full top-[-70px] rounded-2xl">
+          <div className="absolute top-[-70px] z-20 w-full rounded-2xl bg-white">
             <img
               src={closeBlack}
               alt=""
@@ -126,7 +123,7 @@ const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
             />
             <Filters iconHide sortOptions close={handleFilterClose} />
           </div>
-          <div className="fixed inset-0 bg-black opacity-50 -z-50"></div>{" "}
+          <div className="fixed inset-0 -z-50 bg-black opacity-50"></div>{" "}
         </>
       )}
     </div>

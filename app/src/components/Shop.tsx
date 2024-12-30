@@ -1,19 +1,13 @@
-import Footer from "../sections/Footer";
-import Newsletter from "../sections/Newsletter";
-import Breadcrumbs from "./Breadcrumbs";
-import Filters from "./Filters";
-import PaginationBar from "./PaginationBar";
-import Product from "./Product";
-import ShopInfoBar from "./ShopInfoBar";
 import { useEffect, useState } from "react";
 import { useLocation, useSearchParams, matchPath } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
-
-import CircularProgress from "@mui/material/CircularProgress";
+import { addProducts } from "../redux/productsSlice";
 import { useQuery } from "@tanstack/react-query";
 import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
-import { addProducts } from "../redux/productsSlice";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Footer, Newsletter } from "../sections";
+import { Breadcrumbs, Filters, PaginationBar, Product, ShopInfoBar } from "./";
 
 const Shop = () => {
   //

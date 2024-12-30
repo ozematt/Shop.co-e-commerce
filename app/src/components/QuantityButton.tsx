@@ -1,5 +1,4 @@
-import minus from "../assets/Minus.svg";
-import plus from "../assets/Plus.svg";
+import { minus, plus } from "../assets";
 
 type QuantityButtonProps = {
   onDecrement: () => void;

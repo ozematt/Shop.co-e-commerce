@@ -1,7 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import arrowLeft from "../assets/Arrow-left.png";
-import arrowRight from "../assets/Arrow-right.png";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { arrowLeft, arrowRight } from "../assets";
 import { generatePagination } from "../lib/helpers/generatePagination";
 
 type PaginationBarProps = {

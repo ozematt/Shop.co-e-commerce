@@ -9,7 +9,7 @@ import {
   addCategorizedProducts,
   addCategoryName,
 } from "../redux/productsSlice";
-import Sorting from "./Sorting";
+import { Sorting } from "./";
 import { settings, arrow } from "../assets";
 
 type FiltersProps = {

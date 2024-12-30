@@ -1,16 +1,17 @@
-import Breadcrumbs from "./Breadcrumbs";
 import { useEffect, useState } from "react";
-import Newsletter from "../sections/Newsletter";
-import Footer from "../sections/Footer";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { Product } from "../api/queries/products";
-import ProductInfo from "./ProductInfo";
-import ProductMainDetails from "./ProductMainDetails";
-import ProductImages from "./ProductImages";
-import ProductMainButtons from "./ProductMainButtons";
-import AlsoLike from "./AlsoLike";
+import {
+  AlsoLike,
+  Breadcrumbs,
+  ProductInfo,
+  ProductMainDetails,
+  ProductImages,
+  ProductMainButtons,
+} from "./";
+import { Footer, Newsletter } from "../sections";
 import { defaultProduct } from "../constants";
 
 const ProductDetails = () => {

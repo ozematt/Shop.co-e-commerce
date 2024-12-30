@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Footer from "../sections/Footer";
-import Newsletter from "../sections/Newsletter";
-import Breadcrumbs from "./Breadcrumbs";
+import { Footer, Newsletter } from "../sections";
+
+import { Breadcrumbs } from "./";
 import { UserAddress } from "../api/queries/user";
 
 const Checkout = () => {

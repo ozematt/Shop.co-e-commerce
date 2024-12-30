@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import userIcon from "../assets/Avatar.svg";
+import { userIcon } from "../assets";
 import usePanelOpen from "../lib/hooks/usePanelOpen";
 import { useNavigate } from "react-router-dom";
 

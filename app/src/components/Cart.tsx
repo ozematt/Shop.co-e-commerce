@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectAllCart } from "../redux/cartSlice";
 import { RootState } from "../redux/store";
-import Footer from "../sections/Footer";
-import Newsletter from "../sections/Newsletter";
-import Breadcrumbs from "./Breadcrumbs";
-import CartItem from "./CartItem";
+import { Footer, Newsletter } from "../sections";
+import { Breadcrumbs, CartItem } from "./";
 import calculateTotalDiscount from "../lib/helpers/calculateTotalDiscount";
 import { discount, arrowWhite } from "../assets";
 
