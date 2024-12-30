@@ -8,7 +8,7 @@ import {
   Cart,
   MyAccount,
   Checkout,
-} from "./sections";
+} from "./components";
 
 function App() {
   return (

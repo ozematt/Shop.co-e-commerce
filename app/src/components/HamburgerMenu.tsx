@@ -1,8 +1,8 @@
 import { useRef } from "react";
-import hamburger from "../assets/Hamburger.svg";
+import { useNavigate } from "react-router-dom";
 import usePanelOpen from "../lib/hooks/usePanelOpen";
 import { navLinks } from "../constants";
-import { useNavigate } from "react-router-dom";
+import { hamburger } from "../assets";
 
 const HamburgerMenu = () => {
   //

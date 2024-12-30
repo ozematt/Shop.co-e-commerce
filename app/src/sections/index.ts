@@ -1,19 +1,21 @@
-import HomePage from "../components/HomePage";
-import Dashboard from "../components/Dashboard";
-import LogIn from "../components/LogIn";
-import Shop from "../components/Shop";
-import ProductDetails from "../components/ProductDetails";
-import Cart from "../components/Cart";
-import MyAccount from "../components/MyAccount";
-import Checkout from "../components/Checkout";
+import BrandBar from "./BrandBar";
+import Category from "./Category";
+import Footer from "./Footer";
+import Hero from "./Hero";
+import Nav from "./Nav";
+import Newsletter from "./Newsletter";
+import Testimonials from "./Testimonials";
+import TopBar from "./TopBar";
+import TopRating from "./TopRating";
 
 export {
-  HomePage,
-  Dashboard,
-  LogIn,
-  Shop,
-  ProductDetails,
-  Cart,
-  MyAccount,
-  Checkout,
+  BrandBar,
+  Category,
+  Footer,
+  Hero,
+  Nav,
+  Newsletter,
+  Testimonials,
+  TopBar,
+  TopRating,
 };

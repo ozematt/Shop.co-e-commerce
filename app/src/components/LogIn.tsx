@@ -1,14 +1,13 @@
-import { useForm } from "react-hook-form";
-import user from "../assets/User.png";
-import lock from "../assets/Lock.png";
-import Footer from "../sections/Footer";
-import Newsletter from "../sections/Newsletter";
-import Button from "./Button";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 import userLogin from "../api/queries/authorization";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Footer, Newsletter } from "../sections";
+
+import Button from "./Button";
+import { user, lock } from "../assets";
 
 export const loginSchema = z.object({
   username: z
