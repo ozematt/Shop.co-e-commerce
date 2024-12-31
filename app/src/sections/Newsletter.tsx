@@ -1,5 +1,5 @@
-import Input from "../components/Input";
-import email from "../assets/Envelope.png";
+import { Input } from "../components";
+import { email } from "../assets";
 
 const Newsletter = () => {
   //

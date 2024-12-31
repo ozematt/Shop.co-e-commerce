@@ -1,9 +1,8 @@
 import { useMediaQuery } from "@mui/material";
 import { comments } from "../constants";
 import { useState } from "react";
-import arrowRight from "../assets/Arrow-right.png";
-import arrowLeft from "../assets/Arrow-left.png";
-import Comment from "../components/Comment";
+import { arrowRight, arrowLeft } from "../assets";
+import { Comment } from "../components";
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import fetchProducts, {
+import {
   type Product as ProductT,
-  ProductsFetchedData,
+  type ProductsFetchedData,
 } from "../api/queries/products";
+import { fetchProducts } from "../api/queries";
 import { useEffect, useState } from "react";
-import Product from "../components/Product";
+import { Product } from "../components";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { addProducts } from "../redux/productsSlice";

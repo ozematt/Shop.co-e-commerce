@@ -31,8 +31,12 @@ import kitchen from "../assets/Kitchen.png";
 import pay from "../assets/Pay.png";
 
 import lupeIcon from "../assets/Lupe_icon.png";
+import email from "../assets/Envelope.png";
+import close from "../assets/Close.png";
 
 export {
+  close,
+  email,
   lupeIcon,
   pay,
   beauty,
