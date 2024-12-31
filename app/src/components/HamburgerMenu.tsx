@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import usePanelOpen from "../lib/hooks/usePanelOpen";
+import { usePanelOpen } from "../lib/hooks";
 import { navLinks } from "../constants";
 import { hamburger } from "../assets";
 

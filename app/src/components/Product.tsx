@@ -2,7 +2,7 @@ import { Rating } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { addCategoryName } from "../redux/productsSlice";
-import useDiscount from "../lib/hooks/useDiscount";
+import { useDiscount } from "../lib/hooks";
 
 export type ProductProps = {
   id: number;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import fetchUserData, { User } from "../api/queries/user";
+import { type User } from "../api/queries/user";
+import { fetchUserData } from "../api/queries";
 import { Footer, Newsletter } from "../sections";
 import { UserLocalStorage } from "./UserIcon";
 

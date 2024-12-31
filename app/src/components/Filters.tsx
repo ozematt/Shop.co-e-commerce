@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import fetchCategoriesList from "../api/queries/categories";
+import { fetchCategoriesList } from "../api/queries";
 import { Product } from "../api/queries/products";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";

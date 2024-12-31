@@ -1,5 +1,5 @@
 import { Rating, useMediaQuery } from "@mui/material";
-import useDiscount from "../lib/hooks/useDiscount";
+import { useDiscount } from "../lib/hooks";
 import { Product } from "../api/queries/products";
 
 const ProductMainDetails = ({

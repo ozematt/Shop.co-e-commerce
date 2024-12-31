@@ -3,7 +3,7 @@ import { Product } from "../api/queries/products";
 import { addToCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { QuantityButton } from "./";
-import useQuantity from "../lib/hooks/useQuantity";
+import { useQuantity } from "../lib/hooks";
 
 const ProductMainButtons = ({
   shippingInformation,

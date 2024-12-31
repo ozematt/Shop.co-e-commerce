@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import userLogin from "../api/queries/authorization";
+import { userLogin } from "../api/queries";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
