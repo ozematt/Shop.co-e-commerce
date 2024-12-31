@@ -5,7 +5,7 @@ import { selectAllCart } from "../redux/cartSlice";
 import { RootState } from "../redux/store";
 import { Footer, Newsletter } from "../sections";
 import { Breadcrumbs, CartItem } from "./";
-import calculateTotalDiscount from "../lib/helpers/calculateTotalDiscount";
+import { calculateTotalDiscount } from "../lib/helpers";
 import { discount, arrowWhite } from "../assets";
 
 const Cart = () => {
