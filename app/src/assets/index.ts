@@ -22,8 +22,24 @@ import arrowRight from "../assets/Arrow-right.png";
 import closeBlack from "../assets/Close_black.png";
 
 import userIcon from "../assets/Avatar.svg";
+import heroIMG from "../assets/hero_cart.png";
+
+import beauty from "../assets/Beauty.png";
+import clothes from "../assets/Clothes.png";
+import electronics from "../assets/Electronics.png";
+import kitchen from "../assets/Kitchen.png";
+import pay from "../assets/Pay.png";
+
+import lupeIcon from "../assets/Lupe_icon.png";
 
 export {
+  lupeIcon,
+  pay,
+  beauty,
+  clothes,
+  electronics,
+  kitchen,
+  heroIMG,
   arrow,
   discount,
   arrowWhite,

@@ -1,10 +1,7 @@
 import { navLinks } from "../constants";
-import lupeIcon from "../assets/Lupe_icon.png";
-import arrow from "../assets/Arrow down.png";
+import { lupeIcon, arrow } from "../assets";
 import { useLocation, useNavigate } from "react-router";
-import UserIcon from "../components/UserIcon";
-import CartIcon from "../components/CartIcon";
-import HamburgerMenu from "../components/HamburgerMenu";
+import { UserIcon, CartIcon, HamburgerMenu } from "../components";
 
 const Nav = () => {
   //
