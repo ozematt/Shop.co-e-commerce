@@ -5,10 +5,13 @@ import { arrowRight, arrowLeft } from "../assets";
 import { Comment } from "../components";
 
 const Testimonials = () => {
+  //
+  ////DATA
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const smallDevices = useMediaQuery("(max-width:640px)");
 
+  ////LOGIC
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
@@ -21,6 +24,7 @@ const Testimonials = () => {
     }
   };
 
+  ////UI
   return (
     <>
       <section className="relative overflow-hidden px-4 sm:px-[100px]">

@@ -1,14 +1,16 @@
 import { brands } from "../constants";
 
 const BrandBar = () => {
+  //
+  ////UI
   return (
-    <section className="px-4 sm:px-[100px] bg-black h-[122px] flex justify-center items-center gap-10 ">
+    <section className="flex h-[122px] items-center justify-center gap-10 bg-black px-4 sm:px-[100px]">
       {brands.map((brand) => (
         <img
           src={brand.img}
           alt={brand.name}
           key={brand.name}
-          className="grayscale contrast-200 filter invert w-[15%] h-[50%] aspect-[3/2] object-contain max-[974px]:last:hidden max-md:first:hidden"
+          className="aspect-[3/2] h-[50%] w-[15%] object-contain contrast-200 grayscale invert filter max-[974px]:last:hidden max-md:first:hidden"
         />
       ))}
     </section>

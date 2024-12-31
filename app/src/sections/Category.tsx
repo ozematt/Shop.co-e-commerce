@@ -2,13 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { beauty, clothes, electronics, kitchen } from "../assets";
 
 const Category = () => {
+  //
+  ////DATA
   const navigate = useNavigate();
 
+  ////LOGIC
   const handleClick = () => {
     navigate("/shop");
     window.scrollTo(0, 0);
   };
 
+  ////UI
   return (
     <section id="category" className="mt-[80px] px-4 sm:px-[100px]">
       <div className="z-[1] rounded-[40px] bg-grayBG">
