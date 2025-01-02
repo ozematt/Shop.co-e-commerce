@@ -7,14 +7,20 @@ import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
+type UserData = {
+  name: string;
+  surname: string;
+  address: UserAddress;
+};
+
 const Checkout = () => {
   //
   ////DATA
-  const [userAddress, setUserAddress] = useState<UserAddress | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   const total = useSelector((state: RootState) => state.cart.total);
 
-  console.log(userAddress);
+  console.log(userData);
 
   const authUserData = localStorage.getItem("user");
 
@@ -25,8 +31,14 @@ const Checkout = () => {
       console.log("Cannot fetch user data");
     },
     onSuccess: (data) => {
-      const userAddress = data.address;
-      setUserAddress(userAddress);
+      console.log(data);
+
+      const userAddress = {
+        name: data.firstName,
+        surname: data.lastName,
+        address: data.address,
+      };
+      setUserData(userAddress);
     },
   });
 
@@ -50,7 +62,38 @@ const Checkout = () => {
           </h2>
           <div className="mt-[20px] flex flex-wrap justify-center gap-[20px] sm:mt-[24px]">
             {/* cart items */}
-            <div className="h-full max-h-[505px] w-full rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[715px]"></div>
+            <div className="h-full max-h-[505px] w-full rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[715px]">
+              <div className="px-6 pb-[33px] pt-[20px]">
+                <h6 className="pb-1 font-satoshi text-xl font-bold sm:text-2xl">
+                  Shipping recipient details
+                </h6>
+                <div className="border-b-[1px] pt-5" />
+                {/* Address */}
+                <div className="mt-4 space-y-1 font-satoshi text-sm">
+                  <p className="pb-1 text-xl font-bold">{` ${userData?.name}  ${userData?.surname}`}</p>
+                  <p>
+                    <span className="font-medium">City:</span>{" "}
+                    {userData?.address?.city}
+                  </p>
+                  <p>
+                    <span className="font-medium">Address:</span>{" "}
+                    {userData?.address?.address}
+                  </p>
+                  <p>
+                    <span className="font-medium">Postal Code:</span>{" "}
+                    {userData?.address?.postalCode}
+                  </p>
+                  <p>
+                    <span className="font-medium">Country:</span>{" "}
+                    {userData?.address?.country}
+                  </p>
+                  <p>
+                    <span className="font-medium">State:</span>{" "}
+                    {userData?.address?.state}
+                  </p>
+                </div>
+              </div>
+            </div>
             {/* SUMMARY */}
             <div className="w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[505px]">
               <div className="px-6 pb-[33px] pt-[20px]">
