@@ -32,6 +32,7 @@ const loadCartFromLocalStorage = () => {
     return JSON.parse(savedCart);
   }
   return {
+    subtotal: 0,
     total: 0,
     itemsInCart: 0,
     entities: {},
@@ -53,8 +54,10 @@ const cartSlice = createSlice({
 
       if (existingItem) {
         const updatedQuantity = existingItem.quantity + item.quantity;
-        const updatedPurchaseTotal = updatedQuantity * item.price;
-        state.total = Number((state.total + item.purchaseTotal).toFixed(2)); //update total price
+        const updatedPurchaseSubtotal = updatedQuantity * item.price;
+        state.subtotal = Number(
+          (state.subtotal + item.purchaseTotal).toFixed(2),
+        ); //update total price
         state.itemsInCart = item.quantity + state.itemsInCart;
 
         // if item exist update pieces
@@ -62,12 +65,14 @@ const cartSlice = createSlice({
           id: item.id,
           changes: {
             quantity: updatedQuantity,
-            purchaseTotal: updatedPurchaseTotal,
+            purchaseTotal: updatedPurchaseSubtotal,
           },
         });
       } else {
         cartAdapter.addOne(state, item); //add new item with modified data
-        state.total = Number((state.total + item.purchaseTotal).toFixed(2)); //update total price
+        state.subtotal = Number(
+          (state.subtotal + item.purchaseTotal).toFixed(2),
+        ); //update total price
         state.itemsInCart = item.quantity + state.itemsInCart;
       }
       saveCartToLocalStorage(state);
@@ -90,8 +95,8 @@ const cartSlice = createSlice({
         existingItem.purchaseTotal = parseFloat(updatedItemPrice.toFixed(2));
 
         const updatedTotal =
-          state.total + existingItem.price * amountDifference;
-        state.total = parseFloat(updatedTotal.toFixed(2));
+          state.subtotal + existingItem.price * amountDifference;
+        state.subtotal = parseFloat(updatedTotal.toFixed(2));
 
         existingItem.quantity = changes.quantity ?? existingItem.quantity; //update product amount
 
@@ -104,18 +109,23 @@ const cartSlice = createSlice({
       const itemToRemove = state.entities[itemId]; //check if item already exist
 
       if (itemToRemove) {
-        state.total = Number(
-          (state.total - itemToRemove.purchaseTotal).toFixed(2), // update total price
+        state.subtotal = Number(
+          (state.subtotal - itemToRemove.purchaseTotal).toFixed(2), // update total price
         );
         state.itemsInCart -= itemToRemove.quantity; //update quantity
       }
       cartAdapter.removeOne(state, itemId);
       saveCartToLocalStorage(state);
     },
+    addTotalPrice: (state, action: PayloadAction<number>) => {
+      state.total = action.payload;
+      saveCartToLocalStorage(state);
+    },
   },
 });
 
-export const { addToCart, updateCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, updateCart, removeFromCart, addTotalPrice } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
 

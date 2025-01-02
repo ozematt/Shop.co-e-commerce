@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectAllCart } from "../redux/cartSlice";
-import { RootState } from "../redux/store";
+import { addTotalPrice, selectAllCart } from "../redux/cartSlice";
+import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { Footer, Newsletter } from "../sections";
 import { Breadcrumbs, CartItem } from "./";
 import { calculateTotalDiscount } from "../lib/helpers";
@@ -13,10 +13,13 @@ const Cart = () => {
   ////DATA
   const navigate = useNavigate();
   const cart = useSelector(selectAllCart);
-  const total = useSelector((state: RootState) => state.cart.total);
+  const subtotal = useSelector((state: RootState) => state.cart.subtotal);
+  const dispatch: AppDispatch = useAppDispatch();
 
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [savings, setSavings] = useState(0);
+
+  let totalPrice = Number((subtotal - savings + 15).toFixed(2)) || 0;
 
   ////LOGIC
   useEffect(() => {
@@ -25,17 +28,22 @@ const Cart = () => {
       const discount = Math.round(Number(effectiveDiscount));
       setTotalDiscount(discount);
     }
-    if (total === 0) {
+    if (subtotal === 0) {
       setTotalDiscount(0);
     }
-  }, [cart, total]);
+  }, [cart, subtotal]);
 
   useEffect(() => {
     if (totalDiscount !== 0) {
-      const savings = Math.round((total * totalDiscount) / 100);
+      const savings = Math.round((subtotal * totalDiscount) / 100);
       setSavings(savings);
     }
   }, [cart, totalDiscount]);
+
+  const handleCheckout = () => {
+    navigate("/cart/checkout");
+    if (totalPrice) dispatch(addTotalPrice(totalPrice));
+  };
 
   ////UI
   return (
@@ -71,7 +79,7 @@ const Cart = () => {
                       Subtotal{" "}
                     </p>{" "}
                     <p className="font-satoshi text-base font-bold sm:text-xl">
-                      ${total}
+                      ${subtotal}
                     </p>
                   </div>
 
@@ -98,7 +106,7 @@ const Cart = () => {
                   <div className="flex justify-between pt-5">
                     <p className="font-satoshi text-base sm:text-xl">Total </p>{" "}
                     <p className="font-satoshi text-xl font-bold sm:text-2xl">
-                      ${(total - savings + 15).toFixed(2)}
+                      ${(subtotal - savings + 15).toFixed(2)}
                     </p>
                   </div>
 
@@ -119,7 +127,7 @@ const Cart = () => {
                   </div>
 
                   <button
-                    onClick={() => navigate("/cart/checkout")}
+                    onClick={handleCheckout}
                     className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] pr-9 font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm"
                   >
                     Go to Checkout{" "}
