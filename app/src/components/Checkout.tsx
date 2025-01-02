@@ -2,27 +2,34 @@ import { useEffect, useState } from "react";
 import { Footer, Newsletter } from "../sections";
 
 import { Breadcrumbs } from "./";
-import { UserAddress } from "../api/queries/user";
+import fetchUserData, { UserAddress } from "../api/queries/user";
+import { useMutation } from "@tanstack/react-query";
 
 const Checkout = () => {
   const [userAddress, setUserAddress] = useState<UserAddress | null>(null);
 
+  console.log(userAddress);
+
   const authUserData = localStorage.getItem("user");
+
+  const mutation = useMutation({
+    mutationFn: fetchUserData,
+    onError: () => {
+      console.log("Cannot fetch user data");
+    },
+    onSuccess: (data) => {
+      const userAddress = data.address;
+      setUserAddress(userAddress);
+    },
+  });
 
   useEffect(() => {
     if (authUserData) {
       const user = JSON.parse(authUserData);
       const userId = user.id;
-
-      const authUserAddress: UserAddress = user.address;
-
-      console.log(userId);
-
-      setUserAddress(authUserAddress);
+      mutation.mutate(userId);
     }
   }, [authUserData]);
-
-  // console.log(userAddress);
 
   return (
     <>
