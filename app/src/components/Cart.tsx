@@ -19,7 +19,7 @@ const Cart = () => {
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [savings, setSavings] = useState(0);
 
-  let totalPrice = Number((subtotal - savings + 15).toFixed(2)) || 0;
+  const totalPrice = Number((subtotal - savings + 15).toFixed(2)) || 0;
 
   ////LOGIC
   useEffect(() => {
