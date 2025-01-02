@@ -17,22 +17,23 @@ const Checkout = () => {
   //
   ////DATA
   const [userData, setUserData] = useState<UserData | null>(null);
-  const total = useSelector((state: RootState) => state.cart.total);
+  const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
   const authUserData = localStorage.getItem("user");
 
   ////LOGIC
   const mutation = useMutation({
-    mutationFn: fetchUserData,
+    mutationFn: fetchUserData, //
     onError: () => {
       console.log("Cannot fetch user data");
     },
     onSuccess: (data) => {
+      //create user data
       const userAddress = {
         name: data.firstName,
         surname: data.lastName,
         address: data.address,
       };
-      setUserData(userAddress);
+      setUserData(userAddress); //add user data to state
     },
   });
 
