@@ -5,17 +5,22 @@ import { Breadcrumbs } from "./";
 import { UserAddress } from "../api/queries/user";
 
 const Checkout = () => {
-  // const [userAddress, setUserAddress] = useState<UserAddress | null>(null);
+  const [userAddress, setUserAddress] = useState<UserAddress | null>(null);
 
-  // const authUserData = localStorage.getItem("user");
+  const authUserData = localStorage.getItem("user");
 
-  // useEffect(() => {
-  //   if (authUserData) {
-  //     const user = JSON.parse(authUserData);
-  //     const authUserAddress: UserAddress = user.address;
-  //     setUserAddress(authUserAddress);
-  //   }
-  // }, [authUserData]);
+  useEffect(() => {
+    if (authUserData) {
+      const user = JSON.parse(authUserData);
+      const userId = user.id;
+
+      const authUserAddress: UserAddress = user.address;
+
+      console.log(userId);
+
+      setUserAddress(authUserAddress);
+    }
+  }, [authUserData]);
 
   // console.log(userAddress);
 
