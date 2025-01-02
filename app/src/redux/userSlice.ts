@@ -1,8 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { OrderData } from "../components/Checkout";
 
 type UserState = {
   username: null | string;
-  orders: string[];
+  orders: OrderData[];
+};
+
+//added cart to local storage
+const saveOrderToLocalStorage = (userState: UserState) => {
+  localStorage.setItem("order", JSON.stringify(userState));
 };
 
 const initialState: UserState = { username: null, orders: [] };
@@ -18,7 +24,7 @@ const userSlice = createSlice({
       state.username = null;
       //   state.orders = [];
     },
-    addOrder: (state, action: PayloadAction<string[]>) => {
+    addOrder: (state, action: PayloadAction<OrderData[]>) => {
       state.orders = [...state.orders, ...action.payload];
     },
   },

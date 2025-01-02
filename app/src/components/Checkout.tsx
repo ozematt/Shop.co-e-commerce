@@ -22,7 +22,7 @@ type Item = {
   quantity: number;
 };
 
-type OrderData = {
+export type OrderData = {
   id: string;
   date: string;
   totalPrice: number;
