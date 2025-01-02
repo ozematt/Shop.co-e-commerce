@@ -6,12 +6,15 @@ import fetchUserData, { UserAddress } from "../api/queries/user";
 import { useMutation } from "@tanstack/react-query";
 
 const Checkout = () => {
+  //
+  ////DATA
   const [userAddress, setUserAddress] = useState<UserAddress | null>(null);
 
   console.log(userAddress);
 
   const authUserData = localStorage.getItem("user");
 
+  ////LOGIC
   const mutation = useMutation({
     mutationFn: fetchUserData,
     onError: () => {
@@ -31,6 +34,7 @@ const Checkout = () => {
     }
   }, [authUserData]);
 
+  ////UI
   return (
     <>
       <section className="max-container px-4 sm:px-[100px]">
