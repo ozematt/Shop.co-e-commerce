@@ -2,9 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type UserState = {
   username: null | string;
+  orders: string[];
 };
 
-const initialState: UserState = { username: null };
+const initialState: UserState = { username: null, orders: [] };
 
 const userSlice = createSlice({
   name: "user",
@@ -17,11 +18,11 @@ const userSlice = createSlice({
       state.username = null;
       //   state.orders = [];
     },
-    // addOrder: (state, action: PayloadAction<Orders[]>) => {
-    //   state.orders = [...state.orders, ...action.payload];
-    // },
+    addOrder: (state, action: PayloadAction<string[]>) => {
+      state.orders = [...state.orders, ...action.payload];
+    },
   },
 });
-export const { logUser, logOutUser } = userSlice.actions;
+export const { logUser, logOutUser, addOrder } = userSlice.actions;
 
 export default userSlice.reducer;
