@@ -17,11 +17,7 @@ const Checkout = () => {
   //
   ////DATA
   const [userData, setUserData] = useState<UserData | null>(null);
-
   const total = useSelector((state: RootState) => state.cart.total);
-
-  console.log(userData);
-
   const authUserData = localStorage.getItem("user");
 
   ////LOGIC
@@ -31,8 +27,6 @@ const Checkout = () => {
       console.log("Cannot fetch user data");
     },
     onSuccess: (data) => {
-      console.log(data);
-
       const userAddress = {
         name: data.firstName,
         surname: data.lastName,
