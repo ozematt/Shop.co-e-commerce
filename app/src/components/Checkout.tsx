@@ -57,25 +57,24 @@ const Checkout = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   const [order, setOrder] = useState<OrderData | null>(null);
-  // console.log(order);
+  console.log(order);
 
   const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
 
+  ////LOGIC
   useEffect(() => {
     const rawCart = JSON.parse(localStorage.getItem("cart") || "{}");
-
     const parsedCart = cartLocalStorageSchema.safeParse(rawCart);
 
     if (parsedCart.success) {
       const cartItems = parsedCart.data.entities;
-      let itemsArray = [];
 
+      let itemsArray = [];
       //extracting items array from cart object
       for (let key in cartItems) {
         itemsArray.push(cartItems[key]);
       }
-      // console.log(itemsArray);
-
+      // creating order object
       const order: OrderData = {
         id: orderId,
         items: itemsArray.map((item: CartProduct) => ({
@@ -93,7 +92,6 @@ const Checkout = () => {
     }
   }, []);
 
-  ////LOGIC
   const mutation = useMutation({
     mutationFn: fetchUserData, //
     onError: () => {
