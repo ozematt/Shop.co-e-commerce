@@ -59,14 +59,52 @@ const userLocalStorageSchema = z.object({
 const Checkout = () => {
   //
   ////DATA
-  const [userData, setUserData] = useState<UserData | null>(null);
+  // date-fns
+  const formatDate = () => {
+    const today = new Date();
+    return format(today, "dd.MM.yyyy");
+  };
+  // unique id
+  const orderId = useId();
 
+  //user data, included name, surname and address, needed for checkout
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [order, setOrder] = useState<OrderData | null>(null);
   console.log(order);
 
   const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
 
   ////LOGIC
+  const mutation = useMutation({
+    mutationFn: fetchUserData, //
+    onError: () => {
+      console.log("Cannot fetch user data");
+    },
+    onSuccess: (data) => {
+      //create user data
+      const userAddress = {
+        name: data.firstName,
+        surname: data.lastName,
+        address: data.address,
+      };
+      setUserData(userAddress); //add user data to state
+    },
+  });
+
+  //fetched user id from local storage, with data validation
+  useEffect(() => {
+    const rawAuthUserData = JSON.parse(localStorage.getItem("user") || "{}");
+    const parsedUser = userLocalStorageSchema.safeParse(rawAuthUserData);
+
+    if (parsedUser.success) {
+      const userId = parsedUser.data.id;
+      mutation.mutate(userId);
+    } else {
+      console.error("Invalid users data in localStorage", parsedUser.error);
+    }
+  }, []);
+
+  //creating order data out of local storage data, with validation
   useEffect(() => {
     const rawCart = JSON.parse(localStorage.getItem("cart") || "{}");
     const parsedCart = cartLocalStorageSchema.safeParse(rawCart);
@@ -99,43 +137,6 @@ const Checkout = () => {
       setOrder(null);
     }
   }, []);
-
-  const mutation = useMutation({
-    mutationFn: fetchUserData, //
-    onError: () => {
-      console.log("Cannot fetch user data");
-    },
-    onSuccess: (data) => {
-      //create user data
-      const userAddress = {
-        name: data.firstName,
-        surname: data.lastName,
-        address: data.address,
-      };
-      setUserData(userAddress); //add user data to state
-    },
-  });
-
-  useEffect(() => {
-    const rawAuthUserData = JSON.parse(localStorage.getItem("user") || "{}");
-    const parsedUser = userLocalStorageSchema.safeParse(rawAuthUserData);
-
-    if (parsedUser.success) {
-      const userId = parsedUser.data.id;
-      mutation.mutate(userId);
-    } else {
-      console.error("Invalid users data in localStorage", parsedUser.error);
-    }
-  }, []);
-
-  // date-fns
-  const formatDate = () => {
-    const today = new Date();
-    return format(today, "dd.MM.yyyy");
-  };
-
-  // unique id
-  const orderId = useId();
 
   const handleOrder = () => {};
 
