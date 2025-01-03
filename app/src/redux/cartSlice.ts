@@ -19,7 +19,7 @@ export const cartItemSchema = z.object({
   stock: z.number(),
 });
 
-export type CartItem = z.infer<typeof cartItemSchema>;
+export type CartItemT = z.infer<typeof cartItemSchema>;
 
 //added cart to local storage
 const saveCartToLocalStorage = (
@@ -44,14 +44,14 @@ const loadCartFromLocalStorage = () => {
 };
 
 const cartAdapter = createEntityAdapter({
-  selectId: (product: CartItem) => product.id,
+  selectId: (product: CartItemT) => product.id,
 });
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: cartAdapter.getInitialState(loadCartFromLocalStorage()),
   reducers: {
-    addToCart: (state, action: PayloadAction<CartItem>) => {
+    addToCart: (state, action: PayloadAction<CartItemT>) => {
       const item = action.payload;
       const existingItem = state.entities[item.id]; //assign if item already exist
 
@@ -82,7 +82,7 @@ const cartSlice = createSlice({
     },
     updateCart: (
       state,
-      action: PayloadAction<{ id: number; changes: Partial<CartItem> }>,
+      action: PayloadAction<{ id: number; changes: Partial<CartItemT> }>,
     ) => {
       const { id, changes } = action.payload;
       const existingItem = state.entities[id]; //check if item already exist

@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { format } from "date-fns";
-import { type CartItem, cartItemSchema } from "../redux/cartSlice";
+import { type CartItemT, cartItemSchema } from "../redux/cartSlice";
 import { z } from "zod";
 
 type UserData = {
@@ -107,7 +107,7 @@ const Checkout = () => {
       // creating order object
       const order: OrderData = {
         id: orderId,
-        items: itemsArray.map((item: CartItem) => ({
+        items: itemsArray.map((item: CartItemT) => ({
           id: item.id,
           title: item.title,
           image: item.image,
