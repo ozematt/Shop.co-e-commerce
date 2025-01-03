@@ -38,11 +38,9 @@ const Checkout = () => {
   console.log(order);
 
   const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
-  const authUserData = localStorage.getItem("user");
-
-  const cart = localStorage.getItem("cart");
 
   useEffect(() => {
+    const cart = localStorage.getItem("cart");
     if (cart) {
       const cartData = JSON.parse(cart);
       const items = cartData.entities;
@@ -66,7 +64,7 @@ const Checkout = () => {
 
       setOrder(order);
     }
-  }, [cart]);
+  }, []);
 
   ////LOGIC
   const mutation = useMutation({
@@ -86,12 +84,13 @@ const Checkout = () => {
   });
 
   useEffect(() => {
+    const authUserData = localStorage.getItem("user");
     if (authUserData) {
       const user = JSON.parse(authUserData);
       const userId = user.id;
       mutation.mutate(userId);
     }
-  }, [authUserData]);
+  }, []);
 
   // date-fns
   const formatDate = () => {
@@ -118,7 +117,7 @@ const Checkout = () => {
             <div className="h-full max-h-[505px] w-full rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[715px]">
               <div className="px-6 pb-[33px] pt-[20px]">
                 <h6 className="pb-1 font-satoshi text-xl font-bold sm:text-2xl">
-                  Shipping recipient details
+                  Shipping recipient details:
                 </h6>
                 <div className="border-b-[1px] pt-5" />
                 {/* Address */}

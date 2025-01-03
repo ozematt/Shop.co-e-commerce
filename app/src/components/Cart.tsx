@@ -19,8 +19,6 @@ const Cart = () => {
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [savings, setSavings] = useState(0);
 
-  const totalPrice = Number((subtotal - savings + 15).toFixed(2)) || 0;
-
   ////LOGIC
   useEffect(() => {
     if (cart.length) {
@@ -41,8 +39,11 @@ const Cart = () => {
   }, [cart, totalDiscount]);
 
   const handleCheckout = () => {
-    navigate("/cart/checkout");
-    if (totalPrice) dispatch(addTotalPrice(totalPrice));
+    const totalPrice = Number((subtotal - savings + 15).toFixed(2)) || 0;
+    if (cart.length) {
+      navigate("/cart/checkout");
+      dispatch(addTotalPrice(totalPrice));
+    }
   };
 
   ////UI
