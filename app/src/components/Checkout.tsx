@@ -31,11 +31,11 @@ export type OrderData = {
 };
 
 const cartLocalStorageSchema = z.object({
-  entities: z.record(cartItemSchema), // Klucz obiektowy mapowany na `entitySchema`
-  ids: z.array(z.number()), // Lista identyfikatorów (np. `137`)
-  itemsInCart: z.number(), // Ilość elementów w koszyku
-  subtotal: z.number(), // Koszt produktów
-  total: z.number(), // Łączna kwota (z kosztami wysyłki, rabatami itp.)
+  entities: z.record(cartItemSchema),
+  ids: z.array(z.number()),
+  itemsInCart: z.number(),
+  subtotal: z.number(),
+  total: z.number(),
 });
 
 const userLocalStorageSchema = z.object({
