@@ -125,7 +125,21 @@ const Checkout = () => {
     }
   }, []);
 
-  const handleOrder = () => {};
+  const handleOrder = () => {
+    const ordersLocalStorage = localStorage.getItem("orders");
+
+    if (ordersLocalStorage) {
+      const orderData = JSON.parse(ordersLocalStorage);
+      const ordersArr = [...orderData, order];
+      localStorage.setItem("orders", JSON.stringify(ordersArr));
+      localStorage.removeItem("cart");
+      //dodać usuwanie z stanu globalnego
+      //przekierowanie na home page i potwierdzajace zakup okno
+    } else {
+      localStorage.setItem("orders", JSON.stringify([order]));
+      localStorage.removeItem("cart");
+    }
+  };
 
   ////UI
   return (
@@ -187,7 +201,10 @@ const Checkout = () => {
                   </div>
                   <div className="border-b-[1px] pt-5" />
 
-                  <button className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm">
+                  <button
+                    onClick={handleOrder}
+                    className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm"
+                  >
                     PAY
                   </button>
                 </div>
