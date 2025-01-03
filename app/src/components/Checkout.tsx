@@ -51,6 +51,11 @@ const cartLocalStorageSchema = z.object({
   total: z.number(), // Łączna kwota (z kosztami wysyłki, rabatami itp.)
 });
 
+const userLocalStorageSchema = z.object({
+  id: z.number(),
+  username: z.string(),
+});
+
 const Checkout = () => {
   //
   ////DATA
@@ -112,11 +117,14 @@ const Checkout = () => {
   });
 
   useEffect(() => {
-    const authUserData = localStorage.getItem("user");
-    if (authUserData) {
-      const user = JSON.parse(authUserData);
-      const userId = user.id;
+    const rawAuthUserData = JSON.parse(localStorage.getItem("user") || "{}");
+    const parsedUser = userLocalStorageSchema.safeParse(rawAuthUserData);
+
+    if (parsedUser.success) {
+      const userId = parsedUser.data.id;
       mutation.mutate(userId);
+    } else {
+      console.error("Invalid users data in localStorage", parsedUser.error);
     }
   }, []);
 
