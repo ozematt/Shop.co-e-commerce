@@ -89,6 +89,9 @@ const Checkout = () => {
       };
 
       setOrder(order);
+    } else {
+      console.error("Invalid users data in localStorage", parsedCart.error);
+      setOrder(null);
     }
   }, []);
 
