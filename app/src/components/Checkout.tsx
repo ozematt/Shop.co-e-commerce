@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { format } from "date-fns";
 import { CartProduct } from "../redux/cartSlice";
+import { z } from "zod";
 
 type UserData = {
   name: string;
@@ -25,9 +26,30 @@ type Item = {
 export type OrderData = {
   id: string;
   date: string;
-  totalPrice: number;
+  total: number;
   items: Item[];
 };
+
+const entitySchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  category: z.string(),
+  discountPercentage: z.number(),
+  image: z.string().url(),
+  price: z.number(),
+  purchaseTotal: z.number(),
+  quantity: z.number(),
+  shippingTime: z.string(),
+  stock: z.number(),
+});
+
+const cartLocalStorageSchema = z.object({
+  entities: z.record(entitySchema), // Klucz obiektowy mapowany na `entitySchema`
+  ids: z.array(z.number()), // Lista identyfikatorów (np. `137`)
+  itemsInCart: z.number(), // Ilość elementów w koszyku
+  subtotal: z.number(), // Koszt produktów
+  total: z.number(), // Łączna kwota (z kosztami wysyłki, rabatami itp.)
+});
 
 const Checkout = () => {
   //
@@ -35,20 +57,25 @@ const Checkout = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   const [order, setOrder] = useState<OrderData | null>(null);
-  console.log(order);
+  // console.log(order);
 
   const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
 
   useEffect(() => {
-    const cart = localStorage.getItem("cart");
-    if (cart) {
-      const cartData = JSON.parse(cart);
-      const items = cartData.entities;
+    const rawCart = JSON.parse(localStorage.getItem("cart") || "{}");
+
+    const parsedCart = cartLocalStorageSchema.safeParse(rawCart);
+
+    if (parsedCart.success) {
+      const cartItems = parsedCart.data.entities;
       let itemsArray = [];
-      for (let key in items) {
-        itemsArray.push(items[key]);
+
+      //extracting items array from cart object
+      for (let key in cartItems) {
+        itemsArray.push(cartItems[key]);
       }
       // console.log(itemsArray);
+
       const order: OrderData = {
         id: orderId,
         items: itemsArray.map((item: CartProduct) => ({
@@ -59,7 +86,7 @@ const Checkout = () => {
           quantity: item.quantity,
         })),
         date: formatDate(),
-        totalPrice: cartData.total,
+        total: parsedCart.data.total,
       };
 
       setOrder(order);
