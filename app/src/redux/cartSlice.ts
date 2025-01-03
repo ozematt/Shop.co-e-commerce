@@ -4,19 +4,22 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 import { RootState } from "./store";
+import { z } from "zod";
 
-export type CartProduct = {
-  id: number;
-  title: string;
-  image: string;
-  price: number;
-  category: string;
-  purchaseTotal: number;
-  quantity: number;
-  discountPercentage: number;
-  stock: number;
-  shippingTime: string;
-};
+export const cartItemSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  category: z.string(),
+  discountPercentage: z.number(),
+  image: z.string().url(),
+  price: z.number(),
+  purchaseTotal: z.number(),
+  quantity: z.number(),
+  shippingTime: z.string(),
+  stock: z.number(),
+});
+
+export type CartItem = z.infer<typeof cartItemSchema>;
 
 //added cart to local storage
 const saveCartToLocalStorage = (
@@ -41,14 +44,14 @@ const loadCartFromLocalStorage = () => {
 };
 
 const cartAdapter = createEntityAdapter({
-  selectId: (product: CartProduct) => product.id,
+  selectId: (product: CartItem) => product.id,
 });
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: cartAdapter.getInitialState(loadCartFromLocalStorage()),
   reducers: {
-    addToCart: (state, action: PayloadAction<CartProduct>) => {
+    addToCart: (state, action: PayloadAction<CartItem>) => {
       const item = action.payload;
       const existingItem = state.entities[item.id]; //assign if item already exist
 
@@ -79,7 +82,7 @@ const cartSlice = createSlice({
     },
     updateCart: (
       state,
-      action: PayloadAction<{ id: number; changes: Partial<CartProduct> }>,
+      action: PayloadAction<{ id: number; changes: Partial<CartItem> }>,
     ) => {
       const { id, changes } = action.payload;
       const existingItem = state.entities[id]; //check if item already exist

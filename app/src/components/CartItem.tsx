@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { CartProduct, removeFromCart, updateCart } from "../redux/cartSlice";
+import { CartItem, removeFromCart, updateCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { minus, plus, deleteIcon } from "../assets";
 
@@ -12,7 +12,7 @@ const CartItem = ({
   purchaseTotal,
   quantity,
   shippingTime,
-}: CartProduct) => {
+}: CartItem) => {
   //
   ////DATA
   const navigate = useNavigate();

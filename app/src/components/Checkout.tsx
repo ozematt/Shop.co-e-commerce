@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { format } from "date-fns";
-import { CartProduct } from "../redux/cartSlice";
+import { type CartItem, cartItemSchema } from "../redux/cartSlice";
 import { z } from "zod";
 
 type UserData = {
@@ -30,21 +30,8 @@ export type OrderData = {
   items: Item[];
 };
 
-const entitySchema = z.object({
-  id: z.number(),
-  title: z.string(),
-  category: z.string(),
-  discountPercentage: z.number(),
-  image: z.string().url(),
-  price: z.number(),
-  purchaseTotal: z.number(),
-  quantity: z.number(),
-  shippingTime: z.string(),
-  stock: z.number(),
-});
-
 const cartLocalStorageSchema = z.object({
-  entities: z.record(entitySchema), // Klucz obiektowy mapowany na `entitySchema`
+  entities: z.record(cartItemSchema), // Klucz obiektowy mapowany na `entitySchema`
   ids: z.array(z.number()), // Lista identyfikatorów (np. `137`)
   itemsInCart: z.number(), // Ilość elementów w koszyku
   subtotal: z.number(), // Koszt produktów
@@ -120,7 +107,7 @@ const Checkout = () => {
       // creating order object
       const order: OrderData = {
         id: orderId,
-        items: itemsArray.map((item: CartProduct) => ({
+        items: itemsArray.map((item: CartItem) => ({
           id: item.id,
           title: item.title,
           image: item.image,
