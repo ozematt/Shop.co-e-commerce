@@ -76,7 +76,7 @@ const MyAccount = () => {
             </p>
           </div>
         </div>
-        <div className="h-[400px] w-full rounded-[20px] px-6 py-7 ring-1 ring-black ring-opacity-10">
+        <div className="w-full rounded-[20px] px-6 py-7 ring-1 ring-black ring-opacity-10">
           <h6 className="font-integralCFBold text-4xl">Purchase History</h6>
           <div className="border-b-[1px] py-2" />
 
