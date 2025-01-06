@@ -15,20 +15,22 @@ type UserData = {
   address: UserAddress;
 };
 
-type Item = {
-  id: number;
-  title: string;
-  image: string;
-  price: number;
-  quantity: number;
-};
+const itemSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  image: z.string().url(),
+  price: z.number(),
+  quantity: z.number(),
+});
 
-export type OrderData = {
-  id: string;
-  date: string;
-  total: number;
-  items: Item[];
-};
+const orderDataSchema = z.object({
+  id: z.string(),
+  date: z.string(),
+  total: z.number(),
+  items: z.array(itemSchema),
+});
+
+export type OrderData = z.infer<typeof orderDataSchema>;
 
 const cartLocalStorageSchema = z.object({
   entities: z.record(cartItemSchema),

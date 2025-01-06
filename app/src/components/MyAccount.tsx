@@ -4,6 +4,9 @@ import { type User } from "../api/queries/user";
 import { fetchUserData } from "../api/queries";
 import { Footer, Newsletter } from "../sections";
 import { UserLocalStorage } from "./UserIcon";
+import { z } from "zod";
+
+const ordersLocalStorageSchema = z.object({});
 
 const MyAccount = () => {
   //
