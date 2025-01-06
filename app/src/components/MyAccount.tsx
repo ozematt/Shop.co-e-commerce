@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { type User } from "../api/queries/user";
 import { fetchUserData } from "../api/queries";
 import { Footer, Newsletter } from "../sections";
-import { UserLocalStorage, userLocalStorageSchema } from "./Checkout";
+import { userLocalStorageSchema } from "./Checkout";
 import { z } from "zod";
 import { orderDataSchema } from "./Checkout";
 
