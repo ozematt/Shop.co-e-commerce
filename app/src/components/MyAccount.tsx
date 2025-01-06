@@ -90,15 +90,19 @@ const MyAccount = () => {
                     alt="product image"
                     className="w-[120px] rounded-md bg-grayBG"
                   />
-                  <div className="ml-2">
-                    <p className="">{item.title}</p>
-                    <p>{item.quantity}</p>
-                    <p>{item.price}</p>
+                  <div className="ml-2 space-y-1">
+                    <p className="font-satoshi text-xl font-semibold">
+                      {item.title}
+                    </p>
+                    <p className="font-satoshi text-lg">
+                      <span className="text-base">{item.quantity}x</span>{" "}
+                      {item.price} $
+                    </p>
                   </div>
                 </div>
               ))}
 
-              <p className="font-satoshi text-3xl font-bold">
+              <p className="pt-3 font-satoshi text-3xl font-bold">
                 Total: {order.total}$
               </p>
               <div className="border-b-[1px] py-2" />
