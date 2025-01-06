@@ -30,6 +30,10 @@ const MyAccount = () => {
     }
   }, [userId]);
 
+  useEffect(() => {
+    const rawUserOrders = JSON.parse(localStorage.getItem("orders") || "{}");
+  }, []);
+
   ////UI
   return (
     <>
@@ -60,6 +64,7 @@ const MyAccount = () => {
         <div className="h-[400px] w-full rounded-[20px] px-6 py-7 ring-1 ring-black ring-opacity-10">
           <h6 className="font-integralCFBold text-4xl">Purchase History</h6>
           <div className="border-b-[1px] py-2" />
+
           <p className="py-2 font-satoshi opacity-60">Date: 20.20.2020</p>
           <p className="font-satoshi text-3xl font-bold">Total: 300$</p>
           <div className="border-b-[1px] py-2" />
