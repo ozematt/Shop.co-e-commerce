@@ -2,11 +2,7 @@ import { useRef } from "react";
 import { userIcon } from "../assets";
 import { usePanelOpen } from "../lib/hooks";
 import { useNavigate } from "react-router-dom";
-
-export type UserLocalStorage = {
-  id: number;
-  username: string;
-};
+import { UserLocalStorage } from "./Checkout";
 
 const UserIcon = () => {
   //

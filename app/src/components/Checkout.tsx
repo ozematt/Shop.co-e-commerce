@@ -40,10 +40,11 @@ const cartLocalStorageSchema = z.object({
   total: z.number(),
 });
 
-const userLocalStorageSchema = z.object({
+export const userLocalStorageSchema = z.object({
   id: z.number(),
   username: z.string(),
 });
+export type UserLocalStorage = z.infer<typeof userLocalStorageSchema>;
 
 const Checkout = () => {
   //

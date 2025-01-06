@@ -3,11 +3,12 @@ import { useMutation } from "@tanstack/react-query";
 import { type User } from "../api/queries/user";
 import { fetchUserData } from "../api/queries";
 import { Footer, Newsletter } from "../sections";
-import { UserLocalStorage } from "./UserIcon";
+import { UserLocalStorage, userLocalStorageSchema } from "./Checkout";
 import { z } from "zod";
 import { orderDataSchema } from "./Checkout";
 
 const ordersLocalStorageSchema = z.array(orderDataSchema);
+
 type Orders = z.infer<typeof ordersLocalStorageSchema>;
 
 const MyAccount = () => {
@@ -27,12 +28,13 @@ const MyAccount = () => {
 
   useEffect(() => {
     //user id from local storage
-    const { id: userId }: UserLocalStorage = JSON.parse(
-      localStorage.getItem("user") || "{}",
-    );
+    const rawAuthUserData = JSON.parse(localStorage.getItem("user") || "{}");
+    const parsedUser = userLocalStorageSchema.safeParse(rawAuthUserData);
 
-    if (userId) {
-      mutation.mutate(userId);
+    if (parsedUser.success) {
+      mutation.mutate(parsedUser.data.id);
+    } else {
+      console.error("Invalid users data in localStorage", parsedUser.error);
     }
   }, []);
 
