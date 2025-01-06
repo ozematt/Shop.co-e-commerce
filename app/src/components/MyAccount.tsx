@@ -45,9 +45,9 @@ const MyAccount = () => {
       setOrders(parsedOrders.data);
     } else {
       console.error("Invalid users data in localStorage", parsedOrders.error);
+      setOrders([]);
     }
   }, []);
-  console.log(orders);
 
   ////UI
   return (
@@ -80,9 +80,30 @@ const MyAccount = () => {
           <h6 className="font-integralCFBold text-4xl">Purchase History</h6>
           <div className="border-b-[1px] py-2" />
 
-          <p className="py-2 font-satoshi opacity-60">Date: 20.20.2020</p>
-          <p className="font-satoshi text-3xl font-bold">Total: 300$</p>
-          <div className="border-b-[1px] py-2" />
+          {orders.map((order) => (
+            <div key={order.id} className="my-1">
+              <p className="py-2 font-satoshi opacity-60">Date: {order.date}</p>
+              {order.items.map((item) => (
+                <div key={item.id} className="my-1 flex">
+                  <img
+                    src={item.image}
+                    alt="product image"
+                    className="w-[120px] rounded-md bg-grayBG"
+                  />
+                  <div className="ml-2">
+                    <p className="">{item.title}</p>
+                    <p>{item.quantity}</p>
+                    <p>{item.price}</p>
+                  </div>
+                </div>
+              ))}
+
+              <p className="font-satoshi text-3xl font-bold">
+                Total: {order.total}$
+              </p>
+              <div className="border-b-[1px] py-2" />
+            </div>
+          ))}
         </div>
       </section>{" "}
       <div className="max-container">
