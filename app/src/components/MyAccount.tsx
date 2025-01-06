@@ -76,13 +76,15 @@ const MyAccount = () => {
             </p>
           </div>
         </div>
-        <div className="w-full rounded-[20px] px-6 py-7 ring-1 ring-black ring-opacity-10">
+        <div className="w-full rounded-[20px] px-9 py-7 ring-1 ring-black ring-opacity-10">
           <h6 className="font-integralCFBold text-4xl">Purchase History</h6>
           <div className="border-b-[1px] py-2" />
 
           {orders.map((order) => (
             <div key={order.id} className="my-1">
-              <p className="py-2 font-satoshi opacity-60">Date: {order.date}</p>
+              <p className="py-2 pt-3 font-satoshi opacity-60">
+                Date: {order.date}
+              </p>
               {order.items.map((item) => (
                 <div key={item.id} className="my-1 flex">
                   <img
@@ -90,7 +92,7 @@ const MyAccount = () => {
                     alt="product image"
                     className="w-[120px] rounded-md bg-grayBG"
                   />
-                  <div className="ml-2 space-y-1">
+                  <div className="ml-5 space-y-1">
                     <p className="font-satoshi text-xl font-semibold">
                       {item.title}
                     </p>
@@ -102,7 +104,7 @@ const MyAccount = () => {
                 </div>
               ))}
 
-              <p className="pt-3 font-satoshi text-3xl font-bold">
+              <p className="pt-5 font-satoshi text-3xl font-bold">
                 Total: {order.total}$
               </p>
               <div className="border-b-[1px] py-2" />
