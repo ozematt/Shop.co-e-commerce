@@ -8,16 +8,13 @@ import { z } from "zod";
 import { orderDataSchema } from "./Checkout";
 
 const ordersLocalStorageSchema = z.array(orderDataSchema);
+type Orders = z.infer<typeof ordersLocalStorageSchema>;
 
 const MyAccount = () => {
   //
   ////DATA
   const [userData, setUserData] = useState<User | null>(null);
-
-  //user id from local storage
-  const { id: userId }: UserLocalStorage = JSON.parse(
-    localStorage.getItem("user") || "{}",
-  );
+  const [orders, setOrders] = useState<Orders>([]);
 
   ////LOGIC
   //handling responses from the server
@@ -29,14 +26,28 @@ const MyAccount = () => {
   });
 
   useEffect(() => {
+    //user id from local storage
+    const { id: userId }: UserLocalStorage = JSON.parse(
+      localStorage.getItem("user") || "{}",
+    );
+
     if (userId) {
       mutation.mutate(userId);
     }
-  }, [userId]);
+  }, []);
 
   useEffect(() => {
+    // orders from local storage
     const rawUserOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+    const parsedOrders = ordersLocalStorageSchema.safeParse(rawUserOrders);
+
+    if (parsedOrders.success) {
+      setOrders(parsedOrders.data);
+    } else {
+      console.error("Invalid users data in localStorage", parsedOrders.error);
+    }
   }, []);
+  console.log(orders);
 
   ////UI
   return (
