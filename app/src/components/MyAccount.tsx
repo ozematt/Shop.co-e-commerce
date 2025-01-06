@@ -5,8 +5,9 @@ import { fetchUserData } from "../api/queries";
 import { Footer, Newsletter } from "../sections";
 import { UserLocalStorage } from "./UserIcon";
 import { z } from "zod";
+import { orderDataSchema } from "./Checkout";
 
-const ordersLocalStorageSchema = z.object({});
+const ordersLocalStorageSchema = z.array(orderDataSchema);
 
 const MyAccount = () => {
   //
@@ -34,7 +35,7 @@ const MyAccount = () => {
   }, [userId]);
 
   useEffect(() => {
-    const rawUserOrders = JSON.parse(localStorage.getItem("orders") || "{}");
+    const rawUserOrders = JSON.parse(localStorage.getItem("orders") || "[]");
   }, []);
 
   ////UI

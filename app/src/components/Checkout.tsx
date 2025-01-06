@@ -23,7 +23,7 @@ const itemSchema = z.object({
   quantity: z.number(),
 });
 
-const orderDataSchema = z.object({
+export const orderDataSchema = z.object({
   id: z.string(),
   date: z.string(),
   total: z.number(),
