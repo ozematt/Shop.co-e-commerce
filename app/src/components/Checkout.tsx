@@ -6,8 +6,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { format } from "date-fns";
-import { type CartItemT, cartItemSchema, removeCart } from "../redux/cartSlice";
+import { type CartItemT, cartItemSchema, clearCart } from "../redux/cartSlice";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 
 type UserData = {
   name: string;
@@ -57,6 +58,7 @@ const Checkout = () => {
   // unique id
   const orderId = useId();
 
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
 
   //user data, included name, surname and address, needed for checkout
@@ -128,22 +130,23 @@ const Checkout = () => {
       localStorage.removeItem("cart");
       setOrder(null);
     }
-  }, [orderId, formatDate]);
+  }, []);
 
   const handleOrder = () => {
-    const ordersLocalStorage = localStorage.getItem("orders");
+    try {
+      const ordersLocalStorage = localStorage.getItem("orders");
+      const orderData = ordersLocalStorage
+        ? JSON.parse(ordersLocalStorage)
+        : [];
 
-    if (ordersLocalStorage) {
-      const orderData = JSON.parse(ordersLocalStorage);
-      const ordersArr = [...orderData, order];
-      localStorage.setItem("orders", JSON.stringify(ordersArr));
-      localStorage.removeItem("cart");
-      dispatch(removeCart());
-      //dodać usuwanie z stanu globalnego
-      //przekierowanie na home page i potwierdzajace zakup okno
-    } else {
-      localStorage.setItem("orders", JSON.stringify([order]));
-      localStorage.removeItem("cart");
+      const updatedOrders = [...orderData, order];
+
+      localStorage.setItem("orders", JSON.stringify(updatedOrders));
+
+      dispatch(clearCart());
+      navigate("/");
+    } catch (error) {
+      console.error("Error handling the order:", error);
     }
   };
 
