@@ -86,7 +86,9 @@ const Checkout = () => {
 
   //fetched user id from local storage, with data validation
   useEffect(() => {
-    const rawAuthUserData = JSON.parse(localStorage.getItem("user") || "{}");
+    const rawAuthUserData: unknown = JSON.parse(
+      localStorage.getItem("user") || "{}",
+    );
     const parsedUser = userLocalStorageSchema.safeParse(rawAuthUserData);
 
     if (parsedUser.success) {
@@ -95,21 +97,17 @@ const Checkout = () => {
     } else {
       console.error("Invalid users data in localStorage", parsedUser.error);
     }
-  }, []);
+  }, [mutation.mutate]);
 
   //creating order data out of local storage data, with validation
   useEffect(() => {
-    const rawCart = JSON.parse(localStorage.getItem("cart") || "{}");
+    const rawCart: unknown = JSON.parse(localStorage.getItem("cart") || "{}");
     const parsedCart = cartLocalStorageSchema.safeParse(rawCart);
 
     if (parsedCart.success) {
       const cartItems = parsedCart.data.entities;
+      const itemsArray = Object.values(cartItems);
 
-      let itemsArray = [];
-      //extracting items array from cart object
-      for (let key in cartItems) {
-        itemsArray.push(cartItems[key]);
-      }
       // creating order object
       const order: OrderData = {
         id: orderId,
@@ -126,10 +124,11 @@ const Checkout = () => {
 
       setOrder(order);
     } else {
-      console.error("Invalid users data in localStorage", parsedCart.error);
+      console.error("Invalid cart data in localStorage", parsedCart.error);
+      localStorage.removeItem("cart");
       setOrder(null);
     }
-  }, []);
+  }, [orderId, formatDate]);
 
   const handleOrder = () => {
     const ordersLocalStorage = localStorage.getItem("orders");
