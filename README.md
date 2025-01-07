@@ -58,5 +58,6 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 ## Funkcjonalności w trakcie przygotowania
 
 - **Obsługa motywów**: Użytkownik będzie miał możliwość przełączania między **jasnym** a **ciemnym** motywem..
+- **Baza danych**: Historia zamówień bedzie zapisywana w bazie danych za pomocą Node.js (na tę chwile zamówienia są zapisywane w local storage).
 
 Dziękuję za odwiedzenie repozytorium! 😊
