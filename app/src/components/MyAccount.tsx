@@ -6,6 +6,7 @@ import { Footer, Newsletter } from "../sections";
 import { userLocalStorageSchema } from "./Checkout";
 import { z } from "zod";
 import { orderDataSchema } from "./Checkout";
+import useUserFetch from "../lib/hooks/useUserFetch";
 
 const ordersLocalStorageSchema = z.array(orderDataSchema);
 
@@ -14,34 +15,16 @@ type Orders = z.infer<typeof ordersLocalStorageSchema>;
 const MyAccount = () => {
   //
   ////DATA
-  const [userData, setUserData] = useState<User | null>(null);
   const [orders, setOrders] = useState<Orders>([]);
 
+  const { userData } = useUserFetch(); //custom hook
+
   ////LOGIC
-  //handling responses from the server
-  const mutation = useMutation({
-    mutationFn: fetchUserData,
-    onSuccess: (data) => {
-      setUserData(data);
-    },
-  });
-
-  useEffect(() => {
-    //user id from local storage
-    const rawAuthUserData = JSON.parse(localStorage.getItem("user") || "{}");
-    const parsedUser = userLocalStorageSchema.safeParse(rawAuthUserData);
-
-    if (parsedUser.success) {
-      const userId = parsedUser.data.id;
-      mutation.mutate(userId);
-    } else {
-      console.error("Invalid users data in localStorage", parsedUser.error);
-    }
-  }, []);
-
   useEffect(() => {
     // orders from local storage
-    const rawUserOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+    const rawUserOrders: unknown = JSON.parse(
+      localStorage.getItem("orders") || "[]",
+    );
     const parsedOrders = ordersLocalStorageSchema.safeParse(rawUserOrders);
 
     if (parsedOrders.success) {
