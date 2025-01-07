@@ -11,6 +11,8 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
   - Funkcje **filtrowania** oraz **sortowania** produktów (np. według ceny, kategorii).
 - **Koszyk zakupowy** – Uzytkownicy mogą korzystać ze wszystkich funkcjonalności koszyka zakupowego.
 - **Uwierzytelnianie użytkowników**: Po zalogowaniu, użytkownicy mogą dodawać produkty do koszyka i składać zamówienie.
+- **Proces realizacji zakupów** – Użytkownicy przechodzą cały proces zakupu.
+- **Panel uzytkownika** – Uzytkownik ma dostęp do informacji o swoim koncie, jak również do historii zakupów.
 
 ## Technologia
 
@@ -56,7 +58,5 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 ## Funkcjonalności w trakcie przygotowania
 
 - **Obsługa motywów**: Użytkownik będzie miał możliwość przełączania między **jasnym** a **ciemnym** motywem..
-- **Proces realizacji zakupu** – Użytkownicy będą przechodzić przez cały proces zakupu.
-- **Panel uzytkownika** – Informacje o koncie uzytkownika z historią zakupów.
 
 Dziękuję za odwiedzenie repozytorium! 😊
