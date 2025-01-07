@@ -1,12 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { type User } from "../api/queries/user";
-import { fetchUserData } from "../api/queries";
 import { Footer, Newsletter } from "../sections";
-import { userLocalStorageSchema } from "./Checkout";
 import { z } from "zod";
 import { orderDataSchema } from "./Checkout";
-import useUserFetch from "../lib/hooks/useUserFetch";
+import { useUserData } from "../lib/hooks";
 
 const ordersLocalStorageSchema = z.array(orderDataSchema);
 
@@ -16,8 +12,7 @@ const MyAccount = () => {
   //
   ////DATA
   const [orders, setOrders] = useState<Orders>([]);
-
-  const { userData } = useUserFetch(); //custom hook
+  const { userData } = useUserData(); //custom hook
 
   ////LOGIC
   useEffect(() => {

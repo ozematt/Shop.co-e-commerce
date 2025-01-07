@@ -1,19 +1,12 @@
 import { useEffect, useId, useState } from "react";
 import { Footer, Newsletter } from "../sections";
 import { Breadcrumbs, Success } from "./";
-import fetchUserData, { type UserAddress } from "../api/queries/user";
-import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { format } from "date-fns";
 import { type CartItemT, cartItemSchema, clearCart } from "../redux/cartSlice";
 import { z } from "zod";
-
-type UserData = {
-  name: string;
-  surname: string;
-  address: UserAddress;
-};
+import { useUserData } from "../lib/hooks";
 
 const itemSchema = z.object({
   id: z.number(),
@@ -60,43 +53,11 @@ const Checkout = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
 
-  //user data, included name, surname and address, needed for checkout
-  const [userData, setUserData] = useState<UserData | null>(null);
   const [order, setOrder] = useState<OrderData | null>(null);
   const [success, setSuccess] = useState(false);
+  const { userData } = useUserData(); // custom hook
 
   ////LOGIC
-  const mutation = useMutation({
-    mutationFn: fetchUserData, //
-    onError: () => {
-      console.log("Cannot fetch user data");
-    },
-    onSuccess: (data) => {
-      //create user data
-      const userAddress = {
-        name: data.firstName,
-        surname: data.lastName,
-        address: data.address,
-      };
-      setUserData(userAddress); //add user data to state
-    },
-  });
-
-  //fetched user id from local storage, with data validation
-  useEffect(() => {
-    const rawAuthUserData: unknown = JSON.parse(
-      localStorage.getItem("user") || "{}",
-    );
-    const parsedUser = userLocalStorageSchema.safeParse(rawAuthUserData);
-
-    if (parsedUser.success) {
-      const userId = parsedUser.data.id;
-      mutation.mutate(userId);
-    } else {
-      console.error("Invalid users data in localStorage", parsedUser.error);
-    }
-  }, [mutation.mutate]);
-
   //creating order data out of local storage data, with validation
   useEffect(() => {
     const rawCart: unknown = JSON.parse(localStorage.getItem("cart") || "{}");
@@ -172,7 +133,7 @@ const Checkout = () => {
                 <div className="border-b-[1px] pt-5" />
                 {/* Address */}
                 <div className="mt-4 space-y-1 font-satoshi text-sm">
-                  <p className="pb-1 text-xl font-bold">{` ${userData?.name}  ${userData?.surname}`}</p>
+                  <p className="pb-1 text-xl font-bold">{` ${userData?.firstName}  ${userData?.lastName}`}</p>
                   <p>
                     <span className="font-medium">City:</span>{" "}
                     {userData?.address?.city}

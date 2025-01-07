@@ -7,9 +7,12 @@ export const userLocalStorageSchema = z.object({
   id: z.number(),
   username: z.string(),
 });
+
 export type UserLocalStorage = z.infer<typeof userLocalStorageSchema>;
 
-const useUserFetch = () => {
+const useUserData = () => {
+  //
+  ////DATA
   const [userData, setUserData] = useState<User | null>(null);
 
   ////LOGIC
@@ -42,4 +45,4 @@ const useUserFetch = () => {
   return { userData };
 };
 
-export default useUserFetch;
+export default useUserData;
