@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from "react";
 import { Footer, Newsletter } from "../sections";
-import { Breadcrumbs } from "./";
+import { Breadcrumbs, Success } from "./";
 import fetchUserData, { type UserAddress } from "../api/queries/user";
 import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
@@ -8,8 +8,6 @@ import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { format } from "date-fns";
 import { type CartItemT, cartItemSchema, clearCart } from "../redux/cartSlice";
 import { z } from "zod";
-import { useNavigate } from "react-router-dom";
-import Success from "./Success";
 
 type UserData = {
   name: string;

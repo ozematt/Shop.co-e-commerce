@@ -27,8 +27,10 @@ import Shop from "../components/Shop";
 import ShopInfoBar from "./ShopInfoBar";
 import Sorting from "./Sorting";
 import UserIcon from "./UserIcon";
+import Success from "./Success";
 
 export {
+  Success,
   AlsoLike,
   Breadcrumbs,
   Button,
