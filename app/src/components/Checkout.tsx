@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { type CartItemT, cartItemSchema, clearCart } from "../redux/cartSlice";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
+import Success from "./Success";
 
 type UserData = {
   name: string;
@@ -64,10 +65,9 @@ const Checkout = () => {
   //user data, included name, surname and address, needed for checkout
   const [userData, setUserData] = useState<UserData | null>(null);
   const [order, setOrder] = useState<OrderData | null>(null);
+  const [success, setSuccess] = useState(false);
 
   const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
-
-  // console.log(cart);
 
   ////LOGIC
   const mutation = useMutation({
@@ -135,6 +135,7 @@ const Checkout = () => {
   const handleOrder = () => {
     try {
       const ordersLocalStorage = localStorage.getItem("orders");
+
       const orderData = ordersLocalStorage
         ? JSON.parse(ordersLocalStorage)
         : [];
@@ -144,18 +145,24 @@ const Checkout = () => {
       localStorage.setItem("orders", JSON.stringify(updatedOrders));
 
       dispatch(clearCart());
-      navigate("/");
+      setSuccess(true);
     } catch (error) {
       console.error("Error handling the order:", error);
+      setSuccess(false);
     }
   };
 
   ////UI
   return (
     <>
-      <section className="max-container px-4 sm:px-[100px]">
+      <section className="max-container relative px-4 sm:px-[100px]">
         {" "}
         <Breadcrumbs />
+        {success ? (
+          <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-70">
+            <Success />
+          </div>
+        ) : null}
         <div>
           <h2 className="mt-[8px] font-integralCFBold text-[32px] max-md:leading-[36px] sm:mt-[24px] sm:text-5xl">
             Finalization
