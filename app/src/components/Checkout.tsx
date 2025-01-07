@@ -4,9 +4,9 @@ import { Breadcrumbs } from "./";
 import fetchUserData, { type UserAddress } from "../api/queries/user";
 import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { format } from "date-fns";
-import { type CartItemT, cartItemSchema } from "../redux/cartSlice";
+import { type CartItemT, cartItemSchema, removeCart } from "../redux/cartSlice";
 import { z } from "zod";
 
 type UserData = {
@@ -57,12 +57,15 @@ const Checkout = () => {
   // unique id
   const orderId = useId();
 
+  const dispatch: AppDispatch = useAppDispatch();
+
   //user data, included name, surname and address, needed for checkout
   const [userData, setUserData] = useState<UserData | null>(null);
   const [order, setOrder] = useState<OrderData | null>(null);
-  console.log(order);
 
   const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
+
+  // console.log(cart);
 
   ////LOGIC
   const mutation = useMutation({
@@ -136,6 +139,7 @@ const Checkout = () => {
       const ordersArr = [...orderData, order];
       localStorage.setItem("orders", JSON.stringify(ordersArr));
       localStorage.removeItem("cart");
+      dispatch(removeCart());
       //dodać usuwanie z stanu globalnego
       //przekierowanie na home page i potwierdzajace zakup okno
     } else {

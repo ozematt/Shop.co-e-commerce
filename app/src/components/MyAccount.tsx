@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { type User } from "../api/queries/user";
 import { fetchUserData } from "../api/queries";
@@ -32,7 +32,8 @@ const MyAccount = () => {
     const parsedUser = userLocalStorageSchema.safeParse(rawAuthUserData);
 
     if (parsedUser.success) {
-      mutation.mutate(parsedUser.data.id);
+      const userId = parsedUser.data.id;
+      mutation.mutate(userId);
     } else {
       console.error("Invalid users data in localStorage", parsedUser.error);
     }
@@ -88,25 +89,28 @@ const MyAccount = () => {
                 Date: {order.date}
               </p>
               {order.items.map((item) => (
-                <div key={item.id} className="my-1 flex">
-                  <img
-                    src={item.image}
-                    alt="product image"
-                    className="w-[120px] rounded-md bg-grayBG"
-                  />
-                  <div className="ml-5 space-y-1">
-                    <p className="font-satoshi text-xl font-semibold">
-                      {item.title}
-                    </p>
-                    <p className="font-satoshi text-lg">
-                      <span className="text-base">{item.quantity}x</span>{" "}
-                      {item.price} $
-                    </p>
+                <Fragment key={item.id}>
+                  <div key={item.id} className="my-1 flex">
+                    <img
+                      src={item.image}
+                      alt="product image"
+                      className="w-[140px] rounded-md bg-grayBG"
+                    />
+                    <div className="ml-5 space-y-1">
+                      <p className="font-satoshi text-2xl font-semibold">
+                        {item.title}
+                      </p>
+                      <p className="font-satoshi text-xl">
+                        <span className="text-lg">{item.quantity} x</span>{" "}
+                        {item.price} $
+                      </p>
+                    </div>
                   </div>
-                </div>
+                  <div className="my-6 mr-[150px] border-b-[1px]" />
+                </Fragment>
               ))}
 
-              <p className="pt-5 font-satoshi text-3xl font-bold">
+              <p className="mt-[-10px] font-satoshi text-2xl font-bold">
                 Total: {order.total}$
               </p>
               <div className="border-b-[1px] py-2" />

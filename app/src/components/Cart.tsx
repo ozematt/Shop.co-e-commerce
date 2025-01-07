@@ -15,6 +15,7 @@ const Cart = () => {
   const cart = useSelector(selectAllCart);
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);
   const dispatch: AppDispatch = useAppDispatch();
+  console.log(cart);
 
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [savings, setSavings] = useState(0);

@@ -107,6 +107,15 @@ const cartSlice = createSlice({
       }
       saveCartToLocalStorage(state);
     },
+    removeCart: (state) => {
+      state = {
+        subtotal: 0,
+        total: 0,
+        itemsInCart: 0,
+        entities: {},
+        ids: [],
+      };
+    },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const itemId = action.payload;
       const itemToRemove = state.entities[itemId]; //check if item already exist
@@ -127,8 +136,13 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, updateCart, removeFromCart, addTotalPrice } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  updateCart,
+  removeFromCart,
+  addTotalPrice,
+  removeCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
 
