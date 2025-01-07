@@ -34,11 +34,11 @@ const MyAccount = () => {
   return (
     <>
       <section className="max-container mt-3 flex w-full gap-6 px-4 max-lg:flex-wrap sm:px-[100px]">
-        <div className="flex h-[400px] w-1/3 shrink-0 flex-col items-center rounded-[20px] py-7 ring-1 ring-black ring-opacity-10 max-lg:w-full">
+        <div className="flex max-h-[400px] w-1/3 shrink-0 flex-col items-center rounded-[20px] py-5 ring-1 ring-black ring-opacity-10 max-lg:w-full md:py-7">
           <img
             src={userData?.image}
             alt=""
-            className="h-[200px] w-[200px] rounded-full bg-grayBG object-contain"
+            className="h-[150px] w-[150px] rounded-full bg-grayBG object-contain md:h-[200px] md:w-[200px]"
           />
 
           <p className="mt-2 font-satoshi text-2xl font-medium opacity-60">
@@ -57,13 +57,15 @@ const MyAccount = () => {
             </p>
           </div>
         </div>
-        <div className="w-full rounded-[20px] px-9 py-7 ring-1 ring-black ring-opacity-10">
-          <h6 className="font-integralCFBold text-4xl">Purchase History</h6>
+        <div className="w-full rounded-[20px] px-7 py-5 ring-1 ring-black ring-opacity-10 md:px-9 md:py-7">
+          <h6 className="font-integralCFBold text-2xl md:text-4xl">
+            Purchase History
+          </h6>
           <div className="border-b-[1px] py-2" />
 
           {orders.map((order) => (
             <div key={order.id} className="my-1">
-              <p className="py-2 pt-3 font-satoshi opacity-60">
+              <p className="py-1 pt-3 font-satoshi opacity-60 max-md:text-sm md:py-2">
                 Date: {order.date}
               </p>
               {order.items.map((item) => (
@@ -72,23 +74,25 @@ const MyAccount = () => {
                     <img
                       src={item.image}
                       alt="product image"
-                      className="h-[180px] w-[170px] rounded-lg bg-grayBG object-contain"
+                      className="h-[140px] w-[130px] rounded-lg bg-grayBG object-contain md:h-[180px] md:w-[170px]"
                     />
                     <div className="ml-5 space-y-1">
-                      <p className="font-satoshi text-2xl font-semibold">
+                      <p className="font-satoshi text-lg font-semibold md:text-2xl">
                         {item.title}
                       </p>
-                      <p className="font-satoshi text-xl">
-                        <span className="text-lg">{item.quantity} x</span>{" "}
+                      <p className="font-satoshi text-lg md:text-xl">
+                        <span className="text-base md:text-lg">
+                          {item.quantity} x
+                        </span>{" "}
                         {item.price} $
                       </p>
                     </div>
                   </div>
-                  <div className="my-6 mr-[150px] border-b-[1px]" />
+                  <div className="my-4 mr-[70px] border-b-[1px] md:my-6 md:mr-[150px]" />
                 </Fragment>
               ))}
 
-              <p className="mt-[-10px] font-satoshi text-2xl font-bold">
+              <p className="mt-[-10px] font-satoshi text-xl font-bold md:text-2xl">
                 Total: {order.total}$
               </p>
               <div className="border-b-[1px] py-2" />
