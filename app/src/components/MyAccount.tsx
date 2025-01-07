@@ -33,8 +33,8 @@ const MyAccount = () => {
   ////UI
   return (
     <>
-      <section className="max-container mt-3 flex gap-6 px-4 sm:px-[100px]">
-        <div className="flex h-[400px] w-[400px] flex-col items-center rounded-[20px] py-7 ring-1 ring-black ring-opacity-10">
+      <section className="max-container mt-3 flex w-full gap-6 px-4 max-lg:flex-wrap sm:px-[100px]">
+        <div className="flex h-[400px] w-1/3 shrink-0 flex-col items-center rounded-[20px] py-7 ring-1 ring-black ring-opacity-10 max-lg:w-full">
           <img
             src={userData?.image}
             alt=""
@@ -72,7 +72,7 @@ const MyAccount = () => {
                     <img
                       src={item.image}
                       alt="product image"
-                      className="w-[140px] rounded-md bg-grayBG"
+                      className="h-[180px] w-[170px] rounded-lg bg-grayBG object-contain"
                     />
                     <div className="ml-5 space-y-1">
                       <p className="font-satoshi text-2xl font-semibold">
