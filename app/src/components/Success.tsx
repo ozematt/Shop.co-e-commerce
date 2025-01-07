@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
 const Success = () => {
+  //
+  ////DATA
   const navigate = useNavigate();
+
+  ////UI
   return (
     <div className="ring-3 h-[270px] w-[500px] rounded-xl bg-white">
       <div className="flex flex-col px-4 py-9">

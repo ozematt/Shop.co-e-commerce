@@ -59,15 +59,13 @@ const Checkout = () => {
   // unique id
   const orderId = useId();
 
-  const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
+  const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
 
   //user data, included name, surname and address, needed for checkout
   const [userData, setUserData] = useState<UserData | null>(null);
   const [order, setOrder] = useState<OrderData | null>(null);
   const [success, setSuccess] = useState(false);
-
-  const total = useSelector((state: RootState) => state.cart.total); //total price (included discount)
 
   ////LOGIC
   const mutation = useMutation({
