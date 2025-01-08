@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import fetchUserData, { User } from "../../api/queries/user";
+import fetchUserData, { type User } from "../../api/queries/user";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 

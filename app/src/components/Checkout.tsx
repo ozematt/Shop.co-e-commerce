@@ -55,7 +55,7 @@ const Checkout = () => {
 
   const [order, setOrder] = useState<OrderData | null>(null);
   const [success, setSuccess] = useState(false);
-  const { userData } = useUserData(); // custom hook
+  const { userData } = useUserData(); // fetched user data
 
   ////LOGIC
   //creating order data out of local storage data, with validation
