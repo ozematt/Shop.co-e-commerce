@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
 import { useDebounce, useRedirectToProduct } from "../lib/hooks";
+import { SelectedProduct } from "../lib/hooks/useRedirectToProduct";
 
 type FilteredProduct = {
   id: number;
@@ -57,6 +58,11 @@ const Nav = () => {
     }
   }, [debouncedValue]);
 
+  const handleProductSelect = (product: SelectedProduct) => {
+    setSearchValue("");
+    handleProductClick(product);
+  };
+
   ////UI
   return (
     <nav className="max-container flex h-[96px] items-center px-4 max-[838px]:justify-between sm:px-[100px]">
@@ -105,19 +111,21 @@ const Nav = () => {
           placeholder=" Search for products..."
           className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
         />
-        <div className="absolute inset-0 left-[60px] top-[53px] z-30 h-[200px] rounded-b-xl bg-grayBG opacity-80 ring-1 ring-black">
-          <ul className="font-satoshi">
-            {filteredProducts.map((product) => (
-              <li
-                key={product.id}
-                onClick={() => handleProductClick(product)}
-                className="cursor-pointer px-9 py-2 hover:bg-grayBG hover:brightness-110"
-              >
-                {product.title}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {debouncedValue ? (
+          <div className="absolute inset-0 left-[60px] top-[53px] z-30 h-[100px] rounded-b-xl bg-grayBG opacity-80 ring-1 ring-black">
+            <ul className="font-satoshi">
+              {filteredProducts.map((product) => (
+                <li
+                  key={product.id}
+                  onClick={() => handleProductSelect(product)}
+                  className="cursor-pointer px-9 py-2 hover:bg-grayBG hover:brightness-110"
+                >
+                  {product.title}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       {/* Icons */}

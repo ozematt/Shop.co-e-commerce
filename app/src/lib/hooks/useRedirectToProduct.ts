@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { AppDispatch, useAppDispatch } from "../../redux/store";
 import { addCategoryName } from "../../redux/productsSlice";
 
-type SelectedProduct = {
+export type SelectedProduct = {
   id: number;
   title: string;
   category: string;
