@@ -1,8 +1,13 @@
 import { navLinks } from "../constants";
-import { lupeIcon, arrow } from "../assets";
+import { arrow } from "../assets";
 import { useLocation, useNavigate } from "react-router";
-import { UserIcon, CartIcon, HamburgerMenu } from "../components";
-import SearchEngine from "../components/SearchEngine";
+import {
+  UserIcon,
+  CartIcon,
+  HamburgerMenu,
+  SearchEngine,
+  SearchEngineIcon,
+} from "../components";
 
 const Nav = () => {
   //
@@ -48,19 +53,12 @@ const Nav = () => {
           </li>
         ))}
       </ul>
-
-      {/* Search */}
-      <SearchEngine />
-
+      <div className="ml-[40px] hidden w-full min-[838px]:block">
+        <SearchEngine />
+      </div>
       {/* Icons */}
       <div className="relative ml-[40px] flex min-w-[62px] items-center gap-[14px]">
-        <img
-          src={lupeIcon}
-          alt="lupe icon"
-          width={24}
-          height={24}
-          className="hidden cursor-pointer hover:opacity-60 max-[837px]:block"
-        />
+        <SearchEngineIcon />
         <CartIcon />
         <UserIcon />
       </div>

@@ -28,8 +28,12 @@ import ShopInfoBar from "./ShopInfoBar";
 import Sorting from "./Sorting";
 import UserIcon from "./UserIcon";
 import Success from "./Success";
+import SearchEngine from "./SearchEngine";
+import SearchEngineIcon from "./SearchEngineIcon";
 
 export {
+  SearchEngine,
+  SearchEngineIcon,
   Success,
   AlsoLike,
   Breadcrumbs,
