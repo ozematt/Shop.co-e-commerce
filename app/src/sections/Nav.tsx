@@ -5,10 +5,7 @@ import { UserIcon, CartIcon, HamburgerMenu } from "../components";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
-import useDebounce from "../lib/hooks/useDebounce";
-import { AppDispatch, useAppDispatch } from "../redux/store";
-import { addCategoryName } from "../redux/productsSlice";
-import useRedirectToProduct from "../lib/hooks/useRedirectToProduct";
+import { useDebounce, useRedirectToProduct } from "../lib/hooks";
 
 type FilteredProduct = {
   id: number;
@@ -28,6 +25,7 @@ const Nav = () => {
   >([]);
 
   const { debouncedValue } = useDebounce(searchValue, 300);
+  const { handleProductClick } = useRedirectToProduct();
 
   //fetch products date
   const { data } = useQuery<ProductsFetchedData>({
@@ -58,8 +56,6 @@ const Nav = () => {
       setFilteredProducts(filtered);
     }
   }, [debouncedValue]);
-
-  const { handleProductClick } = useRedirectToProduct();
 
   ////UI
   return (

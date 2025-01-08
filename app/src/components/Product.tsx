@@ -1,8 +1,6 @@
 import { Rating } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { AppDispatch, useAppDispatch } from "../redux/store";
-import { addCategoryName } from "../redux/productsSlice";
 import { useDiscount } from "../lib/hooks";
+import useRedirectToProduct from "../lib/hooks/useRedirectToProduct";
 
 export type ProductProps = {
   id: number;
@@ -26,21 +24,14 @@ const Product = ({
 }: ProductProps) => {
   //
   ////DATA
-  const navigate = useNavigate();
-  const dispatch: AppDispatch = useAppDispatch();
-
-  //custom hook
+  const { handleProductClick } = useRedirectToProduct();
   const { newPrice, discount } = useDiscount({ discountPercentage, price });
+  const product = { id, title, category }; // data for custom hook
 
-  ////LOGIC
-  const handleProductClick = () => {
-    navigate(`/shop/${category}/${title}?id=${id}`);
-    dispatch(addCategoryName(category));
-  };
   ////UI
   return (
     <div
-      onClick={handleProductClick}
+      onClick={() => handleProductClick(product)}
       className="h-[400px] cursor-pointer sm:h-[408px]"
     >
       <div className="h-[304px] w-full rounded-[20px] bg-grayBG sm:h-[298px] sm:w-[295px]">
