@@ -14,14 +14,7 @@ const Nav = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const [debouncedValue, setDebouncedValue] = useState("");
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(searchValue);
-    }, 300);
-
-    return () => clearTimeout(handler);
-  }, [searchValue]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   //fetch products date
   const { data } = useQuery<ProductsFetchedData>({
@@ -35,6 +28,24 @@ const Nav = () => {
       id: product.id,
       title: product.title,
     })) || [];
+
+  //debouncer
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(searchValue), 300);
+    return () => clearTimeout(timer);
+  }, [searchValue]);
+
+  // useEffect(() => {
+  //   if (debouncedValue.trim() === "") {
+  //     setFilteredProducts([]);
+  //     return;
+  //   }
+
+  //   const filtered = searchData.filter((product) =>
+  //     product.title.toLowerCase().includes(debouncedValue.toLowerCase()),
+  //   );
+  //   setFilteredProducts(filtered);
+  // }, [debouncedValue]);
 
   ////UI
   return (
@@ -79,6 +90,7 @@ const Nav = () => {
       <div className="relative w-full">
         <input
           type="text"
+          value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder=" Search for products..."
           className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
