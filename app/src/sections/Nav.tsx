@@ -5,6 +5,12 @@ import { UserIcon, CartIcon, HamburgerMenu } from "../components";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
+import useDebounce from "../lib/hooks/useDebounce";
+
+type FilteredProduct = {
+  id: number;
+  title: string;
+};
 
 const Nav = () => {
   //
@@ -13,8 +19,11 @@ const Nav = () => {
   const location = useLocation();
 
   const [searchValue, setSearchValue] = useState("");
-  const [debouncedValue, setDebouncedValue] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState<
+    FilteredProduct[] | []
+  >([]);
+
+  const { debouncedValue } = useDebounce(searchValue, 300);
 
   //fetch products date
   const { data } = useQuery<ProductsFetchedData>({
@@ -29,23 +38,21 @@ const Nav = () => {
       title: product.title,
     })) || [];
 
-  //debouncer
   useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(searchValue), 300);
-    return () => clearTimeout(timer);
-  }, [searchValue]);
+    //field empty - stop
+    if (debouncedValue.trim() === "") {
+      setFilteredProducts([]);
+      return;
+    }
 
-  // useEffect(() => {
-  //   if (debouncedValue.trim() === "") {
-  //     setFilteredProducts([]);
-  //     return;
-  //   }
+    if (searchData.length > 0) {
+      const filtered = searchData.filter((product) =>
+        product.title.toLowerCase().includes(debouncedValue.toLowerCase()),
+      );
 
-  //   const filtered = searchData.filter((product) =>
-  //     product.title.toLowerCase().includes(debouncedValue.toLowerCase()),
-  //   );
-  //   setFilteredProducts(filtered);
-  // }, [debouncedValue]);
+      setFilteredProducts(filtered);
+    }
+  }, [debouncedValue]);
 
   ////UI
   return (
@@ -95,7 +102,18 @@ const Nav = () => {
           placeholder=" Search for products..."
           className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
         />
-        <div className="absolute inset-0 left-[60px] top-[53px] z-30 h-[300px] rounded-b-xl bg-grayBG opacity-80 ring-1 ring-black"></div>
+        <div className="absolute inset-0 left-[60px] top-[53px] z-30 h-[200px] rounded-b-xl bg-grayBG opacity-80 ring-1 ring-black">
+          <ul className="font-satoshi">
+            {filteredProducts.map((product) => (
+              <li
+                key={product.id}
+                className="cursor-pointer px-9 py-2 hover:bg-grayBG hover:brightness-110"
+              >
+                {product.title}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Icons */}
