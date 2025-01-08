@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
 import useDebounce from "../lib/hooks/useDebounce";
+import { AppDispatch, useAppDispatch } from "../redux/store";
+import { addCategoryName } from "../redux/productsSlice";
+import useRedirectToProduct from "../lib/hooks/useRedirectToProduct";
 
 type FilteredProduct = {
   id: number;
   title: string;
+  category: string;
 };
 
 const Nav = () => {
@@ -36,6 +40,7 @@ const Nav = () => {
     data?.products.map((product) => ({
       id: product.id,
       title: product.title,
+      category: product.category,
     })) || [];
 
   useEffect(() => {
@@ -53,6 +58,8 @@ const Nav = () => {
       setFilteredProducts(filtered);
     }
   }, [debouncedValue]);
+
+  const { handleProductClick } = useRedirectToProduct();
 
   ////UI
   return (
@@ -107,6 +114,7 @@ const Nav = () => {
             {filteredProducts.map((product) => (
               <li
                 key={product.id}
+                onClick={() => handleProductClick(product)}
                 className="cursor-pointer px-9 py-2 hover:bg-grayBG hover:brightness-110"
               >
                 {product.title}
