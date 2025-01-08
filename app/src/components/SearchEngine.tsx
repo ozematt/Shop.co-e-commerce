@@ -15,12 +15,12 @@ const SearchEngine = () => {
   //
   ////DATA
   const [searchValue, setSearchValue] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState<
-    FilteredProduct[] | []
-  >([]);
+  const [filteredProducts, setFilteredProducts] = useState<FilteredProduct[]>(
+    [],
+  );
 
-  const { debouncedValue } = useDebounce(searchValue, 300);
-  const { handleProductClick } = useRedirectToProduct();
+  const { debouncedValue } = useDebounce(searchValue, 300); // debounce custom hook
+  const { handleProductClick } = useRedirectToProduct(); // redirect to product details custom hook
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -39,6 +39,7 @@ const SearchEngine = () => {
     })) || [];
 
   ////LOGIC
+  //set array of filtered products included debounced Value
   useEffect(() => {
     // protection against empty value
     if (debouncedValue.trim() === "") {
@@ -50,25 +51,23 @@ const SearchEngine = () => {
       const filtered = searchData.filter((product) =>
         product.title.toLowerCase().includes(debouncedValue.toLowerCase()),
       );
-
       setFilteredProducts(filtered);
     }
   }, [debouncedValue]);
 
-  //handle click outside search input
+  //handle click outside search engine
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        setFilteredProducts([]);
-        setSearchValue("");
+        setFilteredProducts([]); // clear filtered products array
+        setSearchValue(""); // clear search value
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleProductSelect = (product: SelectedProduct) => {
+  const handleRedirectToProductDetails = (product: SelectedProduct) => {
     setSearchValue("");
     handleProductClick(product);
   };
@@ -89,7 +88,7 @@ const SearchEngine = () => {
             {filteredProducts.map((product) => (
               <li
                 key={product.id}
-                onClick={() => handleProductSelect(product)}
+                onClick={() => handleRedirectToProductDetails(product)}
                 className="cursor-pointer px-9 py-2 hover:bg-grayBG hover:brightness-110"
               >
                 {product.title}
