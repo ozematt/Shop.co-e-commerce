@@ -15,13 +15,13 @@ const Nav = () => {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setDebouncedValue(searchValue); // Zaktualizuj tylko po krótkim czasie bezczynności
+      setDebouncedValue(searchValue);
     }, 300);
 
-    return () => clearTimeout(handler); // Wyczyszczenie timeoutu
+    return () => clearTimeout(handler);
   }, [searchValue]);
 
-  console.log(searchValue);
+  console.log(debouncedValue);
 
   ////UI
   return (
