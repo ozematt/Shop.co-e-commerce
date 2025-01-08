@@ -2,66 +2,13 @@ import { navLinks } from "../constants";
 import { lupeIcon, arrow } from "../assets";
 import { useLocation, useNavigate } from "react-router";
 import { UserIcon, CartIcon, HamburgerMenu } from "../components";
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
-import { useDebounce, useRedirectToProduct } from "../lib/hooks";
-import { SelectedProduct } from "../lib/hooks/useRedirectToProduct";
-
-type FilteredProduct = {
-  id: number;
-  title: string;
-  category: string;
-};
+import SearchEngine from "../components/SearchEngine";
 
 const Nav = () => {
   //
   ////DATA
   const navigate = useNavigate();
   const location = useLocation();
-
-  const [searchValue, setSearchValue] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState<
-    FilteredProduct[] | []
-  >([]);
-
-  const { debouncedValue } = useDebounce(searchValue, 300);
-  const { handleProductClick } = useRedirectToProduct();
-
-  //fetch products date
-  const { data } = useQuery<ProductsFetchedData>({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
-
-  //creating products list for search engine
-  const searchData =
-    data?.products.map((product) => ({
-      id: product.id,
-      title: product.title,
-      category: product.category,
-    })) || [];
-
-  useEffect(() => {
-    //field empty - stop
-    if (debouncedValue.trim() === "") {
-      setFilteredProducts([]);
-      return;
-    }
-
-    if (searchData.length > 0) {
-      const filtered = searchData.filter((product) =>
-        product.title.toLowerCase().includes(debouncedValue.toLowerCase()),
-      );
-
-      setFilteredProducts(filtered);
-    }
-  }, [debouncedValue]);
-
-  const handleProductSelect = (product: SelectedProduct) => {
-    setSearchValue("");
-    handleProductClick(product);
-  };
 
   ////UI
   return (
@@ -103,30 +50,7 @@ const Nav = () => {
       </ul>
 
       {/* Search */}
-      <div className="relative w-full">
-        <input
-          type="text"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          placeholder=" Search for products..."
-          className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
-        />
-        {debouncedValue ? (
-          <div className="absolute inset-0 left-[60px] top-[53px] z-30 h-[100px] rounded-b-xl bg-grayBG opacity-80 ring-1 ring-black">
-            <ul className="font-satoshi">
-              {filteredProducts.map((product) => (
-                <li
-                  key={product.id}
-                  onClick={() => handleProductSelect(product)}
-                  className="cursor-pointer px-9 py-2 hover:bg-grayBG hover:brightness-110"
-                >
-                  {product.title}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-      </div>
+      <SearchEngine />
 
       {/* Icons */}
       <div className="relative ml-[40px] flex min-w-[62px] items-center gap-[14px]">
