@@ -2,12 +2,26 @@ import { navLinks } from "../constants";
 import { lupeIcon, arrow } from "../assets";
 import { useLocation, useNavigate } from "react-router";
 import { UserIcon, CartIcon, HamburgerMenu } from "../components";
+import { useEffect, useState } from "react";
 
 const Nav = () => {
   //
   ////DATA
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [searchValue, setSearchValue] = useState("");
+  const [debouncedValue, setDebouncedValue] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(searchValue); // Zaktualizuj tylko po krótkim czasie bezczynności
+    }, 300);
+
+    return () => clearTimeout(handler); // Wyczyszczenie timeoutu
+  }, [searchValue]);
+
+  console.log(searchValue);
 
   ////UI
   return (
@@ -51,6 +65,7 @@ const Nav = () => {
       {/* Search */}
       <input
         type="text"
+        onChange={(e) => setSearchValue(e.target.value)}
         placeholder=" Search for products..."
         className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
       />
