@@ -3,6 +3,8 @@ import { lupeIcon, arrow } from "../assets";
 import { useLocation, useNavigate } from "react-router";
 import { UserIcon, CartIcon, HamburgerMenu } from "../components";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import fetchProducts, { ProductsFetchedData } from "../api/queries/products";
 
 const Nav = () => {
   //
@@ -21,7 +23,20 @@ const Nav = () => {
     return () => clearTimeout(handler);
   }, [searchValue]);
 
-  console.log(debouncedValue);
+  //fetch products date
+  const { data } = useQuery<ProductsFetchedData>({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
+  //creating products list for search engine
+  const searchData =
+    data?.products.map((product) => ({
+      id: product.id,
+      title: product.title,
+    })) || [];
+
+  console.log(searchData);
 
   ////UI
   return (
