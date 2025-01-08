@@ -36,8 +36,6 @@ const Nav = () => {
       title: product.title,
     })) || [];
 
-  console.log(searchData);
-
   ////UI
   return (
     <nav className="max-container flex h-[96px] items-center px-4 max-[838px]:justify-between sm:px-[100px]">
@@ -78,12 +76,15 @@ const Nav = () => {
       </ul>
 
       {/* Search */}
-      <input
-        type="text"
-        onChange={(e) => setSearchValue(e.target.value)}
-        placeholder=" Search for products..."
-        className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
-      />
+      <div className="relative w-full">
+        <input
+          type="text"
+          onChange={(e) => setSearchValue(e.target.value)}
+          placeholder=" Search for products..."
+          className="ml-[40px] mt-1 hidden h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black min-[838px]:block"
+        />
+        <div className="absolute inset-0 left-[60px] top-[53px] z-30 h-[300px] rounded-b-xl bg-grayBG opacity-80 ring-1 ring-black"></div>
+      </div>
 
       {/* Icons */}
       <div className="relative ml-[40px] flex min-w-[62px] items-center gap-[14px]">
