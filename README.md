@@ -6,6 +6,7 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 
 - **Responsywność**: Aplikacja dostosowuje się do różnych rozmiarów ekranu (mobile-first design).
 - **Zarządzanie stanem**: Wykorzystanie **Redux ToolKit** do zarządzania globalnym stanem aplikacji.
+- **Wykukiwarka produktów**: Użytkownicy mają do dyspozycji wyszukiwarkę produktów.
 - **Katalog Produktów**:
   - Aplikacja wyświetla produkty wraz z ich zdjęciami, opisami, cenami i kategoriami.
   - Funkcje **filtrowania** oraz **sortowania** produktów (np. według ceny, kategorii).
