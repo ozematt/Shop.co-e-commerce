@@ -1,6 +1,6 @@
-import { CartProduct } from "../../redux/cartSlice";
+import { type CartItemT } from "../../redux/cartSlice";
 
-function calculateTotalDiscount(products: CartProduct[]) {
+function calculateTotalDiscount(products: CartItemT[]) {
   let totalOriginalPrice = 0;
   let totalDiscountedPrice = 0;
 
