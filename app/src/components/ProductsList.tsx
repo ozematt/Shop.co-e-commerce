@@ -7,7 +7,7 @@ import { ProductsFetchedData } from "../api/queries/products";
 import { useLocation, matchPath } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { addCategorizedProducts, addProducts } from "../redux/productsSlice";
-import usePagedItems from "../lib/hooks/usePagedItems";
+import { usePagedItems } from "../lib/hooks";
 
 const ProductsList = () => {
   //

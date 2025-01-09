@@ -1,9 +1,13 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { Footer, Newsletter } from "../sections";
-import { Breadcrumbs, Filters, PaginationBar, ShopInfoBar } from "./";
-import ProductsList from "./ProductsList";
-import usePagedItems from "../lib/hooks/usePagedItems";
-import useTimeOut from "../lib/hooks/useTimeOut";
+import { usePagedItems, useTimeOut } from "../lib/hooks";
+import {
+  Breadcrumbs,
+  Filters,
+  PaginationBar,
+  ShopInfoBar,
+  ProductsList,
+} from "./";
 
 const Shop = () => {
   //
