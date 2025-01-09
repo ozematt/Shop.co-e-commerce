@@ -12,9 +12,15 @@ import usePagedItems from "../lib/hooks/usePagedItems";
 const ProductsList = () => {
   //
   ////DATA
+  const { data: products } = useQuery<ProductsFetchedData>({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
   const { pathname } = useLocation();
   const dispatch: AppDispatch = useAppDispatch();
-  const { firstIndex, secondIndex } = usePagedItems();
+
+  const { firstIndex, secondIndex } = usePagedItems(); // custom hook
 
   //global state
   const { filteredProductsByCategory, fetchedProducts, sortOptions } =
@@ -24,24 +30,20 @@ const ProductsList = () => {
   const [productsData, setProductsData] = useState(
     filteredProductsByCategory || fetchedProducts,
   );
-  //fetch date if needed - seconde time
-  const { data: products } = useQuery<ProductsFetchedData>({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-  });
 
+  ////LOGIC
+  //add products to global state
   useEffect(() => {
     if (fetchedProducts.products.length <= 1 && products) {
       dispatch(addProducts(products));
     }
   }, [dispatch, fetchedProducts, products]);
 
-  ////LOGIC
   //if location change, assign different products to the state
   useEffect(() => {
     if (pathname === "/shop") {
       setProductsData(fetchedProducts);
-      dispatch(addCategorizedProducts(null));
+      dispatch(addCategorizedProducts(null)); //clear filtered products
     } else if (
       filteredProductsByCategory &&
       matchPath("/shop/:category", pathname)
@@ -50,14 +52,14 @@ const ProductsList = () => {
     }
   }, [pathname, filteredProductsByCategory]);
 
-  //set data after render
-  useEffect(() => {
-    if (filteredProductsByCategory) {
-      setProductsData(filteredProductsByCategory);
-    } else if (fetchedProducts) {
-      setProductsData(fetchedProducts);
-    }
-  }, [filteredProductsByCategory, fetchedProducts]);
+  //   //set data after render   <--NEEDED OR NOT
+  //   useEffect(() => {
+  //     if (filteredProductsByCategory) {
+  //       setProductsData(filteredProductsByCategory);
+  //     } else if (fetchedProducts) {
+  //       setProductsData(fetchedProducts);
+  //     }
+  //   }, [filteredProductsByCategory, fetchedProducts]);
 
   //sorting products based on sortOption from global state
   const sortedProducts = () => {
@@ -83,6 +85,7 @@ const ProductsList = () => {
     }
   };
 
+  ////UI
   return sortedProducts()
     ?.slice(firstIndex, secondIndex)
     .map((product) => (
