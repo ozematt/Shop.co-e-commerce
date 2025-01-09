@@ -34,7 +34,10 @@ import lupeIcon from "../assets/Lupe_icon.png";
 import email from "../assets/Envelope.png";
 import close from "../assets/Close.png";
 
+import darkIcon from "../assets/ThemeIcon_dark.png";
+
 export {
+  darkIcon,
   close,
   email,
   lupeIcon,

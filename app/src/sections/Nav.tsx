@@ -1,5 +1,5 @@
 import { navLinks } from "../constants";
-import { arrow } from "../assets";
+import { arrow, darkIcon } from "../assets";
 import { useLocation, useNavigate } from "react-router";
 import {
   UserIcon,
@@ -57,10 +57,11 @@ const Nav = () => {
         <SearchEngine />
       </div>
       {/* Icons */}
-      <div className="relative ml-[40px] flex min-w-[62px] items-center gap-[14px]">
+      <div className="relative ml-[40px] flex min-w-[102px] items-center justify-end gap-[14px]">
         <SearchEngineIcon />
         <CartIcon />
         <UserIcon />
+        <img src={darkIcon} width={24} />
       </div>
     </nav>
   );
