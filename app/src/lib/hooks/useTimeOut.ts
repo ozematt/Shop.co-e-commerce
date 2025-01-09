@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useTimeOut = ({ delay }: { delay: number }) => {
+const useTimeOut = (delay: number) => {
   //
   ////DATA
   const [isReadyToShow, setIsReadyToShow] = useState(false);

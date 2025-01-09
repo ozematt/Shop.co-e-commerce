@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Footer, Newsletter } from "../sections";
 import { Breadcrumbs, Filters, PaginationBar, ShopInfoBar } from "./";
 import ProductsList from "./ProductsList";
 import usePagedItems from "../lib/hooks/usePagedItems";
+import useTimeOut from "../lib/hooks/useTimeOut";
 
 const Shop = () => {
   //
   ////DATA
   const { page, total, firstIndex, secondIndex } = usePagedItems();
+  const { isReadyToShow } = useTimeOut(1000);
 
   ////UI
   return (
@@ -27,7 +28,7 @@ const Shop = () => {
               second={secondIndex}
             />
             <div className="mt-4 grid grid-cols-1 flex-wrap justify-center gap-5 sm:flex">
-              {!showProducts ? (
+              {!isReadyToShow ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (
                 <ProductsList />
