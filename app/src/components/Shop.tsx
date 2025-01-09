@@ -10,16 +10,6 @@ const Shop = () => {
   ////DATA
   const { page, total, firstIndex, secondIndex } = usePagedItems();
 
-  const [showProducts, setShowProducts] = useState(false);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setShowProducts(true);
-    }, 2000);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   ////UI
   return (
     <>
