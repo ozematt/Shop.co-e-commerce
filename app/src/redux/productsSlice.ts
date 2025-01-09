@@ -83,7 +83,7 @@ const productsSlice = createSlice({
     },
     addCategorizedProducts: (
       state,
-      action: PayloadAction<ProductsFetchedData>
+      action: PayloadAction<ProductsFetchedData | null>,
     ) => {
       state.filteredProductsByCategory = action.payload;
     },

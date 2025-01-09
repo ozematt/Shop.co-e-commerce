@@ -1,38 +1,24 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-
 import CircularProgress from "@mui/material/CircularProgress";
 import { Footer, Newsletter } from "../sections";
 import { Breadcrumbs, Filters, PaginationBar, ShopInfoBar } from "./";
 import ProductsList from "./ProductsList";
+import usePagedItems from "../lib/hooks/usePagedItems";
 
 const Shop = () => {
   //
   ////DATA
+  const { page, total, firstIndex, secondIndex } = usePagedItems();
 
-  const [searchParams] = useSearchParams();
-  //fetch page number from url (uploaded from Pagination component)
-  const actualPage = Number(searchParams.get("page")) || 1; // when is NaN assigns 1 (NaN invalid string)
-  const [page, setPage] = useState(Number(actualPage)); //selected page, local state
+  const [showProducts, setShowProducts] = useState(false);
 
-  //state of total items
-  const total = useSelector(
-    (state: RootState) =>
-      state.products.filteredProductsByCategory?.total ??
-      state.products.fetchedProducts.total,
-  );
-
-  //products indexes for displayed items
-  const firstIndex = (page - 1) * 9;
-  const secondIndex = total < 9 ? total : firstIndex + 9;
-
-  ////LOGIC
-  //when url param change (updated in Pagination component), update local page state
   useEffect(() => {
-    setPage(Number(actualPage));
-  }, [actualPage]);
+    const timeoutId = setTimeout(() => {
+      setShowProducts(true);
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   ////UI
   return (
@@ -51,15 +37,13 @@ const Shop = () => {
               second={secondIndex}
             />
             <div className="mt-4 grid grid-cols-1 flex-wrap justify-center gap-5 sm:flex">
-              {false ? (
+              {!showProducts ? (
                 <CircularProgress color="inherit" className="m-auto" />
               ) : (
                 <ProductsList />
               )}
             </div>
-
             <div className="mt-[32px] border-b-2" />
-
             <PaginationBar total={total} page={page} />
           </div>
         </div>

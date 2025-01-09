@@ -4,24 +4,21 @@ import { Product } from ".";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { ProductsFetchedData } from "../api/queries/products";
-import { useLocation, useSearchParams, matchPath } from "react-router-dom";
+import { useLocation, matchPath } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { addProducts } from "../redux/productsSlice";
+import { addCategorizedProducts, addProducts } from "../redux/productsSlice";
+import usePagedItems from "../lib/hooks/usePagedItems";
 
 const ProductsList = () => {
   //
   ////DATA
   const { pathname } = useLocation();
   const dispatch: AppDispatch = useAppDispatch();
+  const { firstIndex, secondIndex } = usePagedItems();
 
   //global state
   const { filteredProductsByCategory, fetchedProducts, sortOptions } =
     useSelector((state: RootState) => state.products);
-
-  const [searchParams] = useSearchParams();
-  //fetch page number from url (uploaded from Pagination component)
-  const actualPage = Number(searchParams.get("page")) || 1; // when is NaN assigns 1 (NaN invalid string)
-  const [page, setPage] = useState(Number(actualPage)); //selected page, local state
 
   //check if category is selected, if not display all products form state
   const [productsData, setProductsData] = useState(
@@ -39,15 +36,12 @@ const ProductsList = () => {
     }
   }, [dispatch, fetchedProducts, products]);
 
-  //state of total items
-  const total = productsData.total;
-  console.log(total);
-
   ////LOGIC
   //if location change, assign different products to the state
   useEffect(() => {
     if (pathname === "/shop") {
       setProductsData(fetchedProducts);
+      dispatch(addCategorizedProducts(null));
     } else if (
       filteredProductsByCategory &&
       matchPath("/shop/:category", pathname)
@@ -64,15 +58,6 @@ const ProductsList = () => {
       setProductsData(fetchedProducts);
     }
   }, [filteredProductsByCategory, fetchedProducts]);
-
-  //when url param change (updated in Pagination component), update local page state
-  useEffect(() => {
-    setPage(Number(actualPage));
-  }, [actualPage]);
-
-  //products indexes for displayed items
-  const firstIndex = (page - 1) * 9;
-  const secondIndex = total < 9 ? total : firstIndex + 9;
 
   //sorting products based on sortOption from global state
   const sortedProducts = () => {
