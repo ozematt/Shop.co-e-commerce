@@ -13,7 +13,7 @@ const Comment = ({ rating, name, text, date }: CommentProps) => {
   //
   ////UI
   return (
-    <div className="z-10 h-[187px] w-[358px] flex-shrink-0 rounded-[20px] p-6 ring-1 ring-black ring-opacity-10 sm:h-[240px] sm:w-[400px] sm:px-[32px] sm:py-[28px]">
+    <div className="z-10 my-1 h-[187px] w-[358px] flex-shrink-0 rounded-[20px] p-6 ring-1 ring-black ring-opacity-10 sm:h-[240px] sm:w-[400px] sm:px-[32px] sm:py-[28px] dark:ring-white">
       <Rating
         value={rating}
         precision={0.5}
@@ -21,6 +21,7 @@ const Comment = ({ rating, name, text, date }: CommentProps) => {
         sx={{
           fontSize: { xs: "1.2rem", sm: "1.5rem" },
         }}
+        readOnly
       />{" "}
       <div className="flex items-center gap-1 pb-1 sm:pb-[12px] sm:pt-1">
         {" "}
