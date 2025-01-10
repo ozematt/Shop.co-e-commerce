@@ -43,7 +43,7 @@ const ProductMainDetails = ({
             <span className="mx-[-9px] scale-[0.65] line-through opacity-30">
               ${price}
             </span>
-            <div className="h-[28px] w-[58px] rounded-[62px] bg-red-500 bg-opacity-10 py-[6.5px] text-center font-satoshi text-xs font-medium text-red-500">
+            <div className="h-[28px] w-[58px] rounded-[62px] bg-red-500 bg-opacity-10 py-[6.5px] text-center font-satoshi text-xs font-medium text-red-500 dark:bg-opacity-90 dark:text-white">
               -{discount}%
             </div>
           </>

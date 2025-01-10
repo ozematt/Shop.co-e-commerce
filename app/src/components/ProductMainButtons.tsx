@@ -56,7 +56,7 @@ const ProductMainButtons = ({
     <div>
       <div className="my-6 border-b-2" />
       <p className="font-satoshi opacity-60">Shipping time:</p>
-      <button className="mt-[16px] rounded-full bg-grayBG px-6 py-3 font-satoshi font-medium opacity-60 max-md:text-sm">
+      <button className="mt-[16px] rounded-full bg-grayBG px-6 py-3 font-satoshi font-medium opacity-60 max-md:text-sm dark:text-black">
         {shippingInformation}
       </button>
       <div className="my-6 border-b-2" />
@@ -69,7 +69,7 @@ const ProductMainButtons = ({
         <button
           type="button"
           onClick={handleAddToCart}
-          className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 hover:scale-95 active:scale-100 max-md:text-sm"
+          className="ml-[20px] w-full max-w-[400px] rounded-full bg-black px-6 py-3 font-satoshi font-medium text-white ring-1 ring-white hover:scale-95 active:scale-100 max-md:text-sm dark:bg-white dark:text-black"
         >
           Add to Cart
         </button>

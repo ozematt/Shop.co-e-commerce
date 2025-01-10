@@ -29,7 +29,7 @@ const ProductImages = ({ images }: ProductImagesProps) => {
             src={img}
             alt="image"
             onClick={() => setBigImg(img)}
-            className="h-full max-h-[106px] max-w-[111px] rounded-[20px] bg-grayBG object-contain ring-black hover:ring-1 md:max-h-[167px] md:max-w-[152px]"
+            className="h-full max-h-[106px] max-w-[111px] rounded-[20px] bg-grayBG object-contain ring-black hover:ring-1 md:max-h-[167px] md:max-w-[152px] dark:bg-zinc-900"
           />
         ))}
       </div>
@@ -37,7 +37,7 @@ const ProductImages = ({ images }: ProductImagesProps) => {
       <img
         src={bigImg}
         alt="main image"
-        className="w-full rounded-[20px] bg-grayBG object-contain min-[1430px]:max-w-[444px]"
+        className="w-full rounded-[20px] bg-grayBG object-contain min-[1430px]:max-w-[444px] dark:bg-zinc-900"
       />
     </div>
   );
