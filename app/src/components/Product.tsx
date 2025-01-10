@@ -32,7 +32,7 @@ const Product = ({
   return (
     <div
       onClick={() => handleProductClick(product)}
-      className="h-[400px] cursor-pointer sm:h-[408px]"
+      className="h-[400px] cursor-pointer hover:scale-95 sm:h-[408px]"
     >
       <div className="h-[304px] w-full rounded-[20px] bg-grayBG sm:h-[298px] sm:w-[295px] dark:bg-zinc-900">
         <img

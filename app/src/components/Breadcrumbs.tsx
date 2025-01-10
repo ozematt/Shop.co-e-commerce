@@ -24,7 +24,12 @@ const Breadcrumbs = () => {
       >
         Home
       </p>
-      <img src={arrow} width={16} alt="arrow" className="-rotate-90" />
+      <img
+        src={arrow}
+        width={16}
+        alt="arrow"
+        className="-rotate-90 dark:invert"
+      />
 
       {location.pathname === "/cart" && (
         <p className="cursor-pointer px-2 font-satoshi leading-none hover:opacity-70">
@@ -37,7 +42,12 @@ const Breadcrumbs = () => {
           className="flex cursor-pointer px-2 font-satoshi leading-none hover:opacity-70"
         >
           Cart
-          <img src={arrow} width={16} alt="arrow" className="mx-2 -rotate-90" />
+          <img
+            src={arrow}
+            width={16}
+            alt="arrow"
+            className="mx-2 -rotate-90 dark:invert"
+          />
           <strong>Checkout</strong>
         </div>
       )}
@@ -56,7 +66,12 @@ const Breadcrumbs = () => {
       )}
 
       {category && (
-        <img src={arrow} width={16} alt="arrow" className="-rotate-90" />
+        <img
+          src={arrow}
+          width={16}
+          alt="arrow"
+          className="-rotate-90 dark:invert"
+        />
       )}
 
       <p
@@ -70,7 +85,12 @@ const Breadcrumbs = () => {
         )}
       </p>
       {product && (
-        <img src={arrow} width={16} alt="arrow" className="-rotate-90" />
+        <img
+          src={arrow}
+          width={16}
+          alt="arrow"
+          className="-rotate-90 dark:invert"
+        />
       )}
       <p className="px-2 font-satoshi leading-none">
         {product && <strong>{product}</strong>}
