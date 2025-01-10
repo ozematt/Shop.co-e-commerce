@@ -10,7 +10,7 @@ const Hero = () => {
 
   ////UI
   return (
-    <section className="relative bg-grayBG px-4 sm:px-[100px]">
+    <section className="relative bg-grayBG px-4 sm:px-[100px] dark:bg-zinc-900">
       <div className="w-full max-w-[360px] pt-10 max-sm:mx-auto sm:max-w-[520px] sm:pt-[103px]">
         {" "}
         <h1 className="font-integralCFBold text-4xl sm:text-[64px] sm:leading-[64px]">

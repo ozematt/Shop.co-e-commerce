@@ -8,7 +8,7 @@ import {
   SearchEngine,
   SearchEngineIcon,
 } from "../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getStoredTheme, saveTheme } from "../lib/helpers/themeUtils";
 
 const Nav = () => {
@@ -17,6 +17,13 @@ const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [theme, setTheme] = useState(getStoredTheme());
+
+  //// LOGIC
+  useEffect(() => {
+    if (theme === "dark") {
+      handleThemeToggle("dark");
+    }
+  }, [theme]);
 
   //action on theme switch button
   const handleThemeToggle = (toggledTheme: string) => {
