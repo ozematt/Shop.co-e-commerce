@@ -43,7 +43,7 @@ const UserIcon = () => {
         width={24}
         height={24}
         onClick={handleUserPanel}
-        className="cursor-pointer hover:opacity-60"
+        className="cursor-pointer hover:opacity-60 dark:invert"
       />
       {open && (
         <ul className="absolute right-[-5px] top-[50px] z-50 w-[130px] rounded-[5px] bg-white bg-opacity-90 pl-3 pt-1 ring-1 ring-black ring-opacity-20">

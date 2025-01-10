@@ -28,13 +28,13 @@ const CartIcon = () => {
         width={24}
         height={24}
         onClick={handleCart}
-        className="cursor-pointer hover:opacity-60"
+        className="cursor-pointer hover:opacity-60 dark:invert"
       />
       {quantity > 0 && (
         <>
           <div className="absolute right-[-7px] top-[-2px] h-[17px] w-[17px] rounded-full bg-orange-400 ring-2 ring-white" />
           {quantity === 1 ? (
-            <p className="absolute right-[-1px] top-[-1.5px] font-satoshi text-[11px] font-medium text-black">
+            <p className="absolute right-[-1px] top-[-1.5px] font-satoshi text-[11px] font-medium text-black dark:text-white">
               {quantity}
             </p>
           ) : (

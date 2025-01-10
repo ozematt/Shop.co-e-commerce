@@ -33,7 +33,7 @@ const Nav = () => {
         {/* Logo */}
         <a
           href="/"
-          className="mb-[7px] font-integralCFBold text-[25px] sm:text-[32px]"
+          className="mb-[7px] font-integralCFBold text-[25px] sm:text-[32px] dark:text-white"
         >
           shop.co
         </a>
@@ -41,7 +41,7 @@ const Nav = () => {
 
       {/* Nav Links */}
       <ul className="flex min-w-[390px] items-center justify-center gap-[24px] pl-[40px] font-satoshi font-normal max-[1192px]:hidden">
-        <li className="flex items-center py-3">
+        <li className="flex items-center py-3 dark:text-white">
           <button
             onClick={() => navigate("/shop")}
             className="pr-1 hover:opacity-60"
@@ -49,13 +49,13 @@ const Nav = () => {
             Shop
           </button>
           {location.pathname.includes("shop") ? (
-            <img src={arrow} alt="arrow" />
+            <img src={arrow} alt="arrow" className="dark:invert" />
           ) : (
-            <img src={arrow} alt="arrow" className="rotate-180" />
+            <img src={arrow} alt="arrow" className="rotate-180 dark:invert" />
           )}
         </li>
         {navLinks.map((link, index) => (
-          <li key={index} className="py-3">
+          <li key={index} className="py-3 dark:text-white">
             <a href={link.href} className="hover:opacity-60">
               {link.label}{" "}
             </a>
@@ -73,6 +73,7 @@ const Nav = () => {
         <img
           src={darkIcon}
           width={24}
+          className="dark:invert"
           onClick={() =>
             handleThemeToggle(theme === "light" ? "dark" : "light")
           }
