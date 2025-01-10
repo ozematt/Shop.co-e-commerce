@@ -15,6 +15,8 @@ const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const handleThemToggle = () => {};
+
   ////UI
   return (
     <nav className="max-container flex h-[96px] items-center px-4 max-[838px]:justify-between sm:px-[100px]">
