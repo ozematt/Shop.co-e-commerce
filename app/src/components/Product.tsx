@@ -34,7 +34,7 @@ const Product = ({
       onClick={() => handleProductClick(product)}
       className="h-[400px] cursor-pointer sm:h-[408px]"
     >
-      <div className="h-[304px] w-full rounded-[20px] bg-grayBG sm:h-[298px] sm:w-[295px]">
+      <div className="h-[304px] w-full rounded-[20px] bg-grayBG sm:h-[298px] sm:w-[295px] dark:bg-zinc-900">
         <img
           src={images[0]}
           alt={title}
@@ -64,7 +64,7 @@ const Product = ({
             <span className="mx-[-9px] scale-[0.65] line-through opacity-30">
               ${price}
             </span>
-            <div className="h-[28px] w-[58px] rounded-[62px] bg-red-500 bg-opacity-10 py-[6.5px] text-center font-satoshi text-xs font-medium text-red-500">
+            <div className="h-[28px] w-[58px] rounded-[62px] bg-red-500 bg-opacity-10 py-[6.5px] text-center font-satoshi text-xs font-medium text-red-500 dark:bg-opacity-90 dark:text-white">
               -{discount}%
             </div>
           </>
