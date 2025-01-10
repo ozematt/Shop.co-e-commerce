@@ -8,14 +8,21 @@ import {
   SearchEngine,
   SearchEngineIcon,
 } from "../components";
+import { useState } from "react";
+import { getStoredTheme, saveTheme } from "../lib/helpers/themeUtils";
 
 const Nav = () => {
   //
   ////DATA
   const navigate = useNavigate();
   const location = useLocation();
+  const [theme, setTheme] = useState(getStoredTheme());
 
-  const handleThemToggle = () => {};
+  //action on theme switch button
+  const handleThemeToggle = (toggledTheme: string) => {
+    setTheme(toggledTheme);
+    saveTheme(toggledTheme);
+  };
 
   ////UI
   return (
@@ -63,7 +70,13 @@ const Nav = () => {
         <SearchEngineIcon />
         <CartIcon />
         <UserIcon />
-        <img src={darkIcon} width={24} />
+        <img
+          src={darkIcon}
+          width={24}
+          onClick={() =>
+            handleThemeToggle(theme === "light" ? "dark" : "light")
+          }
+        />
       </div>
     </nav>
   );
