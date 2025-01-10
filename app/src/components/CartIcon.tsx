@@ -32,9 +32,9 @@ const CartIcon = () => {
       />
       {quantity > 0 && (
         <>
-          <div className="absolute right-[-7px] top-[-2px] h-[17px] w-[17px] rounded-full bg-orange-400 ring-2 ring-white" />
+          <div className="absolute right-[-7px] top-[-2px] h-[17px] w-[17px] rounded-full bg-orange-400 ring-2 ring-white dark:ring-black" />
           {quantity === 1 ? (
-            <p className="absolute right-[-1px] top-[-1.5px] font-satoshi text-[11px] font-medium text-black dark:text-white">
+            <p className="absolute right-[-1px] top-[-1.5px] font-satoshi text-[11px] font-medium text-black">
               {quantity}
             </p>
           ) : (

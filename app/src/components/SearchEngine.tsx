@@ -81,7 +81,7 @@ const SearchEngine = () => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder=" Search for products..."
-          className="mt-1 h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black"
+          className="mt-1 h-[48px] w-full max-w-[577px] rounded-full bg-grayBG bg-lupe-icon bg-[center_left_1.5rem] bg-no-repeat pl-[57px] focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-2 dark:focus:ring-orange-700"
         />
 
         {filteredProducts.length > 0 ? (

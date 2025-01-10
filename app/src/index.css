@@ -24,6 +24,14 @@
   scrollbar-width: none;
 }
 
+body {
+  @apply transition-colors duration-300;
+}
+
+.dark body {
+  @apply bg-black text-white;
+}
+
 @layer components {
   .max-container {
     max-width: 1440px;

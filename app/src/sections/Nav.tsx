@@ -73,7 +73,7 @@ const Nav = () => {
         <img
           src={darkIcon}
           width={24}
-          className="dark:invert"
+          className="cursor-pointer hover:opacity-60 dark:invert"
           onClick={() =>
             handleThemeToggle(theme === "light" ? "dark" : "light")
           }

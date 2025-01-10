@@ -19,7 +19,7 @@ const TopBar = () => {
     <>
       {!hideBar && (
         <section className="max-container relative">
-          <div className="flex h-[34px] w-full items-center justify-center bg-black text-center text-white sm:h-[38px] sm:px-[100px] dark:bg-white dark:text-black">
+          <div className="flex h-[34px] w-full items-center justify-center bg-black text-center text-white sm:h-[38px] sm:px-[100px] dark:bg-grayBG dark:text-black">
             {" "}
             <p className="font-satoshi text-[12px] font-normal sm:text-[14px]">
               Sign up and get 20% off to your first order.{" "}
