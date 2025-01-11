@@ -16,7 +16,6 @@ const ProductImages = ({ images }: ProductImagesProps) => {
       return;
     }
   }, [images]);
-  // className="h-full max-h-[290px] w-full max-w-[610px] rounded-[20px] bg-grayBG object-contain md:max-h-[530px] md:max-w-[444px]"
 
   ////UI
   return (
@@ -29,7 +28,7 @@ const ProductImages = ({ images }: ProductImagesProps) => {
             src={img}
             alt="image"
             onClick={() => setBigImg(img)}
-            className="h-full max-h-[106px] max-w-[111px] rounded-[20px] bg-grayBG object-contain ring-black hover:ring-1 md:max-h-[167px] md:max-w-[152px] dark:bg-zinc-900"
+            className="h-full max-h-[106px] max-w-[111px] rounded-[20px] bg-grayBG object-contain ring-black hover:ring-1 md:max-h-[167px] md:max-w-[152px] dark:bg-zinc-900 dark:ring-white"
           />
         ))}
       </div>
