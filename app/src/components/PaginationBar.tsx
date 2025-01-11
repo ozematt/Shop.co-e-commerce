@@ -41,9 +41,9 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
     <div className="mt-[20px] flex justify-between">
       <button
         onClick={handlePrevious}
-        className="flex items-center rounded-lg px-[14px] py-2 font-satoshi text-sm font-medium ring-1 ring-black ring-opacity-20 transition duration-200 ease-in-out hover:scale-95 active:scale-105"
+        className="flex items-center rounded-lg px-[14px] py-2 font-satoshi text-sm font-medium ring-1 ring-black ring-opacity-20 transition duration-200 ease-in-out hover:scale-95 active:scale-105 dark:ring-white"
       >
-        <img src={arrowLeft} alt="arrow left" className="pr-3" />
+        <img src={arrowLeft} alt="arrow left" className="pr-3 dark:invert" />
         Previous
       </button>
 
@@ -54,7 +54,7 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
             onClick={() =>
               number !== "..." && handleSelectedPageNumber(Number(number))
             }
-            className="h-[40px] w-[40px] rounded-[8px] font-satoshi text-xs font-medium opacity-50 hover:bg-grayBG hover:opacity-100 md:text-sm"
+            className="h-[40px] w-[40px] rounded-[8px] font-satoshi text-xs font-medium opacity-50 hover:bg-grayBG hover:opacity-100 md:text-sm dark:hover:text-black"
             style={{
               ...(number === pageNumber
                 ? { background: "#f0f0f0", opacity: "100%" }
@@ -70,11 +70,11 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
       </div>
       <button
         onClick={handleNext}
-        className="flex items-center rounded-lg px-[14px] py-5 font-satoshi text-sm font-medium ring-1 ring-black ring-opacity-20 transition duration-200 ease-in-out hover:scale-95 active:scale-105 md:py-2"
+        className="flex items-center rounded-lg px-[14px] py-5 font-satoshi text-sm font-medium ring-1 ring-black ring-opacity-20 transition duration-200 ease-in-out hover:scale-95 active:scale-105 md:py-2 dark:ring-white"
       >
         {" "}
         Next
-        <img src={arrowRight} alt="" className="pl-3" />
+        <img src={arrowRight} alt="" className="pl-3 dark:invert" />
       </button>
     </div>
   );
