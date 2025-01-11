@@ -57,7 +57,7 @@ const PaginationBar = ({ total, page }: PaginationBarProps) => {
             className="h-[40px] w-[40px] rounded-[8px] font-satoshi text-xs font-medium opacity-50 hover:bg-grayBG hover:opacity-100 md:text-sm dark:hover:text-black"
             style={{
               ...(number === pageNumber
-                ? { background: "#f0f0f0", opacity: "100%" }
+                ? { background: "#f0f0f0", opacity: "100%", color: "black" }
                 : {}),
               ...(number === "..."
                 ? { background: "none", cursor: "auto" }
