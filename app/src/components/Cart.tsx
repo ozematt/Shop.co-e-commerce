@@ -60,7 +60,7 @@ const Cart = () => {
           </h2>
           <div className="mt-[20px] flex flex-wrap justify-center gap-[20px] sm:mt-[24px]">
             {/* cart items */}
-            <div className="h-full max-h-[505px] w-full rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[715px]">
+            <div className="h-full max-h-[505px] w-full rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[715px] dark:ring-white">
               {cart.length ? (
                 cart.map((item) => <CartItem key={item.id} {...item} />)
               ) : (
@@ -70,7 +70,7 @@ const Cart = () => {
               )}
             </div>
             {/* SUMMARY */}
-            <div className="w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[505px]">
+            <div className="w-full max-w-[805px] rounded-[20px] ring-1 ring-black ring-opacity-10 min-[1454px]:max-w-[505px] dark:ring-white">
               <div className="px-6 pb-[33px] pt-[20px]">
                 <h6 className="pb-1 font-satoshi text-xl font-bold sm:text-2xl">
                   Order Summary
@@ -116,7 +116,7 @@ const Cart = () => {
                     <img
                       src={discount}
                       alt="discount icon"
-                      className="absolute left-4 top-[50%] z-10 opacity-40 max-sm:scale-90"
+                      className="absolute left-4 top-[50%] z-10 opacity-40 max-sm:scale-90 dark:invert"
                     />
                     <input
                       type="text"
@@ -130,13 +130,13 @@ const Cart = () => {
 
                   <button
                     onClick={handleCheckout}
-                    className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] pr-9 font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm"
+                    className="relative mt-6 w-full max-w-[457px] rounded-full bg-black py-[19px] pr-9 font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm dark:bg-white dark:text-black"
                   >
                     Go to Checkout{" "}
                     <img
                       src={arrowWhite}
                       alt="white arrow icon"
-                      className="absolute left-[65%] top-[30%] max-sm:scale-90 sm:left-[60%] sm:top-[32%]"
+                      className="absolute left-[65%] top-[30%] max-sm:scale-90 sm:left-[60%] sm:top-[32%] dark:invert"
                     />
                   </button>
                 </div>
