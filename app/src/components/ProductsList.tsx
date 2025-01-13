@@ -52,14 +52,14 @@ const ProductsList = () => {
     }
   }, [pathname, filteredProductsByCategory]);
 
-  //   //set data after render   <--NEEDED OR NOT
-  //   useEffect(() => {
-  //     if (filteredProductsByCategory) {
-  //       setProductsData(filteredProductsByCategory);
-  //     } else if (fetchedProducts) {
-  //       setProductsData(fetchedProducts);
-  //     }
-  //   }, [filteredProductsByCategory, fetchedProducts]);
+  //set data after render
+  useEffect(() => {
+    if (filteredProductsByCategory) {
+      setProductsData(filteredProductsByCategory);
+    } else if (fetchedProducts) {
+      setProductsData(fetchedProducts);
+    }
+  }, [filteredProductsByCategory, fetchedProducts]);
 
   //sorting products based on sortOption from global state
   const sortedProducts = () => {
