@@ -55,7 +55,7 @@ const CartItem = ({
         <div className="flex">
           <img
             src={image}
-            className="h-[99px] w-[99px] rounded-lg bg-grayBG object-contain lg:h-[124px] lg:w-[124px]"
+            className="h-[99px] w-[99px] rounded-lg bg-grayBG object-contain lg:h-[124px] lg:w-[124px] dark:bg-zinc-900"
             onClick={() => navigate(`/shop/${category}/${title}?id=${id}`)}
           />
           {/* product details */}
@@ -75,6 +75,7 @@ const CartItem = ({
               <span className="hidden text-sm font-medium opacity-30 lg:block">
                 For one: ${price}
               </span>
+              ``
             </p>
           </div>
         </div>
