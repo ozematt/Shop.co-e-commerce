@@ -121,9 +121,9 @@ const Cart = () => {
                     <input
                       type="text"
                       placeholder="Add promo code"
-                      className="h-[48px] w-full max-w-[326px] rounded-full bg-grayBG pl-[50px] placeholder:opacity-40 focus:outline-none focus:ring-1 focus:ring-black placeholder:max-sm:text-sm"
+                      className="h-[48px] w-full max-w-[326px] rounded-full bg-grayBG pl-[50px] placeholder:opacity-40 focus:outline-none focus:ring-1 focus:ring-black placeholder:max-sm:text-sm dark:bg-zinc-900"
                     />{" "}
-                    <button className="ml-[12px] rounded-full bg-black px-[25px] py-[13px] font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm sm:px-[38px]">
+                    <button className="ml-[12px] rounded-full bg-black px-[25px] py-[13px] font-satoshi font-medium text-white transition duration-100 ease-in-out hover:scale-95 max-sm:text-sm sm:px-[38px] dark:bg-white dark:text-black">
                       Apply
                     </button>
                   </div>
