@@ -98,7 +98,9 @@ const CartItem = ({
                 onClick={() => handleDecrementItemQuantity(id, quantity)}
                 className="md:scale-75"
               />
-              <span className="text-sm lg:text-base">{quantity}</span>
+              <span className="text-sm lg:text-base dark:text-black">
+                {quantity}
+              </span>
               <img
                 src={plus}
                 alt="plus"
