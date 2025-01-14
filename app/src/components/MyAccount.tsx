@@ -41,7 +41,7 @@ const MyAccount = () => {
             className="h-[150px] w-[150px] rounded-full bg-grayBG object-contain md:h-[200px] md:w-[200px] dark:bg-zinc-900"
           />
 
-          <p className="mt-2 font-satoshi text-2xl font-medium opacity-60">
+          <p className="mt-2 font-satoshi text-2xl font-medium opacity-60 dark:opacity-100">
             {userData?.username}
           </p>
           <div className="ml-[-50px] mt-2 space-y-1">
