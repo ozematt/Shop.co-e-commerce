@@ -14,22 +14,6 @@ const MyAccount = () => {
   const [orders, setOrders] = useState<Orders>([]);
   const { userData } = useUserData(); //custom hook
 
-  ////LOGIC
-  useEffect(() => {
-    // orders from local storage
-    const rawUserOrders: unknown = JSON.parse(
-      localStorage.getItem("orders") || "[]",
-    );
-    const parsedOrders = ordersLocalStorageSchema.safeParse(rawUserOrders);
-
-    if (parsedOrders.success) {
-      setOrders(parsedOrders.data);
-    } else {
-      console.error("Invalid users data in localStorage", parsedOrders.error);
-      setOrders([]);
-    }
-  }, []);
-
   ////UI
   return (
     <>
