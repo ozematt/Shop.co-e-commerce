@@ -34,7 +34,7 @@ const MyAccount = () => {
   return (
     <>
       <section className="max-container mt-3 flex w-full gap-6 px-4 max-lg:flex-wrap sm:px-[100px]">
-        <div className="flex max-h-[400px] w-1/3 shrink-0 flex-col items-center rounded-[20px] py-5 ring-1 ring-black ring-opacity-10 max-lg:w-full md:py-7">
+        <div className="flex max-h-[400px] w-1/3 shrink-0 flex-col items-center rounded-[20px] py-5 ring-1 ring-black ring-opacity-10 max-lg:w-full md:py-7 dark:ring-white">
           <img
             src={userData?.image}
             alt=""
