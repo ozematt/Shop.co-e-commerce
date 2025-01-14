@@ -77,7 +77,7 @@ const MyAccount = () => {
                       className="h-[140px] w-[130px] rounded-lg bg-grayBG object-contain md:h-[180px] md:w-[170px] dark:bg-zinc-900"
                     />
                     <div className="ml-5 space-y-1">
-                      <p className="font-satoshi text-lg font-semibold md:text-2xl">
+                      <p className="font-satoshi text-lg font-semibold md:text-2xl dark:opacity-90">
                         {item.title}
                       </p>
                       <p className="font-satoshi text-lg md:text-xl dark:opacity-50">
