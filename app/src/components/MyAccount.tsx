@@ -88,7 +88,7 @@ const MyAccount = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="my-4 mr-[70px] border-b-[1px] md:my-6 md:mr-[150px]" />
+                  <div className="my-4 mr-[70px] border-b-[1px] md:my-6 md:mr-[150px] dark:opacity-30" />
                 </Fragment>
               ))}
 
