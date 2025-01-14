@@ -38,7 +38,7 @@ const MyAccount = () => {
           <img
             src={userData?.image}
             alt=""
-            className="h-[150px] w-[150px] rounded-full bg-grayBG object-contain md:h-[200px] md:w-[200px]"
+            className="h-[150px] w-[150px] rounded-full bg-grayBG object-contain md:h-[200px] md:w-[200px] dark:bg-zinc-900"
           />
 
           <p className="mt-2 font-satoshi text-2xl font-medium opacity-60">
