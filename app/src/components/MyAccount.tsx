@@ -57,7 +57,7 @@ const MyAccount = () => {
             </p>
           </div>
         </div>
-        <div className="w-full rounded-[20px] px-7 py-5 ring-1 ring-black ring-opacity-10 md:px-9 md:py-7">
+        <div className="w-full rounded-[20px] px-7 py-5 ring-1 ring-black ring-opacity-10 md:px-9 md:py-7 dark:ring-white">
           <h6 className="font-integralCFBold text-2xl md:text-4xl">
             Purchase History
           </h6>
