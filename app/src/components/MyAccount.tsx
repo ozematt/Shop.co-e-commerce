@@ -80,7 +80,7 @@ const MyAccount = () => {
                       <p className="font-satoshi text-lg font-semibold md:text-2xl">
                         {item.title}
                       </p>
-                      <p className="font-satoshi text-lg md:text-xl">
+                      <p className="font-satoshi text-lg md:text-xl dark:opacity-50">
                         <span className="text-base md:text-lg">
                           {item.quantity} x
                         </span>{" "}
