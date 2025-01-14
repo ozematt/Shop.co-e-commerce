@@ -12,7 +12,7 @@ const MyAccount = () => {
   //
   ////DATA
   const [orders, setOrders] = useState<Orders>([]);
-  const { userData } = useUserData(); //custom hook
+  const { userData } = useUserData();
 
   ////LOGIC
   useEffect(() => {
