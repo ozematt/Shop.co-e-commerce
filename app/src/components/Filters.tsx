@@ -181,7 +181,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
           width={20}
           height={20}
           alt="arrow"
-          className="cursor-pointer opacity-60 hover:opacity-100"
+          className="cursor-pointer opacity-60 hover:opacity-100 dark:invert"
           style={{
             transform: `rotate(${!priceOpen ? "180deg" : "0deg"})`,
           }}
