@@ -37,7 +37,7 @@ const SearchEngineIcon = () => {
         alt="lupe icon"
         width={24}
         height={24}
-        className="hidden cursor-pointer hover:opacity-60 max-[837px]:block"
+        className="hidden cursor-pointer hover:opacity-60 max-[837px]:block dark:invert"
       />
       {open ? (
         <div className="fixed inset-0 z-20 flex items-center justify-center">
