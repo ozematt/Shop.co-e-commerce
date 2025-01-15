@@ -115,7 +115,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
 
   //UI
   return (
-    <div className="rounded-[20px] px-6 pb-6 pt-[20px] ring-1 ring-black ring-opacity-20">
+    <div className="rounded-[20px] px-6 pb-6 pt-[20px] ring-1 ring-black ring-opacity-20 dark:bg-zinc-900">
       <div className="flex items-center justify-between pb-6">
         <p className="font-satoshi text-[20px] font-bold">Filters</p>
         {iconHide ?? (
