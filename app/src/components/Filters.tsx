@@ -23,14 +23,6 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
   ////DATA
   const { category } = useParams();
 
-  const [priceOpen, setPriceOpen] = useState(true); //price filter open/close
-  const [categoryOpen, setCategoryOpen] = useState(true); //category filter open/close
-  const [selectedCategory, setSelectedCategory] = useState(category); //selected category name, initial from url
-  const [priceRange, setPriceRange] = useState({
-    from: "",
-    to: "",
-  });
-
   const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
 
