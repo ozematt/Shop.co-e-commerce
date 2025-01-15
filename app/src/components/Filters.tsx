@@ -212,7 +212,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
               }))
             }
             type="text"
-            className="h-7 w-full max-w-[120px] rounded-sm pl-2 ring-1 ring-black ring-opacity-20 placeholder:text-sm focus:outline-none focus:ring-black"
+            className="h-7 w-full max-w-[120px] rounded-sm pl-2 ring-1 ring-black ring-opacity-20 placeholder:text-sm focus:outline-none focus:ring-black dark:bg-zinc-700"
             placeholder="to:"
           />
         </div>
