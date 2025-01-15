@@ -221,7 +221,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
       <div className="border-t-2 pb-6" />
       <button
         onClick={handleFilterApply}
-        className="w-full rounded-full bg-black px-[86px] py-[15px] text-[14px] text-white transition duration-100 ease-in-out hover:scale-95"
+        className="w-full rounded-full bg-black px-[86px] py-[15px] text-[14px] text-white transition duration-100 ease-in-out hover:scale-95 dark:bg-white dark:text-black"
       >
         Apply Filter
       </button>
