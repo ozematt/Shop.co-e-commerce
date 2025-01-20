@@ -1,9 +1,4 @@
-type DetailsButtonProps = {
-  onClick: () => void;
-  details: string;
-  children: string;
-  title: string;
-};
+import { type DetailsButtonProps } from "../lib/types";
 
 const DetailsButton = ({
   onClick,

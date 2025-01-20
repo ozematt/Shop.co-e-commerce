@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { beauty, clothes, electronics, kitchen } from "../assets";
+import { useCallback } from "react";
 
 const Category = () => {
   //
@@ -7,10 +8,10 @@ const Category = () => {
   const navigate = useNavigate();
 
   ////LOGIC
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     navigate("/shop");
     window.scrollTo(0, 0);
-  };
+  }, [navigate]);
 
   ////UI
   return (

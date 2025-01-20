@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { close } from "../assets";
 import { useNavigate } from "react-router";
 
@@ -9,10 +9,10 @@ const TopBar = () => {
   const navigate = useNavigate();
 
   ////LOGIC
-  const handleSignUpClick = () => {
+  const handleSignUpClick = useCallback(() => {
     navigate("/login");
     setHideBar(true);
-  };
+  }, [navigate]);
 
   ////UI
   return (

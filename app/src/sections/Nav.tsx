@@ -8,7 +8,7 @@ import {
   SearchEngine,
   SearchEngineIcon,
 } from "../components";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getStoredTheme, saveTheme } from "../lib/helpers/themeUtils";
 
 const Nav = () => {
@@ -26,10 +26,10 @@ const Nav = () => {
   }, [theme]);
 
   //action on theme switch button
-  const handleThemeToggle = (toggledTheme: string) => {
+  const handleThemeToggle = useCallback((toggledTheme: string) => {
     setTheme(toggledTheme);
     saveTheme(toggledTheme);
-  };
+  }, []);
 
   ////UI
   return (

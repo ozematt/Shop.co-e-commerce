@@ -1,16 +1,4 @@
-type Dimensions = {
-  width: number;
-  height: number;
-  depth: number;
-};
-
-type DetailsProps = {
-  brand?: string;
-  weight: number;
-  dimensions: Dimensions;
-  warrantyInformation: string;
-  shippingInformation: string;
-};
+import { type DetailsProps } from "../lib/types";
 
 const Details = ({
   brand,

@@ -1,8 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
 import { Footer, Newsletter } from "../sections";
 import { z } from "zod";
-import { orderDataSchema } from "./Checkout";
+// import { orderDataSchema } from "./Checkout";
 import { useUserData } from "../lib/hooks";
+import { orderDataSchema } from "../lib/types";
 
 const ordersLocalStorageSchema = z.array(orderDataSchema);
 

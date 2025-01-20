@@ -1,9 +1,4 @@
-type InputProps = {
-  icon: string;
-  alt: string;
-  type: string;
-  placeholder: string;
-};
+import { type InputProps } from "../lib/types";
 
 const Input = ({ icon, alt, type, placeholder }: InputProps) => {
   //

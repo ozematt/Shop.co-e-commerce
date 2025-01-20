@@ -11,12 +11,7 @@ import {
 } from "../redux/productsSlice";
 import { Sorting } from "./";
 import { settings, arrow } from "../assets";
-
-type FiltersProps = {
-  iconHide?: boolean;
-  sortOptions?: boolean;
-  close?: () => void;
-};
+import { type FiltersProps } from "../lib/types";
 
 const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
   //

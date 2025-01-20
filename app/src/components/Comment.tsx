@@ -1,13 +1,7 @@
 import { Rating } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import { tick } from "../assets";
-
-type CommentProps = {
-  rating: number;
-  name: string;
-  text: string;
-  date?: string;
-};
+import { type CommentProps } from "../lib/types";
 
 const Comment = ({ rating, name, text, date }: CommentProps) => {
   //

@@ -1,6 +1,6 @@
 import { useMediaQuery } from "@mui/material";
 import { comments } from "../constants";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { arrowRight, arrowLeft } from "../assets";
 import { Comment } from "../components";
 
@@ -12,17 +12,17 @@ const Testimonials = () => {
   const smallDevices = useMediaQuery("(max-width:640px)");
 
   ////LOGIC
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
-  };
+  }, []);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentIndex < comments.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
-  };
+  }, []);
 
   ////UI
   return (

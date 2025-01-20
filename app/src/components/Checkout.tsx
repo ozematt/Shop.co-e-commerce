@@ -4,40 +4,9 @@ import { Breadcrumbs, Success } from "./";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { format } from "date-fns";
-import { type CartItemT, cartItemSchema, clearCart } from "../redux/cartSlice";
-import { z } from "zod";
+import { type CartItemT, clearCart } from "../redux/cartSlice";
 import { useUserData } from "../lib/hooks";
-
-const itemSchema = z.object({
-  id: z.number(),
-  title: z.string(),
-  image: z.string().url(),
-  price: z.number(),
-  quantity: z.number(),
-});
-
-export const orderDataSchema = z.object({
-  id: z.string(),
-  date: z.string(),
-  total: z.number(),
-  items: z.array(itemSchema),
-});
-
-export type OrderData = z.infer<typeof orderDataSchema>;
-
-const cartLocalStorageSchema = z.object({
-  entities: z.record(cartItemSchema),
-  ids: z.array(z.number()),
-  itemsInCart: z.number(),
-  subtotal: z.number(),
-  total: z.number(),
-});
-
-export const userLocalStorageSchema = z.object({
-  id: z.number(),
-  username: z.string(),
-});
-export type UserLocalStorage = z.infer<typeof userLocalStorageSchema>;
+import { type OrderData, cartLocalStorageSchema } from "../lib/types";
 
 const Checkout = () => {
   //
