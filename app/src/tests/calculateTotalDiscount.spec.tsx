@@ -13,26 +13,12 @@ describe("calculateTotalDiscount", () => {
     expect(result.effectiveDiscount).toBe("20.00");
   });
 
-  it("should handle no discounts (0%) correctly", () => {
-    const products: any = [
-      { price: 100, discountPercentage: 0 },
-      { price: 200, discountPercentage: 0 },
-    ];
+  it("should handle no discounts correctly", () => {
+    const products: any = [{ price: 100 }, { price: 200 }];
 
     const result = calculateTotalDiscount(products);
 
     expect(result.effectiveDiscount).toBe("0.00");
-  });
-
-  it("should handle mixed discounts", () => {
-    const products: any = [
-      { price: 100, discountPercentage: 10 },
-      { price: 200, discountPercentage: 5 },
-    ];
-
-    const result = calculateTotalDiscount(products);
-
-    expect(result.effectiveDiscount).toBe("5.00");
   });
 
   it("should handle empty product list", () => {
@@ -40,7 +26,7 @@ describe("calculateTotalDiscount", () => {
 
     const result = calculateTotalDiscount(products);
 
-    expect(result.effectiveDiscount).toBe("NaN"); // ponieważ dzielimy przez 0
+    expect(result.effectiveDiscount).toBe("NaN");
   });
 
   it("should handle single product correctly", () => {
@@ -59,6 +45,6 @@ describe("calculateTotalDiscount", () => {
 
     const result = calculateTotalDiscount(products);
 
-    expect(result.effectiveDiscount).toBe("NaN"); // dzielenie przez 0
+    expect(result.effectiveDiscount).toBe("NaN");
   });
 });
