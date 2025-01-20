@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { addTotalPrice, selectAllCart } from "../redux/cartSlice";
@@ -15,7 +15,6 @@ const Cart = () => {
   const cart = useSelector(selectAllCart);
   const subtotal = useSelector((state: RootState) => state.cart.subtotal);
   const dispatch: AppDispatch = useAppDispatch();
-  console.log(cart);
 
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [savings, setSavings] = useState(0);
@@ -39,13 +38,13 @@ const Cart = () => {
     }
   }, [cart, totalDiscount]);
 
-  const handleCheckout = () => {
+  const handleCheckout = useCallback(() => {
     const totalPrice = Number((subtotal - savings + 15).toFixed(2)) || 0;
     if (cart.length) {
       navigate("/cart/checkout");
       dispatch(addTotalPrice(totalPrice));
     }
-  };
+  }, [subtotal, savings, cart, navigate, dispatch]);
 
   ////UI
   return (
