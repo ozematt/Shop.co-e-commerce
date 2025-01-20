@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePanelOpen } from "../lib/hooks";
 import { navLinks } from "../constants";
@@ -13,17 +13,20 @@ const HamburgerMenu = () => {
   //custom hook
   const { open, setOpen } = usePanelOpen({ refValue: menuRef });
 
-  const handleClick = (id: string) => {
-    navigate("/");
+  const handleClick = useCallback(
+    (id: string) => {
+      navigate("/");
 
-    // Scrolling to element id after page load
-    setTimeout(() => {
-      const targetElement = document.getElementById(id);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 500); // delay to make sure the page has loaded
-  };
+      // Scrolling to element id after page load
+      setTimeout(() => {
+        const targetElement = document.getElementById(id);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 500); // delay to make sure the page has loaded
+    },
+    [navigate],
+  );
 
   ////UI
   return (

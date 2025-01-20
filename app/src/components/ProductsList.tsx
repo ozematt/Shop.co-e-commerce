@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { ProductsFetchedData } from "../api/queries/products";
 import { useLocation, matchPath } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { addCategorizedProducts, addProducts } from "../redux/productsSlice";
 import { usePagedItems } from "../lib/hooks";
 
@@ -62,28 +62,26 @@ const ProductsList = () => {
   }, [filteredProductsByCategory, fetchedProducts]);
 
   //sorting products based on sortOption from global state
-  const sortedProducts = () => {
-    if (sortOptions.field === "title") {
-      const sortedProducts = [...productsData.products].sort((a, b) =>
-        a.title.localeCompare(b.title),
-      );
-      return sortedProducts;
-    }
-    if (sortOptions.field === "price") {
-      const sortedByPrice =
-        sortOptions.direction === "asc"
-          ? [...productsData.products].sort((a, b) => a.price - b.price)
-          : [...productsData.products].sort((a, b) => b.price - a.price);
-      return sortedByPrice;
-    }
-    if (sortOptions.field === "rating") {
-      const sortedByRating =
-        sortOptions.direction === "asc"
-          ? [...productsData.products].sort((a, b) => a.rating - b.rating)
-          : [...productsData.products].sort((a, b) => b.rating - a.rating);
-      return sortedByRating;
-    }
-  };
+  const sortedProducts = useCallback(() => {
+    const { field, direction } = sortOptions;
+
+    const productsCopy = [...productsData.products];
+
+    // helper function for sorting
+    const compareFn = (a: any, b: any) => {
+      if (field === "title") {
+        return a.title.localeCompare(b.title);
+      } else if (field === "price") {
+        return direction === "asc" ? a.price - b.price : b.price - a.price;
+      } else if (field === "rating") {
+        return direction === "asc" ? a.rating - b.rating : b.rating - a.rating;
+      }
+      return 0;
+    };
+
+    // sorting products
+    return productsCopy.sort(compareFn);
+  }, [sortOptions]);
 
   ////UI
   return sortedProducts()

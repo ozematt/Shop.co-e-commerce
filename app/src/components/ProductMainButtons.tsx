@@ -4,6 +4,7 @@ import { addToCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { QuantityButton } from "./";
 import { useQuantity } from "../lib/hooks";
+import { useCallback } from "react";
 
 const ProductMainButtons = ({
   shippingInformation,
@@ -30,7 +31,7 @@ const ProductMainButtons = ({
   const auth = localStorage.getItem("user");
 
   //handle data send to cart
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     if (auth) {
       const newPrice = Number((price * quantity).toFixed(2));
       const modifiedProductData = {
@@ -49,7 +50,20 @@ const ProductMainButtons = ({
     } else {
       navigate("/login");
     }
-  };
+  }, [
+    navigate,
+    dispatch,
+    auth,
+    id,
+    title,
+    images,
+    price,
+    quantity,
+    category,
+    discountPercentage,
+    stock,
+    shippingInformation,
+  ]);
 
   ////UI
   return (
