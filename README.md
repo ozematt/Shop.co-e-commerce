@@ -14,6 +14,7 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 - **Uwierzytelnianie użytkowników**: Po zalogowaniu, użytkownicy mogą dodawać produkty do koszyka i składać zamówienie.
 - **Proces realizacji zakupów** – Użytkownicy przechodzą cały proces zakupu.
 - **Panel uzytkownika** – Uzytkownik ma dostęp do informacji o swoim koncie, jak również do historii zakupów.
+- **Obsługa motywów**: Użytkownik ma możliwość przełączania między **jasnym** a **ciemnym** motywem..
 
 ## Technologia
 
@@ -29,6 +30,7 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 - **Docker** – Aplikacja jest budowana w kontenerze.
 - **DummyJSON** – Zewnętrzne API, które dostarcza dane produktów, takie jak opisy, ceny, zdjęcia i kategorie (dokumentacja: [https://dummyjson.com/docs](https://dummyjson.com/docs)).
 - **API REST** – Obsługa danych przez endpointy API.
+- **Vitest** i **React Testing Library** – narzędzia do testów jednostkowych.
 
 ## Zrzuty ekranu
 
@@ -58,8 +60,6 @@ Witam w moim projekcie **Shop.co**! Projekt powstał na podstawie darmowego layo
 
 ## Funkcjonalności w trakcie przygotowania
 
-- **Obsługa motywów**: Użytkownik będzie miał możliwość przełączania między **jasnym** a **ciemnym** motywem..
 - **Baza danych**: Historia zamówień bedzie zapisywana w bazie danych za pomocą Node.js (na tę chwile zamówienia są zapisywane w local storage).
-- **Testy**: Aplikacja będzie testowana jednostkowo, integracyjnie i e2e.
 
 Dziękuję za odwiedzenie repozytorium! 😊
