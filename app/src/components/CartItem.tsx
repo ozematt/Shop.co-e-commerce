@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { type CartItemT, removeFromCart, updateCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { minus, plus, deleteIcon } from "../assets";
+import { useCallback } from "react";
 
 const CartItem = ({
   id,
@@ -20,33 +21,42 @@ const CartItem = ({
 
   ////LOGIC
   // increment item quantity
-  const handleIncrementItemQuantity = (id: number, quantity: number) => {
-    dispatch(
-      updateCart({
-        id: id,
-        changes: { quantity: quantity + 1 },
-      }),
-    );
-  };
-
-  // decrement item quantity
-  const handleDecrementItemQuantity = (id: number, quantity: number) => {
-    if (quantity > 1) {
+  const handleIncrementItemQuantity = useCallback(
+    (id: number, quantity: number) => {
       dispatch(
         updateCart({
           id: id,
-          changes: { quantity: quantity - 1 },
+          changes: { quantity: quantity + 1 },
         }),
       );
-    } else {
-      dispatch(removeFromCart(id));
-    }
-  };
+    },
+    [dispatch],
+  );
+
+  // decrement item quantity
+  const handleDecrementItemQuantity = useCallback(
+    (id: number, quantity: number) => {
+      if (quantity > 1) {
+        dispatch(
+          updateCart({
+            id: id,
+            changes: { quantity: quantity - 1 },
+          }),
+        );
+      } else {
+        dispatch(removeFromCart(id));
+      }
+    },
+    [dispatch],
+  );
 
   // remove item
-  const handleRemoveFromCart = (id: number) => {
-    dispatch(removeFromCart(id));
-  };
+  const handleRemoveFromCart = useCallback(
+    (id: number) => {
+      dispatch(removeFromCart(id));
+    },
+    [dispatch],
+  );
 
   return (
     <>

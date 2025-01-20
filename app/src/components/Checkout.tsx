@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useCallback, useEffect, useId, useState } from "react";
 import { Footer, Newsletter } from "../sections";
 import { Breadcrumbs, Success } from "./";
 import { useSelector } from "react-redux";
@@ -89,7 +89,7 @@ const Checkout = () => {
     }
   }, []);
 
-  const handleOrder = () => {
+  const handleOrder = useCallback(() => {
     try {
       const ordersLocalStorage = localStorage.getItem("orders");
 
@@ -107,7 +107,7 @@ const Checkout = () => {
       console.error("Error handling the order:", error);
       setSuccess(false);
     }
-  };
+  }, [dispatch, order]);
 
   ////UI
   return (

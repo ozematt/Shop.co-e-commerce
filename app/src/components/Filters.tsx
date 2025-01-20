@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCategoriesList } from "../api/queries";
 import { Product } from "../api/queries/products";
@@ -46,18 +46,23 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
 
   ////LOGIC
   //open/close all filters
-  const handleFiltersOpen = () => {
-    setCategoryOpen(true);
-    setPriceOpen(true);
+  const handleFiltersOpen = useCallback(() => {
     if (priceOpen && categoryOpen) {
       setCategoryOpen(false);
       setPriceOpen(false);
+    } else {
+      setCategoryOpen(true);
+      setPriceOpen(true);
     }
-  };
+  }, [priceOpen, categoryOpen]);
 
   //filtered products by category
-  const categorizedProducts: Product[] = allProducts.products.filter(
-    (product) => product.category === selectedCategory,
+  const categorizedProducts: Product[] = useMemo(
+    () =>
+      allProducts.products.filter(
+        (product) => product.category === selectedCategory,
+      ),
+    [allProducts.products, selectedCategory],
   );
 
   //when selected category will change, updated filtered product list in global state and add actual category name
@@ -79,7 +84,7 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
     products.filter((product) => product.price >= from && product.price <= to);
 
   //filter products with price range
-  const handleFilterApply = () => {
+  const handleFilterApply = useCallback(() => {
     const actualProducts = filteredProductsByCategory || allProducts; //assign actual products
 
     const from = Number(priceRange.from) || 0;
@@ -104,14 +109,12 @@ const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
       limit: 0,
     };
 
-    //for closing filter window on mo
-    if (close) {
-      close();
-    }
+    // Close filter window if needed
+    close?.();
 
     //add relevant data
     dispatch(addCategorizedProducts(dataToAdd));
-  };
+  }, [filteredProductsByCategory, allProducts, priceRange, dispatch]);
 
   //UI
   return (
