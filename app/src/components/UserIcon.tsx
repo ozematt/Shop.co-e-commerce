@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { userIcon } from "../assets";
 import { usePanelOpen } from "../lib/hooks";
 import { useNavigate } from "react-router-dom";
@@ -21,18 +21,18 @@ const UserIcon = () => {
   const { open, setOpen } = usePanelOpen({ refValue: panelRef });
 
   ////LOGIC
-  const handleUserPanel = () => {
+  const handleUserPanel = useCallback(() => {
     if (!auth) {
       navigate("/login");
       return;
     }
-    setOpen(!open);
-  };
+    setOpen((prevState) => !prevState);
+  }, [auth, navigate]);
 
-  const handleLogOut = () => {
+  const handleLogOut = useCallback(() => {
     localStorage.removeItem("user");
     setOpen(false);
-  };
+  }, []);
 
   ////UI
   return (
