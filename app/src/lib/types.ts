@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { cartItemSchema } from "../redux/cartSlice";
 
 //// BUTTON TYPES
 export type ButtonProps = {
@@ -26,8 +25,21 @@ export const orderDataSchema = z.object({
 
 export type OrderData = z.infer<typeof orderDataSchema>;
 
+const cartRecord = z.object({
+  id: z.number(),
+  title: z.string(),
+  category: z.string(),
+  discountPercentage: z.number(),
+  image: z.string().url(),
+  price: z.number(),
+  purchaseTotal: z.number(),
+  quantity: z.number(),
+  shippingTime: z.string(),
+  stock: z.number(),
+});
+
 export const cartLocalStorageSchema = z.object({
-  entities: z.record(cartItemSchema),
+  entities: z.record(cartRecord),
   ids: z.array(z.number()),
   itemsInCart: z.number(),
   subtotal: z.number(),
@@ -164,6 +176,25 @@ export const productsFetchedDataSchema = z.object({
 
 export type ProductsFetchedData = z.infer<typeof productsFetchedDataSchema>;
 
+type SortingOptions = {
+  field: string;
+  direction?: string;
+};
+
+export type SortMethod =
+  | "Alphabetical"
+  | "Hightest Price"
+  | "Lowest Price"
+  | "Top Rated"
+  | "Least Rated";
+
+export type ProductsInitialState = {
+  sortOptions: SortingOptions;
+  categoryName: string;
+  filteredProductsByCategory: null | ProductsFetchedData;
+  fetchedProducts: ProductsFetchedData;
+};
+
 ////PRODUCTIMAGE TYPES
 export type ProductImagesProps = {
   images: string[];
@@ -270,3 +301,24 @@ export const userSchema = z.object({
 });
 
 export type User = z.infer<typeof userSchema>;
+
+export type UserInitialState = {
+  username: null | string;
+  orders: OrderData[];
+};
+
+////CART TYPES
+export const cartItemSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  category: z.string(),
+  discountPercentage: z.number(),
+  image: z.string().url(),
+  price: z.number(),
+  purchaseTotal: z.number(),
+  quantity: z.number(),
+  shippingTime: z.string(),
+  stock: z.number(),
+});
+
+export type CartItemT = z.infer<typeof cartItemSchema>;

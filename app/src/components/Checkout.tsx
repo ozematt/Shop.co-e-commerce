@@ -4,9 +4,13 @@ import { Breadcrumbs, Success } from "./";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import { format } from "date-fns";
-import { type CartItemT, clearCart } from "../redux/cartSlice";
+import { clearCart } from "../redux/cartSlice";
 import { useUserData } from "../lib/hooks";
-import { type OrderData, cartLocalStorageSchema } from "../lib/types";
+import {
+  type OrderData,
+  cartLocalStorageSchema,
+  CartItemT,
+} from "../lib/types";
 
 const Checkout = () => {
   //

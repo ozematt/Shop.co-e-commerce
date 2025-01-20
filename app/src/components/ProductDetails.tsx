@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { Product } from "../api/queries/products";
 import {
   AlsoLike,
   Breadcrumbs,
@@ -13,6 +12,7 @@ import {
 } from "./";
 import { Footer, Newsletter } from "../sections";
 import { defaultProduct } from "../constants";
+import { type Product } from "../lib/types";
 
 const ProductDetails = () => {
   //

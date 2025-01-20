@@ -3,11 +3,11 @@ import { fetchProducts } from "../api/queries";
 import { Product } from ".";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
-import { ProductsFetchedData } from "../api/queries/products";
 import { useLocation, matchPath } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import { addCategorizedProducts, addProducts } from "../redux/productsSlice";
 import { usePagedItems } from "../lib/hooks";
+import { type ProductsFetchedData } from "../lib/types";
 
 const ProductsList = () => {
   //

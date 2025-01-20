@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { type CartItemT, removeFromCart, updateCart } from "../redux/cartSlice";
+import { removeFromCart, updateCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { minus, plus, deleteIcon } from "../assets";
 import { useCallback } from "react";
+import { CartItemT } from "../lib/types";
 
 const CartItem = ({
   id,

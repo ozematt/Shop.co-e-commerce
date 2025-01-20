@@ -1,17 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { OrderData } from "../components/Checkout";
+import { type OrderData, type UserInitialState } from "../lib/types";
 
-type UserState = {
-  username: null | string;
-  orders: OrderData[];
-};
-
-//added cart to local storage
-const saveOrderToLocalStorage = (userState: UserState) => {
-  localStorage.setItem("order", JSON.stringify(userState));
-};
-
-const initialState: UserState = { username: null, orders: [] };
+const initialState: UserInitialState = { username: null, orders: [] };
 
 const userSlice = createSlice({
   name: "user",
@@ -22,7 +12,6 @@ const userSlice = createSlice({
     },
     logOutUser: (state) => {
       state.username = null;
-      //   state.orders = [];
     },
     addOrder: (state, action: PayloadAction<OrderData[]>) => {
       state.orders = [...state.orders, ...action.payload];

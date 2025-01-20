@@ -1,34 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductsFetchedData } from "../api/queries/products";
+import {
+  type ProductsInitialState,
+  type ProductsFetchedData,
+  type SortMethod,
+} from "../lib/types";
+import { sortOptionsMap } from "../constants";
 
-export type SortMethod =
-  | "Alphabetical"
-  | "Hightest Price"
-  | "Lowest Price"
-  | "Top Rated"
-  | "Least Rated";
-
-const sortOptionsMap = {
-  Alphabetical: { field: "title" },
-  "Hightest Price": { field: "price", direction: "desc" },
-  "Lowest Price": { field: "price", direction: "asc" },
-  "Top Rated": { field: "rating", direction: "desc" },
-  "Least Rated": { field: "rating", direction: "asc" },
-} as const;
-
-type SortingOptions = {
-  field: string;
-  direction?: string;
-};
-
-type InitialState = {
-  sortOptions: SortingOptions;
-  categoryName: string;
-  filteredProductsByCategory: null | ProductsFetchedData;
-  fetchedProducts: ProductsFetchedData;
-};
-
-const initialState: InitialState = {
+const initialState: ProductsInitialState = {
   sortOptions: {
     field: "title",
     direction: "asc",

@@ -9,7 +9,7 @@ import twitter from "../assets/Twitter.png";
 import facebook from "../assets/Facebook.png";
 import instagram from "../assets/Instagram.png";
 import github from "../assets/Github.png";
-import { SortMethod } from "../redux/productsSlice";
+import { type SortMethod } from "../lib/types";
 
 export const navLinks = [
   { href: "#topRating", label: "Top Rating", id: "topRating" },
@@ -141,3 +141,11 @@ export const sortingOptions: SortMethod[] = [
   "Top Rated",
   "Least Rated",
 ] as const;
+
+export const sortOptionsMap = {
+  Alphabetical: { field: "title" },
+  "Hightest Price": { field: "price", direction: "desc" },
+  "Lowest Price": { field: "price", direction: "asc" },
+  "Top Rated": { field: "rating", direction: "desc" },
+  "Least Rated": { field: "rating", direction: "asc" },
+} as const;

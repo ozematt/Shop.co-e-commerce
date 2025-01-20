@@ -4,22 +4,7 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { z } from "zod";
-
-export const cartItemSchema = z.object({
-  id: z.number(),
-  title: z.string(),
-  category: z.string(),
-  discountPercentage: z.number(),
-  image: z.string().url(),
-  price: z.number(),
-  purchaseTotal: z.number(),
-  quantity: z.number(),
-  shippingTime: z.string(),
-  stock: z.number(),
-});
-
-export type CartItemT = z.infer<typeof cartItemSchema>;
+import { type CartItemT } from "../lib/types";
 
 //added cart to local storage
 const saveCartToLocalStorage = (

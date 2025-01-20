@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Product } from "../api/queries/products";
 import { Comment, Details, DetailsButton } from "./";
+import { type Product } from "../lib/types";
 
 const ProductInfo = ({
   brand,

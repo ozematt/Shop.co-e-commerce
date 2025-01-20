@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { Product } from "../api/queries/products";
 import { addToCart } from "../redux/cartSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { QuantityButton } from "./";
 import { useQuantity } from "../lib/hooks";
 import { useCallback } from "react";
+import { type Product } from "../lib/types";
 
 const ProductMainButtons = ({
   shippingInformation,

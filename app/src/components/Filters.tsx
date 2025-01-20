@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCategoriesList } from "../api/queries";
-import { Product } from "../api/queries/products";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState, useAppDispatch } from "../redux/store";
 import {
@@ -11,7 +10,7 @@ import {
 } from "../redux/productsSlice";
 import { Sorting } from "./";
 import { settings, arrow } from "../assets";
-import { type FiltersProps } from "../lib/types";
+import { type Product, type FiltersProps } from "../lib/types";
 
 const Filters = ({ iconHide, sortOptions, close }: FiltersProps) => {
   //

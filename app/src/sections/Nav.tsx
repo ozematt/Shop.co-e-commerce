@@ -9,7 +9,7 @@ import {
   SearchEngineIcon,
 } from "../components";
 import { useCallback, useEffect, useState } from "react";
-import { getStoredTheme, saveTheme } from "../lib/helpers/themeUtils";
+import { getStoredTheme, saveTheme } from "../lib/helpers/index";
 
 const Nav = () => {
   //
