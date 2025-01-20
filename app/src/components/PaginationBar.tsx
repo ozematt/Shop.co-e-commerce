@@ -2,11 +2,7 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { arrowLeft, arrowRight } from "../assets";
 import { generatePagination } from "../lib/helpers/generatePagination";
-
-type PaginationBarProps = {
-  total: number;
-  page: number;
-};
+import { type PaginationBarProps } from "../lib/types";
 
 const PaginationBar = ({ total, page }: PaginationBarProps) => {
   //

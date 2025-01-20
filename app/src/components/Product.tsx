@@ -1,17 +1,7 @@
 import { Rating } from "@mui/material";
 import { useDiscount } from "../lib/hooks";
 import useRedirectToProduct from "../lib/hooks/useRedirectToProduct";
-
-export type ProductProps = {
-  id: number;
-  title: string;
-  price: number;
-  rating: number;
-  images: string[];
-  discountPercentage: number;
-  category: string;
-  onClick?: () => void;
-};
+import { type ProductProps } from "../lib/types";
 
 const Product = ({
   id,

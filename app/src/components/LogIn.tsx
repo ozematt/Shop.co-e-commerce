@@ -2,24 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { userLogin } from "../api/queries";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Footer, Newsletter } from "../sections";
 import { Button } from "./";
 import { user, lock } from "../assets";
-
-export const loginSchema = z.object({
-  username: z
-    .string({
-      required_error: "Name is required",
-      invalid_type_error: "Name must be a string",
-    })
-    .min(3, { message: "Must be 3 or more characters long" })
-    .regex(/^[a-zA-Z]+$/, { message: "Name must contain only letters" }),
-  password: z.string().min(5, { message: "Password is required" }),
-});
-
-type LoginSchema = z.infer<typeof loginSchema>;
+import { type LoginSchema, loginSchema } from "../lib/types";
 
 const LogIn = () => {
   //

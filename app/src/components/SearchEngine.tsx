@@ -4,12 +4,7 @@ import { SelectedProduct } from "../lib/hooks/useRedirectToProduct";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../api/queries";
 import { ProductsFetchedData } from "../api/queries/products";
-
-type FilteredProduct = {
-  id: number;
-  title: string;
-  category: string;
-};
+import { type FilteredProduct } from "../lib/types";
 
 const SearchEngine = () => {
   //

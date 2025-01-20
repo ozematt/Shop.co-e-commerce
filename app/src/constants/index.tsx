@@ -9,6 +9,7 @@ import twitter from "../assets/Twitter.png";
 import facebook from "../assets/Facebook.png";
 import instagram from "../assets/Instagram.png";
 import github from "../assets/Github.png";
+import { SortMethod } from "../redux/productsSlice";
 
 export const navLinks = [
   { href: "#topRating", label: "Top Rating", id: "topRating" },
@@ -132,3 +133,11 @@ export const defaultProduct = {
   reviews: [],
   brand: "",
 };
+
+export const sortingOptions: SortMethod[] = [
+  "Alphabetical",
+  "Hightest Price",
+  "Lowest Price",
+  "Top Rated",
+  "Least Rated",
+] as const;

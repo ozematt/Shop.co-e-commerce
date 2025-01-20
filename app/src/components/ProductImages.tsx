@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-
-type ProductImagesProps = {
-  images: string[];
-};
+import { type ProductImagesProps } from "../lib/types";
 
 const ProductImages = ({ images }: ProductImagesProps) => {
   //

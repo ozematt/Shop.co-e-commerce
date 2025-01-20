@@ -1,15 +1,8 @@
 import { useState } from "react";
-import { SortMethod, addSortMethod } from "../redux/productsSlice";
+import { addSortMethod } from "../redux/productsSlice";
 import { AppDispatch, useAppDispatch } from "../redux/store";
 import { arrow } from "../assets";
-
-const sortingOptions: SortMethod[] = [
-  "Alphabetical",
-  "Hightest Price",
-  "Lowest Price",
-  "Top Rated",
-  "Least Rated",
-] as const;
+import { sortingOptions } from "../constants";
 
 const Sorting = () => {
   //

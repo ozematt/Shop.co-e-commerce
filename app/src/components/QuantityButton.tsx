@@ -1,10 +1,5 @@
 import { minus, plus } from "../assets";
-
-type QuantityButtonProps = {
-  onDecrement: () => void;
-  onIncrement: () => void;
-  quantity: number;
-};
+import { type QuantityButtonProps } from "../lib/types";
 
 const QuantityButton = ({
   onDecrement,

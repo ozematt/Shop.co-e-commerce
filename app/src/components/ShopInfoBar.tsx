@@ -9,20 +9,8 @@ import {
 } from "../redux/productsSlice";
 import { settings, arrow, closeBlack } from "../assets";
 import { Filters } from "./";
-
-const sortingOptions: SortMethod[] = [
-  "Alphabetical",
-  "Hightest Price",
-  "Lowest Price",
-  "Top Rated",
-  "Least Rated",
-] as const;
-
-type ShopInfoBarProps = {
-  first: number;
-  second: number;
-  total: number;
-};
+import { type ShopInfoBarProps } from "../lib/types";
+import { sortingOptions } from "../constants";
 
 const ShopInfoBar = ({ total, first, second }: ShopInfoBarProps) => {
   //

@@ -1,9 +1,5 @@
-import { z } from "zod";
 import { CATEGORIES_LIST } from "../constants";
-
-const categoryArray = z.array(z.string());
-
-type Category = z.infer<typeof categoryArray>;
+import { type Category, categoryArray } from "../../lib/types";
 
 const fetchCategoriesList = async () => {
   try {

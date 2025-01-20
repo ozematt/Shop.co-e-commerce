@@ -2,7 +2,7 @@ import { useCallback, useRef } from "react";
 import { userIcon } from "../assets";
 import { usePanelOpen } from "../lib/hooks";
 import { useNavigate } from "react-router-dom";
-import { UserLocalStorage } from "./Checkout";
+import { type UserLocalStorage } from "../lib/types";
 
 const UserIcon = () => {
   //
