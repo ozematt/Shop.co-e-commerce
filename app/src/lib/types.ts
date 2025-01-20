@@ -322,3 +322,26 @@ export const cartItemSchema = z.object({
 });
 
 export type CartItemT = z.infer<typeof cartItemSchema>;
+
+//// USEDISCOUNT TYPES
+export type UseDiscountProps = {
+  discountPercentage: number;
+  price: number;
+};
+
+////USEPANELOPEN TYPES
+export type UsePanelOpenProps = {
+  refValue: React.RefObject<HTMLDivElement>;
+};
+
+////USEQUANTITY TYPES
+export type UseQuantityProps = {
+  stock: number;
+};
+
+////USEREDIRECTTOPRODUCT TYPES
+export type SelectedProduct = {
+  id: number;
+  title: string;
+  category: string;
+};

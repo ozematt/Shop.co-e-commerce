@@ -1,8 +1,5 @@
 import { useState } from "react";
-
-type UseQuantityProps = {
-  stock: number;
-};
+import { type UseQuantityProps } from "../types";
 
 const useQuantity = ({ stock }: UseQuantityProps) => {
   //

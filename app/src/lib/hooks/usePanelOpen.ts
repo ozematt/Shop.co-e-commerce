@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-
-export type UsePanelOpenProps = {
-  refValue: React.RefObject<HTMLDivElement>;
-};
+import { type UsePanelOpenProps } from "../types";
 
 const usePanelOpen = ({ refValue }: UsePanelOpenProps) => {
   //

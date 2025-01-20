@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-
-type UseDiscountProps = {
-  discountPercentage: number;
-  price: number;
-};
+import { type UseDiscountProps } from "../types";
 
 const useDiscount = ({ discountPercentage, price }: UseDiscountProps) => {
   //

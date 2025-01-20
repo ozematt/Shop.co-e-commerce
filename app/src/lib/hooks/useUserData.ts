@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
-import fetchUserData, { type User } from "../../api/queries/user";
+import fetchUserData from "../../api/queries/user";
 import { useMutation } from "@tanstack/react-query";
-import { z } from "zod";
-
-export const userLocalStorageSchema = z.object({
-  id: z.number(),
-  username: z.string(),
-});
-
-export type UserLocalStorage = z.infer<typeof userLocalStorageSchema>;
+import { userLocalStorageSchema, type User } from "../types";
 
 const useUserData = () => {
   //
