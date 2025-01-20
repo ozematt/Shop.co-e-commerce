@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import { cartIcon } from "../assets";
+import { useCallback } from "react";
 
 const CartIcon = () => {
   //
@@ -11,13 +12,13 @@ const CartIcon = () => {
   const quantity = useSelector((state: RootState) => state.cart.itemsInCart);
 
   ////LOGIC
-  const handleCart = () => {
+  const handleCart = useCallback(() => {
     if (!auth) {
       navigate("/login");
       return;
     }
     navigate("/cart");
-  };
+  }, [auth, navigate]);
 
   ////UI
   return (
